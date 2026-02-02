@@ -26,9 +26,34 @@ signwell_sdk = SignwellSDK::Client.new(
   api_key: ENV["SIGNWELL_SDK_API_KEY"] # This is the default and can be omitted
 )
 
-documents = signwell_sdk.v1.documents.list
+document = signwell_sdk.v1.documents.create(
+  files: [{name: "employment_agreement.pdf", file_url: "https://example.com/documents/employment_agreement.pdf"}],
+  recipients: [
+    {id: "1", name: "John Doe", email: "john.doe@example.com"},
+    {id: "2", name: "HR Manager", email: "hr@company.com"}
+  ],
+  allow_decline: true,
+  apply_signing_order: true,
+  copied_contacts: [{name: "Legal Department", email: "legal@company.com"}],
+  decline_redirect_url: "https://example.com/signing-declined",
+  expires_in: 14,
+  fields: [
+    [
+      {x: 150, y: 600, page: 1, recipient_id: "1", type: "signature", required: true, api_id: "employee_signature"},
+      {x: 150, y: 650, page: 1, recipient_id: "1", type: "date", required: true, label: "Date Signed"},
+      {x: 400, y: 600, page: 1, recipient_id: "2", type: "signature", required: true, api_id: "hr_signature"}
+    ]
+  ],
+  message: "Hi John,\n\nPlease review and sign the attached employment agreement at your earliest convenience.\n\nBest regards,\nHR Team",
+  metadata: {employee_id: "EMP-2024-001", department: "Engineering", contract_type: "full_time"},
+  name: "Employment Agreement - John Doe",
+  redirect_url: "https://example.com/signing-complete",
+  reminders: true,
+  subject: "Action Required: Please sign your Employment Agreement",
+  test_mode: true
+)
 
-puts(documents.current_page)
+puts(document.id)
 ```
 
 ### Handling errors
@@ -171,18 +196,159 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-signwell_sdk.v1.documents.list
+signwell_sdk.v1.documents.create(
+  files: [
+    SignwellSDK::V1::DocumentFile.new(
+      name: "employment_agreement.pdf",
+      file_url: "https://example.com/documents/employment_agreement.pdf"
+    )
+  ],
+  recipients: [
+    SignwellSDK::V1::DocumentCreateParams::Recipient.new(
+      id: "1",
+      name: "John Doe",
+      email: "john.doe@example.com"
+    ),
+    SignwellSDK::V1::DocumentCreateParams::Recipient.new(id: "2", name: "HR Manager", email: "hr@company.com")
+  ],
+  allow_decline: true,
+  apply_signing_order: true,
+  copied_contacts: [SignwellSDK::V1::CopiedContact.new(name: "Legal Department", email: "legal@company.com")],
+  decline_redirect_url: "https://example.com/signing-declined",
+  expires_in: 14,
+  fields: [
+    [
+      SignwellSDK::V1::DocumentCreateParams::Field.new(
+        x: 150,
+        y_: 600,
+        page: 1,
+        recipient_id: "1",
+        type: "signature",
+        required: true,
+        api_id: "employee_signature"
+      ),
+      SignwellSDK::V1::DocumentCreateParams::Field.new(
+        x: 150,
+        y_: 650,
+        page: 1,
+        recipient_id: "1",
+        type: "date",
+        required: true,
+        label: "Date Signed"
+      ),
+      SignwellSDK::V1::DocumentCreateParams::Field.new(
+        x: 400,
+        y_: 600,
+        page: 1,
+        recipient_id: "2",
+        type: "signature",
+        required: true,
+        api_id: "hr_signature"
+      )
+    ]
+  ],
+  message: "Hi John,\n\nPlease review and sign the attached employment agreement at your earliest convenience.\n\nBest regards,\nHR Team",
+  metadata: {employee_id: "EMP-2024-001", department: "Engineering", contract_type: "full_time"},
+  name: "Employment Agreement - John Doe",
+  redirect_url: "https://example.com/signing-complete",
+  reminders: true,
+  subject: "Action Required: Please sign your Employment Agreement",
+  test_mode: true
+)
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-signwell_sdk.v1.documents.list
+signwell_sdk.v1.documents.create(
+  files: [{name: "employment_agreement.pdf", file_url: "https://example.com/documents/employment_agreement.pdf"}],
+  recipients: [
+    {id: "1", name: "John Doe", email: "john.doe@example.com"},
+    {id: "2", name: "HR Manager", email: "hr@company.com"}
+  ],
+  allow_decline: true,
+  apply_signing_order: true,
+  copied_contacts: [{name: "Legal Department", email: "legal@company.com"}],
+  decline_redirect_url: "https://example.com/signing-declined",
+  expires_in: 14,
+  fields: [
+    [
+      {x: 150, y: 600, page: 1, recipient_id: "1", type: "signature", required: true, api_id: "employee_signature"},
+      {x: 150, y: 650, page: 1, recipient_id: "1", type: "date", required: true, label: "Date Signed"},
+      {x: 400, y: 600, page: 1, recipient_id: "2", type: "signature", required: true, api_id: "hr_signature"}
+    ]
+  ],
+  message: "Hi John,\n\nPlease review and sign the attached employment agreement at your earliest convenience.\n\nBest regards,\nHR Team",
+  metadata: {employee_id: "EMP-2024-001", department: "Engineering", contract_type: "full_time"},
+  name: "Employment Agreement - John Doe",
+  redirect_url: "https://example.com/signing-complete",
+  reminders: true,
+  subject: "Action Required: Please sign your Employment Agreement",
+  test_mode: true
+)
 
 # You can also splat a full Params class:
-params = SignwellSDK::V1::DocumentListParams.new
-signwell_sdk.v1.documents.list(**params)
+params = SignwellSDK::V1::DocumentCreateParams.new(
+  files: [
+    SignwellSDK::V1::DocumentFile.new(
+      name: "employment_agreement.pdf",
+      file_url: "https://example.com/documents/employment_agreement.pdf"
+    )
+  ],
+  recipients: [
+    SignwellSDK::V1::DocumentCreateParams::Recipient.new(
+      id: "1",
+      name: "John Doe",
+      email: "john.doe@example.com"
+    ),
+    SignwellSDK::V1::DocumentCreateParams::Recipient.new(id: "2", name: "HR Manager", email: "hr@company.com")
+  ],
+  allow_decline: true,
+  apply_signing_order: true,
+  copied_contacts: [SignwellSDK::V1::CopiedContact.new(name: "Legal Department", email: "legal@company.com")],
+  decline_redirect_url: "https://example.com/signing-declined",
+  expires_in: 14,
+  fields: [
+    [
+      SignwellSDK::V1::DocumentCreateParams::Field.new(
+        x: 150,
+        y_: 600,
+        page: 1,
+        recipient_id: "1",
+        type: "signature",
+        required: true,
+        api_id: "employee_signature"
+      ),
+      SignwellSDK::V1::DocumentCreateParams::Field.new(
+        x: 150,
+        y_: 650,
+        page: 1,
+        recipient_id: "1",
+        type: "date",
+        required: true,
+        label: "Date Signed"
+      ),
+      SignwellSDK::V1::DocumentCreateParams::Field.new(
+        x: 400,
+        y_: 600,
+        page: 1,
+        recipient_id: "2",
+        type: "signature",
+        required: true,
+        api_id: "hr_signature"
+      )
+    ]
+  ],
+  message: "Hi John,\n\nPlease review and sign the attached employment agreement at your earliest convenience.\n\nBest regards,\nHR Team",
+  metadata: {employee_id: "EMP-2024-001", department: "Engineering", contract_type: "full_time"},
+  name: "Employment Agreement - John Doe",
+  redirect_url: "https://example.com/signing-complete",
+  reminders: true,
+  subject: "Action Required: Please sign your Employment Agreement",
+  test_mode: true
+)
+signwell_sdk.v1.documents.create(**params)
 ```
 
 ### Enums
