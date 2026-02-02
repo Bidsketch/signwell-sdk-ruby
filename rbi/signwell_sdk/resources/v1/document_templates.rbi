@@ -137,38 +137,6 @@ module SignwellSDK
         )
         end
 
-        # Returns a paginated list of templates for the authenticated account.
-        sig do
-          params(
-            limit: Integer,
-            page: Integer,
-            request_options: SignwellSDK::RequestOptions::OrHash
-          ).returns(SignwellSDK::Models::V1::DocumentTemplateListResponse)
-        end
-        def list(
-          # The number of documents to fetch. Defaults to 10, max is 50.
-          limit: nil,
-          # The page number for pagination. Defaults to the first page.
-          page: nil,
-          request_options: {}
-        )
-        end
-
-        # Deletes a template. Supply the unique template ID from either a Create Template
-        # request or template page URL.
-        sig do
-          params(
-            id: String,
-            request_options: SignwellSDK::RequestOptions::OrHash
-          ).void
-        end
-        def delete(
-          # Unique identifier for a template.
-          id,
-          request_options: {}
-        )
-        end
-
         # Returns a template and all associated template data. Supply the unique template
         # ID from either a Create Template request or template page URL.
         sig do
@@ -262,6 +230,38 @@ module SignwellSDK
           # the default system subject or a template subject (if the document is created
           # from a template).
           subject: nil,
+          request_options: {}
+        )
+        end
+
+        # Returns a paginated list of templates for the authenticated account.
+        sig do
+          params(
+            limit: Integer,
+            page: Integer,
+            request_options: SignwellSDK::RequestOptions::OrHash
+          ).returns(SignwellSDK::Models::V1::DocumentTemplateListResponse)
+        end
+        def list(
+          # The number of documents to fetch. Defaults to 10, max is 50.
+          limit: nil,
+          # The page number for pagination. Defaults to the first page.
+          page: nil,
+          request_options: {}
+        )
+        end
+
+        # Deletes a template. Supply the unique template ID from either a Create Template
+        # request or template page URL.
+        sig do
+          params(
+            id: String,
+            request_options: SignwellSDK::RequestOptions::OrHash
+          ).void
+        end
+        def delete(
+          # Unique identifier for a template.
+          id,
           request_options: {}
         )
         end

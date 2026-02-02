@@ -1,10 +1,11 @@
 module SignwellSDK
   module Models
     module V1
-      type document_retrieve_response =
-        SignwellSDK::Models::V1::DocumentRetrieveResponse::Json | StringIO
+      type document_retrieve_completed_pdf_response =
+        SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json
+        | StringIO
 
-      module DocumentRetrieveResponse
+      module DocumentRetrieveCompletedPdfResponse
         extend SignwellSDK::Internal::Type::Union
 
         type json = { file_url: String }
@@ -19,7 +20,7 @@ module SignwellSDK
           def to_hash: -> { file_url: String }
         end
 
-        def self?.variants: -> ::Array[SignwellSDK::Models::V1::document_retrieve_response]
+        def self?.variants: -> ::Array[SignwellSDK::Models::V1::document_retrieve_completed_pdf_response]
       end
     end
   end

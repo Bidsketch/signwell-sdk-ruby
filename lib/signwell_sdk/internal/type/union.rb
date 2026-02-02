@@ -6,14 +6,14 @@ module SignwellSDK
       # @api private
       #
       # @example
-      #   # `document_retrieve_response` is a `SignwellSDK::Models::V1::DocumentRetrieveResponse`
-      #   case document_retrieve_response
-      #   when SignwellSDK::Models::V1::DocumentRetrieveResponse::Json
-      #     puts(document_retrieve_response.file_url)
+      #   # `document_retrieve_completed_pdf_response` is a `SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse`
+      #   case document_retrieve_completed_pdf_response
+      #   when SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json
+      #     puts(document_retrieve_completed_pdf_response.file_url)
       #   when StringIO
       #     # ...
       #   else
-      #     puts(document_retrieve_response)
+      #     puts(document_retrieve_completed_pdf_response)
       #   end
       module Union
         include SignwellSDK::Internal::Type::Converter

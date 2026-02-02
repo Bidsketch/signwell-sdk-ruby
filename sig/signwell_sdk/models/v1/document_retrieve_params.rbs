@@ -2,55 +2,15 @@ module SignwellSDK
   module Models
     module V1
       type document_retrieve_params =
-        {
-          audit_page: bool,
-          file_format: SignwellSDK::Models::V1::DocumentRetrieveParams::file_format,
-          url_only: bool
-        }
-        & SignwellSDK::Internal::Type::request_parameters
+        {  } & SignwellSDK::Internal::Type::request_parameters
 
       class DocumentRetrieveParams < SignwellSDK::Internal::Type::BaseModel
         extend SignwellSDK::Internal::Type::RequestParameters::Converter
         include SignwellSDK::Internal::Type::RequestParameters
 
-        attr_reader audit_page: bool?
+        def initialize: (?request_options: SignwellSDK::request_opts) -> void
 
-        def audit_page=: (bool) -> bool
-
-        attr_reader file_format: SignwellSDK::Models::V1::DocumentRetrieveParams::file_format?
-
-        def file_format=: (
-          SignwellSDK::Models::V1::DocumentRetrieveParams::file_format
-        ) -> SignwellSDK::Models::V1::DocumentRetrieveParams::file_format
-
-        attr_reader url_only: bool?
-
-        def url_only=: (bool) -> bool
-
-        def initialize: (
-          ?audit_page: bool,
-          ?file_format: SignwellSDK::Models::V1::DocumentRetrieveParams::file_format,
-          ?url_only: bool,
-          ?request_options: SignwellSDK::request_opts
-        ) -> void
-
-        def to_hash: -> {
-          audit_page: bool,
-          file_format: SignwellSDK::Models::V1::DocumentRetrieveParams::file_format,
-          url_only: bool,
-          request_options: SignwellSDK::RequestOptions
-        }
-
-        type file_format = :pdf | :zip
-
-        module FileFormat
-          extend SignwellSDK::Internal::Type::Enum
-
-          PDF: :pdf
-          ZIP: :zip
-
-          def self?.values: -> ::Array[SignwellSDK::Models::V1::DocumentRetrieveParams::file_format]
-        end
+        def to_hash: -> { request_options: SignwellSDK::RequestOptions }
       end
     end
   end

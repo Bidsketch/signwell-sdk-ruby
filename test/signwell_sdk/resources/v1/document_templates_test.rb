@@ -50,37 +50,6 @@ class SignwellSDK::Test::Resources::V1::DocumentTemplatesTest < SignwellSDK::Tes
     end
   end
 
-  def test_list
-    skip("Prism tests are disabled")
-
-    response = @signwell_sdk.v1.document_templates.list
-
-    assert_pattern do
-      response => SignwellSDK::Models::V1::DocumentTemplateListResponse
-    end
-
-    assert_pattern do
-      response => {
-        current_page: Integer,
-        templates: ^(SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::DocumentTemplate]),
-        total_count: Integer,
-        total_pages: Integer,
-        next_page: Integer | nil,
-        previous_page: Integer | nil
-      }
-    end
-  end
-
-  def test_delete
-    skip("Prism tests are disabled")
-
-    response = @signwell_sdk.v1.document_templates.delete("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")
-
-    assert_pattern do
-      response => nil
-    end
-  end
-
   def test_retrieve
     skip("Prism tests are disabled")
 
@@ -164,6 +133,37 @@ class SignwellSDK::Test::Resources::V1::DocumentTemplatesTest < SignwellSDK::Tes
         template_link: String | nil,
         updated_at: Time | nil
       }
+    end
+  end
+
+  def test_list
+    skip("Prism tests are disabled")
+
+    response = @signwell_sdk.v1.document_templates.list
+
+    assert_pattern do
+      response => SignwellSDK::Models::V1::DocumentTemplateListResponse
+    end
+
+    assert_pattern do
+      response => {
+        current_page: Integer,
+        templates: ^(SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::DocumentTemplate]),
+        total_count: Integer,
+        total_pages: Integer,
+        next_page: Integer | nil,
+        previous_page: Integer | nil
+      }
+    end
+  end
+
+  def test_delete
+    skip("Prism tests are disabled")
+
+    response = @signwell_sdk.v1.document_templates.delete("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")
+
+    assert_pattern do
+      response => nil
     end
   end
 end

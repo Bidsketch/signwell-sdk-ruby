@@ -191,23 +191,23 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :pdf
-puts(SignwellSDK::V1::DocumentRetrieveParams::FileFormat::PDF)
+puts(SignwellSDK::V1::DocumentRetrieveCompletedPdfParams::FileFormat::PDF)
 
-# Revealed type: `T.all(SignwellSDK::V1::DocumentRetrieveParams::FileFormat, Symbol)`
-T.reveal_type(SignwellSDK::V1::DocumentRetrieveParams::FileFormat::PDF)
+# Revealed type: `T.all(SignwellSDK::V1::DocumentRetrieveCompletedPdfParams::FileFormat, Symbol)`
+T.reveal_type(SignwellSDK::V1::DocumentRetrieveCompletedPdfParams::FileFormat::PDF)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-signwell_sdk.v1.documents.retrieve(
-  file_format: SignwellSDK::V1::DocumentRetrieveParams::FileFormat::PDF,
+signwell_sdk.v1.documents.retrieve_completed_pdf(
+  file_format: SignwellSDK::V1::DocumentRetrieveCompletedPdfParams::FileFormat::PDF,
   # …
 )
 
 # Literal values are also permissible:
-signwell_sdk.v1.documents.retrieve(
+signwell_sdk.v1.documents.retrieve_completed_pdf(
   file_format: :pdf,
   # …
 )

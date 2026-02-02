@@ -20,7 +20,7 @@ module SignwellSDK
 
       # Retrieves the account information associated with the API key being used.
       sig { params(request_options: SignwellSDK::RequestOptions::OrHash).void }
-      def retrieve(request_options: {})
+      def me(request_options: {})
       end
 
       # @api private

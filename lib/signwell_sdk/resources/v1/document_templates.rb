@@ -71,51 +71,6 @@ module SignwellSDK
           )
         end
 
-        # Returns a paginated list of templates for the authenticated account.
-        #
-        # @overload list(limit: nil, page: nil, request_options: {})
-        #
-        # @param limit [Integer] The number of documents to fetch. Defaults to 10, max is 50.
-        #
-        # @param page [Integer] The page number for pagination. Defaults to the first page.
-        #
-        # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-        #
-        # @return [SignwellSDK::Models::V1::DocumentTemplateListResponse]
-        #
-        # @see SignwellSDK::Models::V1::DocumentTemplateListParams
-        def list(params = {})
-          parsed, options = SignwellSDK::V1::DocumentTemplateListParams.dump_request(params)
-          @client.request(
-            method: :get,
-            path: "api/v1/document_templates",
-            query: parsed,
-            model: SignwellSDK::Models::V1::DocumentTemplateListResponse,
-            options: options
-          )
-        end
-
-        # Deletes a template. Supply the unique template ID from either a Create Template
-        # request or template page URL.
-        #
-        # @overload delete(id, request_options: {})
-        #
-        # @param id [String] Unique identifier for a template.
-        #
-        # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-        #
-        # @return [nil]
-        #
-        # @see SignwellSDK::Models::V1::DocumentTemplateDeleteParams
-        def delete(id, params = {})
-          @client.request(
-            method: :delete,
-            path: ["api/v1/document_templates/%1$s", id],
-            model: NilClass,
-            options: params[:request_options]
-          )
-        end
-
         # Returns a template and all associated template data. Supply the unique template
         # ID from either a Create Template request or template page URL.
         #
@@ -189,6 +144,51 @@ module SignwellSDK
             body: parsed,
             model: SignwellSDK::V1::DocumentTemplate,
             options: options
+          )
+        end
+
+        # Returns a paginated list of templates for the authenticated account.
+        #
+        # @overload list(limit: nil, page: nil, request_options: {})
+        #
+        # @param limit [Integer] The number of documents to fetch. Defaults to 10, max is 50.
+        #
+        # @param page [Integer] The page number for pagination. Defaults to the first page.
+        #
+        # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [SignwellSDK::Models::V1::DocumentTemplateListResponse]
+        #
+        # @see SignwellSDK::Models::V1::DocumentTemplateListParams
+        def list(params = {})
+          parsed, options = SignwellSDK::V1::DocumentTemplateListParams.dump_request(params)
+          @client.request(
+            method: :get,
+            path: "api/v1/document_templates",
+            query: parsed,
+            model: SignwellSDK::Models::V1::DocumentTemplateListResponse,
+            options: options
+          )
+        end
+
+        # Deletes a template. Supply the unique template ID from either a Create Template
+        # request or template page URL.
+        #
+        # @overload delete(id, request_options: {})
+        #
+        # @param id [String] Unique identifier for a template.
+        #
+        # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+        #
+        # @return [nil]
+        #
+        # @see SignwellSDK::Models::V1::DocumentTemplateDeleteParams
+        def delete(id, params = {})
+          @client.request(
+            method: :delete,
+            path: ["api/v1/document_templates/%1$s", id],
+            model: NilClass,
+            options: params[:request_options]
           )
         end
 

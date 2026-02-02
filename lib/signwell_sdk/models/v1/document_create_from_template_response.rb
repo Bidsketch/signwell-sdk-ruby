@@ -3,8 +3,8 @@
 module SignwellSDK
   module Models
     module V1
-      # @see SignwellSDK::Resources::V1::Documents#create
-      class Document < SignwellSDK::Internal::Type::BaseModel
+      # @see SignwellSDK::Resources::V1::Documents#create_from_template
+      class DocumentCreateFromTemplateResponse < SignwellSDK::Internal::Type::BaseModel
         # @!attribute id
         #
         #   @return [String]
@@ -42,21 +42,15 @@ module SignwellSDK
 
         # @!attribute attachment_requests
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::AttachmentRequest>, nil]
+        #   @return [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest>, nil]
         optional :attachment_requests,
-                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::AttachmentRequest] }
-
-        # @!attribute checkbox_groups
-        #
-        #   @return [Array<SignwellSDK::Models::V1::Document::CheckboxGroup>, nil]
-        optional :checkbox_groups,
-                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::CheckboxGroup] }
+                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest] }
 
         # @!attribute copied_contacts
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::CopiedContact>, nil]
+        #   @return [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact>, nil]
         optional :copied_contacts,
-                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::CopiedContact] }
+                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact] }
 
         # @!attribute created_at
         #
@@ -88,11 +82,6 @@ module SignwellSDK
         #   @return [String, nil]
         optional :embedded_edit_url, String
 
-        # @!attribute embedded_preview_url
-        #
-        #   @return [String, nil]
-        optional :embedded_preview_url, String, nil?: true
-
         # @!attribute expires_in
         #
         #   @return [Integer, nil]
@@ -100,19 +89,21 @@ module SignwellSDK
 
         # @!attribute fields
         #
-        #   @return [Array<Array<SignwellSDK::Models::V1::Document::Field>>, nil]
+        #   @return [Array<Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field>>, nil]
         optional :fields,
-                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::Field]] }
+                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field]] }
 
         # @!attribute files
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::File>, nil]
-        optional :files, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::File] }
+        #   @return [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File>, nil]
+        optional :files,
+                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File] }
 
         # @!attribute labels
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::Label>, nil]
-        optional :labels, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::Label] }
+        #   @return [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label>, nil]
+        optional :labels,
+                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label] }
 
         # @!attribute language
         #
@@ -136,8 +127,9 @@ module SignwellSDK
 
         # @!attribute recipients
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::Recipient>, nil]
-        optional :recipients, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::Recipient] }
+        #   @return [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient>, nil]
+        optional :recipients,
+                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient] }
 
         # @!attribute redirect_url
         #
@@ -164,12 +156,22 @@ module SignwellSDK
         #   @return [String, nil]
         optional :subject, String
 
+        # @!attribute template_id
+        #
+        #   @return [String, nil]
+        optional :template_id, String
+
+        # @!attribute template_ids
+        #
+        #   @return [Array<String>, nil]
+        optional :template_ids, SignwellSDK::Internal::Type::ArrayOf[String]
+
         # @!attribute updated_at
         #
         #   @return [Time, nil]
         optional :updated_at, Time
 
-        # @!method initialize(id:, test_mode:, allow_decline: nil, allow_reassign: nil, api_application_id: nil, apply_signing_order: nil, archived: nil, attachment_requests: nil, checkbox_groups: nil, copied_contacts: nil, created_at: nil, custom_requester_email: nil, custom_requester_name: nil, decline_redirect_url: nil, embedded: nil, embedded_edit_url: nil, embedded_preview_url: nil, expires_in: nil, fields: nil, files: nil, labels: nil, language: nil, message: nil, metadata: nil, name: nil, recipients: nil, redirect_url: nil, reminders: nil, requester_email_address: nil, status: nil, subject: nil, updated_at: nil)
+        # @!method initialize(id:, test_mode:, allow_decline: nil, allow_reassign: nil, api_application_id: nil, apply_signing_order: nil, archived: nil, attachment_requests: nil, copied_contacts: nil, created_at: nil, custom_requester_email: nil, custom_requester_name: nil, decline_redirect_url: nil, embedded: nil, embedded_edit_url: nil, expires_in: nil, fields: nil, files: nil, labels: nil, language: nil, message: nil, metadata: nil, name: nil, recipients: nil, redirect_url: nil, reminders: nil, requester_email_address: nil, status: nil, subject: nil, template_id: nil, template_ids: nil, updated_at: nil)
         #   @param id [String]
         #   @param test_mode [Boolean]
         #   @param allow_decline [Boolean, nil]
@@ -177,30 +179,30 @@ module SignwellSDK
         #   @param api_application_id [String, nil]
         #   @param apply_signing_order [Boolean]
         #   @param archived [Boolean]
-        #   @param attachment_requests [Array<SignwellSDK::Models::V1::Document::AttachmentRequest>]
-        #   @param checkbox_groups [Array<SignwellSDK::Models::V1::Document::CheckboxGroup>]
-        #   @param copied_contacts [Array<SignwellSDK::Models::V1::Document::CopiedContact>]
+        #   @param attachment_requests [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest>]
+        #   @param copied_contacts [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact>]
         #   @param created_at [Time]
         #   @param custom_requester_email [String, nil]
         #   @param custom_requester_name [String, nil]
         #   @param decline_redirect_url [String, nil]
         #   @param embedded [Boolean]
         #   @param embedded_edit_url [String]
-        #   @param embedded_preview_url [String, nil]
         #   @param expires_in [Integer]
-        #   @param fields [Array<Array<SignwellSDK::Models::V1::Document::Field>>]
-        #   @param files [Array<SignwellSDK::Models::V1::Document::File>]
-        #   @param labels [Array<SignwellSDK::Models::V1::Document::Label>]
+        #   @param fields [Array<Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field>>]
+        #   @param files [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File>]
+        #   @param labels [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label>]
         #   @param language [String]
         #   @param message [String]
         #   @param metadata [Hash{Symbol=>String}]
         #   @param name [String]
-        #   @param recipients [Array<SignwellSDK::Models::V1::Document::Recipient>]
+        #   @param recipients [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient>]
         #   @param redirect_url [String, nil]
         #   @param reminders [Boolean]
         #   @param requester_email_address [String]
         #   @param status [String]
         #   @param subject [String]
+        #   @param template_id [String]
+        #   @param template_ids [Array<String>]
         #   @param updated_at [Time]
 
         class AttachmentRequest < SignwellSDK::Internal::Type::BaseModel
@@ -223,52 +225,6 @@ module SignwellSDK
           #   @param name [String]
           #   @param recipient_id [String]
           #   @param required [Boolean]
-        end
-
-        class CheckboxGroup < SignwellSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!attribute checkbox_ids
-          #
-          #   @return [Array<String>]
-          required :checkbox_ids, SignwellSDK::Internal::Type::ArrayOf[String]
-
-          # @!attribute required
-          #
-          #   @return [Boolean]
-          required :required, SignwellSDK::Internal::Type::Boolean
-
-          # @!attribute group_name
-          #
-          #   @return [String, nil]
-          optional :group_name, String, nil?: true
-
-          # @!attribute min_value
-          #
-          #   @return [Integer, nil]
-          optional :min_value, Integer
-
-          # @!attribute recipient_id
-          #
-          #   @return [String, nil]
-          optional :recipient_id, String, nil?: true
-
-          # @!attribute validation
-          #
-          #   @return [String, nil]
-          optional :validation, String, nil?: true
-
-          # @!method initialize(id:, checkbox_ids:, required:, group_name: nil, min_value: nil, recipient_id: nil, validation: nil)
-          #   @param id [String]
-          #   @param checkbox_ids [Array<String>]
-          #   @param required [Boolean]
-          #   @param group_name [String, nil]
-          #   @param min_value [Integer]
-          #   @param recipient_id [String, nil]
-          #   @param validation [String, nil]
         end
 
         class CopiedContact < SignwellSDK::Internal::Type::BaseModel
@@ -359,8 +315,9 @@ module SignwellSDK
           # @!attribute options
           #   Dropdown options (for dropdown/select fields)
           #
-          #   @return [Array<SignwellSDK::Models::V1::Document::Field::Option>, nil]
-          optional :options, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::Field::Option] }
+          #   @return [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Option>, nil]
+          optional :options,
+                   -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Option] }
 
           # @!attribute placeholder_name
           #
@@ -369,8 +326,8 @@ module SignwellSDK
 
           # @!attribute recipient
           #
-          #   @return [SignwellSDK::Models::V1::Document::Field::Recipient, nil]
-          optional :recipient, -> { SignwellSDK::V1::Document::Field::Recipient }
+          #   @return [SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Recipient, nil]
+          optional :recipient, -> { SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Recipient }
 
           # @!attribute recipient_id
           #
@@ -400,7 +357,9 @@ module SignwellSDK
           # @!attribute value
           #
           #   @return [String, Boolean, Float, nil]
-          optional :value, union: -> { SignwellSDK::V1::Document::Field::Value }, nil?: true
+          optional :value,
+                   union: -> { SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Value },
+                   nil?: true
 
           # @!attribute width
           #
@@ -432,11 +391,11 @@ module SignwellSDK
           #
           #   @param name [String, nil]
           #
-          #   @param options [Array<SignwellSDK::Models::V1::Document::Field::Option>] Dropdown options (for dropdown/select fields)
+          #   @param options [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Option>] Dropdown options (for dropdown/select fields)
           #
           #   @param placeholder_name [String]
           #
-          #   @param recipient [SignwellSDK::Models::V1::Document::Field::Recipient]
+          #   @param recipient [SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Recipient]
           #
           #   @param recipient_id [String, nil]
           #
@@ -474,7 +433,7 @@ module SignwellSDK
             #   @param name [String]
           end
 
-          # @see SignwellSDK::Models::V1::Document::Field#recipient
+          # @see SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field#recipient
           class Recipient < SignwellSDK::Internal::Type::BaseModel
             # @!attribute email
             #
@@ -486,12 +445,18 @@ module SignwellSDK
             #   @return [String]
             required :name, String
 
-            # @!method initialize(email:, name:)
+            # @!attribute role
+            #
+            #   @return [String, nil]
+            optional :role, String
+
+            # @!method initialize(email:, name:, role: nil)
             #   @param email [String]
             #   @param name [String]
+            #   @param role [String]
           end
 
-          # @see SignwellSDK::Models::V1::Document::Field#value
+          # @see SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field#value
           module Value
             extend SignwellSDK::Internal::Type::Union
 
@@ -544,93 +509,39 @@ module SignwellSDK
           #   @return [String]
           required :email, String
 
-          # @!attribute name
-          #
-          #   @return [String]
-          required :name, String
-
-          # @!attribute id
-          #
-          #   @return [String, nil]
-          optional :id, String
-
           # @!attribute attachment_requests
           #
-          #   @return [Array<SignwellSDK::Models::V1::Document::Recipient::AttachmentRequest>, nil]
+          #   @return [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest>, nil]
           optional :attachment_requests,
-                   -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::Recipient::AttachmentRequest] }
+                   -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest] }
 
-          # @!attribute body
+          # @!attribute name
           #
           #   @return [String, nil]
-          optional :body, String
-
-          # @!attribute bounced
-          #
-          #   @return [Boolean, nil]
-          optional :bounced, SignwellSDK::Internal::Type::Boolean, nil?: true
-
-          # @!attribute bounced_details
-          #
-          #   @return [String, nil]
-          optional :bounced_details, String, nil?: true
-
-          # @!attribute message
-          #
-          #   @return [String, nil]
-          optional :message, String, nil?: true
+          optional :name, String
 
           # @!attribute passcode
           #
           #   @return [String, nil]
           optional :passcode, String, nil?: true
 
-          # @!attribute send_email
-          #
-          #   @return [Boolean, nil]
-          optional :send_email, SignwellSDK::Internal::Type::Boolean, nil?: true
-
-          # @!attribute send_email_delay
-          #
-          #   @return [Integer, nil]
-          optional :send_email_delay, Integer, nil?: true
-
-          # @!attribute signing_order
-          #
-          #   @return [Integer, nil]
-          optional :signing_order, Integer
-
-          # @!attribute signing_url
+          # @!attribute role
           #
           #   @return [String, nil]
-          optional :signing_url, String
+          optional :role, String
 
           # @!attribute status
           #
           #   @return [String, nil]
           optional :status, String
 
-          # @!attribute subject
-          #
-          #   @return [String, nil]
-          optional :subject, String, nil?: true
-
-          # @!method initialize(email:, name:, id: nil, attachment_requests: nil, body: nil, bounced: nil, bounced_details: nil, message: nil, passcode: nil, send_email: nil, send_email_delay: nil, signing_order: nil, signing_url: nil, status: nil, subject: nil)
+          # @!method initialize(email:, attachment_requests: nil, name: nil, passcode: nil, role: nil, status: nil)
           #   @param email [String]
+          #   @param attachment_requests [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest>]
           #   @param name [String]
-          #   @param id [String]
-          #   @param attachment_requests [Array<SignwellSDK::Models::V1::Document::Recipient::AttachmentRequest>]
-          #   @param body [String]
-          #   @param bounced [Boolean, nil]
-          #   @param bounced_details [String, nil]
-          #   @param message [String, nil]
           #   @param passcode [String, nil]
-          #   @param send_email [Boolean, nil]
-          #   @param send_email_delay [Integer, nil]
-          #   @param signing_order [Integer]
-          #   @param signing_url [String]
+          #   @param role [String]
           #   @param status [String]
-          #   @param subject [String, nil]
 
           class AttachmentRequest < SignwellSDK::Internal::Type::BaseModel
             # @!attribute name

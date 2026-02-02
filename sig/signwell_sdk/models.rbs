@@ -1,5 +1,5 @@
 module SignwellSDK
   module V1 = SignwellSDK::Models::V1
 
-  class V1RetrieveParams = SignwellSDK::Models::V1RetrieveParams
+  class V1MeParams = SignwellSDK::Models::V1MeParams
 end
