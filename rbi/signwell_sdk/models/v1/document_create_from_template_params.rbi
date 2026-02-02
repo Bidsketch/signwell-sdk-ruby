@@ -851,7 +851,7 @@ module SignwellSDK
                 T::Array[
                   T.any(
                     String,
-                    SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::UnionMember1
+                    SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::DetailedOption
                   )
                 ]
               )
@@ -865,7 +865,7 @@ module SignwellSDK
                 T::Array[
                   T.any(
                     String,
-                    SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::UnionMember1::OrHash
+                    SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::DetailedOption::OrHash
                   )
                 ]
             ).void
@@ -952,7 +952,7 @@ module SignwellSDK
                 T::Array[
                   T.any(
                     String,
-                    SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::UnionMember1::OrHash
+                    SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::DetailedOption::OrHash
                   )
                 ],
               required: T::Boolean,
@@ -1062,7 +1062,7 @@ module SignwellSDK
                   T::Array[
                     T.any(
                       String,
-                      SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::UnionMember1
+                      SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::DetailedOption
                     )
                   ],
                 required: T::Boolean,
@@ -1232,7 +1232,8 @@ module SignwellSDK
             end
           end
 
-          # Simple string option
+          # A dropdown option - either a simple string or a detailed object with name and
+          # optional api_id
           module Option
             extend SignwellSDK::Internal::Type::Union
 
@@ -1240,15 +1241,15 @@ module SignwellSDK
               T.type_alias do
                 T.any(
                   String,
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::UnionMember1
+                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::DetailedOption
                 )
               end
 
-            class UnionMember1 < SignwellSDK::Internal::Type::BaseModel
+            class DetailedOption < SignwellSDK::Internal::Type::BaseModel
               OrHash =
                 T.type_alias do
                   T.any(
-                    SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::UnionMember1,
+                    SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Option::DetailedOption,
                     SignwellSDK::Internal::AnyHash
                   )
                 end
