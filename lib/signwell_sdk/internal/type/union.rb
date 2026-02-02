@@ -6,16 +6,14 @@ module SignwellSDK
       # @api private
       #
       # @example
-      #   # `document_retrieve_nom151_certificate_response` is a `SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse`
-      #   case document_retrieve_nom151_certificate_response
-      #   when SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151CertificateResponse
-      #     puts(document_retrieve_nom151_certificate_response.nom151)
-      #   when SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151URLResponse
-      #     puts(document_retrieve_nom151_certificate_response.file_url)
+      #   # `document_retrieve_response` is a `SignwellSDK::Models::V1::DocumentRetrieveResponse`
+      #   case document_retrieve_response
+      #   when SignwellSDK::Models::V1::DocumentRetrieveResponse::Json
+      #     puts(document_retrieve_response.file_url)
       #   when StringIO
       #     # ...
       #   else
-      #     puts(document_retrieve_nom151_certificate_response)
+      #     puts(document_retrieve_response)
       #   end
       module Union
         include SignwellSDK::Internal::Type::Converter

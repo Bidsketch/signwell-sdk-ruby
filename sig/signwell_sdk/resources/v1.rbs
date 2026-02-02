@@ -11,6 +11,8 @@ module SignwellSDK
 
       attr_reader bulk_sends: SignwellSDK::Resources::V1::BulkSends
 
+      def retrieve: (?request_options: SignwellSDK::request_opts) -> nil
+
       def initialize: (client: SignwellSDK::Client) -> void
     end
   end

@@ -3,6 +3,7 @@
 module SignwellSDK
   module Models
     module V1
+      # @see SignwellSDK::Resources::V1::Documents#update
       class Document < SignwellSDK::Internal::Type::BaseModel
         # @!attribute id
         #
