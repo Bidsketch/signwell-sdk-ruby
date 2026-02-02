@@ -6,14 +6,14 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/signwell-sdk).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/signwell_sdk).
 
 ## Installation
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
 ```ruby
-gem "signwell-sdk", "~> 0.0.1"
+gem "signwell_sdk", "~> 0.0.1"
 ```
 
 ## Usage

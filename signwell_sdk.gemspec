@@ -3,12 +3,12 @@
 require_relative "lib/signwell_sdk/version"
 
 Gem::Specification.new do |s|
-  s.name = "signwell-sdk"
+  s.name = "signwell_sdk"
   s.version = SignwellSDK::VERSION
   s.summary = "Ruby library to access the Signwell SDK API"
   s.authors = ["Signwell SDK"]
   s.email = ""
-  s.homepage = "https://gemdocs.org/gems/signwell-sdk"
+  s.homepage = "https://gemdocs.org/gems/signwell_sdk"
   s.metadata["homepage_uri"] = s.homepage
   s.metadata["source_code_uri"] = "https://github.com/stainless-sdks/signwell-sdk-ruby"
   s.metadata["rubygems_mfa_required"] = false.to_s

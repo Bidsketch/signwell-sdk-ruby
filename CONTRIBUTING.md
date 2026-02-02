@@ -43,7 +43,7 @@ If you’d like to use the repository from source, you can either install from g
 To install via git in your `Gemfile`:
 
 ```ruby
-gem "signwell-sdk", git: "https://www.github.com/stainless-sdks/signwell-sdk-ruby"
+gem "signwell_sdk", git: "https://www.github.com/stainless-sdks/signwell-sdk-ruby"
 ```
 
 Alternatively, reference local copy of the repo:
@@ -53,7 +53,7 @@ $ git clone -- 'https://www.github.com/stainless-sdks/signwell-sdk-ruby' '<path-
 ```
 
 ```ruby
-gem "signwell-sdk", path: "<path-to-repo>"
+gem "signwell_sdk", path: "<path-to-repo>"
 ```
 
 ## Running commands

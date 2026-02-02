@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    signwell-sdk (0.0.1)
+    signwell_sdk (0.0.1)
       cgi
       connection_pool
 
@@ -214,7 +214,7 @@ DEPENDENCIES
   rbs
   redcarpet
   rubocop
-  signwell-sdk!
+  signwell_sdk!
   sorbet
   steep
   syntax_tree
