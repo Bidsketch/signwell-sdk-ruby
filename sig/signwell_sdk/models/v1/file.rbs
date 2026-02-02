@@ -1,0 +1,31 @@
+module SignwellSDK
+  module Models
+    module V1
+      type file = { name: String, :file_base64 => String, file_url: String }
+
+      class File < SignwellSDK::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_reader file_base64: String?
+
+        def file_base64=: (String) -> String
+
+        attr_reader file_url: String?
+
+        def file_url=: (String) -> String
+
+        def initialize: (
+          name: String,
+          ?file_base64: String,
+          ?file_url: String
+        ) -> void
+
+        def to_hash: -> {
+          name: String,
+          :file_base64 => String,
+          file_url: String
+        }
+      end
+    end
+  end
+end

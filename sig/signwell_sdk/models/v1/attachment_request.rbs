@@ -1,0 +1,26 @@
+module SignwellSDK
+  module Models
+    module V1
+      type attachment_request =
+        { name: String, recipient_id: String, required: bool }
+
+      class AttachmentRequest < SignwellSDK::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_accessor recipient_id: String
+
+        attr_reader required: bool?
+
+        def required=: (bool) -> bool
+
+        def initialize: (
+          name: String,
+          recipient_id: String,
+          ?required: bool
+        ) -> void
+
+        def to_hash: -> { name: String, recipient_id: String, required: bool }
+      end
+    end
+  end
+end

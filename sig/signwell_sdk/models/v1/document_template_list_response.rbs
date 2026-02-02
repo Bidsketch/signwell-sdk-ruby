@@ -1,0 +1,47 @@
+module SignwellSDK
+  module Models
+    module V1
+      type document_template_list_response =
+        {
+          current_page: Integer,
+          templates: ::Array[SignwellSDK::V1::DocumentTemplate],
+          total_count: Integer,
+          total_pages: Integer,
+          next_page: Integer?,
+          previous_page: Integer?
+        }
+
+      class DocumentTemplateListResponse < SignwellSDK::Internal::Type::BaseModel
+        attr_accessor current_page: Integer
+
+        attr_accessor templates: ::Array[SignwellSDK::V1::DocumentTemplate]
+
+        attr_accessor total_count: Integer
+
+        attr_accessor total_pages: Integer
+
+        attr_accessor next_page: Integer?
+
+        attr_accessor previous_page: Integer?
+
+        def initialize: (
+          current_page: Integer,
+          templates: ::Array[SignwellSDK::V1::DocumentTemplate],
+          total_count: Integer,
+          total_pages: Integer,
+          ?next_page: Integer?,
+          ?previous_page: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          current_page: Integer,
+          templates: ::Array[SignwellSDK::V1::DocumentTemplate],
+          total_count: Integer,
+          total_pages: Integer,
+          next_page: Integer?,
+          previous_page: Integer?
+        }
+      end
+    end
+  end
+end

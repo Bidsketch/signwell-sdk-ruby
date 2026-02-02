@@ -1,0 +1,55 @@
+module SignwellSDK
+  module Resources
+    class V1
+      class BulkSends
+        def create: (
+          bulk_send_csv: String,
+          template_ids: ::Array[String],
+          ?api_application_id: String,
+          ?apply_signing_order: bool,
+          ?custom_requester_email: String,
+          ?custom_requester_name: String,
+          ?message: String,
+          ?name: String,
+          ?skip_row_errors: bool,
+          ?subject: String,
+          ?request_options: SignwellSDK::request_opts
+        ) -> nil
+
+        def retrieve: (
+          String id,
+          ?request_options: SignwellSDK::request_opts
+        ) -> nil
+
+        def list: (
+          ?api_application_id: String,
+          ?limit: Integer,
+          ?page: Integer,
+          ?user_email: String,
+          ?request_options: SignwellSDK::request_opts
+        ) -> nil
+
+        def retrieve_csv_template: (
+          template_ids: ::Array[String],
+          ?base64: String,
+          ?request_options: SignwellSDK::request_opts
+        ) -> StringIO
+
+        def retrieve_documents: (
+          String id,
+          ?limit: Integer,
+          ?page: Integer,
+          ?request_options: SignwellSDK::request_opts
+        ) -> nil
+
+        def validate_csv: (
+          bulk_send_csv: String,
+          template_ids: ::Array[String],
+          ?request_options: SignwellSDK::request_opts
+        ) -> nil
+
+        def initialize: (client: SignwellSDK::Client) -> void
+      end
+    end
+  end
+end

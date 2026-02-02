@@ -1,0 +1,19 @@
+module SignwellSDK
+  module Resources
+    class V1
+      attr_reader documents: SignwellSDK::Resources::V1::Documents
+
+      attr_reader document_templates: SignwellSDK::Resources::V1::DocumentTemplates
+
+      attr_reader api_applications: SignwellSDK::Resources::V1::APIApplications
+
+      attr_reader hooks: SignwellSDK::Resources::V1::Hooks
+
+      attr_reader bulk_sends: SignwellSDK::Resources::V1::BulkSends
+
+      def retrieve: (?request_options: SignwellSDK::request_opts) -> nil
+
+      def initialize: (client: SignwellSDK::Client) -> void
+    end
+  end
+end

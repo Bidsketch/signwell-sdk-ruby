@@ -1,0 +1,3 @@
+module SignwellSDK
+  VERSION: String
+end

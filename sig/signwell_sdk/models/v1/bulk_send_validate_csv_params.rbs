@@ -1,0 +1,30 @@
+module SignwellSDK
+  module Models
+    module V1
+      type bulk_send_validate_csv_params =
+        { bulk_send_csv: String, template_ids: ::Array[String] }
+        & SignwellSDK::Internal::Type::request_parameters
+
+      class BulkSendValidateCsvParams < SignwellSDK::Internal::Type::BaseModel
+        extend SignwellSDK::Internal::Type::RequestParameters::Converter
+        include SignwellSDK::Internal::Type::RequestParameters
+
+        attr_accessor bulk_send_csv: String
+
+        attr_accessor template_ids: ::Array[String]
+
+        def initialize: (
+          bulk_send_csv: String,
+          template_ids: ::Array[String],
+          ?request_options: SignwellSDK::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          bulk_send_csv: String,
+          template_ids: ::Array[String],
+          request_options: SignwellSDK::RequestOptions
+        }
+      end
+    end
+  end
+end

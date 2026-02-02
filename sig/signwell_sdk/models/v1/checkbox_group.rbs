@@ -1,0 +1,82 @@
+module SignwellSDK
+  module Models
+    module V1
+      type checkbox_group =
+        {
+          checkbox_ids: ::Array[String],
+          group_name: String,
+          recipient_id: String,
+          exact_value: Integer,
+          max_value: Integer,
+          min_value: Integer,
+          required: bool,
+          validation: SignwellSDK::Models::V1::CheckboxGroup::validation
+        }
+
+      class CheckboxGroup < SignwellSDK::Internal::Type::BaseModel
+        attr_accessor checkbox_ids: ::Array[String]
+
+        attr_accessor group_name: String
+
+        attr_accessor recipient_id: String
+
+        attr_reader exact_value: Integer?
+
+        def exact_value=: (Integer) -> Integer
+
+        attr_reader max_value: Integer?
+
+        def max_value=: (Integer) -> Integer
+
+        attr_reader min_value: Integer?
+
+        def min_value=: (Integer) -> Integer
+
+        attr_reader required: bool?
+
+        def required=: (bool) -> bool
+
+        attr_reader validation: SignwellSDK::Models::V1::CheckboxGroup::validation?
+
+        def validation=: (
+          SignwellSDK::Models::V1::CheckboxGroup::validation
+        ) -> SignwellSDK::Models::V1::CheckboxGroup::validation
+
+        def initialize: (
+          checkbox_ids: ::Array[String],
+          group_name: String,
+          recipient_id: String,
+          ?exact_value: Integer,
+          ?max_value: Integer,
+          ?min_value: Integer,
+          ?required: bool,
+          ?validation: SignwellSDK::Models::V1::CheckboxGroup::validation
+        ) -> void
+
+        def to_hash: -> {
+          checkbox_ids: ::Array[String],
+          group_name: String,
+          recipient_id: String,
+          exact_value: Integer,
+          max_value: Integer,
+          min_value: Integer,
+          required: bool,
+          validation: SignwellSDK::Models::V1::CheckboxGroup::validation
+        }
+
+        type validation = :minimum | :maximum | :range | :exact
+
+        module Validation
+          extend SignwellSDK::Internal::Type::Enum
+
+          MINIMUM: :minimum
+          MAXIMUM: :maximum
+          RANGE: :range
+          EXACT: :exact
+
+          def self?.values: -> ::Array[SignwellSDK::Models::V1::CheckboxGroup::validation]
+        end
+      end
+    end
+  end
+end
