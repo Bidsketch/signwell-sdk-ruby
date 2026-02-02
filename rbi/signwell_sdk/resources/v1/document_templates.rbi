@@ -7,7 +7,7 @@ module SignwellSDK
         # Creates a new template.
         sig do
           params(
-            files: T::Array[SignwellSDK::V1::File::OrHash],
+            files: T::Array[SignwellSDK::V1::DocumentFile::OrHash],
             placeholders:
               T::Array[
                 SignwellSDK::V1::DocumentTemplateCreateParams::Placeholder::OrHash

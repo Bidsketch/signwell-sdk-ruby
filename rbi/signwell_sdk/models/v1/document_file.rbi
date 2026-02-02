@@ -3,10 +3,10 @@
 module SignwellSDK
   module Models
     module V1
-      class File < SignwellSDK::Internal::Type::BaseModel
+      class DocumentFile < SignwellSDK::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
-            T.any(SignwellSDK::V1::File, SignwellSDK::Internal::AnyHash)
+            T.any(SignwellSDK::V1::DocumentFile, SignwellSDK::Internal::AnyHash)
           end
 
         # Name of the file that will be uploaded.

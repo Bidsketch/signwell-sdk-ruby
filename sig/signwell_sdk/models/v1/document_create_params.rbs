@@ -3,7 +3,7 @@ module SignwellSDK
     module V1
       type document_create_params =
         {
-          files: ::Array[SignwellSDK::V1::File],
+          files: ::Array[SignwellSDK::V1::DocumentFile],
           recipients: ::Array[SignwellSDK::V1::DocumentCreateParams::Recipient],
           allow_decline: bool,
           allow_reassign: bool,
@@ -38,7 +38,7 @@ module SignwellSDK
         extend SignwellSDK::Internal::Type::RequestParameters::Converter
         include SignwellSDK::Internal::Type::RequestParameters
 
-        attr_accessor files: ::Array[SignwellSDK::V1::File]
+        attr_accessor files: ::Array[SignwellSDK::V1::DocumentFile]
 
         attr_accessor recipients: ::Array[SignwellSDK::V1::DocumentCreateParams::Recipient]
 
@@ -157,7 +157,7 @@ module SignwellSDK
         def with_signature_page=: (bool) -> bool
 
         def initialize: (
-          files: ::Array[SignwellSDK::V1::File],
+          files: ::Array[SignwellSDK::V1::DocumentFile],
           recipients: ::Array[SignwellSDK::V1::DocumentCreateParams::Recipient],
           ?allow_decline: bool,
           ?allow_reassign: bool,
@@ -189,7 +189,7 @@ module SignwellSDK
         ) -> void
 
         def to_hash: -> {
-          files: ::Array[SignwellSDK::V1::File],
+          files: ::Array[SignwellSDK::V1::DocumentFile],
           recipients: ::Array[SignwellSDK::V1::DocumentCreateParams::Recipient],
           allow_decline: bool,
           allow_reassign: bool,

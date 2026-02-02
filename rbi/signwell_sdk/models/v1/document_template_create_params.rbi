@@ -19,7 +19,7 @@ module SignwellSDK
         # `file_url` or `file_base64` must be present (not both). Valid file types are:
         # .pdf, .doc, .docx, .pages, .ppt, .pptx, .key, .xls, .xlsx, .numbers, .jpg,
         # .jpeg, .png, .tiff, .tif, .webp, .html, and .htm
-        sig { returns(T::Array[SignwellSDK::V1::File]) }
+        sig { returns(T::Array[SignwellSDK::V1::DocumentFile]) }
         attr_accessor :files
 
         # Placeholders are generally job roles that must complete and/or sign the
@@ -264,7 +264,7 @@ module SignwellSDK
 
         sig do
           params(
-            files: T::Array[SignwellSDK::V1::File::OrHash],
+            files: T::Array[SignwellSDK::V1::DocumentFile::OrHash],
             placeholders:
               T::Array[
                 SignwellSDK::V1::DocumentTemplateCreateParams::Placeholder::OrHash
@@ -397,7 +397,7 @@ module SignwellSDK
         sig do
           override.returns(
             {
-              files: T::Array[SignwellSDK::V1::File],
+              files: T::Array[SignwellSDK::V1::DocumentFile],
               placeholders:
                 T::Array[
                   SignwellSDK::V1::DocumentTemplateCreateParams::Placeholder

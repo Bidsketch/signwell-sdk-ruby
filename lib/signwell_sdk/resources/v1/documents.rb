@@ -12,7 +12,7 @@ module SignwellSDK
         #
         # @overload create(files:, recipients:, allow_decline: nil, allow_reassign: nil, api_application_id: nil, apply_signing_order: nil, attachment_requests: nil, checkbox_groups: nil, copied_contacts: nil, custom_requester_email: nil, custom_requester_name: nil, decline_redirect_url: nil, draft: nil, embedded_signing: nil, embedded_signing_notifications: nil, expires_in: nil, fields: nil, labels: nil, language: nil, message: nil, metadata: nil, name: nil, redirect_url: nil, reminders: nil, subject: nil, test_mode: nil, text_tags: nil, with_signature_page: nil, request_options: {})
         #
-        # @param files [Array<SignwellSDK::Models::V1::File>] Document files can be uploaded by specifying a file URL or base64 string. Either
+        # @param files [Array<SignwellSDK::Models::V1::DocumentFile>] Document files can be uploaded by specifying a file URL or base64 string. Either
         #
         # @param recipients [Array<SignwellSDK::Models::V1::DocumentCreateParams::Recipient>] Document recipients are people that must complete and/or sign a document.
         #
