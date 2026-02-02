@@ -2,67 +2,11 @@ module SignwellSDK
   module Resources
     class V1
       class DocumentTemplates
-        def update: (
-          files: ::Array[SignwellSDK::V1::File],
-          placeholders: ::Array[SignwellSDK::V1::DocumentTemplateUpdateParams::Placeholder],
-          ?allow_decline: bool,
-          ?allow_reassign: bool,
-          ?api_application_id: String,
-          ?apply_signing_order: bool,
-          ?attachment_requests: ::Array[SignwellSDK::V1::DocumentTemplateUpdateParams::AttachmentRequest],
-          ?checkbox_groups: ::Array[SignwellSDK::V1::TemplateCheckboxGroup],
-          ?copied_placeholders: ::Array[SignwellSDK::V1::DocumentTemplateUpdateParams::CopiedPlaceholder],
-          ?decline_redirect_url: String,
-          ?draft: bool,
-          ?expires_in: Integer,
-          ?fields: ::Array[::Array[SignwellSDK::V1::DocumentTemplateUpdateParams::Field]],
-          ?labels: ::Array[SignwellSDK::V1::Label],
-          ?language: String,
-          ?message: String,
-          ?metadata: top,
-          ?name: String,
-          ?redirect_url: String,
-          ?reminders: bool,
-          ?subject: String,
-          ?text_tags: bool,
-          ?request_options: SignwellSDK::request_opts
-        ) -> SignwellSDK::V1::DocumentTemplate
-
         def list: (
           ?limit: Integer,
           ?page: Integer,
           ?request_options: SignwellSDK::request_opts
         ) -> SignwellSDK::Models::V1::DocumentTemplateListResponse
-
-        def delete: (
-          String id,
-          ?request_options: SignwellSDK::request_opts
-        ) -> nil
-
-        def retrieve: (
-          String id,
-          ?request_options: SignwellSDK::request_opts
-        ) -> SignwellSDK::V1::DocumentTemplate
-
-        def update: (
-          String id,
-          ?allow_decline: bool,
-          ?allow_reassign: bool,
-          ?api_application_id: String,
-          ?apply_signing_order: bool,
-          ?checkbox_groups: ::Array[SignwellSDK::V1::TemplateCheckboxGroup],
-          ?decline_redirect_url: String,
-          ?draft: bool,
-          ?expires_in: Integer,
-          ?labels: ::Array[SignwellSDK::V1::Label],
-          ?message: String,
-          ?metadata: top,
-          ?name: String,
-          ?redirect_url: String,
-          ?reminders: bool,
-          ?subject: String,
-          ?request_options: SignwellSDK::request_opts
-        ) -> SignwellSDK::V1::DocumentTemplate
 
         def initialize: (client: SignwellSDK::Client) -> void
       end

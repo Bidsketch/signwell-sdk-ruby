@@ -1,14 +1,94 @@
 module SignwellSDK
   module Models
     module V1
-      type document_retrieve_nom151_certificate_response = { file_url: String }
+      type document_retrieve_nom151_certificate_response =
+        SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151CertificateResponse
+        | SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151URLResponse
+        | StringIO
 
-      class DocumentRetrieveNom151CertificateResponse < SignwellSDK::Internal::Type::BaseModel
-        attr_accessor file_url: String
+      module DocumentRetrieveNom151CertificateResponse
+        extend SignwellSDK::Internal::Type::Union
 
-        def initialize: (file_url: String) -> void
+        type nom151_certificate_response =
+          {
+            :nom151 => SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151CertificateResponse::Nom151
+          }
 
-        def to_hash: -> { file_url: String }
+        class Nom151CertificateResponse < SignwellSDK::Internal::Type::BaseModel
+          attr_accessor nom151: SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151CertificateResponse::Nom151
+
+          def initialize: (
+            nom151: SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151CertificateResponse::Nom151
+          ) -> void
+
+          def to_hash: -> {
+            :nom151 => SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151CertificateResponse::Nom151
+          }
+
+          type nom151 =
+            {
+              constancia: String,
+              folio: String,
+              hash_: String,
+              issued_at: Time,
+              provider: String,
+              status: String,
+              transaction_id: String,
+              validation_url: String
+            }
+
+          class Nom151 < SignwellSDK::Internal::Type::BaseModel
+            attr_accessor constancia: String
+
+            attr_accessor folio: String
+
+            attr_accessor hash_: String
+
+            attr_accessor issued_at: Time
+
+            attr_accessor provider: String
+
+            attr_accessor status: String
+
+            attr_accessor transaction_id: String
+
+            attr_accessor validation_url: String
+
+            def initialize: (
+              constancia: String,
+              folio: String,
+              hash_: String,
+              issued_at: Time,
+              provider: String,
+              status: String,
+              transaction_id: String,
+              validation_url: String
+            ) -> void
+
+            def to_hash: -> {
+              constancia: String,
+              folio: String,
+              hash_: String,
+              issued_at: Time,
+              provider: String,
+              status: String,
+              transaction_id: String,
+              validation_url: String
+            }
+          end
+        end
+
+        type nom151_url_response = { file_url: String }
+
+        class Nom151URLResponse < SignwellSDK::Internal::Type::BaseModel
+          attr_accessor file_url: String
+
+          def initialize: (file_url: String) -> void
+
+          def to_hash: -> { file_url: String }
+        end
+
+        def self?.variants: -> ::Array[SignwellSDK::Models::V1::document_retrieve_nom151_certificate_response]
       end
     end
   end

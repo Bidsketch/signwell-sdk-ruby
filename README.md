@@ -190,25 +190,23 @@ signwell_sdk.v1.documents.list(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :pdf
-puts(SignwellSDK::V1::DocumentRetrieveParams::FileFormat::PDF)
+# :minimum
+puts(SignwellSDK::V1::CheckboxGroup::Validation::MINIMUM)
 
-# Revealed type: `T.all(SignwellSDK::V1::DocumentRetrieveParams::FileFormat, Symbol)`
-T.reveal_type(SignwellSDK::V1::DocumentRetrieveParams::FileFormat::PDF)
+# Revealed type: `T.all(SignwellSDK::V1::CheckboxGroup::Validation, Symbol)`
+T.reveal_type(SignwellSDK::V1::CheckboxGroup::Validation::MINIMUM)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
-# Using the enum constants preserves the tagged type information:
-signwell_sdk.v1.documents.retrieve(
-  file_format: SignwellSDK::V1::DocumentRetrieveParams::FileFormat::PDF,
+SignwellSDK::V1::CheckboxGroup.new(
+  validation: SignwellSDK::V1::CheckboxGroup::Validation::MINIMUM,
   # …
 )
 
-# Literal values are also permissible:
-signwell_sdk.v1.documents.retrieve(
-  file_format: :pdf,
+SignwellSDK::V1::CheckboxGroup.new(
+  validation: :minimum,
   # …
 )
 ```
