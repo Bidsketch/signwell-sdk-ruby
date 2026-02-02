@@ -11,7 +11,7 @@ module SignwellSDK
         #
         # @overload create(files:, placeholders:, allow_decline: nil, allow_reassign: nil, api_application_id: nil, apply_signing_order: nil, attachment_requests: nil, checkbox_groups: nil, copied_placeholders: nil, decline_redirect_url: nil, draft: nil, expires_in: nil, fields: nil, labels: nil, language: nil, message: nil, metadata: nil, name: nil, redirect_url: nil, reminders: nil, subject: nil, text_tags: nil, request_options: {})
         #
-        # @param files [Array<SignwellSDK::Models::V1::File>] Document files can be uploaded by specifying a file URL or base64 string. Either
+        # @param files [Array<SignwellSDK::Models::V1::DocumentFile>] Document files can be uploaded by specifying a file URL or base64 string. Either
         #
         # @param placeholders [Array<SignwellSDK::Models::V1::DocumentTemplateCreateParams::Placeholder>] Placeholders are generally job roles that must complete and/or sign the document
         #

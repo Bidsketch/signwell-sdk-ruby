@@ -3,7 +3,7 @@ module SignwellSDK
     class V1
       class DocumentTemplates
         def create: (
-          files: ::Array[SignwellSDK::V1::File],
+          files: ::Array[SignwellSDK::V1::DocumentFile],
           placeholders: ::Array[SignwellSDK::V1::DocumentTemplateCreateParams::Placeholder],
           ?allow_decline: bool,
           ?allow_reassign: bool,

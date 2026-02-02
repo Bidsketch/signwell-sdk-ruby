@@ -8,7 +8,7 @@ module SignwellSDK
         # true the document will not be sent.
         sig do
           params(
-            files: T::Array[SignwellSDK::V1::File::OrHash],
+            files: T::Array[SignwellSDK::V1::DocumentFile::OrHash],
             recipients:
               T::Array[
                 SignwellSDK::V1::DocumentCreateParams::Recipient::OrHash

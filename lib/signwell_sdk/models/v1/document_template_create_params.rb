@@ -14,8 +14,8 @@ module SignwellSDK
         #   .pdf, .doc, .docx, .pages, .ppt, .pptx, .key, .xls, .xlsx, .numbers, .jpg,
         #   .jpeg, .png, .tiff, .tif, .webp, .html, and .htm
         #
-        #   @return [Array<SignwellSDK::Models::V1::File>]
-        required :files, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::File] }
+        #   @return [Array<SignwellSDK::Models::V1::DocumentFile>]
+        required :files, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::DocumentFile] }
 
         # @!attribute placeholders
         #   Placeholders are generally job roles that must complete and/or sign the
@@ -190,7 +190,7 @@ module SignwellSDK
         #   Some parameter documentations has been truncated, see
         #   {SignwellSDK::Models::V1::DocumentTemplateCreateParams} for more details.
         #
-        #   @param files [Array<SignwellSDK::Models::V1::File>] Document files can be uploaded by specifying a file URL or base64 string. Either
+        #   @param files [Array<SignwellSDK::Models::V1::DocumentFile>] Document files can be uploaded by specifying a file URL or base64 string. Either
         #
         #   @param placeholders [Array<SignwellSDK::Models::V1::DocumentTemplateCreateParams::Placeholder>] Placeholders are generally job roles that must complete and/or sign the document
         #

@@ -19,7 +19,7 @@ module SignwellSDK
         # `file_url` or `file_base64` must be present (not both). Valid file types are:
         # .pdf, .doc, .docx, .pages, .ppt, .pptx, .key, .xls, .xlsx, .numbers, .jpg,
         # .jpeg, .png, .tiff, .tif, .webp, .html, and .htm
-        sig { returns(T::Array[SignwellSDK::V1::File]) }
+        sig { returns(T::Array[SignwellSDK::V1::DocumentFile]) }
         attr_accessor :files
 
         # Document recipients are people that must complete and/or sign a document.
@@ -281,7 +281,7 @@ module SignwellSDK
 
         sig do
           params(
-            files: T::Array[SignwellSDK::V1::File::OrHash],
+            files: T::Array[SignwellSDK::V1::DocumentFile::OrHash],
             recipients:
               T::Array[
                 SignwellSDK::V1::DocumentCreateParams::Recipient::OrHash
@@ -429,7 +429,7 @@ module SignwellSDK
         sig do
           override.returns(
             {
-              files: T::Array[SignwellSDK::V1::File],
+              files: T::Array[SignwellSDK::V1::DocumentFile],
               recipients:
                 T::Array[SignwellSDK::V1::DocumentCreateParams::Recipient],
               allow_decline: T::Boolean,

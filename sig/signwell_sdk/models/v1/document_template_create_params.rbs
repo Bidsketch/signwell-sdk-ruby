@@ -3,7 +3,7 @@ module SignwellSDK
     module V1
       type document_template_create_params =
         {
-          files: ::Array[SignwellSDK::V1::File],
+          files: ::Array[SignwellSDK::V1::DocumentFile],
           placeholders: ::Array[SignwellSDK::V1::DocumentTemplateCreateParams::Placeholder],
           allow_decline: bool,
           allow_reassign: bool,
@@ -32,7 +32,7 @@ module SignwellSDK
         extend SignwellSDK::Internal::Type::RequestParameters::Converter
         include SignwellSDK::Internal::Type::RequestParameters
 
-        attr_accessor files: ::Array[SignwellSDK::V1::File]
+        attr_accessor files: ::Array[SignwellSDK::V1::DocumentFile]
 
         attr_accessor placeholders: ::Array[SignwellSDK::V1::DocumentTemplateCreateParams::Placeholder]
 
@@ -127,7 +127,7 @@ module SignwellSDK
         def text_tags=: (bool) -> bool
 
         def initialize: (
-          files: ::Array[SignwellSDK::V1::File],
+          files: ::Array[SignwellSDK::V1::DocumentFile],
           placeholders: ::Array[SignwellSDK::V1::DocumentTemplateCreateParams::Placeholder],
           ?allow_decline: bool,
           ?allow_reassign: bool,
@@ -153,7 +153,7 @@ module SignwellSDK
         ) -> void
 
         def to_hash: -> {
-          files: ::Array[SignwellSDK::V1::File],
+          files: ::Array[SignwellSDK::V1::DocumentFile],
           placeholders: ::Array[SignwellSDK::V1::DocumentTemplateCreateParams::Placeholder],
           allow_decline: bool,
           allow_reassign: bool,

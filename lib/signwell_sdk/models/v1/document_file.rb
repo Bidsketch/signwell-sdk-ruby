@@ -3,7 +3,7 @@
 module SignwellSDK
   module Models
     module V1
-      class File < SignwellSDK::Internal::Type::BaseModel
+      class DocumentFile < SignwellSDK::Internal::Type::BaseModel
         # @!attribute name
         #   Name of the file that will be uploaded.
         #
