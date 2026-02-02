@@ -472,15 +472,15 @@ module SignwellSDK
 
           type option =
             String
-            | SignwellSDK::V1::DocumentTemplateCreateParams::Field::Option::UnionMember1
+            | SignwellSDK::V1::DocumentTemplateCreateParams::Field::Option::DetailedOption
 
           module Option
             extend SignwellSDK::Internal::Type::Union
 
-            type union_member1 =
+            type detailed_option =
               { name: String, api_id: String, is_other: bool }
 
-            class UnionMember1 < SignwellSDK::Internal::Type::BaseModel
+            class DetailedOption < SignwellSDK::Internal::Type::BaseModel
               attr_accessor name: String
 
               attr_reader api_id: String?

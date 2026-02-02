@@ -453,7 +453,7 @@ module SignwellSDK
           # @!attribute options
           #   Array of dropdown options (for dropdown/select fields only)
           #
-          #   @return [Array<String, SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::Option::UnionMember1>, nil]
+          #   @return [Array<String, SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::Option::DetailedOption>, nil]
           optional :options,
                    -> { SignwellSDK::Internal::Type::ArrayOf[union: SignwellSDK::V1::DocumentTemplateCreateParams::Field::Option] }
 
@@ -520,7 +520,7 @@ module SignwellSDK
           #
           #   @param name [String] Checkbox fields only. At least 2 checkbox fields in an array of fields must be a
           #
-          #   @param options [Array<String, SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::Option::UnionMember1>] Array of dropdown options (for dropdown/select fields only)
+          #   @param options [Array<String, SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::Option::DetailedOption>] Array of dropdown options (for dropdown/select fields only)
           #
           #   @param required [Boolean] Whether the field must be completed by the recipient. Defaults to `true` except
           #
@@ -577,7 +577,8 @@ module SignwellSDK
             #   @return [Array<Symbol>]
           end
 
-          # Simple string option
+          # A dropdown option - either a simple string or a detailed object with name and
+          # optional api_id
           module Option
             extend SignwellSDK::Internal::Type::Union
 
@@ -585,9 +586,9 @@ module SignwellSDK
             variant String
 
             # Detailed option object
-            variant -> { SignwellSDK::V1::DocumentTemplateCreateParams::Field::Option::UnionMember1 }
+            variant -> { SignwellSDK::V1::DocumentTemplateCreateParams::Field::Option::DetailedOption }
 
-            class UnionMember1 < SignwellSDK::Internal::Type::BaseModel
+            class DetailedOption < SignwellSDK::Internal::Type::BaseModel
               # @!attribute name
               #   Option display name
               #
@@ -617,7 +618,7 @@ module SignwellSDK
             end
 
             # @!method self.variants
-            #   @return [Array(String, SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::Option::UnionMember1)]
+            #   @return [Array(String, SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::Option::DetailedOption)]
           end
 
           # Text fields only: optional validation for field values. Valid values: numbers,
