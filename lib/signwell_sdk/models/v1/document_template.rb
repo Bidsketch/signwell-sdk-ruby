@@ -3,6 +3,7 @@
 module SignwellSDK
   module Models
     module V1
+      # @see SignwellSDK::Resources::V1::DocumentTemplates#create
       class DocumentTemplate < SignwellSDK::Internal::Type::BaseModel
         # @!attribute id
         #

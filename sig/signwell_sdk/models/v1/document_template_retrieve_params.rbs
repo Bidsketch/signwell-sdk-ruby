@@ -1,0 +1,17 @@
+module SignwellSDK
+  module Models
+    module V1
+      type document_template_retrieve_params =
+        {  } & SignwellSDK::Internal::Type::request_parameters
+
+      class DocumentTemplateRetrieveParams < SignwellSDK::Internal::Type::BaseModel
+        extend SignwellSDK::Internal::Type::RequestParameters::Converter
+        include SignwellSDK::Internal::Type::RequestParameters
+
+        def initialize: (?request_options: SignwellSDK::request_opts) -> void
+
+        def to_hash: -> { request_options: SignwellSDK::RequestOptions }
+      end
+    end
+  end
+end

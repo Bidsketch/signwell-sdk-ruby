@@ -18,6 +18,19 @@ module SignwellSDK
       # @return [SignwellSDK::Resources::V1::BulkSends]
       attr_reader :bulk_sends
 
+      # Retrieves the account information associated with the API key being used.
+      #
+      # @overload retrieve(request_options: {})
+      #
+      # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [nil]
+      #
+      # @see SignwellSDK::Models::V1RetrieveParams
+      def retrieve(params = {})
+        @client.request(method: :get, path: "api/v1/me", model: NilClass, options: params[:request_options])
+      end
+
       # @api private
       #
       # @param client [SignwellSDK::Client]
