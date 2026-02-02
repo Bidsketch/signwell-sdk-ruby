@@ -3,7 +3,6 @@
 module SignwellSDK
   module Models
     module V1
-      # @see SignwellSDK::Resources::V1::Documents#update
       class Document < SignwellSDK::Internal::Type::BaseModel
         # @!attribute id
         #
@@ -126,8 +125,8 @@ module SignwellSDK
 
         # @!attribute metadata
         #
-        #   @return [Object, nil]
-        optional :metadata, SignwellSDK::Internal::Type::Unknown
+        #   @return [Hash{Symbol=>String}, nil]
+        optional :metadata, SignwellSDK::Internal::Type::HashOf[String]
 
         # @!attribute name
         #
@@ -193,7 +192,7 @@ module SignwellSDK
         #   @param labels [Array<SignwellSDK::Models::V1::Document::Label>]
         #   @param language [String]
         #   @param message [String]
-        #   @param metadata [Object]
+        #   @param metadata [Hash{Symbol=>String}]
         #   @param name [String]
         #   @param recipients [Array<SignwellSDK::Models::V1::Document::Recipient>]
         #   @param redirect_url [String, nil]
@@ -399,8 +398,8 @@ module SignwellSDK
 
           # @!attribute value
           #
-          #   @return [Object, nil]
-          optional :value, SignwellSDK::Internal::Type::Unknown
+          #   @return [String, Boolean, Float, nil]
+          optional :value, union: -> { SignwellSDK::V1::Document::Field::Value }, nil?: true
 
           # @!attribute width
           #
@@ -448,7 +447,7 @@ module SignwellSDK
           #
           #   @param validation [String]
           #
-          #   @param value [Object]
+          #   @param value [String, Boolean, Float, nil]
           #
           #   @param width [String]
 
@@ -489,6 +488,20 @@ module SignwellSDK
             # @!method initialize(email:, name:)
             #   @param email [String]
             #   @param name [String]
+          end
+
+          # @see SignwellSDK::Models::V1::Document::Field#value
+          module Value
+            extend SignwellSDK::Internal::Type::Union
+
+            variant String
+
+            variant SignwellSDK::Internal::Type::Boolean
+
+            variant Float
+
+            # @!method self.variants
+            #   @return [Array(String, Boolean, Float)]
           end
         end
 

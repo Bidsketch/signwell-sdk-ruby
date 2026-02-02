@@ -2,19 +2,6 @@ module SignwellSDK
   module Resources
     class V1
       class Hooks
-        def update: (
-          callback_url: String,
-          ?api_application_id: String,
-          ?request_options: SignwellSDK::request_opts
-        ) -> nil
-
-        def delete: (
-          String id,
-          ?request_options: SignwellSDK::request_opts
-        ) -> nil
-
-        def retrieve: (?request_options: SignwellSDK::request_opts) -> nil
-
         def initialize: (client: SignwellSDK::Client) -> void
       end
     end

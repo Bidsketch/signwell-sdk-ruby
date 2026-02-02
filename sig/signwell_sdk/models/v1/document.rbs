@@ -26,7 +26,7 @@ module SignwellSDK
           labels: ::Array[SignwellSDK::V1::Document::Label],
           language: String,
           message: String,
-          metadata: top,
+          metadata: ::Hash[Symbol, String],
           name: String,
           recipients: ::Array[SignwellSDK::V1::Document::Recipient],
           redirect_url: String?,
@@ -124,9 +124,9 @@ module SignwellSDK
 
         def message=: (String) -> String
 
-        attr_reader metadata: top?
+        attr_reader metadata: ::Hash[Symbol, String]?
 
-        def metadata=: (top) -> top
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
         attr_reader name: String?
 
@@ -184,7 +184,7 @@ module SignwellSDK
           ?labels: ::Array[SignwellSDK::V1::Document::Label],
           ?language: String,
           ?message: String,
-          ?metadata: top,
+          ?metadata: ::Hash[Symbol, String],
           ?name: String,
           ?recipients: ::Array[SignwellSDK::V1::Document::Recipient],
           ?redirect_url: String?,
@@ -219,7 +219,7 @@ module SignwellSDK
           labels: ::Array[SignwellSDK::V1::Document::Label],
           language: String,
           message: String,
-          metadata: top,
+          metadata: ::Hash[Symbol, String],
           name: String,
           recipients: ::Array[SignwellSDK::V1::Document::Recipient],
           redirect_url: String?,
@@ -340,7 +340,7 @@ module SignwellSDK
             signing_elements_group_id: String,
             type: String,
             validation: String,
-            value: top,
+            value: SignwellSDK::Models::V1::Document::Field::value?,
             width: String
           }
 
@@ -419,9 +419,7 @@ module SignwellSDK
 
           def validation=: (String) -> String
 
-          attr_reader value: top?
-
-          def value=: (top) -> top
+          attr_accessor value: SignwellSDK::Models::V1::Document::Field::value?
 
           attr_reader width: String?
 
@@ -448,7 +446,7 @@ module SignwellSDK
             ?signing_elements_group_id: String,
             ?type: String,
             ?validation: String,
-            ?value: top,
+            ?value: SignwellSDK::Models::V1::Document::Field::value?,
             ?width: String
           ) -> void
 
@@ -473,7 +471,7 @@ module SignwellSDK
             signing_elements_group_id: String,
             type: String,
             validation: String,
-            value: top,
+            value: SignwellSDK::Models::V1::Document::Field::value?,
             width: String
           }
 
@@ -511,6 +509,14 @@ module SignwellSDK
             def initialize: (email: String, name: String) -> void
 
             def to_hash: -> { email: String, name: String }
+          end
+
+          type value = String | bool | Float
+
+          module Value
+            extend SignwellSDK::Internal::Type::Union
+
+            def self?.variants: -> ::Array[SignwellSDK::Models::V1::Document::Field::value]
           end
         end
 

@@ -145,7 +145,7 @@ module SignwellSDK
         sig { params(message: String).void }
         attr_writer :message
 
-        sig { returns(T.nilable(T.anything)) }
+        sig { returns(T.nilable(T::Hash[Symbol, String])) }
         attr_accessor :metadata
 
         sig { returns(T.nilable(String)) }
@@ -234,7 +234,7 @@ module SignwellSDK
             labels: T::Array[SignwellSDK::V1::DocumentTemplate::Label::OrHash],
             language: String,
             message: String,
-            metadata: T.nilable(T.anything),
+            metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
             placeholders:
               T::Array[SignwellSDK::V1::DocumentTemplate::Placeholder::OrHash],
@@ -303,7 +303,7 @@ module SignwellSDK
               labels: T::Array[SignwellSDK::V1::DocumentTemplate::Label],
               language: String,
               message: String,
-              metadata: T.nilable(T.anything),
+              metadata: T.nilable(T::Hash[Symbol, String]),
               name: String,
               placeholders:
                 T::Array[SignwellSDK::V1::DocumentTemplate::Placeholder],
@@ -612,11 +612,14 @@ module SignwellSDK
           sig { params(validation: String).void }
           attr_writer :validation
 
-          sig { returns(T.nilable(T.anything)) }
-          attr_reader :value
-
-          sig { params(value: T.anything).void }
-          attr_writer :value
+          sig do
+            returns(
+              T.nilable(
+                SignwellSDK::V1::DocumentTemplate::Field::Value::Variants
+              )
+            )
+          end
+          attr_accessor :value
 
           sig { returns(T.nilable(String)) }
           attr_reader :width
@@ -650,7 +653,10 @@ module SignwellSDK
               signing_elements_group_id: String,
               type: String,
               validation: String,
-              value: T.anything,
+              value:
+                T.nilable(
+                  SignwellSDK::V1::DocumentTemplate::Field::Value::Variants
+                ),
               width: String
             ).returns(T.attached_class)
           end
@@ -707,7 +713,10 @@ module SignwellSDK
                 signing_elements_group_id: String,
                 type: String,
                 validation: String,
-                value: T.anything,
+                value:
+                  T.nilable(
+                    SignwellSDK::V1::DocumentTemplate::Field::Value::Variants
+                  ),
                 width: String
               }
             )
@@ -784,6 +793,22 @@ module SignwellSDK
 
             sig { override.returns({ email: String, name: String }) }
             def to_hash
+            end
+          end
+
+          module Value
+            extend SignwellSDK::Internal::Type::Union
+
+            Variants = T.type_alias { T.any(String, T::Boolean, Float) }
+
+            sig do
+              override.returns(
+                T::Array[
+                  SignwellSDK::V1::DocumentTemplate::Field::Value::Variants
+                ]
+              )
+            end
+            def self.variants
             end
           end
         end
