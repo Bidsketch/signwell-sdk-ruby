@@ -28,17 +28,6 @@ module SignwellSDK
           ?request_options: SignwellSDK::request_opts
         ) -> SignwellSDK::V1::DocumentTemplate
 
-        def list: (
-          ?limit: Integer,
-          ?page: Integer,
-          ?request_options: SignwellSDK::request_opts
-        ) -> SignwellSDK::Models::V1::DocumentTemplateListResponse
-
-        def delete: (
-          String id,
-          ?request_options: SignwellSDK::request_opts
-        ) -> nil
-
         def retrieve: (
           String id,
           ?request_options: SignwellSDK::request_opts
@@ -63,6 +52,17 @@ module SignwellSDK
           ?subject: String,
           ?request_options: SignwellSDK::request_opts
         ) -> SignwellSDK::V1::DocumentTemplate
+
+        def list: (
+          ?limit: Integer,
+          ?page: Integer,
+          ?request_options: SignwellSDK::request_opts
+        ) -> SignwellSDK::Models::V1::DocumentTemplateListResponse
+
+        def delete: (
+          String id,
+          ?request_options: SignwellSDK::request_opts
+        ) -> nil
 
         def initialize: (client: SignwellSDK::Client) -> void
       end

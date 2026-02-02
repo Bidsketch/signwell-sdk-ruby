@@ -20,14 +20,14 @@ module SignwellSDK
 
       # Retrieves the account information associated with the API key being used.
       #
-      # @overload retrieve(request_options: {})
+      # @overload me(request_options: {})
       #
       # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [nil]
       #
-      # @see SignwellSDK::Models::V1RetrieveParams
-      def retrieve(params = {})
+      # @see SignwellSDK::Models::V1MeParams
+      def me(params = {})
         @client.request(method: :get, path: "api/v1/me", model: NilClass, options: params[:request_options])
       end
 

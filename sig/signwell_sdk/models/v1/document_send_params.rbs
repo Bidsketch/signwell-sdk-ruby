@@ -1,7 +1,7 @@
 module SignwellSDK
   module Models
     module V1
-      type document_update_params =
+      type document_send_params =
         {
           allow_decline: bool,
           allow_reassign: bool,
@@ -25,7 +25,7 @@ module SignwellSDK
         }
         & SignwellSDK::Internal::Type::request_parameters
 
-      class DocumentUpdateParams < SignwellSDK::Internal::Type::BaseModel
+      class DocumentSendParams < SignwellSDK::Internal::Type::BaseModel
         extend SignwellSDK::Internal::Type::RequestParameters::Converter
         include SignwellSDK::Internal::Type::RequestParameters
 

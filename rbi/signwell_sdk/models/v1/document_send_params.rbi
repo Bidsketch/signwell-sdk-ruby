@@ -3,14 +3,14 @@
 module SignwellSDK
   module Models
     module V1
-      class DocumentUpdateParams < SignwellSDK::Internal::Type::BaseModel
+      class DocumentSendParams < SignwellSDK::Internal::Type::BaseModel
         extend SignwellSDK::Internal::Type::RequestParameters::Converter
         include SignwellSDK::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              SignwellSDK::V1::DocumentUpdateParams,
+              SignwellSDK::V1::DocumentSendParams,
               SignwellSDK::Internal::AnyHash
             )
           end

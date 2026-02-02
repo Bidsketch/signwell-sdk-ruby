@@ -3,8 +3,8 @@
 module SignwellSDK
   module Models
     module V1
-      # @see SignwellSDK::Resources::V1::Documents#update
-      class DocumentUpdateParams < SignwellSDK::Internal::Type::BaseModel
+      # @see SignwellSDK::Resources::V1::Documents#send_
+      class DocumentSendParams < SignwellSDK::Internal::Type::BaseModel
         extend SignwellSDK::Internal::Type::RequestParameters::Converter
         include SignwellSDK::Internal::Type::RequestParameters
 
@@ -151,7 +151,7 @@ module SignwellSDK
 
         # @!method initialize(allow_decline: nil, allow_reassign: nil, api_application_id: nil, apply_signing_order: nil, checkbox_groups: nil, custom_requester_email: nil, custom_requester_name: nil, decline_redirect_url: nil, embedded_signing: nil, embedded_signing_notifications: nil, expires_in: nil, labels: nil, message: nil, metadata: nil, name: nil, redirect_url: nil, reminders: nil, subject: nil, test_mode: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
-        #   {SignwellSDK::Models::V1::DocumentUpdateParams} for more details.
+        #   {SignwellSDK::Models::V1::DocumentSendParams} for more details.
         #
         #   @param allow_decline [Boolean] Whether to allow recipients the option to decline signing a document. If multipl
         #

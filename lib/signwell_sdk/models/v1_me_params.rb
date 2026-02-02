@@ -2,8 +2,8 @@
 
 module SignwellSDK
   module Models
-    # @see SignwellSDK::Resources::V1#retrieve
-    class V1RetrieveParams < SignwellSDK::Internal::Type::BaseModel
+    # @see SignwellSDK::Resources::V1#me
+    class V1MeParams < SignwellSDK::Internal::Type::BaseModel
       extend SignwellSDK::Internal::Type::RequestParameters::Converter
       include SignwellSDK::Internal::Type::RequestParameters
 

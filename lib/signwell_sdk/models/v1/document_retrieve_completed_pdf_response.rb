@@ -3,11 +3,11 @@
 module SignwellSDK
   module Models
     module V1
-      # @see SignwellSDK::Resources::V1::Documents#retrieve
-      module DocumentRetrieveResponse
+      # @see SignwellSDK::Resources::V1::Documents#retrieve_completed_pdf
+      module DocumentRetrieveCompletedPdfResponse
         extend SignwellSDK::Internal::Type::Union
 
-        variant -> { SignwellSDK::Models::V1::DocumentRetrieveResponse::Json }
+        variant -> { SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json }
 
         variant StringIO
 
@@ -22,7 +22,7 @@ module SignwellSDK
         end
 
         # @!method self.variants
-        #   @return [Array(SignwellSDK::Models::V1::DocumentRetrieveResponse::Json, StringIO)]
+        #   @return [Array(SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json, StringIO)]
       end
     end
   end

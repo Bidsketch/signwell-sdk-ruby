@@ -2,13 +2,13 @@
 
 module SignwellSDK
   module Models
-    class V1RetrieveParams < SignwellSDK::Internal::Type::BaseModel
+    class V1MeParams < SignwellSDK::Internal::Type::BaseModel
       extend SignwellSDK::Internal::Type::RequestParameters::Converter
       include SignwellSDK::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(SignwellSDK::V1RetrieveParams, SignwellSDK::Internal::AnyHash)
+          T.any(SignwellSDK::V1MeParams, SignwellSDK::Internal::AnyHash)
         end
 
       sig do

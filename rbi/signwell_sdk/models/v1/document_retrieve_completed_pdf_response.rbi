@@ -3,13 +3,13 @@
 module SignwellSDK
   module Models
     module V1
-      module DocumentRetrieveResponse
+      module DocumentRetrieveCompletedPdfResponse
         extend SignwellSDK::Internal::Type::Union
 
         Variants =
           T.type_alias do
             T.any(
-              SignwellSDK::Models::V1::DocumentRetrieveResponse::Json,
+              SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json,
               StringIO
             )
           end
@@ -18,7 +18,7 @@ module SignwellSDK
           OrHash =
             T.type_alias do
               T.any(
-                SignwellSDK::Models::V1::DocumentRetrieveResponse::Json,
+                SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json,
                 SignwellSDK::Internal::AnyHash
               )
             end
@@ -41,7 +41,7 @@ module SignwellSDK
         sig do
           override.returns(
             T::Array[
-              SignwellSDK::Models::V1::DocumentRetrieveResponse::Variants
+              SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Variants
             ]
           )
         end
