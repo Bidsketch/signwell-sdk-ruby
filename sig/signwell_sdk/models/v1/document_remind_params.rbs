@@ -1,0 +1,48 @@
+module SignwellSDK
+  module Models
+    module V1
+      type document_remind_params =
+        {
+          recipients: ::Array[SignwellSDK::V1::DocumentRemindParams::Recipient]
+        }
+        & SignwellSDK::Internal::Type::request_parameters
+
+      class DocumentRemindParams < SignwellSDK::Internal::Type::BaseModel
+        extend SignwellSDK::Internal::Type::RequestParameters::Converter
+        include SignwellSDK::Internal::Type::RequestParameters
+
+        attr_reader recipients: ::Array[SignwellSDK::V1::DocumentRemindParams::Recipient]?
+
+        def recipients=: (
+          ::Array[SignwellSDK::V1::DocumentRemindParams::Recipient]
+        ) -> ::Array[SignwellSDK::V1::DocumentRemindParams::Recipient]
+
+        def initialize: (
+          ?recipients: ::Array[SignwellSDK::V1::DocumentRemindParams::Recipient],
+          ?request_options: SignwellSDK::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          recipients: ::Array[SignwellSDK::V1::DocumentRemindParams::Recipient],
+          request_options: SignwellSDK::RequestOptions
+        }
+
+        type recipient = { email: String, name: String }
+
+        class Recipient < SignwellSDK::Internal::Type::BaseModel
+          attr_reader email: String?
+
+          def email=: (String) -> String
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (?email: String, ?name: String) -> void
+
+          def to_hash: -> { email: String, name: String }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module SignwellSDK
+  module Models
+    module V1
+      type label = { name: String }
+
+      class Label < SignwellSDK::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        def initialize: (name: String) -> void
+
+        def to_hash: -> { name: String }
+      end
+    end
+  end
+end

@@ -1,0 +1,612 @@
+module SignwellSDK
+  module Models
+    module V1
+      type document_template =
+        {
+          id: String,
+          allow_decline: bool?,
+          allow_reassign: bool?,
+          api_application_id: String?,
+          apply_signing_order: bool,
+          archived: bool,
+          checkbox_groups: ::Array[SignwellSDK::V1::DocumentTemplate::CheckboxGroup],
+          copied_placeholders: ::Array[SignwellSDK::V1::DocumentTemplate::CopiedPlaceholder],
+          created_at: Time,
+          custom_requester_email: String?,
+          custom_requester_name: String?,
+          decline_redirect_url: String?,
+          expires_in: Integer?,
+          fields: ::Array[::Array[SignwellSDK::V1::DocumentTemplate::Field]],
+          files: ::Array[SignwellSDK::V1::DocumentTemplate::File],
+          labels: ::Array[SignwellSDK::V1::DocumentTemplate::Label],
+          language: String,
+          message: String,
+          metadata: top?,
+          name: String,
+          placeholders: ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder],
+          redirect_url: String?,
+          reminders: bool?,
+          requester_email_address: String,
+          status: String,
+          subject: String,
+          template_link: String,
+          updated_at: Time
+        }
+
+      class DocumentTemplate < SignwellSDK::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor allow_decline: bool?
+
+        attr_accessor allow_reassign: bool?
+
+        attr_accessor api_application_id: String?
+
+        attr_reader apply_signing_order: bool?
+
+        def apply_signing_order=: (bool) -> bool
+
+        attr_reader archived: bool?
+
+        def archived=: (bool) -> bool
+
+        attr_reader checkbox_groups: ::Array[SignwellSDK::V1::DocumentTemplate::CheckboxGroup]?
+
+        def checkbox_groups=: (
+          ::Array[SignwellSDK::V1::DocumentTemplate::CheckboxGroup]
+        ) -> ::Array[SignwellSDK::V1::DocumentTemplate::CheckboxGroup]
+
+        attr_reader copied_placeholders: ::Array[SignwellSDK::V1::DocumentTemplate::CopiedPlaceholder]?
+
+        def copied_placeholders=: (
+          ::Array[SignwellSDK::V1::DocumentTemplate::CopiedPlaceholder]
+        ) -> ::Array[SignwellSDK::V1::DocumentTemplate::CopiedPlaceholder]
+
+        attr_reader created_at: Time?
+
+        def created_at=: (Time) -> Time
+
+        attr_accessor custom_requester_email: String?
+
+        attr_accessor custom_requester_name: String?
+
+        attr_accessor decline_redirect_url: String?
+
+        attr_accessor expires_in: Integer?
+
+        attr_reader fields: ::Array[::Array[SignwellSDK::V1::DocumentTemplate::Field]]?
+
+        def fields=: (
+          ::Array[::Array[SignwellSDK::V1::DocumentTemplate::Field]]
+        ) -> ::Array[::Array[SignwellSDK::V1::DocumentTemplate::Field]]
+
+        attr_reader files: ::Array[SignwellSDK::V1::DocumentTemplate::File]?
+
+        def files=: (
+          ::Array[SignwellSDK::V1::DocumentTemplate::File]
+        ) -> ::Array[SignwellSDK::V1::DocumentTemplate::File]
+
+        attr_reader labels: ::Array[SignwellSDK::V1::DocumentTemplate::Label]?
+
+        def labels=: (
+          ::Array[SignwellSDK::V1::DocumentTemplate::Label]
+        ) -> ::Array[SignwellSDK::V1::DocumentTemplate::Label]
+
+        attr_reader language: String?
+
+        def language=: (String) -> String
+
+        attr_reader message: String?
+
+        def message=: (String) -> String
+
+        attr_accessor metadata: top?
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader placeholders: ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder]?
+
+        def placeholders=: (
+          ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder]
+        ) -> ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder]
+
+        attr_accessor redirect_url: String?
+
+        attr_accessor reminders: bool?
+
+        attr_reader requester_email_address: String?
+
+        def requester_email_address=: (String) -> String
+
+        attr_reader status: String?
+
+        def status=: (String) -> String
+
+        attr_reader subject: String?
+
+        def subject=: (String) -> String
+
+        attr_reader template_link: String?
+
+        def template_link=: (String) -> String
+
+        attr_reader updated_at: Time?
+
+        def updated_at=: (Time) -> Time
+
+        def initialize: (
+          id: String,
+          ?allow_decline: bool?,
+          ?allow_reassign: bool?,
+          ?api_application_id: String?,
+          ?apply_signing_order: bool,
+          ?archived: bool,
+          ?checkbox_groups: ::Array[SignwellSDK::V1::DocumentTemplate::CheckboxGroup],
+          ?copied_placeholders: ::Array[SignwellSDK::V1::DocumentTemplate::CopiedPlaceholder],
+          ?created_at: Time,
+          ?custom_requester_email: String?,
+          ?custom_requester_name: String?,
+          ?decline_redirect_url: String?,
+          ?expires_in: Integer?,
+          ?fields: ::Array[::Array[SignwellSDK::V1::DocumentTemplate::Field]],
+          ?files: ::Array[SignwellSDK::V1::DocumentTemplate::File],
+          ?labels: ::Array[SignwellSDK::V1::DocumentTemplate::Label],
+          ?language: String,
+          ?message: String,
+          ?metadata: top?,
+          ?name: String,
+          ?placeholders: ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder],
+          ?redirect_url: String?,
+          ?reminders: bool?,
+          ?requester_email_address: String,
+          ?status: String,
+          ?subject: String,
+          ?template_link: String,
+          ?updated_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          allow_decline: bool?,
+          allow_reassign: bool?,
+          api_application_id: String?,
+          apply_signing_order: bool,
+          archived: bool,
+          checkbox_groups: ::Array[SignwellSDK::V1::DocumentTemplate::CheckboxGroup],
+          copied_placeholders: ::Array[SignwellSDK::V1::DocumentTemplate::CopiedPlaceholder],
+          created_at: Time,
+          custom_requester_email: String?,
+          custom_requester_name: String?,
+          decline_redirect_url: String?,
+          expires_in: Integer?,
+          fields: ::Array[::Array[SignwellSDK::V1::DocumentTemplate::Field]],
+          files: ::Array[SignwellSDK::V1::DocumentTemplate::File],
+          labels: ::Array[SignwellSDK::V1::DocumentTemplate::Label],
+          language: String,
+          message: String,
+          metadata: top?,
+          name: String,
+          placeholders: ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder],
+          redirect_url: String?,
+          reminders: bool?,
+          requester_email_address: String,
+          status: String,
+          subject: String,
+          template_link: String,
+          updated_at: Time
+        }
+
+        type checkbox_group =
+          {
+            id: String,
+            checkbox_ids: ::Array[String],
+            required: bool,
+            group_name: String?,
+            min_value: Integer,
+            recipient_id: String?,
+            validation: String?
+          }
+
+        class CheckboxGroup < SignwellSDK::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor checkbox_ids: ::Array[String]
+
+          attr_accessor required: bool
+
+          attr_accessor group_name: String?
+
+          attr_reader min_value: Integer?
+
+          def min_value=: (Integer) -> Integer
+
+          attr_accessor recipient_id: String?
+
+          attr_accessor validation: String?
+
+          def initialize: (
+            id: String,
+            checkbox_ids: ::Array[String],
+            required: bool,
+            ?group_name: String?,
+            ?min_value: Integer,
+            ?recipient_id: String?,
+            ?validation: String?
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            checkbox_ids: ::Array[String],
+            required: bool,
+            group_name: String?,
+            min_value: Integer,
+            recipient_id: String?,
+            validation: String?
+          }
+        end
+
+        type copied_placeholder =
+          {
+            name: String,
+            id: String,
+            message: String?,
+            placeholder_id: String,
+            preassigned_recipient_email: String,
+            preassigned_recipient_name: String,
+            subject: String?
+          }
+
+        class CopiedPlaceholder < SignwellSDK::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_reader id: String?
+
+          def id=: (String) -> String
+
+          attr_accessor message: String?
+
+          attr_reader placeholder_id: String?
+
+          def placeholder_id=: (String) -> String
+
+          attr_reader preassigned_recipient_email: String?
+
+          def preassigned_recipient_email=: (String) -> String
+
+          attr_reader preassigned_recipient_name: String?
+
+          def preassigned_recipient_name=: (String) -> String
+
+          attr_accessor subject: String?
+
+          def initialize: (
+            name: String,
+            ?id: String,
+            ?message: String?,
+            ?placeholder_id: String,
+            ?preassigned_recipient_email: String,
+            ?preassigned_recipient_name: String,
+            ?subject: String?
+          ) -> void
+
+          def to_hash: -> {
+            name: String,
+            id: String,
+            message: String?,
+            placeholder_id: String,
+            preassigned_recipient_email: String,
+            preassigned_recipient_name: String,
+            subject: String?
+          }
+        end
+
+        type field =
+          {
+            page: Integer,
+            x: Float,
+            y_: Float,
+            allow_other: bool,
+            api_id: String,
+            date_format: String,
+            default_option: String,
+            fixed_width: bool,
+            height: String,
+            label: String,
+            lock_sign_date: bool,
+            name: String?,
+            options: ::Array[SignwellSDK::V1::DocumentTemplate::Field::Option],
+            placeholder_name: String,
+            recipient: SignwellSDK::V1::DocumentTemplate::Field::Recipient,
+            recipient_id: String?,
+            required: bool,
+            signing_elements_group_id: String,
+            type: String,
+            validation: String,
+            value: top,
+            width: String
+          }
+
+        class Field < SignwellSDK::Internal::Type::BaseModel
+          attr_accessor page: Integer
+
+          attr_accessor x: Float
+
+          attr_accessor y_: Float
+
+          attr_reader allow_other: bool?
+
+          def allow_other=: (bool) -> bool
+
+          attr_reader api_id: String?
+
+          def api_id=: (String) -> String
+
+          attr_reader date_format: String?
+
+          def date_format=: (String) -> String
+
+          attr_reader default_option: String?
+
+          def default_option=: (String) -> String
+
+          attr_reader fixed_width: bool?
+
+          def fixed_width=: (bool) -> bool
+
+          attr_reader height: String?
+
+          def height=: (String) -> String
+
+          attr_reader label: String?
+
+          def label=: (String) -> String
+
+          attr_reader lock_sign_date: bool?
+
+          def lock_sign_date=: (bool) -> bool
+
+          attr_accessor name: String?
+
+          attr_reader options: ::Array[SignwellSDK::V1::DocumentTemplate::Field::Option]?
+
+          def options=: (
+            ::Array[SignwellSDK::V1::DocumentTemplate::Field::Option]
+          ) -> ::Array[SignwellSDK::V1::DocumentTemplate::Field::Option]
+
+          attr_reader placeholder_name: String?
+
+          def placeholder_name=: (String) -> String
+
+          attr_reader recipient: SignwellSDK::V1::DocumentTemplate::Field::Recipient?
+
+          def recipient=: (
+            SignwellSDK::V1::DocumentTemplate::Field::Recipient
+          ) -> SignwellSDK::V1::DocumentTemplate::Field::Recipient
+
+          attr_accessor recipient_id: String?
+
+          attr_reader required: bool?
+
+          def required=: (bool) -> bool
+
+          attr_reader signing_elements_group_id: String?
+
+          def signing_elements_group_id=: (String) -> String
+
+          attr_reader type: String?
+
+          def type=: (String) -> String
+
+          attr_reader validation: String?
+
+          def validation=: (String) -> String
+
+          attr_reader value: top?
+
+          def value=: (top) -> top
+
+          attr_reader width: String?
+
+          def width=: (String) -> String
+
+          def initialize: (
+            page: Integer,
+            x: Float,
+            y_: Float,
+            ?allow_other: bool,
+            ?api_id: String,
+            ?date_format: String,
+            ?default_option: String,
+            ?fixed_width: bool,
+            ?height: String,
+            ?label: String,
+            ?lock_sign_date: bool,
+            ?name: String?,
+            ?options: ::Array[SignwellSDK::V1::DocumentTemplate::Field::Option],
+            ?placeholder_name: String,
+            ?recipient: SignwellSDK::V1::DocumentTemplate::Field::Recipient,
+            ?recipient_id: String?,
+            ?required: bool,
+            ?signing_elements_group_id: String,
+            ?type: String,
+            ?validation: String,
+            ?value: top,
+            ?width: String
+          ) -> void
+
+          def to_hash: -> {
+            page: Integer,
+            x: Float,
+            y_: Float,
+            allow_other: bool,
+            api_id: String,
+            date_format: String,
+            default_option: String,
+            fixed_width: bool,
+            height: String,
+            label: String,
+            lock_sign_date: bool,
+            name: String?,
+            options: ::Array[SignwellSDK::V1::DocumentTemplate::Field::Option],
+            placeholder_name: String,
+            recipient: SignwellSDK::V1::DocumentTemplate::Field::Recipient,
+            recipient_id: String?,
+            required: bool,
+            signing_elements_group_id: String,
+            type: String,
+            validation: String,
+            value: top,
+            width: String
+          }
+
+          type option = { api_id: String, is_other: bool, name: String }
+
+          class Option < SignwellSDK::Internal::Type::BaseModel
+            attr_reader api_id: String?
+
+            def api_id=: (String) -> String
+
+            attr_reader is_other: bool?
+
+            def is_other=: (bool) -> bool
+
+            attr_reader name: String?
+
+            def name=: (String) -> String
+
+            def initialize: (
+              ?api_id: String,
+              ?is_other: bool,
+              ?name: String
+            ) -> void
+
+            def to_hash: -> { api_id: String, is_other: bool, name: String }
+          end
+
+          type recipient = { email: String, name: String }
+
+          class Recipient < SignwellSDK::Internal::Type::BaseModel
+            attr_accessor email: String
+
+            attr_accessor name: String
+
+            def initialize: (email: String, name: String) -> void
+
+            def to_hash: -> { email: String, name: String }
+          end
+        end
+
+        type file = { name: String, pages_number: Integer }
+
+        class File < SignwellSDK::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_accessor pages_number: Integer
+
+          def initialize: (name: String, pages_number: Integer) -> void
+
+          def to_hash: -> { name: String, pages_number: Integer }
+        end
+
+        type label = { id: String, name: String }
+
+        class Label < SignwellSDK::Internal::Type::BaseModel
+          attr_reader id: String?
+
+          def id=: (String) -> String
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (?id: String, ?name: String) -> void
+
+          def to_hash: -> { id: String, name: String }
+        end
+
+        type placeholder =
+          {
+            name: String,
+            id: String,
+            attachment_requests: ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder::AttachmentRequest],
+            message: String?,
+            preassigned_recipient_email: String,
+            preassigned_recipient_name: String,
+            signing_order: Integer,
+            subject: String?
+          }
+
+        class Placeholder < SignwellSDK::Internal::Type::BaseModel
+          attr_accessor name: String
+
+          attr_reader id: String?
+
+          def id=: (String) -> String
+
+          attr_reader attachment_requests: ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder::AttachmentRequest]?
+
+          def attachment_requests=: (
+            ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder::AttachmentRequest]
+          ) -> ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder::AttachmentRequest]
+
+          attr_accessor message: String?
+
+          attr_reader preassigned_recipient_email: String?
+
+          def preassigned_recipient_email=: (String) -> String
+
+          attr_reader preassigned_recipient_name: String?
+
+          def preassigned_recipient_name=: (String) -> String
+
+          attr_reader signing_order: Integer?
+
+          def signing_order=: (Integer) -> Integer
+
+          attr_accessor subject: String?
+
+          def initialize: (
+            name: String,
+            ?id: String,
+            ?attachment_requests: ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder::AttachmentRequest],
+            ?message: String?,
+            ?preassigned_recipient_email: String,
+            ?preassigned_recipient_name: String,
+            ?signing_order: Integer,
+            ?subject: String?
+          ) -> void
+
+          def to_hash: -> {
+            name: String,
+            id: String,
+            attachment_requests: ::Array[SignwellSDK::V1::DocumentTemplate::Placeholder::AttachmentRequest],
+            message: String?,
+            preassigned_recipient_email: String,
+            preassigned_recipient_name: String,
+            signing_order: Integer,
+            subject: String?
+          }
+
+          type attachment_request =
+            { name: String, required: bool, url: String }
+
+          class AttachmentRequest < SignwellSDK::Internal::Type::BaseModel
+            attr_accessor name: String
+
+            attr_accessor required: bool
+
+            attr_reader url: String?
+
+            def url=: (String) -> String
+
+            def initialize: (name: String, required: bool, ?url: String) -> void
+
+            def to_hash: -> { name: String, required: bool, url: String }
+          end
+        end
+      end
+    end
+  end
+end

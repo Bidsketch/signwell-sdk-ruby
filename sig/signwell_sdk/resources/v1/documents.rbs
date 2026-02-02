@@ -1,0 +1,65 @@
+module SignwellSDK
+  module Resources
+    class V1
+      class Documents
+        def update: (
+          String id,
+          ?allow_decline: bool,
+          ?allow_reassign: bool,
+          ?api_application_id: String,
+          ?apply_signing_order: bool,
+          ?checkbox_groups: ::Array[SignwellSDK::V1::CheckboxGroup],
+          ?custom_requester_email: String,
+          ?custom_requester_name: String,
+          ?decline_redirect_url: String,
+          ?embedded_signing: bool,
+          ?embedded_signing_notifications: bool,
+          ?expires_in: Integer,
+          ?labels: ::Array[SignwellSDK::V1::Label],
+          ?message: String,
+          ?metadata: top,
+          ?name: String,
+          ?redirect_url: String,
+          ?reminders: bool,
+          ?subject: String,
+          ?test_mode: bool,
+          ?request_options: SignwellSDK::request_opts
+        ) -> SignwellSDK::V1::Document
+
+        def list: (
+          ?limit: Integer,
+          ?page: Integer,
+          ?request_options: SignwellSDK::request_opts
+        ) -> SignwellSDK::Models::V1::DocumentListResponse
+
+        def delete: (
+          String id,
+          ?request_options: SignwellSDK::request_opts
+        ) -> nil
+
+        def remind: (
+          String id,
+          ?recipients: ::Array[SignwellSDK::V1::DocumentRemindParams::Recipient],
+          ?request_options: SignwellSDK::request_opts
+        ) -> nil
+
+        def retrieve: (
+          String id,
+          ?audit_page: bool,
+          ?file_format: SignwellSDK::Models::V1::DocumentRetrieveParams::file_format,
+          ?url_only: bool,
+          ?request_options: SignwellSDK::request_opts
+        ) -> SignwellSDK::Models::V1::document_retrieve_response
+
+        def retrieve_nom151_certificate: (
+          String id,
+          ?object_only: bool,
+          ?url_only: bool,
+          ?request_options: SignwellSDK::request_opts
+        ) -> SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse
+
+        def initialize: (client: SignwellSDK::Client) -> void
+      end
+    end
+  end
+end

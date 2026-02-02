@@ -1,0 +1,89 @@
+module SignwellSDK
+  module Models
+    module V1
+      type bulk_send_create_params =
+        {
+          bulk_send_csv: String,
+          template_ids: ::Array[String],
+          api_application_id: String,
+          apply_signing_order: bool,
+          custom_requester_email: String,
+          custom_requester_name: String,
+          message: String,
+          name: String,
+          skip_row_errors: bool,
+          subject: String
+        }
+        & SignwellSDK::Internal::Type::request_parameters
+
+      class BulkSendCreateParams < SignwellSDK::Internal::Type::BaseModel
+        extend SignwellSDK::Internal::Type::RequestParameters::Converter
+        include SignwellSDK::Internal::Type::RequestParameters
+
+        attr_accessor bulk_send_csv: String
+
+        attr_accessor template_ids: ::Array[String]
+
+        attr_reader api_application_id: String?
+
+        def api_application_id=: (String) -> String
+
+        attr_reader apply_signing_order: bool?
+
+        def apply_signing_order=: (bool) -> bool
+
+        attr_reader custom_requester_email: String?
+
+        def custom_requester_email=: (String) -> String
+
+        attr_reader custom_requester_name: String?
+
+        def custom_requester_name=: (String) -> String
+
+        attr_reader message: String?
+
+        def message=: (String) -> String
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader skip_row_errors: bool?
+
+        def skip_row_errors=: (bool) -> bool
+
+        attr_reader subject: String?
+
+        def subject=: (String) -> String
+
+        def initialize: (
+          bulk_send_csv: String,
+          template_ids: ::Array[String],
+          ?api_application_id: String,
+          ?apply_signing_order: bool,
+          ?custom_requester_email: String,
+          ?custom_requester_name: String,
+          ?message: String,
+          ?name: String,
+          ?skip_row_errors: bool,
+          ?subject: String,
+          ?request_options: SignwellSDK::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          bulk_send_csv: String,
+          template_ids: ::Array[String],
+          api_application_id: String,
+          apply_signing_order: bool,
+          custom_requester_email: String,
+          custom_requester_name: String,
+          message: String,
+          name: String,
+          skip_row_errors: bool,
+          subject: String,
+          request_options: SignwellSDK::RequestOptions
+        }
+      end
+    end
+  end
+end

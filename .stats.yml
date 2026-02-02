@@ -1,0 +1,4 @@
+configured_endpoints: 23
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/signwell%2Fsignwell-sdk-b7744b2a7235cb98b1bba7d620d471ad9b787e1914bc69d63ac480086daa9fca.yml
+openapi_spec_hash: efcb7c9d7611e468cde2f44eb9ddf465
+config_hash: 399b1ff35c30058ece7735220790db7d

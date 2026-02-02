@@ -1,0 +1,9 @@
+module SignwellSDK
+  module Internal
+    extend SignwellSDK::Internal::Util::SorbetRuntimeSupport
+
+    type file_input = Pathname | StringIO | IO | String | SignwellSDK::FilePart
+
+    OMIT: Object
+  end
+end

@@ -1,0 +1,52 @@
+module SignwellSDK
+  module Internal
+    module Type
+      module Union
+        include SignwellSDK::Internal::Type::Converter
+        include SignwellSDK::Internal::Util::SorbetRuntimeSupport
+
+        private def self.known_variants: -> ::Array[[Symbol?, (^-> SignwellSDK::Internal::Type::Converter::input), ::Hash[Symbol, top]]]
+
+        def self.derefed_variants: -> ::Array[[Symbol?, top, ::Hash[Symbol, top]]]
+
+        def self.variants: -> ::Array[top]
+
+        private def self.discriminator: (Symbol property) -> void
+
+        private def self.variant: (
+          Symbol
+          | ::Hash[Symbol, top]
+          | ^-> SignwellSDK::Internal::Type::Converter::input
+          | SignwellSDK::Internal::Type::Converter::input key,
+          ?::Hash[Symbol, top]
+          | ^-> SignwellSDK::Internal::Type::Converter::input
+          | SignwellSDK::Internal::Type::Converter::input spec
+        ) -> void
+
+        private def self.resolve_variant: (
+          top value
+        ) -> SignwellSDK::Internal::Type::Converter::input?
+
+        def ===: (top other) -> bool
+
+        def ==: (top other) -> bool
+
+        def hash: -> Integer
+
+        def coerce: (
+          top value,
+          state: SignwellSDK::Internal::Type::Converter::coerce_state
+        ) -> top
+
+        def dump: (
+          top value,
+          state: SignwellSDK::Internal::Type::Converter::dump_state
+        ) -> top
+
+        def to_sorbet_type: -> top
+
+        def inspect: (?depth: Integer) -> String
+      end
+    end
+  end
+end

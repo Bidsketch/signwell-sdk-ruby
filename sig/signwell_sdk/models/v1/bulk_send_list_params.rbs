@@ -1,0 +1,51 @@
+module SignwellSDK
+  module Models
+    module V1
+      type bulk_send_list_params =
+        {
+          api_application_id: String,
+          limit: Integer,
+          page: Integer,
+          user_email: String
+        }
+        & SignwellSDK::Internal::Type::request_parameters
+
+      class BulkSendListParams < SignwellSDK::Internal::Type::BaseModel
+        extend SignwellSDK::Internal::Type::RequestParameters::Converter
+        include SignwellSDK::Internal::Type::RequestParameters
+
+        attr_reader api_application_id: String?
+
+        def api_application_id=: (String) -> String
+
+        attr_reader limit: Integer?
+
+        def limit=: (Integer) -> Integer
+
+        attr_reader page: Integer?
+
+        def page=: (Integer) -> Integer
+
+        attr_reader user_email: String?
+
+        def user_email=: (String) -> String
+
+        def initialize: (
+          ?api_application_id: String,
+          ?limit: Integer,
+          ?page: Integer,
+          ?user_email: String,
+          ?request_options: SignwellSDK::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          api_application_id: String,
+          limit: Integer,
+          page: Integer,
+          user_email: String,
+          request_options: SignwellSDK::RequestOptions
+        }
+      end
+    end
+  end
+end
