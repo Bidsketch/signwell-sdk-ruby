@@ -729,11 +729,7 @@ module SignwellSDK
           # date, and text. To autofill fields with contact data, use an autofill field
           # type. To group checkbox fields, enter an api_id for each checkbox and add the
           # checkbox_groups parameter.
-          sig do
-            returns(
-              SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::OrSymbol
-            )
-          end
+          sig { returns(SignwellSDK::FieldType::OrSymbol) }
           attr_accessor :type
 
           # Horizontal value in the coordinates of the field (in pixels). Coordinates are
@@ -765,21 +761,10 @@ module SignwellSDK
           # Date fields only: date format to use for the field. Valid values: MM/DD/YYYY,
           # DD/MM/YYYY, YYYY/MM/DD, Month DD, YYYY, and MM/DD/YYYY hh:mm:ss a. Defaults to
           # MM/DD/YYYY.
-          sig do
-            returns(
-              T.nilable(
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::OrSymbol
-              )
-            )
-          end
+          sig { returns(T.nilable(SignwellSDK::DateFormat::OrSymbol)) }
           attr_reader :date_format
 
-          sig do
-            params(
-              date_format:
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::OrSymbol
-            ).void
-          end
+          sig { params(date_format: SignwellSDK::DateFormat::OrSymbol).void }
           attr_writer :date_format
 
           # Default selected option (for dropdown/select fields only)
@@ -883,21 +868,10 @@ module SignwellSDK
           # Text fields only: optional validation for field values. Valid values: numbers,
           # letters, email_address, us_phone_number, us_zip_code, us_ssn, us_age,
           # alphanumeric, us_bank_routing_number, us_bank_account.
-          sig do
-            returns(
-              T.nilable(
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::OrSymbol
-              )
-            )
-          end
+          sig { returns(T.nilable(SignwellSDK::TextValidation::OrSymbol)) }
           attr_reader :validation
 
-          sig do
-            params(
-              validation:
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::OrSymbol
-            ).void
-          end
+          sig { params(validation: SignwellSDK::TextValidation::OrSymbol).void }
           attr_writer :validation
 
           # Varies according to the field type. Text fields accept strings or numbers. Date
@@ -933,14 +907,12 @@ module SignwellSDK
             params(
               page: Integer,
               recipient_id: String,
-              type:
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::OrSymbol,
+              type: SignwellSDK::FieldType::OrSymbol,
               x: Float,
               y_: Float,
               allow_other: T::Boolean,
               api_id: String,
-              date_format:
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::OrSymbol,
+              date_format: SignwellSDK::DateFormat::OrSymbol,
               default_option: String,
               fixed_width: T::Boolean,
               formula: String,
@@ -956,8 +928,7 @@ module SignwellSDK
                   )
                 ],
               required: T::Boolean,
-              validation:
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::OrSymbol,
+              validation: SignwellSDK::TextValidation::OrSymbol,
               value:
                 SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Value::Variants,
               width: Float
@@ -1043,14 +1014,12 @@ module SignwellSDK
               {
                 page: Integer,
                 recipient_id: String,
-                type:
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::OrSymbol,
+                type: SignwellSDK::FieldType::OrSymbol,
                 x: Float,
                 y_: Float,
                 allow_other: T::Boolean,
                 api_id: String,
-                date_format:
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::OrSymbol,
+                date_format: SignwellSDK::DateFormat::OrSymbol,
                 default_option: String,
                 fixed_width: T::Boolean,
                 formula: String,
@@ -1066,8 +1035,7 @@ module SignwellSDK
                     )
                   ],
                 required: T::Boolean,
-                validation:
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::OrSymbol,
+                validation: SignwellSDK::TextValidation::OrSymbol,
                 value:
                   SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Value::Variants,
                 width: Float
@@ -1075,161 +1043,6 @@ module SignwellSDK
             )
           end
           def to_hash
-          end
-
-          # Field type of the field. Valid field types: initials, signatures, checkbox,
-          # date, and text. To autofill fields with contact data, use an autofill field
-          # type. To group checkbox fields, enter an api_id for each checkbox and add the
-          # checkbox_groups parameter.
-          module Type
-            extend SignwellSDK::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            INITIALS =
-              T.let(
-                :initials,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            SIGNATURE =
-              T.let(
-                :signature,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            CHECKBOX =
-              T.let(
-                :checkbox,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            DATE =
-              T.let(
-                :date,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            SELECT =
-              T.let(
-                :select,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            TEXT =
-              T.let(
-                :text,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            DROPDOWN =
-              T.let(
-                :dropdown,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            AUTOFILL_COMPANY =
-              T.let(
-                :autofill_company,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            AUTOFILL_EMAIL =
-              T.let(
-                :autofill_email,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            AUTOFILL_FIRST_NAME =
-              T.let(
-                :autofill_first_name,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            AUTOFILL_LAST_NAME =
-              T.let(
-                :autofill_last_name,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            AUTOFILL_NAME =
-              T.let(
-                :autofill_name,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            AUTOFILL_PHONE =
-              T.let(
-                :autofill_phone,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            AUTOFILL_TITLE =
-              T.let(
-                :autofill_title,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-            AUTOFILL_DATE_SIGNED =
-              T.let(
-                :autofill_date_signed,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
-          end
-
-          # Date fields only: date format to use for the field. Valid values: MM/DD/YYYY,
-          # DD/MM/YYYY, YYYY/MM/DD, Month DD, YYYY, and MM/DD/YYYY hh:mm:ss a. Defaults to
-          # MM/DD/YYYY.
-          module DateFormat
-            extend SignwellSDK::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            MM_DD_YYYY =
-              T.let(
-                :"MM/DD/YYYY",
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::TaggedSymbol
-              )
-            DD_MM_YYYY =
-              T.let(
-                :"DD/MM/YYYY",
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::TaggedSymbol
-              )
-            YYYY_MM_DD =
-              T.let(
-                :"YYYY/MM/DD",
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::TaggedSymbol
-              )
-            MONTH_DD_YYYY =
-              T.let(
-                :"Month DD, YYYY",
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::TaggedSymbol
-              )
-            MM_DD_YYYY_HH_MM_SS_A =
-              T.let(
-                :"MM/DD/YYYY hh:mm:ss a",
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
-            end
           end
 
           # A dropdown option - either a simple string or a detailed object with name and
@@ -1307,88 +1120,6 @@ module SignwellSDK
               )
             end
             def self.variants
-            end
-          end
-
-          # Text fields only: optional validation for field values. Valid values: numbers,
-          # letters, email_address, us_phone_number, us_zip_code, us_ssn, us_age,
-          # alphanumeric, us_bank_routing_number, us_bank_account.
-          module Validation
-            extend SignwellSDK::Internal::Type::Enum
-
-            TaggedSymbol =
-              T.type_alias do
-                T.all(
-                  Symbol,
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation
-                )
-              end
-            OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-            NO_TEXT_VALIDATION =
-              T.let(
-                :no_text_validation,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            NUMBERS =
-              T.let(
-                :numbers,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            LETTERS =
-              T.let(
-                :letters,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            EMAIL_ADDRESS =
-              T.let(
-                :email_address,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            US_PHONE_NUMBER =
-              T.let(
-                :us_phone_number,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            US_ZIP_CODE =
-              T.let(
-                :us_zip_code,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            US_SSN =
-              T.let(
-                :us_ssn,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            US_AGE =
-              T.let(
-                :us_age,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            ALPHANUMERIC =
-              T.let(
-                :alphanumeric,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            US_BANK_ROUTING_NUMBER =
-              T.let(
-                :us_bank_routing_number,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-            US_BANK_ACCOUNT_NUMBER =
-              T.let(
-                :us_bank_account_number,
-                SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-              )
-
-            sig do
-              override.returns(
-                T::Array[
-                  SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation::TaggedSymbol
-                ]
-              )
-            end
-            def self.values
             end
           end
 

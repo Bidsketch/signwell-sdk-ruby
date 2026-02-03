@@ -274,12 +274,12 @@ module SignwellSDK
           {
             page: Integer,
             placeholder_id: String,
-            type: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::type_,
+            type: SignwellSDK::Models::field_type,
             x: Float,
             y_: Float,
             allow_other: bool,
             api_id: String,
-            date_format: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::date_format,
+            date_format: SignwellSDK::Models::date_format,
             default_option: String,
             fixed_width: bool,
             height: Float,
@@ -288,7 +288,7 @@ module SignwellSDK
             name: String,
             options: ::Array[SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::option],
             required: bool,
-            validation: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::validation,
+            validation: SignwellSDK::Models::text_validation,
             value: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::value,
             width: Float
           }
@@ -298,7 +298,7 @@ module SignwellSDK
 
           attr_accessor placeholder_id: String
 
-          attr_accessor type: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::type_
+          attr_accessor type: SignwellSDK::Models::field_type
 
           attr_accessor x: Float
 
@@ -312,11 +312,11 @@ module SignwellSDK
 
           def api_id=: (String) -> String
 
-          attr_reader date_format: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::date_format?
+          attr_reader date_format: SignwellSDK::Models::date_format?
 
           def date_format=: (
-            SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::date_format
-          ) -> SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::date_format
+            SignwellSDK::Models::date_format
+          ) -> SignwellSDK::Models::date_format
 
           attr_reader default_option: String?
 
@@ -352,11 +352,11 @@ module SignwellSDK
 
           def required=: (bool) -> bool
 
-          attr_reader validation: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::validation?
+          attr_reader validation: SignwellSDK::Models::text_validation?
 
           def validation=: (
-            SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::validation
-          ) -> SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::validation
+            SignwellSDK::Models::text_validation
+          ) -> SignwellSDK::Models::text_validation
 
           attr_reader value: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::value?
 
@@ -371,12 +371,12 @@ module SignwellSDK
           def initialize: (
             page: Integer,
             placeholder_id: String,
-            type: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::type_,
+            type: SignwellSDK::Models::field_type,
             x: Float,
             y_: Float,
             ?allow_other: bool,
             ?api_id: String,
-            ?date_format: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::date_format,
+            ?date_format: SignwellSDK::Models::date_format,
             ?default_option: String,
             ?fixed_width: bool,
             ?height: Float,
@@ -385,7 +385,7 @@ module SignwellSDK
             ?name: String,
             ?options: ::Array[SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::option],
             ?required: bool,
-            ?validation: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::validation,
+            ?validation: SignwellSDK::Models::text_validation,
             ?value: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::value,
             ?width: Float
           ) -> void
@@ -393,12 +393,12 @@ module SignwellSDK
           def to_hash: -> {
             page: Integer,
             placeholder_id: String,
-            type: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::type_,
+            type: SignwellSDK::Models::field_type,
             x: Float,
             y_: Float,
             allow_other: bool,
             api_id: String,
-            date_format: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::date_format,
+            date_format: SignwellSDK::Models::date_format,
             default_option: String,
             fixed_width: bool,
             height: Float,
@@ -407,68 +407,10 @@ module SignwellSDK
             name: String,
             options: ::Array[SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::option],
             required: bool,
-            validation: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::validation,
+            validation: SignwellSDK::Models::text_validation,
             value: SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::value,
             width: Float
           }
-
-          type type_ =
-            :initials
-            | :signature
-            | :checkbox
-            | :date
-            | :select
-            | :text
-            | :dropdown
-            | :autofill_company
-            | :autofill_email
-            | :autofill_first_name
-            | :autofill_last_name
-            | :autofill_name
-            | :autofill_phone
-            | :autofill_title
-            | :autofill_date_signed
-
-          module Type
-            extend SignwellSDK::Internal::Type::Enum
-
-            INITIALS: :initials
-            SIGNATURE: :signature
-            CHECKBOX: :checkbox
-            DATE: :date
-            SELECT: :select
-            TEXT: :text
-            DROPDOWN: :dropdown
-            AUTOFILL_COMPANY: :autofill_company
-            AUTOFILL_EMAIL: :autofill_email
-            AUTOFILL_FIRST_NAME: :autofill_first_name
-            AUTOFILL_LAST_NAME: :autofill_last_name
-            AUTOFILL_NAME: :autofill_name
-            AUTOFILL_PHONE: :autofill_phone
-            AUTOFILL_TITLE: :autofill_title
-            AUTOFILL_DATE_SIGNED: :autofill_date_signed
-
-            def self?.values: -> ::Array[SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::type_]
-          end
-
-          type date_format =
-            :"MM/DD/YYYY"
-            | :"DD/MM/YYYY"
-            | :"YYYY/MM/DD"
-            | :"Month DD, YYYY"
-            | :"MM/DD/YYYY hh:mm:ss a"
-
-          module DateFormat
-            extend SignwellSDK::Internal::Type::Enum
-
-            MM_DD_YYYY: :"MM/DD/YYYY"
-            DD_MM_YYYY: :"DD/MM/YYYY"
-            YYYY_MM_DD: :"YYYY/MM/DD"
-            MONTH_DD_YYYY: :"Month DD, YYYY"
-            MM_DD_YYYY_HH_MM_SS_A: :"MM/DD/YYYY hh:mm:ss a"
-
-            def self?.values: -> ::Array[SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::date_format]
-          end
 
           type option =
             String
@@ -501,37 +443,6 @@ module SignwellSDK
             end
 
             def self?.variants: -> ::Array[SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::option]
-          end
-
-          type validation =
-            :no_text_validation
-            | :numbers
-            | :letters
-            | :email_address
-            | :us_phone_number
-            | :us_zip_code
-            | :us_ssn
-            | :us_age
-            | :alphanumeric
-            | :us_bank_routing_number
-            | :us_bank_account_number
-
-          module Validation
-            extend SignwellSDK::Internal::Type::Enum
-
-            NO_TEXT_VALIDATION: :no_text_validation
-            NUMBERS: :numbers
-            LETTERS: :letters
-            EMAIL_ADDRESS: :email_address
-            US_PHONE_NUMBER: :us_phone_number
-            US_ZIP_CODE: :us_zip_code
-            US_SSN: :us_ssn
-            US_AGE: :us_age
-            ALPHANUMERIC: :alphanumeric
-            US_BANK_ROUTING_NUMBER: :us_bank_routing_number
-            US_BANK_ACCOUNT_NUMBER: :us_bank_account_number
-
-            def self?.values: -> ::Array[SignwellSDK::Models::V1::DocumentTemplateCreateParams::Field::validation]
           end
 
           type value = String | bool | Float

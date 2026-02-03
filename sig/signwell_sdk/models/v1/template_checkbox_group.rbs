@@ -10,7 +10,7 @@ module SignwellSDK
           max_value: Integer,
           min_value: Integer,
           required: bool,
-          validation: SignwellSDK::Models::V1::TemplateCheckboxGroup::validation
+          validation: SignwellSDK::Models::checkbox_validation
         }
 
       class TemplateCheckboxGroup < SignwellSDK::Internal::Type::BaseModel
@@ -36,11 +36,11 @@ module SignwellSDK
 
         def required=: (bool) -> bool
 
-        attr_reader validation: SignwellSDK::Models::V1::TemplateCheckboxGroup::validation?
+        attr_reader validation: SignwellSDK::Models::checkbox_validation?
 
         def validation=: (
-          SignwellSDK::Models::V1::TemplateCheckboxGroup::validation
-        ) -> SignwellSDK::Models::V1::TemplateCheckboxGroup::validation
+          SignwellSDK::Models::checkbox_validation
+        ) -> SignwellSDK::Models::checkbox_validation
 
         def initialize: (
           checkbox_ids: ::Array[String],
@@ -50,7 +50,7 @@ module SignwellSDK
           ?max_value: Integer,
           ?min_value: Integer,
           ?required: bool,
-          ?validation: SignwellSDK::Models::V1::TemplateCheckboxGroup::validation
+          ?validation: SignwellSDK::Models::checkbox_validation
         ) -> void
 
         def to_hash: -> {
@@ -61,21 +61,8 @@ module SignwellSDK
           max_value: Integer,
           min_value: Integer,
           required: bool,
-          validation: SignwellSDK::Models::V1::TemplateCheckboxGroup::validation
+          validation: SignwellSDK::Models::checkbox_validation
         }
-
-        type validation = :minimum | :maximum | :range | :exact
-
-        module Validation
-          extend SignwellSDK::Internal::Type::Enum
-
-          MINIMUM: :minimum
-          MAXIMUM: :maximum
-          RANGE: :range
-          EXACT: :exact
-
-          def self?.values: -> ::Array[SignwellSDK::Models::V1::TemplateCheckboxGroup::validation]
-        end
       end
     end
   end

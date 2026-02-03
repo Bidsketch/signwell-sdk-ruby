@@ -1,0 +1,52 @@
+module SignwellSDK
+  module Models
+    type checkbox_group_info =
+      {
+        id: String,
+        checkbox_ids: ::Array[String],
+        required: bool,
+        group_name: String?,
+        min_value: Integer,
+        recipient_id: String?,
+        validation: SignwellSDK::Models::checkbox_validation?
+      }
+
+    class CheckboxGroupInfo < SignwellSDK::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor checkbox_ids: ::Array[String]
+
+      attr_accessor required: bool
+
+      attr_accessor group_name: String?
+
+      attr_reader min_value: Integer?
+
+      def min_value=: (Integer) -> Integer
+
+      attr_accessor recipient_id: String?
+
+      attr_accessor validation: SignwellSDK::Models::checkbox_validation?
+
+      def initialize: (
+        id: String,
+        checkbox_ids: ::Array[String],
+        required: bool,
+        ?group_name: String?,
+        ?min_value: Integer,
+        ?recipient_id: String?,
+        ?validation: SignwellSDK::Models::checkbox_validation?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        checkbox_ids: ::Array[String],
+        required: bool,
+        group_name: String?,
+        min_value: Integer,
+        recipient_id: String?,
+        validation: SignwellSDK::Models::checkbox_validation?
+      }
+    end
+  end
+end

@@ -1,0 +1,34 @@
+module SignwellSDK
+  module Models
+    type text_validation =
+      :no_text_validation
+      | :numbers
+      | :letters
+      | :email_address
+      | :us_phone_number
+      | :us_zip_code
+      | :us_ssn
+      | :us_age
+      | :alphanumeric
+      | :us_bank_routing_number
+      | :us_bank_account_number
+
+    module TextValidation
+      extend SignwellSDK::Internal::Type::Enum
+
+      NO_TEXT_VALIDATION: :no_text_validation
+      NUMBERS: :numbers
+      LETTERS: :letters
+      EMAIL_ADDRESS: :email_address
+      US_PHONE_NUMBER: :us_phone_number
+      US_ZIP_CODE: :us_zip_code
+      US_SSN: :us_ssn
+      US_AGE: :us_age
+      ALPHANUMERIC: :alphanumeric
+      US_BANK_ROUTING_NUMBER: :us_bank_routing_number
+      US_BANK_ACCOUNT_NUMBER: :us_bank_account_number
+
+      def self?.values: -> ::Array[SignwellSDK::Models::text_validation]
+    end
+  end
+end

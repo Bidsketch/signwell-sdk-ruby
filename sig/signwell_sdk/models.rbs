@@ -1,4 +1,22 @@
 module SignwellSDK
+  class AttachmentRequestInfo = SignwellSDK::Models::AttachmentRequestInfo
+
+  class CheckboxGroupInfo = SignwellSDK::Models::CheckboxGroupInfo
+
+  module CheckboxValidation = SignwellSDK::Models::CheckboxValidation
+
+  class CopiedContactInfo = SignwellSDK::Models::CopiedContactInfo
+
+  module DateFormat = SignwellSDK::Models::DateFormat
+
+  module FieldType = SignwellSDK::Models::FieldType
+
+  class FileInfo = SignwellSDK::Models::FileInfo
+
+  class LabelInfo = SignwellSDK::Models::LabelInfo
+
+  module TextValidation = SignwellSDK::Models::TextValidation
+
   module V1 = SignwellSDK::Models::V1
 
   class V1MeParams = SignwellSDK::Models::V1MeParams

@@ -48,15 +48,13 @@ module SignwellSDK
 
         # @!attribute checkbox_groups
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::CheckboxGroup>, nil]
-        optional :checkbox_groups,
-                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::CheckboxGroup] }
+        #   @return [Array<SignwellSDK::Models::CheckboxGroupInfo>, nil]
+        optional :checkbox_groups, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::CheckboxGroupInfo] }
 
         # @!attribute copied_contacts
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::CopiedContact>, nil]
-        optional :copied_contacts,
-                 -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::CopiedContact] }
+        #   @return [Array<SignwellSDK::Models::CopiedContactInfo>, nil]
+        optional :copied_contacts, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::CopiedContactInfo] }
 
         # @!attribute created_at
         #
@@ -106,13 +104,13 @@ module SignwellSDK
 
         # @!attribute files
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::File>, nil]
-        optional :files, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::File] }
+        #   @return [Array<SignwellSDK::Models::FileInfo>, nil]
+        optional :files, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::FileInfo] }
 
         # @!attribute labels
         #
-        #   @return [Array<SignwellSDK::Models::V1::Document::Label>, nil]
-        optional :labels, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::Label] }
+        #   @return [Array<SignwellSDK::Models::LabelInfo>, nil]
+        optional :labels, -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::LabelInfo] }
 
         # @!attribute language
         #
@@ -178,8 +176,8 @@ module SignwellSDK
         #   @param apply_signing_order [Boolean]
         #   @param archived [Boolean]
         #   @param attachment_requests [Array<SignwellSDK::Models::V1::Document::AttachmentRequest>]
-        #   @param checkbox_groups [Array<SignwellSDK::Models::V1::Document::CheckboxGroup>]
-        #   @param copied_contacts [Array<SignwellSDK::Models::V1::Document::CopiedContact>]
+        #   @param checkbox_groups [Array<SignwellSDK::Models::CheckboxGroupInfo>]
+        #   @param copied_contacts [Array<SignwellSDK::Models::CopiedContactInfo>]
         #   @param created_at [Time]
         #   @param custom_requester_email [String, nil]
         #   @param custom_requester_name [String, nil]
@@ -189,8 +187,8 @@ module SignwellSDK
         #   @param embedded_preview_url [String, nil]
         #   @param expires_in [Integer]
         #   @param fields [Array<Array<SignwellSDK::Models::V1::Document::Field>>]
-        #   @param files [Array<SignwellSDK::Models::V1::Document::File>]
-        #   @param labels [Array<SignwellSDK::Models::V1::Document::Label>]
+        #   @param files [Array<SignwellSDK::Models::FileInfo>]
+        #   @param labels [Array<SignwellSDK::Models::LabelInfo>]
         #   @param language [String]
         #   @param message [String]
         #   @param metadata [Hash{Symbol=>String}, nil]
@@ -225,74 +223,6 @@ module SignwellSDK
           #   @param required [Boolean]
         end
 
-        class CheckboxGroup < SignwellSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #
-          #   @return [String]
-          required :id, String
-
-          # @!attribute checkbox_ids
-          #
-          #   @return [Array<String>]
-          required :checkbox_ids, SignwellSDK::Internal::Type::ArrayOf[String]
-
-          # @!attribute required
-          #
-          #   @return [Boolean]
-          required :required, SignwellSDK::Internal::Type::Boolean
-
-          # @!attribute group_name
-          #
-          #   @return [String, nil]
-          optional :group_name, String, nil?: true
-
-          # @!attribute min_value
-          #
-          #   @return [Integer, nil]
-          optional :min_value, Integer
-
-          # @!attribute recipient_id
-          #
-          #   @return [String, nil]
-          optional :recipient_id, String, nil?: true
-
-          # @!attribute validation
-          #
-          #   @return [String, nil]
-          optional :validation, String, nil?: true
-
-          # @!method initialize(id:, checkbox_ids:, required:, group_name: nil, min_value: nil, recipient_id: nil, validation: nil)
-          #   @param id [String]
-          #   @param checkbox_ids [Array<String>]
-          #   @param required [Boolean]
-          #   @param group_name [String, nil]
-          #   @param min_value [Integer]
-          #   @param recipient_id [String, nil]
-          #   @param validation [String, nil]
-        end
-
-        class CopiedContact < SignwellSDK::Internal::Type::BaseModel
-          # @!attribute email
-          #
-          #   @return [String]
-          required :email, String
-
-          # @!attribute id
-          #
-          #   @return [String, nil]
-          optional :id, String
-
-          # @!attribute name
-          #
-          #   @return [String, nil]
-          optional :name, String
-
-          # @!method initialize(email:, id: nil, name: nil)
-          #   @param email [String]
-          #   @param id [String]
-          #   @param name [String]
-        end
-
         class Field < SignwellSDK::Internal::Type::BaseModel
           # @!attribute page
           #
@@ -321,9 +251,11 @@ module SignwellSDK
           optional :api_id, String
 
           # @!attribute date_format
+          #   Date format for date fields. Valid values: MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD,
+          #   Month DD, YYYY, MM/DD/YYYY hh:mm:ss a. Default: MM/DD/YYYY
           #
-          #   @return [String, nil]
-          optional :date_format, String
+          #   @return [Symbol, SignwellSDK::Models::DateFormat, nil]
+          optional :date_format, enum: -> { SignwellSDK::DateFormat }
 
           # @!attribute default_option
           #   Default selected option
@@ -388,14 +320,16 @@ module SignwellSDK
           optional :signing_elements_group_id, String
 
           # @!attribute type
+          #   Type of signing field
           #
-          #   @return [String, nil]
-          optional :type, String
+          #   @return [Symbol, SignwellSDK::Models::FieldType, nil]
+          optional :type, enum: -> { SignwellSDK::FieldType }
 
           # @!attribute validation
+          #   Validation rule for text fields
           #
-          #   @return [String, nil]
-          optional :validation, String
+          #   @return [Symbol, SignwellSDK::Models::TextValidation, nil]
+          optional :validation, enum: -> { SignwellSDK::TextValidation }
 
           # @!attribute value
           #
@@ -408,6 +342,9 @@ module SignwellSDK
           optional :width, String
 
           # @!method initialize(page:, x:, y_:, allow_other: nil, api_id: nil, date_format: nil, default_option: nil, fixed_width: nil, height: nil, label: nil, lock_sign_date: nil, name: nil, options: nil, placeholder_name: nil, recipient: nil, recipient_id: nil, required: nil, signing_elements_group_id: nil, type: nil, validation: nil, value: nil, width: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {SignwellSDK::Models::V1::Document::Field} for more details.
+          #
           #   @param page [Integer]
           #
           #   @param x [Float]
@@ -418,7 +355,7 @@ module SignwellSDK
           #
           #   @param api_id [String]
           #
-          #   @param date_format [String]
+          #   @param date_format [Symbol, SignwellSDK::Models::DateFormat] Date format for date fields. Valid values: MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD, M
           #
           #   @param default_option [String] Default selected option
           #
@@ -444,9 +381,9 @@ module SignwellSDK
           #
           #   @param signing_elements_group_id [String]
           #
-          #   @param type [String]
+          #   @param type [Symbol, SignwellSDK::Models::FieldType] Type of signing field
           #
-          #   @param validation [String]
+          #   @param validation [Symbol, SignwellSDK::Models::TextValidation] Validation rule for text fields
           #
           #   @param value [String, Boolean, Float, nil]
           #
@@ -506,38 +443,6 @@ module SignwellSDK
           end
         end
 
-        class File < SignwellSDK::Internal::Type::BaseModel
-          # @!attribute name
-          #
-          #   @return [String]
-          required :name, String
-
-          # @!attribute pages_number
-          #
-          #   @return [Integer]
-          required :pages_number, Integer
-
-          # @!method initialize(name:, pages_number:)
-          #   @param name [String]
-          #   @param pages_number [Integer]
-        end
-
-        class Label < SignwellSDK::Internal::Type::BaseModel
-          # @!attribute id
-          #
-          #   @return [String, nil]
-          optional :id, String
-
-          # @!attribute name
-          #
-          #   @return [String, nil]
-          optional :name, String
-
-          # @!method initialize(id: nil, name: nil)
-          #   @param id [String]
-          #   @param name [String]
-        end
-
         class Recipient < SignwellSDK::Internal::Type::BaseModel
           # @!attribute email
           #
@@ -556,9 +461,9 @@ module SignwellSDK
 
           # @!attribute attachment_requests
           #
-          #   @return [Array<SignwellSDK::Models::V1::Document::Recipient::AttachmentRequest>, nil]
+          #   @return [Array<SignwellSDK::Models::AttachmentRequestInfo>, nil]
           optional :attachment_requests,
-                   -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::V1::Document::Recipient::AttachmentRequest] }
+                   -> { SignwellSDK::Internal::Type::ArrayOf[SignwellSDK::AttachmentRequestInfo] }
 
           # @!attribute body
           #
@@ -619,7 +524,7 @@ module SignwellSDK
           #   @param email [String]
           #   @param name [String]
           #   @param id [String]
-          #   @param attachment_requests [Array<SignwellSDK::Models::V1::Document::Recipient::AttachmentRequest>]
+          #   @param attachment_requests [Array<SignwellSDK::Models::AttachmentRequestInfo>]
           #   @param body [String]
           #   @param bounced [Boolean, nil]
           #   @param bounced_details [String, nil]
@@ -631,28 +536,6 @@ module SignwellSDK
           #   @param signing_url [String]
           #   @param status [String]
           #   @param subject [String, nil]
-
-          class AttachmentRequest < SignwellSDK::Internal::Type::BaseModel
-            # @!attribute name
-            #
-            #   @return [String]
-            required :name, String
-
-            # @!attribute required
-            #
-            #   @return [Boolean]
-            required :required, SignwellSDK::Internal::Type::Boolean
-
-            # @!attribute url
-            #
-            #   @return [String, nil]
-            optional :url, String
-
-            # @!method initialize(name:, required:, url: nil)
-            #   @param name [String]
-            #   @param required [Boolean]
-            #   @param url [String]
-          end
         end
       end
     end

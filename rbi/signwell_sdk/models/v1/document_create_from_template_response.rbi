@@ -60,23 +60,12 @@ module SignwellSDK
         end
         attr_writer :attachment_requests
 
-        sig do
-          returns(
-            T.nilable(
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact
-              ]
-            )
-          )
-        end
+        sig { returns(T.nilable(T::Array[SignwellSDK::CopiedContactInfo])) }
         attr_reader :copied_contacts
 
         sig do
           params(
-            copied_contacts:
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact::OrHash
-              ]
+            copied_contacts: T::Array[SignwellSDK::CopiedContactInfo::OrHash]
           ).void
         end
         attr_writer :copied_contacts
@@ -139,46 +128,16 @@ module SignwellSDK
         end
         attr_writer :fields
 
-        sig do
-          returns(
-            T.nilable(
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File
-              ]
-            )
-          )
-        end
+        sig { returns(T.nilable(T::Array[SignwellSDK::FileInfo])) }
         attr_reader :files
 
-        sig do
-          params(
-            files:
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File::OrHash
-              ]
-          ).void
-        end
+        sig { params(files: T::Array[SignwellSDK::FileInfo::OrHash]).void }
         attr_writer :files
 
-        sig do
-          returns(
-            T.nilable(
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label
-              ]
-            )
-          )
-        end
+        sig { returns(T.nilable(T::Array[SignwellSDK::LabelInfo])) }
         attr_reader :labels
 
-        sig do
-          params(
-            labels:
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label::OrHash
-              ]
-          ).void
-        end
+        sig { params(labels: T::Array[SignwellSDK::LabelInfo::OrHash]).void }
         attr_writer :labels
 
         sig { returns(T.nilable(String)) }
@@ -281,10 +240,7 @@ module SignwellSDK
               T::Array[
                 SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest::OrHash
               ],
-            copied_contacts:
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact::OrHash
-              ],
+            copied_contacts: T::Array[SignwellSDK::CopiedContactInfo::OrHash],
             created_at: Time,
             custom_requester_email: T.nilable(String),
             custom_requester_name: T.nilable(String),
@@ -298,14 +254,8 @@ module SignwellSDK
                   SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::OrHash
                 ]
               ],
-            files:
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File::OrHash
-              ],
-            labels:
-              T::Array[
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label::OrHash
-              ],
+            files: T::Array[SignwellSDK::FileInfo::OrHash],
+            labels: T::Array[SignwellSDK::LabelInfo::OrHash],
             language: String,
             message: String,
             metadata: T.nilable(T::Hash[Symbol, String]),
@@ -374,10 +324,7 @@ module SignwellSDK
                 T::Array[
                   SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest
                 ],
-              copied_contacts:
-                T::Array[
-                  SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact
-                ],
+              copied_contacts: T::Array[SignwellSDK::CopiedContactInfo],
               created_at: Time,
               custom_requester_email: T.nilable(String),
               custom_requester_name: T.nilable(String),
@@ -391,14 +338,8 @@ module SignwellSDK
                     SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field
                   ]
                 ],
-              files:
-                T::Array[
-                  SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File
-                ],
-              labels:
-                T::Array[
-                  SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label
-                ],
+              files: T::Array[SignwellSDK::FileInfo],
+              labels: T::Array[SignwellSDK::LabelInfo],
               language: String,
               message: String,
               metadata: T.nilable(T::Hash[Symbol, String]),
@@ -461,43 +402,6 @@ module SignwellSDK
           end
         end
 
-        class CopiedContact < SignwellSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact,
-                SignwellSDK::Internal::AnyHash
-              )
-            end
-
-          sig { returns(String) }
-          attr_accessor :email
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :name
-
-          sig { params(name: String).void }
-          attr_writer :name
-
-          sig do
-            params(email: String, id: String, name: String).returns(
-              T.attached_class
-            )
-          end
-          def self.new(email:, id: nil, name: nil)
-          end
-
-          sig { override.returns({ email: String, id: String, name: String }) }
-          def to_hash
-          end
-        end
-
         class Field < SignwellSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
@@ -529,10 +433,12 @@ module SignwellSDK
           sig { params(api_id: String).void }
           attr_writer :api_id
 
-          sig { returns(T.nilable(String)) }
+          # Date format for date fields. Valid values: MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD,
+          # Month DD, YYYY, MM/DD/YYYY hh:mm:ss a. Default: MM/DD/YYYY
+          sig { returns(T.nilable(SignwellSDK::DateFormat::TaggedSymbol)) }
           attr_reader :date_format
 
-          sig { params(date_format: String).void }
+          sig { params(date_format: SignwellSDK::DateFormat::OrSymbol).void }
           attr_writer :date_format
 
           # Default selected option
@@ -629,16 +535,18 @@ module SignwellSDK
           sig { params(signing_elements_group_id: String).void }
           attr_writer :signing_elements_group_id
 
-          sig { returns(T.nilable(String)) }
+          # Type of signing field
+          sig { returns(T.nilable(SignwellSDK::FieldType::TaggedSymbol)) }
           attr_reader :type
 
-          sig { params(type: String).void }
+          sig { params(type: SignwellSDK::FieldType::OrSymbol).void }
           attr_writer :type
 
-          sig { returns(T.nilable(String)) }
+          # Validation rule for text fields
+          sig { returns(T.nilable(SignwellSDK::TextValidation::TaggedSymbol)) }
           attr_reader :validation
 
-          sig { params(validation: String).void }
+          sig { params(validation: SignwellSDK::TextValidation::OrSymbol).void }
           attr_writer :validation
 
           sig do
@@ -663,7 +571,7 @@ module SignwellSDK
               y_: Float,
               allow_other: T::Boolean,
               api_id: String,
-              date_format: String,
+              date_format: SignwellSDK::DateFormat::OrSymbol,
               default_option: String,
               fixed_width: T::Boolean,
               height: String,
@@ -680,8 +588,8 @@ module SignwellSDK
               recipient_id: T.nilable(String),
               required: T::Boolean,
               signing_elements_group_id: String,
-              type: String,
-              validation: String,
+              type: SignwellSDK::FieldType::OrSymbol,
+              validation: SignwellSDK::TextValidation::OrSymbol,
               value:
                 T.nilable(
                   SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Value::Variants
@@ -696,6 +604,8 @@ module SignwellSDK
             # Whether "Other" option is allowed
             allow_other: nil,
             api_id: nil,
+            # Date format for date fields. Valid values: MM/DD/YYYY, DD/MM/YYYY, YYYY/MM/DD,
+            # Month DD, YYYY, MM/DD/YYYY hh:mm:ss a. Default: MM/DD/YYYY
             date_format: nil,
             # Default selected option
             default_option: nil,
@@ -711,7 +621,9 @@ module SignwellSDK
             recipient_id: nil,
             required: nil,
             signing_elements_group_id: nil,
+            # Type of signing field
             type: nil,
+            # Validation rule for text fields
             validation: nil,
             value: nil,
             width: nil
@@ -726,7 +638,7 @@ module SignwellSDK
                 y_: Float,
                 allow_other: T::Boolean,
                 api_id: String,
-                date_format: String,
+                date_format: SignwellSDK::DateFormat::TaggedSymbol,
                 default_option: String,
                 fixed_width: T::Boolean,
                 height: String,
@@ -743,8 +655,8 @@ module SignwellSDK
                 recipient_id: T.nilable(String),
                 required: T::Boolean,
                 signing_elements_group_id: String,
-                type: String,
-                validation: String,
+                type: SignwellSDK::FieldType::TaggedSymbol,
+                validation: SignwellSDK::TextValidation::TaggedSymbol,
                 value:
                   T.nilable(
                     SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::Value::Variants
@@ -855,64 +767,6 @@ module SignwellSDK
           end
         end
 
-        class File < SignwellSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File,
-                SignwellSDK::Internal::AnyHash
-              )
-            end
-
-          sig { returns(String) }
-          attr_accessor :name
-
-          sig { returns(Integer) }
-          attr_accessor :pages_number
-
-          sig do
-            params(name: String, pages_number: Integer).returns(
-              T.attached_class
-            )
-          end
-          def self.new(name:, pages_number:)
-          end
-
-          sig { override.returns({ name: String, pages_number: Integer }) }
-          def to_hash
-          end
-        end
-
-        class Label < SignwellSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label,
-                SignwellSDK::Internal::AnyHash
-              )
-            end
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :id
-
-          sig { params(id: String).void }
-          attr_writer :id
-
-          sig { returns(T.nilable(String)) }
-          attr_reader :name
-
-          sig { params(name: String).void }
-          attr_writer :name
-
-          sig { params(id: String, name: String).returns(T.attached_class) }
-          def self.new(id: nil, name: nil)
-          end
-
-          sig { override.returns({ id: String, name: String }) }
-          def to_hash
-          end
-        end
-
         class Recipient < SignwellSDK::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
@@ -926,22 +780,14 @@ module SignwellSDK
           attr_accessor :email
 
           sig do
-            returns(
-              T.nilable(
-                T::Array[
-                  SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest
-                ]
-              )
-            )
+            returns(T.nilable(T::Array[SignwellSDK::AttachmentRequestInfo]))
           end
           attr_reader :attachment_requests
 
           sig do
             params(
               attachment_requests:
-                T::Array[
-                  SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest::OrHash
-                ]
+                T::Array[SignwellSDK::AttachmentRequestInfo::OrHash]
             ).void
           end
           attr_writer :attachment_requests
@@ -971,9 +817,7 @@ module SignwellSDK
             params(
               email: String,
               attachment_requests:
-                T::Array[
-                  SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest::OrHash
-                ],
+                T::Array[SignwellSDK::AttachmentRequestInfo::OrHash],
               name: String,
               passcode: T.nilable(String),
               role: String,
@@ -995,9 +839,7 @@ module SignwellSDK
               {
                 email: String,
                 attachment_requests:
-                  T::Array[
-                    SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest
-                  ],
+                  T::Array[SignwellSDK::AttachmentRequestInfo],
                 name: String,
                 passcode: T.nilable(String),
                 role: String,
@@ -1006,44 +848,6 @@ module SignwellSDK
             )
           end
           def to_hash
-          end
-
-          class AttachmentRequest < SignwellSDK::Internal::Type::BaseModel
-            OrHash =
-              T.type_alias do
-                T.any(
-                  SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest,
-                  SignwellSDK::Internal::AnyHash
-                )
-              end
-
-            sig { returns(String) }
-            attr_accessor :name
-
-            sig { returns(T::Boolean) }
-            attr_accessor :required
-
-            sig { returns(T.nilable(String)) }
-            attr_reader :url
-
-            sig { params(url: String).void }
-            attr_writer :url
-
-            sig do
-              params(name: String, required: T::Boolean, url: String).returns(
-                T.attached_class
-              )
-            end
-            def self.new(name:, required:, url: nil)
-            end
-
-            sig do
-              override.returns(
-                { name: String, required: T::Boolean, url: String }
-              )
-            end
-            def to_hash
-            end
           end
         end
       end

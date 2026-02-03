@@ -427,8 +427,8 @@ module SignwellSDK
           #   type. To group checkbox fields, enter an api_id for each checkbox and add the
           #   checkbox_groups parameter.
           #
-          #   @return [Symbol, SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field::Type]
-          required :type, enum: -> { SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Type }
+          #   @return [Symbol, SignwellSDK::Models::FieldType]
+          required :type, enum: -> { SignwellSDK::FieldType }
 
           # @!attribute x
           #   Horizontal value in the coordinates of the field (in pixels). Coordinates are
@@ -463,8 +463,8 @@ module SignwellSDK
           #   DD/MM/YYYY, YYYY/MM/DD, Month DD, YYYY, and MM/DD/YYYY hh:mm:ss a. Defaults to
           #   MM/DD/YYYY.
           #
-          #   @return [Symbol, SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field::DateFormat, nil]
-          optional :date_format, enum: -> { SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::DateFormat }
+          #   @return [Symbol, SignwellSDK::Models::DateFormat, nil]
+          optional :date_format, enum: -> { SignwellSDK::DateFormat }
 
           # @!attribute default_option
           #   Default selected option (for dropdown/select fields only)
@@ -540,8 +540,8 @@ module SignwellSDK
           #   letters, email_address, us_phone_number, us_zip_code, us_ssn, us_age,
           #   alphanumeric, us_bank_routing_number, us_bank_account.
           #
-          #   @return [Symbol, SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field::Validation, nil]
-          optional :validation, enum: -> { SignwellSDK::V1::DocumentCreateFromTemplateParams::Field::Validation }
+          #   @return [Symbol, SignwellSDK::Models::TextValidation, nil]
+          optional :validation, enum: -> { SignwellSDK::TextValidation }
 
           # @!attribute value
           #   Varies according to the field type. Text fields accept strings or numbers. Date
@@ -568,7 +568,7 @@ module SignwellSDK
           #
           #   @param recipient_id [String] Unique identifier of the recipient assigned to the field. Recipients assigned to
           #
-          #   @param type [Symbol, SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field::Type] Field type of the field. Valid field types: initials, signatures, checkbox, date
+          #   @param type [Symbol, SignwellSDK::Models::FieldType] Field type of the field. Valid field types: initials, signatures, checkbox, date
           #
           #   @param x [Float] Horizontal value in the coordinates of the field (in pixels). Coordinates are sp
           #
@@ -578,7 +578,7 @@ module SignwellSDK
           #
           #   @param api_id [String] Unique identifier of the field. Useful when needing to reference specific field
           #
-          #   @param date_format [Symbol, SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field::DateFormat] Date fields only: date format to use for the field. Valid values: MM/DD/YYYY, DD
+          #   @param date_format [Symbol, SignwellSDK::Models::DateFormat] Date fields only: date format to use for the field. Valid values: MM/DD/YYYY, DD
           #
           #   @param default_option [String] Default selected option (for dropdown/select fields only)
           #
@@ -598,58 +598,11 @@ module SignwellSDK
           #
           #   @param required [Boolean] Whether the field must be completed by the recipient. Defaults to `true` except
           #
-          #   @param validation [Symbol, SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field::Validation] Text fields only: optional validation for field values. Valid values: numbers, l
+          #   @param validation [Symbol, SignwellSDK::Models::TextValidation] Text fields only: optional validation for field values. Valid values: numbers, l
           #
           #   @param value [String, Boolean, Float] Varies according to the field type. Text fields accept strings or numbers. Date
           #
           #   @param width [Float] Width of the field (in pixels). For text fields, width will auto-grow unless `fi
-
-          # Field type of the field. Valid field types: initials, signatures, checkbox,
-          # date, and text. To autofill fields with contact data, use an autofill field
-          # type. To group checkbox fields, enter an api_id for each checkbox and add the
-          # checkbox_groups parameter.
-          #
-          # @see SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field#type
-          module Type
-            extend SignwellSDK::Internal::Type::Enum
-
-            INITIALS = :initials
-            SIGNATURE = :signature
-            CHECKBOX = :checkbox
-            DATE = :date
-            SELECT = :select
-            TEXT = :text
-            DROPDOWN = :dropdown
-            AUTOFILL_COMPANY = :autofill_company
-            AUTOFILL_EMAIL = :autofill_email
-            AUTOFILL_FIRST_NAME = :autofill_first_name
-            AUTOFILL_LAST_NAME = :autofill_last_name
-            AUTOFILL_NAME = :autofill_name
-            AUTOFILL_PHONE = :autofill_phone
-            AUTOFILL_TITLE = :autofill_title
-            AUTOFILL_DATE_SIGNED = :autofill_date_signed
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
-
-          # Date fields only: date format to use for the field. Valid values: MM/DD/YYYY,
-          # DD/MM/YYYY, YYYY/MM/DD, Month DD, YYYY, and MM/DD/YYYY hh:mm:ss a. Defaults to
-          # MM/DD/YYYY.
-          #
-          # @see SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field#date_format
-          module DateFormat
-            extend SignwellSDK::Internal::Type::Enum
-
-            MM_DD_YYYY = :"MM/DD/YYYY"
-            DD_MM_YYYY = :"DD/MM/YYYY"
-            YYYY_MM_DD = :"YYYY/MM/DD"
-            MONTH_DD_YYYY = :"Month DD, YYYY"
-            MM_DD_YYYY_HH_MM_SS_A = :"MM/DD/YYYY hh:mm:ss a"
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
-          end
 
           # A dropdown option - either a simple string or a detailed object with name and
           # optional api_id
@@ -693,30 +646,6 @@ module SignwellSDK
 
             # @!method self.variants
             #   @return [Array(String, SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field::Option::DetailedOption)]
-          end
-
-          # Text fields only: optional validation for field values. Valid values: numbers,
-          # letters, email_address, us_phone_number, us_zip_code, us_ssn, us_age,
-          # alphanumeric, us_bank_routing_number, us_bank_account.
-          #
-          # @see SignwellSDK::Models::V1::DocumentCreateFromTemplateParams::Field#validation
-          module Validation
-            extend SignwellSDK::Internal::Type::Enum
-
-            NO_TEXT_VALIDATION = :no_text_validation
-            NUMBERS = :numbers
-            LETTERS = :letters
-            EMAIL_ADDRESS = :email_address
-            US_PHONE_NUMBER = :us_phone_number
-            US_ZIP_CODE = :us_zip_code
-            US_SSN = :us_ssn
-            US_AGE = :us_age
-            ALPHANUMERIC = :alphanumeric
-            US_BANK_ROUTING_NUMBER = :us_bank_routing_number
-            US_BANK_ACCOUNT_NUMBER = :us_bank_account_number
-
-            # @!method self.values
-            #   @return [Array<Symbol>]
           end
 
           # Varies according to the field type. Text fields accept strings or numbers. Date

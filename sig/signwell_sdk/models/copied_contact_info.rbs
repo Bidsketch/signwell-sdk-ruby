@@ -1,0 +1,21 @@
+module SignwellSDK
+  module Models
+    type copied_contact_info = { email: String, id: String, name: String }
+
+    class CopiedContactInfo < SignwellSDK::Internal::Type::BaseModel
+      attr_accessor email: String
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      def initialize: (email: String, ?id: String, ?name: String) -> void
+
+      def to_hash: -> { email: String, id: String, name: String }
+    end
+  end
+end
