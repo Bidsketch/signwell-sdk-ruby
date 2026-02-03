@@ -3,49 +3,30 @@
 module SignwellSDK
   module Models
     module V1
-      module DocumentRetrieveCompletedPdfResponse
-        extend SignwellSDK::Internal::Type::Union
-
-        Variants =
+      class DocumentRetrieveCompletedPdfResponse < SignwellSDK::Internal::Type::BaseModel
+        OrHash =
           T.type_alias do
             T.any(
-              SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json,
-              StringIO
+              SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse,
+              SignwellSDK::Internal::AnyHash
             )
           end
 
-        class Json < SignwellSDK::Internal::Type::BaseModel
-          OrHash =
-            T.type_alias do
-              T.any(
-                SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json,
-                SignwellSDK::Internal::AnyHash
-              )
-            end
+        # URL to download the completed document
+        sig { returns(String) }
+        attr_accessor :file_url
 
-          sig { returns(T.nilable(String)) }
-          attr_reader :file_url
-
-          sig { params(file_url: String).void }
-          attr_writer :file_url
-
-          sig { params(file_url: String).returns(T.attached_class) }
-          def self.new(file_url: nil)
-          end
-
-          sig { override.returns({ file_url: String }) }
-          def to_hash
-          end
+        # Response containing the URL to the completed PDF file (returned when
+        # url_only=true)
+        sig { params(file_url: String).returns(T.attached_class) }
+        def self.new(
+          # URL to download the completed document
+          file_url:
+        )
         end
 
-        sig do
-          override.returns(
-            T::Array[
-              SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Variants
-            ]
-          )
-        end
-        def self.variants
+        sig { override.returns({ file_url: String }) }
+        def to_hash
         end
       end
     end

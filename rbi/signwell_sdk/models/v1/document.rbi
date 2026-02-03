@@ -158,10 +158,7 @@ module SignwellSDK
         attr_writer :message
 
         sig { returns(T.nilable(T::Hash[Symbol, String])) }
-        attr_reader :metadata
-
-        sig { params(metadata: T::Hash[Symbol, String]).void }
-        attr_writer :metadata
+        attr_accessor :metadata
 
         sig { returns(T.nilable(String)) }
         attr_reader :name
@@ -243,7 +240,7 @@ module SignwellSDK
             labels: T::Array[SignwellSDK::V1::Document::Label::OrHash],
             language: String,
             message: String,
-            metadata: T::Hash[Symbol, String],
+            metadata: T.nilable(T::Hash[Symbol, String]),
             name: String,
             recipients: T::Array[SignwellSDK::V1::Document::Recipient::OrHash],
             redirect_url: T.nilable(String),
@@ -319,7 +316,7 @@ module SignwellSDK
               labels: T::Array[SignwellSDK::V1::Document::Label],
               language: String,
               message: String,
-              metadata: T::Hash[Symbol, String],
+              metadata: T.nilable(T::Hash[Symbol, String]),
               name: String,
               recipients: T::Array[SignwellSDK::V1::Document::Recipient],
               redirect_url: T.nilable(String),

@@ -118,7 +118,7 @@ module SignwellSDK
         # @!attribute metadata
         #
         #   @return [Hash{Symbol=>String}, nil]
-        optional :metadata, SignwellSDK::Internal::Type::HashOf[String]
+        optional :metadata, SignwellSDK::Internal::Type::HashOf[String], nil?: true
 
         # @!attribute name
         #
@@ -193,7 +193,7 @@ module SignwellSDK
         #   @param labels [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label>]
         #   @param language [String]
         #   @param message [String]
-        #   @param metadata [Hash{Symbol=>String}]
+        #   @param metadata [Hash{Symbol=>String}, nil]
         #   @param name [String]
         #   @param recipients [Array<SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient>]
         #   @param redirect_url [String, nil]

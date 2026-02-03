@@ -97,14 +97,14 @@ module SignwellSDK
           ?file_format: SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfParams::file_format,
           ?url_only: bool,
           ?request_options: SignwellSDK::request_opts
-        ) -> SignwellSDK::Models::V1::document_retrieve_completed_pdf_response
+        ) -> SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse
 
         def retrieve_nom151_certificate: (
           String id,
           ?object_only: bool,
           ?url_only: bool,
           ?request_options: SignwellSDK::request_opts
-        ) -> SignwellSDK::Models::V1::document_retrieve_nom151_certificate_response
+        ) -> SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse
 
         def send_: (
           String id,

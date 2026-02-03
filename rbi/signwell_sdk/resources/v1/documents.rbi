@@ -402,7 +402,7 @@ module SignwellSDK
             url_only: T::Boolean,
             request_options: SignwellSDK::RequestOptions::OrHash
           ).returns(
-            SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Variants
+            SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse
           )
         end
         def retrieve_completed_pdf(
@@ -428,7 +428,7 @@ module SignwellSDK
             url_only: T::Boolean,
             request_options: SignwellSDK::RequestOptions::OrHash
           ).returns(
-            SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Variants
+            SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse
           )
         end
         def retrieve_nom151_certificate(
