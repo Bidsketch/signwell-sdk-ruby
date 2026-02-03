@@ -283,7 +283,7 @@ module SignwellSDK
         #
         # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json, StringIO]
+        # @return [SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse]
         #
         # @see SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfParams
         def retrieve_completed_pdf(id, params = {})
@@ -314,7 +314,7 @@ module SignwellSDK
         #
         # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151CertificateResponse, SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151URLResponse, StringIO]
+        # @return [SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse]
         #
         # @see SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateParams
         def retrieve_nom151_certificate(id, params = {})

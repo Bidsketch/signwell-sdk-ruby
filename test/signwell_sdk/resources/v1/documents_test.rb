@@ -200,10 +200,9 @@ class SignwellSDK::Test::Resources::V1::DocumentsTest < SignwellSDK::Test::Resou
     end
 
     assert_pattern do
-      case response
-      in SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse::Json
-      in StringIO
-      end
+      response => {
+        file_url: String
+      }
     end
   end
 
@@ -217,11 +216,9 @@ class SignwellSDK::Test::Resources::V1::DocumentsTest < SignwellSDK::Test::Resou
     end
 
     assert_pattern do
-      case response
-      in SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151CertificateResponse
-      in SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse::Nom151URLResponse
-      in StringIO
-      end
+      response => {
+        file_url: String
+      }
     end
   end
 

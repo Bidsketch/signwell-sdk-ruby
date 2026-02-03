@@ -24,7 +24,7 @@ module SignwellSDK
           labels: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label],
           language: String,
           message: String,
-          metadata: ::Hash[Symbol, String],
+          metadata: ::Hash[Symbol, String]?,
           name: String,
           recipients: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient],
           redirect_url: String?,
@@ -116,9 +116,7 @@ module SignwellSDK
 
         def message=: (String) -> String
 
-        attr_reader metadata: ::Hash[Symbol, String]?
-
-        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+        attr_accessor metadata: ::Hash[Symbol, String]?
 
         attr_reader name: String?
 
@@ -182,7 +180,7 @@ module SignwellSDK
           ?labels: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label],
           ?language: String,
           ?message: String,
-          ?metadata: ::Hash[Symbol, String],
+          ?metadata: ::Hash[Symbol, String]?,
           ?name: String,
           ?recipients: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient],
           ?redirect_url: String?,
@@ -217,7 +215,7 @@ module SignwellSDK
           labels: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label],
           language: String,
           message: String,
-          metadata: ::Hash[Symbol, String],
+          metadata: ::Hash[Symbol, String]?,
           name: String,
           recipients: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient],
           redirect_url: String?,

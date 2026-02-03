@@ -26,7 +26,7 @@ module SignwellSDK
           labels: ::Array[SignwellSDK::V1::Document::Label],
           language: String,
           message: String,
-          metadata: ::Hash[Symbol, String],
+          metadata: ::Hash[Symbol, String]?,
           name: String,
           recipients: ::Array[SignwellSDK::V1::Document::Recipient],
           redirect_url: String?,
@@ -124,9 +124,7 @@ module SignwellSDK
 
         def message=: (String) -> String
 
-        attr_reader metadata: ::Hash[Symbol, String]?
-
-        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+        attr_accessor metadata: ::Hash[Symbol, String]?
 
         attr_reader name: String?
 
@@ -184,7 +182,7 @@ module SignwellSDK
           ?labels: ::Array[SignwellSDK::V1::Document::Label],
           ?language: String,
           ?message: String,
-          ?metadata: ::Hash[Symbol, String],
+          ?metadata: ::Hash[Symbol, String]?,
           ?name: String,
           ?recipients: ::Array[SignwellSDK::V1::Document::Recipient],
           ?redirect_url: String?,
@@ -219,7 +217,7 @@ module SignwellSDK
           labels: ::Array[SignwellSDK::V1::Document::Label],
           language: String,
           message: String,
-          metadata: ::Hash[Symbol, String],
+          metadata: ::Hash[Symbol, String]?,
           name: String,
           recipients: ::Array[SignwellSDK::V1::Document::Recipient],
           redirect_url: String?,
