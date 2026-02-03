@@ -1,0 +1,16 @@
+module SignwellSDK
+  module Models
+    type checkbox_validation = :minimum | :maximum | :range | :exact
+
+    module CheckboxValidation
+      extend SignwellSDK::Internal::Type::Enum
+
+      MINIMUM: :minimum
+      MAXIMUM: :maximum
+      RANGE: :range
+      EXACT: :exact
+
+      def self?.values: -> ::Array[SignwellSDK::Models::checkbox_validation]
+    end
+  end
+end

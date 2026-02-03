@@ -1,0 +1,15 @@
+module SignwellSDK
+  module Models
+    type file_info = { name: String, pages_number: Integer }
+
+    class FileInfo < SignwellSDK::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor pages_number: Integer
+
+      def initialize: (name: String, pages_number: Integer) -> void
+
+      def to_hash: -> { name: String, pages_number: Integer }
+    end
+  end
+end

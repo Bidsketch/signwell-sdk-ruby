@@ -56,20 +56,11 @@ module SignwellSDK
 
         # Set requirements for the group of one or multiple selections by the recipient.
         # Defaults to minimum. Validation values: minimum, maximum, exact, range.
-        sig do
-          returns(
-            T.nilable(
-              SignwellSDK::V1::TemplateCheckboxGroup::Validation::OrSymbol
-            )
-          )
-        end
+        sig { returns(T.nilable(SignwellSDK::CheckboxValidation::OrSymbol)) }
         attr_reader :validation
 
         sig do
-          params(
-            validation:
-              SignwellSDK::V1::TemplateCheckboxGroup::Validation::OrSymbol
-          ).void
+          params(validation: SignwellSDK::CheckboxValidation::OrSymbol).void
         end
         attr_writer :validation
 
@@ -82,8 +73,7 @@ module SignwellSDK
             max_value: Integer,
             min_value: Integer,
             required: T::Boolean,
-            validation:
-              SignwellSDK::V1::TemplateCheckboxGroup::Validation::OrSymbol
+            validation: SignwellSDK::CheckboxValidation::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -119,55 +109,11 @@ module SignwellSDK
               max_value: Integer,
               min_value: Integer,
               required: T::Boolean,
-              validation:
-                SignwellSDK::V1::TemplateCheckboxGroup::Validation::OrSymbol
+              validation: SignwellSDK::CheckboxValidation::OrSymbol
             }
           )
         end
         def to_hash
-        end
-
-        # Set requirements for the group of one or multiple selections by the recipient.
-        # Defaults to minimum. Validation values: minimum, maximum, exact, range.
-        module Validation
-          extend SignwellSDK::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, SignwellSDK::V1::TemplateCheckboxGroup::Validation)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          MINIMUM =
-            T.let(
-              :minimum,
-              SignwellSDK::V1::TemplateCheckboxGroup::Validation::TaggedSymbol
-            )
-          MAXIMUM =
-            T.let(
-              :maximum,
-              SignwellSDK::V1::TemplateCheckboxGroup::Validation::TaggedSymbol
-            )
-          RANGE =
-            T.let(
-              :range,
-              SignwellSDK::V1::TemplateCheckboxGroup::Validation::TaggedSymbol
-            )
-          EXACT =
-            T.let(
-              :exact,
-              SignwellSDK::V1::TemplateCheckboxGroup::Validation::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                SignwellSDK::V1::TemplateCheckboxGroup::Validation::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
         end
       end
     end

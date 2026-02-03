@@ -15,6 +15,31 @@ module SignwellSDK
       #
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
+      #
+      # @example
+      #   # `checkbox_validation` is a `SignwellSDK::CheckboxValidation`
+      #   case checkbox_validation
+      #   when SignwellSDK::CheckboxValidation::MINIMUM
+      #     # ...
+      #   when SignwellSDK::CheckboxValidation::MAXIMUM
+      #     # ...
+      #   when SignwellSDK::CheckboxValidation::RANGE
+      #     # ...
+      #   else
+      #     puts(checkbox_validation)
+      #   end
+      #
+      # @example
+      #   case checkbox_validation
+      #   in :minimum
+      #     # ...
+      #   in :maximum
+      #     # ...
+      #   in :range
+      #     # ...
+      #   else
+      #     puts(checkbox_validation)
+      #   end
       module Enum
         include SignwellSDK::Internal::Type::Converter
         include SignwellSDK::Internal::Util::SorbetRuntimeSupport

@@ -1,0 +1,22 @@
+module SignwellSDK
+  module Models
+    type date_format =
+      :"MM/DD/YYYY"
+      | :"DD/MM/YYYY"
+      | :"YYYY/MM/DD"
+      | :"Month DD, YYYY"
+      | :"MM/DD/YYYY hh:mm:ss a"
+
+    module DateFormat
+      extend SignwellSDK::Internal::Type::Enum
+
+      MM_DD_YYYY: :"MM/DD/YYYY"
+      DD_MM_YYYY: :"DD/MM/YYYY"
+      YYYY_MM_DD: :"YYYY/MM/DD"
+      MONTH_DD_YYYY: :"Month DD, YYYY"
+      MM_DD_YYYY_HH_MM_SS_A: :"MM/DD/YYYY hh:mm:ss a"
+
+      def self?.values: -> ::Array[SignwellSDK::Models::date_format]
+    end
+  end
+end

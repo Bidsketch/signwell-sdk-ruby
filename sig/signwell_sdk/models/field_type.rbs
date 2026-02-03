@@ -1,0 +1,42 @@
+module SignwellSDK
+  module Models
+    type field_type =
+      :initials
+      | :signature
+      | :checkbox
+      | :date
+      | :select
+      | :text
+      | :dropdown
+      | :autofill_company
+      | :autofill_email
+      | :autofill_first_name
+      | :autofill_last_name
+      | :autofill_name
+      | :autofill_phone
+      | :autofill_title
+      | :autofill_date_signed
+
+    module FieldType
+      extend SignwellSDK::Internal::Type::Enum
+
+      INITIALS: :initials
+      SIGNATURE: :signature
+      CHECKBOX: :checkbox
+      DATE: :date
+      SELECT: :select
+      TEXT: :text
+      DROPDOWN: :dropdown
+      AUTOFILL_COMPANY: :autofill_company
+      AUTOFILL_EMAIL: :autofill_email
+      AUTOFILL_FIRST_NAME: :autofill_first_name
+      AUTOFILL_LAST_NAME: :autofill_last_name
+      AUTOFILL_NAME: :autofill_name
+      AUTOFILL_PHONE: :autofill_phone
+      AUTOFILL_TITLE: :autofill_title
+      AUTOFILL_DATE_SIGNED: :autofill_date_signed
+
+      def self?.values: -> ::Array[SignwellSDK::Models::field_type]
+    end
+  end
+end

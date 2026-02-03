@@ -438,11 +438,11 @@ module SignwellSDK
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `attachment_request` is a `SignwellSDK::V1::AttachmentRequest`
-        #   attachment_request => {
+        #   # `attachment_request_info` is a `SignwellSDK::AttachmentRequestInfo`
+        #   attachment_request_info => {
         #     name: name,
-        #     recipient_id: recipient_id,
-        #     required: required
+        #     required: required,
+        #     url: url
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)

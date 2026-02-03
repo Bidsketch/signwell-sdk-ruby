@@ -11,7 +11,7 @@ module SignwellSDK
           apply_signing_order: bool,
           archived: bool,
           attachment_requests: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest],
-          copied_contacts: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact],
+          copied_contacts: ::Array[SignwellSDK::CopiedContactInfo],
           created_at: Time,
           custom_requester_email: String?,
           custom_requester_name: String?,
@@ -20,8 +20,8 @@ module SignwellSDK
           embedded_edit_url: String,
           expires_in: Integer,
           fields: ::Array[::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field]],
-          files: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File],
-          labels: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label],
+          files: ::Array[SignwellSDK::FileInfo],
+          labels: ::Array[SignwellSDK::LabelInfo],
           language: String,
           message: String,
           metadata: ::Hash[Symbol, String]?,
@@ -62,11 +62,11 @@ module SignwellSDK
           ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest]
         ) -> ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest]
 
-        attr_reader copied_contacts: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact]?
+        attr_reader copied_contacts: ::Array[SignwellSDK::CopiedContactInfo]?
 
         def copied_contacts=: (
-          ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact]
-        ) -> ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact]
+          ::Array[SignwellSDK::CopiedContactInfo]
+        ) -> ::Array[SignwellSDK::CopiedContactInfo]
 
         attr_reader created_at: Time?
 
@@ -96,17 +96,17 @@ module SignwellSDK
           ::Array[::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field]]
         ) -> ::Array[::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field]]
 
-        attr_reader files: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File]?
+        attr_reader files: ::Array[SignwellSDK::FileInfo]?
 
         def files=: (
-          ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File]
-        ) -> ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File]
+          ::Array[SignwellSDK::FileInfo]
+        ) -> ::Array[SignwellSDK::FileInfo]
 
-        attr_reader labels: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label]?
+        attr_reader labels: ::Array[SignwellSDK::LabelInfo]?
 
         def labels=: (
-          ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label]
-        ) -> ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label]
+          ::Array[SignwellSDK::LabelInfo]
+        ) -> ::Array[SignwellSDK::LabelInfo]
 
         attr_reader language: String?
 
@@ -167,7 +167,7 @@ module SignwellSDK
           ?apply_signing_order: bool,
           ?archived: bool,
           ?attachment_requests: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest],
-          ?copied_contacts: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact],
+          ?copied_contacts: ::Array[SignwellSDK::CopiedContactInfo],
           ?created_at: Time,
           ?custom_requester_email: String?,
           ?custom_requester_name: String?,
@@ -176,8 +176,8 @@ module SignwellSDK
           ?embedded_edit_url: String,
           ?expires_in: Integer,
           ?fields: ::Array[::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field]],
-          ?files: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File],
-          ?labels: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label],
+          ?files: ::Array[SignwellSDK::FileInfo],
+          ?labels: ::Array[SignwellSDK::LabelInfo],
           ?language: String,
           ?message: String,
           ?metadata: ::Hash[Symbol, String]?,
@@ -202,7 +202,7 @@ module SignwellSDK
           apply_signing_order: bool,
           archived: bool,
           attachment_requests: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::AttachmentRequest],
-          copied_contacts: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::CopiedContact],
+          copied_contacts: ::Array[SignwellSDK::CopiedContactInfo],
           created_at: Time,
           custom_requester_email: String?,
           custom_requester_name: String?,
@@ -211,8 +211,8 @@ module SignwellSDK
           embedded_edit_url: String,
           expires_in: Integer,
           fields: ::Array[::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field]],
-          files: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::File],
-          labels: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Label],
+          files: ::Array[SignwellSDK::FileInfo],
+          labels: ::Array[SignwellSDK::LabelInfo],
           language: String,
           message: String,
           metadata: ::Hash[Symbol, String]?,
@@ -249,24 +249,6 @@ module SignwellSDK
           def to_hash: -> { name: String, recipient_id: String, required: bool }
         end
 
-        type copied_contact = { email: String, id: String, name: String }
-
-        class CopiedContact < SignwellSDK::Internal::Type::BaseModel
-          attr_accessor email: String
-
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
-          attr_reader name: String?
-
-          def name=: (String) -> String
-
-          def initialize: (email: String, ?id: String, ?name: String) -> void
-
-          def to_hash: -> { email: String, id: String, name: String }
-        end
-
         type field =
           {
             page: Integer,
@@ -274,7 +256,7 @@ module SignwellSDK
             y_: Float,
             allow_other: bool,
             api_id: String,
-            date_format: String,
+            date_format: SignwellSDK::Models::date_format,
             default_option: String,
             fixed_width: bool,
             height: String,
@@ -287,8 +269,8 @@ module SignwellSDK
             recipient_id: String?,
             required: bool,
             signing_elements_group_id: String,
-            type: String,
-            validation: String,
+            type: SignwellSDK::Models::field_type,
+            validation: SignwellSDK::Models::text_validation,
             value: SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::value?,
             width: String
           }
@@ -308,9 +290,11 @@ module SignwellSDK
 
           def api_id=: (String) -> String
 
-          attr_reader date_format: String?
+          attr_reader date_format: SignwellSDK::Models::date_format?
 
-          def date_format=: (String) -> String
+          def date_format=: (
+            SignwellSDK::Models::date_format
+          ) -> SignwellSDK::Models::date_format
 
           attr_reader default_option: String?
 
@@ -360,13 +344,17 @@ module SignwellSDK
 
           def signing_elements_group_id=: (String) -> String
 
-          attr_reader type: String?
+          attr_reader type: SignwellSDK::Models::field_type?
 
-          def type=: (String) -> String
+          def type=: (
+            SignwellSDK::Models::field_type
+          ) -> SignwellSDK::Models::field_type
 
-          attr_reader validation: String?
+          attr_reader validation: SignwellSDK::Models::text_validation?
 
-          def validation=: (String) -> String
+          def validation=: (
+            SignwellSDK::Models::text_validation
+          ) -> SignwellSDK::Models::text_validation
 
           attr_accessor value: SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::value?
 
@@ -380,7 +368,7 @@ module SignwellSDK
             y_: Float,
             ?allow_other: bool,
             ?api_id: String,
-            ?date_format: String,
+            ?date_format: SignwellSDK::Models::date_format,
             ?default_option: String,
             ?fixed_width: bool,
             ?height: String,
@@ -393,8 +381,8 @@ module SignwellSDK
             ?recipient_id: String?,
             ?required: bool,
             ?signing_elements_group_id: String,
-            ?type: String,
-            ?validation: String,
+            ?type: SignwellSDK::Models::field_type,
+            ?validation: SignwellSDK::Models::text_validation,
             ?value: SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::value?,
             ?width: String
           ) -> void
@@ -405,7 +393,7 @@ module SignwellSDK
             y_: Float,
             allow_other: bool,
             api_id: String,
-            date_format: String,
+            date_format: SignwellSDK::Models::date_format,
             default_option: String,
             fixed_width: bool,
             height: String,
@@ -418,8 +406,8 @@ module SignwellSDK
             recipient_id: String?,
             required: bool,
             signing_elements_group_id: String,
-            type: String,
-            validation: String,
+            type: SignwellSDK::Models::field_type,
+            validation: SignwellSDK::Models::text_validation,
             value: SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Field::value?,
             width: String
           }
@@ -473,38 +461,10 @@ module SignwellSDK
           end
         end
 
-        type file = { name: String, pages_number: Integer }
-
-        class File < SignwellSDK::Internal::Type::BaseModel
-          attr_accessor name: String
-
-          attr_accessor pages_number: Integer
-
-          def initialize: (name: String, pages_number: Integer) -> void
-
-          def to_hash: -> { name: String, pages_number: Integer }
-        end
-
-        type label = { id: String, name: String }
-
-        class Label < SignwellSDK::Internal::Type::BaseModel
-          attr_reader id: String?
-
-          def id=: (String) -> String
-
-          attr_reader name: String?
-
-          def name=: (String) -> String
-
-          def initialize: (?id: String, ?name: String) -> void
-
-          def to_hash: -> { id: String, name: String }
-        end
-
         type recipient =
           {
             email: String,
-            attachment_requests: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest],
+            attachment_requests: ::Array[SignwellSDK::AttachmentRequestInfo],
             name: String,
             passcode: String?,
             role: String,
@@ -514,11 +474,11 @@ module SignwellSDK
         class Recipient < SignwellSDK::Internal::Type::BaseModel
           attr_accessor email: String
 
-          attr_reader attachment_requests: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest]?
+          attr_reader attachment_requests: ::Array[SignwellSDK::AttachmentRequestInfo]?
 
           def attachment_requests=: (
-            ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest]
-          ) -> ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest]
+            ::Array[SignwellSDK::AttachmentRequestInfo]
+          ) -> ::Array[SignwellSDK::AttachmentRequestInfo]
 
           attr_reader name: String?
 
@@ -536,7 +496,7 @@ module SignwellSDK
 
           def initialize: (
             email: String,
-            ?attachment_requests: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest],
+            ?attachment_requests: ::Array[SignwellSDK::AttachmentRequestInfo],
             ?name: String,
             ?passcode: String?,
             ?role: String,
@@ -545,29 +505,12 @@ module SignwellSDK
 
           def to_hash: -> {
             email: String,
-            attachment_requests: ::Array[SignwellSDK::Models::V1::DocumentCreateFromTemplateResponse::Recipient::AttachmentRequest],
+            attachment_requests: ::Array[SignwellSDK::AttachmentRequestInfo],
             name: String,
             passcode: String?,
             role: String,
             status: String
           }
-
-          type attachment_request =
-            { name: String, required: bool, url: String }
-
-          class AttachmentRequest < SignwellSDK::Internal::Type::BaseModel
-            attr_accessor name: String
-
-            attr_accessor required: bool
-
-            attr_reader url: String?
-
-            def url=: (String) -> String
-
-            def initialize: (name: String, required: bool, ?url: String) -> void
-
-            def to_hash: -> { name: String, required: bool, url: String }
-          end
         end
       end
     end
