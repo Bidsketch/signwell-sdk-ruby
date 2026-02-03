@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ""
   s.homepage = "https://gemdocs.org/gems/signwell_sdk"
   s.metadata["homepage_uri"] = s.homepage
-  s.metadata["source_code_uri"] = "https://github.com/stainless-sdks/signwell-sdk-ruby"
+  s.metadata["source_code_uri"] = "https://github.com/Bidsketch/signwell-sdk-ruby"
   s.metadata["rubygems_mfa_required"] = false.to_s
   s.required_ruby_version = ">= 3.2.0"
 
