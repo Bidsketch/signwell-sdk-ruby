@@ -298,37 +298,6 @@ module SignwellSDK
         end
 
         # Some parameter documentations has been truncated, see
-        # {SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateParams} for more
-        # details.
-        #
-        # Download NOM-151 certificate for a completed document. Returns a ZIP file,
-        # download URL, or raw certificate data based on query parameters.
-        #
-        # @overload retrieve_nom151_certificate(id, object_only: nil, url_only: nil, request_options: {})
-        #
-        # @param id [String] Unique identifier for a completed document.
-        #
-        # @param object_only [Boolean] If true, returns raw NOM-151 constancia certificate object as JSON instead of a
-        #
-        # @param url_only [Boolean] If true, returns JSON with download URL instead of downloading the file
-        #
-        # @param request_options [SignwellSDK::RequestOptions, Hash{Symbol=>Object}, nil]
-        #
-        # @return [SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse]
-        #
-        # @see SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateParams
-        def retrieve_nom151_certificate(id, params = {})
-          parsed, options = SignwellSDK::V1::DocumentRetrieveNom151CertificateParams.dump_request(params)
-          @client.request(
-            method: :get,
-            path: ["api/v1/documents/%1$s/nom151_certificate", id],
-            query: parsed,
-            model: SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse,
-            options: options
-          )
-        end
-
-        # Some parameter documentations has been truncated, see
         # {SignwellSDK::Models::V1::DocumentSendParams} for more details.
         #
         # Updates a draft document and sends it to be signed by recipients.
