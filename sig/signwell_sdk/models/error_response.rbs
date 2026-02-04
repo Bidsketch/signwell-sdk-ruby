@@ -1,0 +1,52 @@
+module SignwellSDK
+  module Models
+    type error_response =
+      { message: String, meta: SignwellSDK::ErrorResponse::Meta }
+
+    class ErrorResponse < SignwellSDK::Internal::Type::BaseModel
+      attr_reader message: String?
+
+      def message=: (String) -> String
+
+      attr_reader meta: SignwellSDK::ErrorResponse::Meta?
+
+      def meta=: (
+        SignwellSDK::ErrorResponse::Meta
+      ) -> SignwellSDK::ErrorResponse::Meta
+
+      def initialize: (
+        ?message: String,
+        ?meta: SignwellSDK::ErrorResponse::Meta
+      ) -> void
+
+      def to_hash: -> {
+        message: String,
+        meta: SignwellSDK::ErrorResponse::Meta
+      }
+
+      type meta = { error: String, message: String, messages: ::Array[String] }
+
+      class Meta < SignwellSDK::Internal::Type::BaseModel
+        attr_accessor error: String
+
+        attr_accessor message: String
+
+        attr_reader messages: ::Array[String]?
+
+        def messages=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          error: String,
+          message: String,
+          ?messages: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          error: String,
+          message: String,
+          messages: ::Array[String]
+        }
+      end
+    end
+  end
+end
