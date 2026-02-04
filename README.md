@@ -1,6 +1,6 @@
 # Signwell SDK Ruby API library
 
-The Signwell SDK Ruby library provides convenient access to the Signwell SDK REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/signwell-sdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+The Signwell SDK Ruby library provides convenient access to the Signwell SDK REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/Bidsketch/signwell-sdk-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -14,9 +14,13 @@ The REST API documentation can be found on [developers.signwell.com](https://dev
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
+<!-- x-release-please-start-version -->
+
 ```ruby
 gem "signwell_sdk", "~> 0.0.1.pre.alpha.1"
 ```
+
+<!-- x-release-please-end -->
 
 ## Usage
 
@@ -393,4 +397,4 @@ Ruby 3.2.0 or higher.
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/stainless-sdks/signwell-sdk-ruby/tree/main/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/Bidsketch/signwell-sdk-ruby/tree/main/CONTRIBUTING.md).
