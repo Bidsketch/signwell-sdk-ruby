@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version = SignwellSDK::VERSION
   s.summary = "Ruby library to access the Signwell SDK API"
   s.authors = ["Signwell SDK"]
-  s.email = ""
+  s.email = "support@signwell.com"
   s.homepage = "https://gemdocs.org/gems/signwell_sdk"
   s.metadata["homepage_uri"] = s.homepage
   s.metadata["source_code_uri"] = "https://github.com/Bidsketch/signwell-sdk-ruby"
