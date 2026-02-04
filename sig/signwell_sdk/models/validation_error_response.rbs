@@ -1,0 +1,13 @@
+module SignwellSDK
+  module Models
+    type validation_error_response = { errors: ::Hash[Symbol, top] }
+
+    class ValidationErrorResponse < SignwellSDK::Internal::Type::BaseModel
+      attr_accessor errors: ::Hash[Symbol, top]
+
+      def initialize: (errors: ::Hash[Symbol, top]) -> void
+
+      def to_hash: -> { errors: ::Hash[Symbol, top] }
+    end
+  end
+end

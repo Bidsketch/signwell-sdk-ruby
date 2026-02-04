@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2026-02-04)
+
+Full Changelog: [v0.0.1-alpha.1...v0.1.0-alpha.2](https://github.com/Bidsketch/signwell-sdk-ruby/compare/v0.0.1-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** adds contact information ([4d03e53](https://github.com/Bidsketch/signwell-sdk-ruby/commit/4d03e530a065aabce613ac34b5e7e760498fa822))
+* **api:** manual updates ([d1d35ee](https://github.com/Bidsketch/signwell-sdk-ruby/commit/d1d35ee21e78a13ed90f0bd9f340e9b4c3cf640e))
+* **api:** updates error responses ([aeff826](https://github.com/Bidsketch/signwell-sdk-ruby/commit/aeff82647d6d8340a758c2ff1ef1eac188ed944b))
+
+
+### Chores
+
+* update SDK settings ([21722bb](https://github.com/Bidsketch/signwell-sdk-ruby/commit/21722bb094b2def47aae35fb448265141f22fcf7))
+
 ## 0.0.1-alpha.1 (2026-02-04)
 
 Full Changelog: [v0.0.1...v0.0.1-alpha.1](https://github.com/Bidsketch/signwell-sdk-ruby/compare/v0.0.1...v0.0.1-alpha.1)

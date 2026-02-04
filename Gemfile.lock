@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    signwell_sdk (0.0.1.pre.alpha.1)
+    signwell_sdk (0.1.0.pre.alpha.2)
       cgi
       connection_pool
 

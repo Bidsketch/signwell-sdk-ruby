@@ -8,6 +8,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/signwell_sdk).
 
+The REST API documentation can be found on [developers.signwell.com](https://developers.signwell.com/).
+
 ## Installation
 
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
@@ -15,7 +17,7 @@ To use this gem, install via Bundler by adding the following to your application
 <!-- x-release-please-start-version -->
 
 ```ruby
-gem "signwell_sdk", "~> 0.0.1.pre.alpha.1"
+gem "signwell_sdk", "~> 0.1.0.pre.alpha.2"
 ```
 
 <!-- x-release-please-end -->
