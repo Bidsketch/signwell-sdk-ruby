@@ -419,30 +419,6 @@ module SignwellSDK
         )
         end
 
-        # Download NOM-151 certificate for a completed document. Returns a ZIP file,
-        # download URL, or raw certificate data based on query parameters.
-        sig do
-          params(
-            id: String,
-            object_only: T::Boolean,
-            url_only: T::Boolean,
-            request_options: SignwellSDK::RequestOptions::OrHash
-          ).returns(
-            SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse
-          )
-        end
-        def retrieve_nom151_certificate(
-          # Unique identifier for a completed document.
-          id,
-          # If true, returns raw NOM-151 constancia certificate object as JSON instead of a
-          # zip file or URL.
-          object_only: nil,
-          # If true, returns JSON with download URL instead of downloading the file
-          url_only: nil,
-          request_options: {}
-        )
-        end
-
         # Updates a draft document and sends it to be signed by recipients.
         sig do
           params(
