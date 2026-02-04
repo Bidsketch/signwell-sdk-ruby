@@ -206,22 +206,6 @@ class SignwellSDK::Test::Resources::V1::DocumentsTest < SignwellSDK::Test::Resou
     end
   end
 
-  def test_retrieve_nom151_certificate
-    skip("Prism tests are disabled")
-
-    response = @signwell_sdk.v1.documents.retrieve_nom151_certificate("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")
-
-    assert_pattern do
-      response => SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse
-    end
-
-    assert_pattern do
-      response => {
-        file_url: String
-      }
-    end
-  end
-
   def test_send_
     skip("Prism tests are disabled")
 

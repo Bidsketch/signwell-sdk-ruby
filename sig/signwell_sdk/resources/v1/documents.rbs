@@ -99,13 +99,6 @@ module SignwellSDK
           ?request_options: SignwellSDK::request_opts
         ) -> SignwellSDK::Models::V1::DocumentRetrieveCompletedPdfResponse
 
-        def retrieve_nom151_certificate: (
-          String id,
-          ?object_only: bool,
-          ?url_only: bool,
-          ?request_options: SignwellSDK::request_opts
-        ) -> SignwellSDK::Models::V1::DocumentRetrieveNom151CertificateResponse
-
         def send_: (
           String id,
           ?allow_decline: bool,
