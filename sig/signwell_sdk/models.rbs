@@ -9,15 +9,21 @@ module SignwellSDK
 
   module DateFormat = SignwellSDK::Models::DateFormat
 
+  class ErrorResponse = SignwellSDK::Models::ErrorResponse
+
   module FieldType = SignwellSDK::Models::FieldType
 
   class FileInfo = SignwellSDK::Models::FileInfo
 
   class LabelInfo = SignwellSDK::Models::LabelInfo
 
+  class RateLimitErrorResponse = SignwellSDK::Models::RateLimitErrorResponse
+
   module TextValidation = SignwellSDK::Models::TextValidation
 
   module V1 = SignwellSDK::Models::V1
 
   class V1MeParams = SignwellSDK::Models::V1MeParams
+
+  class ValidationErrorResponse = SignwellSDK::Models::ValidationErrorResponse
 end

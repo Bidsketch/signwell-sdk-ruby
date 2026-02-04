@@ -1,0 +1,13 @@
+module SignwellSDK
+  module Models
+    type rate_limit_error_response = { error: String }
+
+    class RateLimitErrorResponse < SignwellSDK::Internal::Type::BaseModel
+      attr_accessor error: String
+
+      def initialize: (error: String) -> void
+
+      def to_hash: -> { error: String }
+    end
+  end
+end
