@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: oas
+          ref: main
 
       - name: Validate version format
         run: |
@@ -48,7 +48,7 @@ jobs:
           git push -u origin "$BRANCH"
 
           gh pr create \
-            --base oas \
+            --base main \
             --head "$BRANCH" \
             --title "chore: release ${{ inputs.version }}" \
             --body "$(cat <<EOF

@@ -2,7 +2,7 @@ name: Release & Publish
 
 on:
   push:
-    branches: [oas]
+    branches: [main]
 
 jobs:
   release:
@@ -50,7 +50,7 @@ jobs:
           fi
 
           gh release create "v${{ steps.version.outputs.version }}" \
-            --target oas \
+            --target main \
             --title "v${{ steps.version.outputs.version }}" \
             --generate-notes \
             $PRERELEASE_FLAG
