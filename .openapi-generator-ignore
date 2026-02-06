@@ -18,6 +18,9 @@ CHANGELOG.md
 .release-please-manifest.json
 release-please-config.json
 
+# Protect YARD config
+.yardopts
+
 # Prevent regeneration of CI configs we don't use
 .gitlab-ci.yml
 .travis.yml
