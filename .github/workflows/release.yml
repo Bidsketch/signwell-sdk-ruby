@@ -1,13 +1,12 @@
 name: Release & Publish
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches: [oas]
 
 jobs:
   release:
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/v')
+    if: startsWith(github.event.head_commit.message, 'chore: release')
     runs-on: ubuntu-latest
     environment: rubygems
     permissions:
@@ -15,8 +14,6 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: oas
 
       - name: Extract version
         id: version
@@ -54,6 +51,3 @@ jobs:
 
       - name: Publish to RubyGems
         uses: rubygems/release-gem@v1
-
-      - name: Delete release branch
-        run: git push origin --delete "${{ github.event.pull_request.head.ref }}" || true
