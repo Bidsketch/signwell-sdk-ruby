@@ -26,7 +26,12 @@ Gem::Specification.new do |s|
   s.description = "Ruby SDK for the SignWell API - electronic signature platform"
   s.license     = "MIT"
   s.required_ruby_version = ">= 3.0"
-  s.metadata    = {}
+  s.metadata = {
+    "documentation_uri" => "https://gemdocs.org/gems/signwell_sdk/#{SignWell::VERSION}",
+    "source_code_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby",
+    "homepage_uri" => "https://signwell.com",
+    "changelog_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/CHANGELOG.md"
+  }
 
   s.add_runtime_dependency 'faraday', '>= 1.0.1', '< 3.0'
   s.add_runtime_dependency 'faraday-multipart'
