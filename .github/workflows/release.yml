@@ -46,8 +46,5 @@ jobs:
         with:
           ruby-version: '3.3'
 
-      - name: Build gem
-        run: gem build signwell_sdk.gemspec
-
       - name: Publish to RubyGems
         uses: rubygems/release-gem@v1
