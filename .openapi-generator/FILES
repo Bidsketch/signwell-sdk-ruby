@@ -15,9 +15,13 @@ docs/AttachmentRequestInfo.md
 docs/AttachmentRequestsInner.md
 docs/BulkSendApi.md
 docs/BulkSendCsvRequest.md
+docs/BulkSendCsvTemplateResponse.md
+docs/BulkSendListItem.md
+docs/BulkSendListResponse.md
 docs/CheckboxGroupInfo.md
 docs/CheckboxGroupsInner.md
 docs/CheckboxValidation.md
+docs/CompletedPdfResponse.md
 docs/CompletedPdfUrlResponse.md
 docs/CopiedContactInfo.md
 docs/CopiedContactsInner.md
@@ -66,6 +70,7 @@ docs/PaginationMeta.md
 docs/PlaceholdersInner.md
 docs/RateLimitErrorResponse.md
 docs/RecipientsInner.md
+docs/RegionalApi.md
 docs/ReminderRecipientsInner.md
 docs/SendReminderRequest.md
 docs/TemplateApi.md
@@ -85,6 +90,7 @@ lib/signwell_sdk/api/api_application_api.rb
 lib/signwell_sdk/api/bulk_send_api.rb
 lib/signwell_sdk/api/document_api.rb
 lib/signwell_sdk/api/me_api.rb
+lib/signwell_sdk/api/regional_api.rb
 lib/signwell_sdk/api/template_api.rb
 lib/signwell_sdk/api/webhooks_api.rb
 lib/signwell_sdk/api_client.rb
@@ -96,9 +102,13 @@ lib/signwell_sdk/models/additional_files_inner.rb
 lib/signwell_sdk/models/attachment_request_info.rb
 lib/signwell_sdk/models/attachment_requests_inner.rb
 lib/signwell_sdk/models/bulk_send_csv_request.rb
+lib/signwell_sdk/models/bulk_send_csv_template_response.rb
+lib/signwell_sdk/models/bulk_send_list_item.rb
+lib/signwell_sdk/models/bulk_send_list_response.rb
 lib/signwell_sdk/models/checkbox_group_info.rb
 lib/signwell_sdk/models/checkbox_groups_inner.rb
 lib/signwell_sdk/models/checkbox_validation.rb
+lib/signwell_sdk/models/completed_pdf_response.rb
 lib/signwell_sdk/models/completed_pdf_url_response.rb
 lib/signwell_sdk/models/copied_contact_info.rb
 lib/signwell_sdk/models/copied_contacts_inner.rb
@@ -162,6 +172,7 @@ spec/api/api_application_api_spec.rb
 spec/api/bulk_send_api_spec.rb
 spec/api/document_api_spec.rb
 spec/api/me_api_spec.rb
+spec/api/regional_api_spec.rb
 spec/api/template_api_spec.rb
 spec/api/webhooks_api_spec.rb
 spec/models/additional_fields_inner_inner_spec.rb
@@ -170,9 +181,13 @@ spec/models/additional_files_inner_spec.rb
 spec/models/attachment_request_info_spec.rb
 spec/models/attachment_requests_inner_spec.rb
 spec/models/bulk_send_csv_request_spec.rb
+spec/models/bulk_send_csv_template_response_spec.rb
+spec/models/bulk_send_list_item_spec.rb
+spec/models/bulk_send_list_response_spec.rb
 spec/models/checkbox_group_info_spec.rb
 spec/models/checkbox_groups_inner_spec.rb
 spec/models/checkbox_validation_spec.rb
+spec/models/completed_pdf_response_spec.rb
 spec/models/completed_pdf_url_response_spec.rb
 spec/models/copied_contact_info_spec.rb
 spec/models/copied_contacts_inner_spec.rb

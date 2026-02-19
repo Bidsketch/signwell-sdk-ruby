@@ -76,7 +76,7 @@ describe 'DocumentApi' do
   # @option opts [Boolean] :url_only 
   # @option opts [Boolean] :audit_page 
   # @option opts [FileFormat] :file_format 
-  # @return [CompletedPdfUrlResponse]
+  # @return [CompletedPdfResponse]
   describe 'get_completed_pdf test' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/

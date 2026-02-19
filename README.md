@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
 *SignWell::DocumentApi* | [**send_document**](docs/DocumentApi.md#send_document) | **POST** /api/v1/documents/{id}/send | Update and Send Document
 *SignWell::DocumentApi* | [**send_reminder**](docs/DocumentApi.md#send_reminder) | **POST** /api/v1/documents/{id}/remind | Send Reminder
 *SignWell::MeApi* | [**get_me**](docs/MeApi.md#get_me) | **GET** /api/v1/me | Get credentials
+*SignWell::RegionalApi* | [**get_nom151_certificate**](docs/RegionalApi.md#get_nom151_certificate) | **GET** /api/v1/documents/{id}/nom151_certificate | MX – NOM-151 Certificate
 *SignWell::TemplateApi* | [**create_template**](docs/TemplateApi.md#create_template) | **POST** /api/v1/document_templates | Create Template
 *SignWell::TemplateApi* | [**delete_template**](docs/TemplateApi.md#delete_template) | **DELETE** /api/v1/document_templates/{id} | Delete Template
 *SignWell::TemplateApi* | [**get_template**](docs/TemplateApi.md#get_template) | **GET** /api/v1/document_templates/{id} | Get Template
@@ -118,9 +119,13 @@ Class | Method | HTTP request | Description
  - [SignWell::AttachmentRequestInfo](docs/AttachmentRequestInfo.md)
  - [SignWell::AttachmentRequestsInner](docs/AttachmentRequestsInner.md)
  - [SignWell::BulkSendCsvRequest](docs/BulkSendCsvRequest.md)
+ - [SignWell::BulkSendCsvTemplateResponse](docs/BulkSendCsvTemplateResponse.md)
+ - [SignWell::BulkSendListItem](docs/BulkSendListItem.md)
+ - [SignWell::BulkSendListResponse](docs/BulkSendListResponse.md)
  - [SignWell::CheckboxGroupInfo](docs/CheckboxGroupInfo.md)
  - [SignWell::CheckboxGroupsInner](docs/CheckboxGroupsInner.md)
  - [SignWell::CheckboxValidation](docs/CheckboxValidation.md)
+ - [SignWell::CompletedPdfResponse](docs/CompletedPdfResponse.md)
  - [SignWell::CompletedPdfUrlResponse](docs/CompletedPdfUrlResponse.md)
  - [SignWell::CopiedContactInfo](docs/CopiedContactInfo.md)
  - [SignWell::CopiedContactsInner](docs/CopiedContactsInner.md)
