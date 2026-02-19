@@ -176,7 +176,7 @@ end
 api_instance = SignWell::BulkSendApi.new
 template_ids = ['inner_example'] # Array<String> | 
 opts = {
-  base64: BYTE_ARRAY_DATA_HERE # String | 
+  base64: true # Boolean | 
 }
 
 begin
@@ -211,7 +211,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **template_ids** | [**Array&lt;String&gt;**](String.md) |  |  |
-| **base64** | **String** |  | [optional] |
+| **base64** | **Boolean** |  | [optional] |
 
 ### Return type
 
@@ -305,7 +305,7 @@ nil (empty response body)
 
 ## list_bulk_sends
 
-> list_bulk_sends(opts)
+> <BulkSendListResponse> list_bulk_sends(opts)
 
 List Bulk Sendings
 
@@ -334,7 +334,8 @@ opts = {
 
 begin
   # List Bulk Sendings
-  api_instance.list_bulk_sends(opts)
+  result = api_instance.list_bulk_sends(opts)
+  p result
 rescue SignWell::ApiError => e
   puts "Error when calling BulkSendApi->list_bulk_sends: #{e}"
 end
@@ -342,9 +343,9 @@ end
 
 #### Using the list_bulk_sends_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> list_bulk_sends_with_http_info(opts)
+> <Array(<BulkSendListResponse>, Integer, Hash)> list_bulk_sends_with_http_info(opts)
 
 ```ruby
 begin
@@ -352,7 +353,7 @@ begin
   data, status_code, headers = api_instance.list_bulk_sends_with_http_info(opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <BulkSendListResponse>
 rescue SignWell::ApiError => e
   puts "Error when calling BulkSendApi->list_bulk_sends_with_http_info: #{e}"
 end
@@ -369,7 +370,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**BulkSendListResponse**](BulkSendListResponse.md)
 
 ### Authorization
 

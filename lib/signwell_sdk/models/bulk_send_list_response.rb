@@ -14,15 +14,29 @@ require 'date'
 require 'time'
 
 module SignWell
-  # JSON response containing the URL to the completed PDF file (returned when url_only=true)
-  class CompletedPdfUrlResponse
-    # URL to download the completed document
-    attr_accessor :file_url
+  # List of bulk sends with pagination
+  class BulkSendListResponse
+    attr_accessor :bulk_sends
+
+    attr_accessor :current_page
+
+    attr_accessor :next_page
+
+    attr_accessor :previous_page
+
+    attr_accessor :total_count
+
+    attr_accessor :total_pages
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'file_url' => :'file_url'
+        :'bulk_sends' => :'bulk_sends',
+        :'current_page' => :'current_page',
+        :'next_page' => :'next_page',
+        :'previous_page' => :'previous_page',
+        :'total_count' => :'total_count',
+        :'total_pages' => :'total_pages'
       }
     end
 
@@ -39,13 +53,20 @@ module SignWell
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'file_url' => :'String'
+        :'bulk_sends' => :'Array<BulkSendListItem>',
+        :'current_page' => :'Integer',
+        :'next_page' => :'Integer',
+        :'previous_page' => :'Integer',
+        :'total_count' => :'Integer',
+        :'total_pages' => :'Integer'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'next_page',
+        :'previous_page',
       ])
     end
 
@@ -53,22 +74,50 @@ module SignWell
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `SignWell::CompletedPdfUrlResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `SignWell::BulkSendListResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `SignWell::CompletedPdfUrlResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `SignWell::BulkSendListResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'file_url')
-        self.file_url = attributes[:'file_url']
+      if attributes.key?(:'bulk_sends')
+        if (value = attributes[:'bulk_sends']).is_a?(Array)
+          self.bulk_sends = value
+        end
       else
-        self.file_url = nil
+        self.bulk_sends = nil
+      end
+
+      if attributes.key?(:'current_page')
+        self.current_page = attributes[:'current_page']
+      else
+        self.current_page = nil
+      end
+
+      if attributes.key?(:'next_page')
+        self.next_page = attributes[:'next_page']
+      end
+
+      if attributes.key?(:'previous_page')
+        self.previous_page = attributes[:'previous_page']
+      end
+
+      if attributes.key?(:'total_count')
+        self.total_count = attributes[:'total_count']
+      else
+        self.total_count = nil
+      end
+
+      if attributes.key?(:'total_pages')
+        self.total_pages = attributes[:'total_pages']
+      else
+        self.total_pages = nil
       end
     end
 
@@ -77,8 +126,20 @@ module SignWell
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @file_url.nil?
-        invalid_properties.push('invalid value for "file_url", file_url cannot be nil.')
+      if @bulk_sends.nil?
+        invalid_properties.push('invalid value for "bulk_sends", bulk_sends cannot be nil.')
+      end
+
+      if @current_page.nil?
+        invalid_properties.push('invalid value for "current_page", current_page cannot be nil.')
+      end
+
+      if @total_count.nil?
+        invalid_properties.push('invalid value for "total_count", total_count cannot be nil.')
+      end
+
+      if @total_pages.nil?
+        invalid_properties.push('invalid value for "total_pages", total_pages cannot be nil.')
       end
 
       invalid_properties
@@ -88,18 +149,51 @@ module SignWell
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @file_url.nil?
+      return false if @bulk_sends.nil?
+      return false if @current_page.nil?
+      return false if @total_count.nil?
+      return false if @total_pages.nil?
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] file_url Value to be assigned
-    def file_url=(file_url)
-      if file_url.nil?
-        fail ArgumentError, 'file_url cannot be nil'
+    # @param [Object] bulk_sends Value to be assigned
+    def bulk_sends=(bulk_sends)
+      if bulk_sends.nil?
+        fail ArgumentError, 'bulk_sends cannot be nil'
       end
 
-      @file_url = file_url
+      @bulk_sends = bulk_sends
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] current_page Value to be assigned
+    def current_page=(current_page)
+      if current_page.nil?
+        fail ArgumentError, 'current_page cannot be nil'
+      end
+
+      @current_page = current_page
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] total_count Value to be assigned
+    def total_count=(total_count)
+      if total_count.nil?
+        fail ArgumentError, 'total_count cannot be nil'
+      end
+
+      @total_count = total_count
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] total_pages Value to be assigned
+    def total_pages=(total_pages)
+      if total_pages.nil?
+        fail ArgumentError, 'total_pages cannot be nil'
+      end
+
+      @total_pages = total_pages
     end
 
     # Checks equality by comparing each attribute.
@@ -107,7 +201,12 @@ module SignWell
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          file_url == o.file_url
+          bulk_sends == o.bulk_sends &&
+          current_page == o.current_page &&
+          next_page == o.next_page &&
+          previous_page == o.previous_page &&
+          total_count == o.total_count &&
+          total_pages == o.total_pages
     end
 
     # @see the `==` method
@@ -119,7 +218,7 @@ module SignWell
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [file_url].hash
+      [bulk_sends, current_page, next_page, previous_page, total_count, total_pages].hash
     end
 
     # Builds the object from hash

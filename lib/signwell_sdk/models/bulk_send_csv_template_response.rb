@@ -14,15 +14,15 @@ require 'date'
 require 'time'
 
 module SignWell
-  # JSON response containing the URL to the completed PDF file (returned when url_only=true)
-  class CompletedPdfUrlResponse
-    # URL to download the completed document
-    attr_accessor :file_url
+  # Base64-encoded CSV template
+  class BulkSendCsvTemplateResponse
+    # Base64-encoded CSV content
+    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'file_url' => :'file_url'
+        :'data' => :'data'
       }
     end
 
@@ -39,7 +39,7 @@ module SignWell
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'file_url' => :'String'
+        :'data' => :'String'
       }
     end
 
@@ -53,22 +53,22 @@ module SignWell
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `SignWell::CompletedPdfUrlResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `SignWell::BulkSendCsvTemplateResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `SignWell::CompletedPdfUrlResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `SignWell::BulkSendCsvTemplateResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'file_url')
-        self.file_url = attributes[:'file_url']
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
       else
-        self.file_url = nil
+        self.data = nil
       end
     end
 
@@ -77,8 +77,8 @@ module SignWell
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @file_url.nil?
-        invalid_properties.push('invalid value for "file_url", file_url cannot be nil.')
+      if @data.nil?
+        invalid_properties.push('invalid value for "data", data cannot be nil.')
       end
 
       invalid_properties
@@ -88,18 +88,18 @@ module SignWell
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @file_url.nil?
+      return false if @data.nil?
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] file_url Value to be assigned
-    def file_url=(file_url)
-      if file_url.nil?
-        fail ArgumentError, 'file_url cannot be nil'
+    # @param [Object] data Value to be assigned
+    def data=(data)
+      if data.nil?
+        fail ArgumentError, 'data cannot be nil'
       end
 
-      @file_url = file_url
+      @data = data
     end
 
     # Checks equality by comparing each attribute.
@@ -107,7 +107,7 @@ module SignWell
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          file_url == o.file_url
+          data == o.data
     end
 
     # @see the `==` method
@@ -119,7 +119,7 @@ module SignWell
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [file_url].hash
+      [data].hash
     end
 
     # Builds the object from hash
