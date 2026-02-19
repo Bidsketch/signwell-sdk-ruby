@@ -227,7 +227,7 @@ nil (empty response body)
 
 ## get_completed_pdf
 
-> <CompletedPdfUrlResponse> get_completed_pdf(id, opts)
+> <CompletedPdfResponse> get_completed_pdf(id, opts)
 
 Completed PDF
 
@@ -267,7 +267,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<CompletedPdfUrlResponse>, Integer, Hash)> get_completed_pdf_with_http_info(id, opts)
+> <Array(<CompletedPdfResponse>, Integer, Hash)> get_completed_pdf_with_http_info(id, opts)
 
 ```ruby
 begin
@@ -275,7 +275,7 @@ begin
   data, status_code, headers = api_instance.get_completed_pdf_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <CompletedPdfUrlResponse>
+  p data # => <CompletedPdfResponse>
 rescue SignWell::ApiError => e
   puts "Error when calling DocumentApi->get_completed_pdf_with_http_info: #{e}"
 end
@@ -292,7 +292,7 @@ end
 
 ### Return type
 
-[**CompletedPdfUrlResponse**](CompletedPdfUrlResponse.md)
+[**CompletedPdfResponse**](CompletedPdfResponse.md)
 
 ### Authorization
 
