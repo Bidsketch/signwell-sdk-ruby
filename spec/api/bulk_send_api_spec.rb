@@ -61,7 +61,7 @@ describe 'BulkSendApi' do
   # Fetches a CSV template that corresponds to the provided document template IDs. CSV templates are blank CSV files that have columns containing required and optional data that can be sent when creating a bulk send. Fields can be referenced by the field label. Example: [placeholder name]_[field label] could be something like customer_address or signer_company_name (if &#39;Customer&#39; and &#39;Signer&#39; were placeholder names for templates set up in SignWell).
   # @param template_ids 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :base64 
+  # @option opts [Boolean] :base64 
   # @return [File]
   describe 'get_bulk_send_csv_template test' do
     it 'should work' do
@@ -91,7 +91,7 @@ describe 'BulkSendApi' do
   # @option opts [Integer] :limit 
   # @option opts [Integer] :page 
   # @option opts [String] :api_application_id 
-  # @return [nil]
+  # @return [BulkSendListResponse]
   describe 'list_bulk_sends test' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/

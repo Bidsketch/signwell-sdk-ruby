@@ -225,7 +225,7 @@ module SignWell
     # @option opts [Boolean] :url_only  (default to false)
     # @option opts [Boolean] :audit_page  (default to true)
     # @option opts [FileFormat] :file_format 
-    # @return [CompletedPdfUrlResponse]
+    # @return [CompletedPdfResponse]
     def get_completed_pdf(id, opts = {})
       data, _status_code, _headers = get_completed_pdf_with_http_info(id, opts)
       data
@@ -238,7 +238,7 @@ module SignWell
     # @option opts [Boolean] :url_only  (default to false)
     # @option opts [Boolean] :audit_page  (default to true)
     # @option opts [FileFormat] :file_format 
-    # @return [Array<(CompletedPdfUrlResponse, Integer, Hash)>] CompletedPdfUrlResponse data, response status code and response headers
+    # @return [Array<(CompletedPdfResponse, Integer, Hash)>] CompletedPdfResponse data, response status code and response headers
     def get_completed_pdf_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocumentApi.get_completed_pdf ...'
@@ -268,7 +268,7 @@ module SignWell
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'CompletedPdfUrlResponse'
+      return_type = opts[:debug_return_type] || 'CompletedPdfResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
