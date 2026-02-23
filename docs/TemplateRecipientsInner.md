@@ -22,7 +22,7 @@ require 'signwell_sdk'
 instance = SignWell::TemplateRecipientsInner.new(
   id: null,
   name: null,
-  email: null,
+  email: signer@example.com,
   placeholder_name: null,
   passcode: null,
   subject: null,

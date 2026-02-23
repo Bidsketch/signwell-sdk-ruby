@@ -13,6 +13,7 @@ Generator version: 7.12.0
 require 'cgi'
 
 module SignWell
+module Resources
   class DocumentApi
     attr_accessor :api_client
 
@@ -21,9 +22,9 @@ module SignWell
     end
     # Create Document
     # Creates and optionally sends a new document for signing. If `draft` is set to true the document will not be sent.
-    # @param document_request [DocumentRequest] 
+    # @param document_request [Models::DocumentRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [DocumentResponse]
+    # @return [Models::DocumentResponse]
     def create_document(document_request, opts = {})
       data, _status_code, _headers = create_document_with_http_info(document_request, opts)
       data
@@ -31,9 +32,9 @@ module SignWell
 
     # Create Document
     # Creates and optionally sends a new document for signing. If &#x60;draft&#x60; is set to true the document will not be sent.
-    # @param document_request [DocumentRequest] 
+    # @param document_request [Models::DocumentRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(DocumentResponse, Integer, Hash)>] DocumentResponse data, response status code and response headers
+    # @return [Array<(Models::DocumentResponse, Integer, Hash)>] DocumentResponse data, response status code and response headers
     def create_document_with_http_info(document_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocumentApi.create_document ...'
@@ -89,9 +90,9 @@ module SignWell
 
     # Create Document from Template
     # Creates and optionally sends a new document for signing. If `draft` is set to true the document will not be sent.
-    # @param document_from_template_request [DocumentFromTemplateRequest] 
+    # @param document_from_template_request [Models::DocumentFromTemplateRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [DocumentFromTemplateResponse]
+    # @return [Models::DocumentFromTemplateResponse]
     def create_document_from_template(document_from_template_request, opts = {})
       data, _status_code, _headers = create_document_from_template_with_http_info(document_from_template_request, opts)
       data
@@ -99,9 +100,9 @@ module SignWell
 
     # Create Document from Template
     # Creates and optionally sends a new document for signing. If &#x60;draft&#x60; is set to true the document will not be sent.
-    # @param document_from_template_request [DocumentFromTemplateRequest] 
+    # @param document_from_template_request [Models::DocumentFromTemplateRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(DocumentFromTemplateResponse, Integer, Hash)>] DocumentFromTemplateResponse data, response status code and response headers
+    # @return [Array<(Models::DocumentFromTemplateResponse, Integer, Hash)>] DocumentFromTemplateResponse data, response status code and response headers
     def create_document_from_template_with_http_info(document_from_template_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocumentApi.create_document_from_template ...'
@@ -225,7 +226,7 @@ module SignWell
     # @option opts [Boolean] :url_only  (default to false)
     # @option opts [Boolean] :audit_page  (default to true)
     # @option opts [FileFormat] :file_format 
-    # @return [CompletedPdfUrlResponse]
+    # @return [Models::CompletedPdfResponse]
     def get_completed_pdf(id, opts = {})
       data, _status_code, _headers = get_completed_pdf_with_http_info(id, opts)
       data
@@ -238,7 +239,7 @@ module SignWell
     # @option opts [Boolean] :url_only  (default to false)
     # @option opts [Boolean] :audit_page  (default to true)
     # @option opts [FileFormat] :file_format 
-    # @return [Array<(CompletedPdfUrlResponse, Integer, Hash)>] CompletedPdfUrlResponse data, response status code and response headers
+    # @return [Array<(Models::CompletedPdfResponse, Integer, Hash)>] CompletedPdfResponse data, response status code and response headers
     def get_completed_pdf_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocumentApi.get_completed_pdf ...'
@@ -268,7 +269,7 @@ module SignWell
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'CompletedPdfUrlResponse'
+      return_type = opts[:debug_return_type] || 'CompletedPdfResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -294,7 +295,7 @@ module SignWell
     # Returns a document and all associated document data. Supply the unique document ID from either a document creation request or Document page URL.
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [DocumentResponse]
+    # @return [Models::DocumentResponse]
     def get_document(id, opts = {})
       data, _status_code, _headers = get_document_with_http_info(id, opts)
       data
@@ -304,7 +305,7 @@ module SignWell
     # Returns a document and all associated document data. Supply the unique document ID from either a document creation request or Document page URL.
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(DocumentResponse, Integer, Hash)>] DocumentResponse data, response status code and response headers
+    # @return [Array<(Models::DocumentResponse, Integer, Hash)>] DocumentResponse data, response status code and response headers
     def get_document_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocumentApi.get_document ...'
@@ -356,9 +357,9 @@ module SignWell
     # Update and Send Document
     # Updates a draft document and sends it to be signed by recipients.
     # @param id [String] 
-    # @param update_document_and_send_request [UpdateDocumentAndSendRequest] 
+    # @param update_document_and_send_request [Models::UpdateDocumentAndSendRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [DocumentResponse]
+    # @return [Models::DocumentResponse]
     def send_document(id, update_document_and_send_request, opts = {})
       data, _status_code, _headers = send_document_with_http_info(id, update_document_and_send_request, opts)
       data
@@ -367,9 +368,9 @@ module SignWell
     # Update and Send Document
     # Updates a draft document and sends it to be signed by recipients.
     # @param id [String] 
-    # @param update_document_and_send_request [UpdateDocumentAndSendRequest] 
+    # @param update_document_and_send_request [Models::UpdateDocumentAndSendRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(DocumentResponse, Integer, Hash)>] DocumentResponse data, response status code and response headers
+    # @return [Array<(Models::DocumentResponse, Integer, Hash)>] DocumentResponse data, response status code and response headers
     def send_document_with_http_info(id, update_document_and_send_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocumentApi.send_document ...'
@@ -430,7 +431,7 @@ module SignWell
     # Send Reminder
     # Sends a reminder email to recipients that have not signed yet.
     # @param id [String] 
-    # @param send_reminder_request [SendReminderRequest] 
+    # @param send_reminder_request [Models::SendReminderRequest] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def send_reminder(id, send_reminder_request, opts = {})
@@ -441,7 +442,7 @@ module SignWell
     # Send Reminder
     # Sends a reminder email to recipients that have not signed yet.
     # @param id [String] 
-    # @param send_reminder_request [SendReminderRequest] 
+    # @param send_reminder_request [Models::SendReminderRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def send_reminder_with_http_info(id, send_reminder_request, opts = {})
@@ -501,4 +502,5 @@ module SignWell
       return data, status_code, headers
     end
   end
+end
 end

@@ -64,10 +64,10 @@ module SignWell
         unless response.success?
           if response.status == 0 && response.respond_to?(:return_message)
             # Errors from libcurl will be made visible here
-            fail ApiError.new(code: 0,
+            fail Errors::ApiError.new(code: 0,
                               message: response.return_message)
           else
-            fail ApiStatusError.for(
+            fail Errors::ApiStatusError.for(
               code: response.status,
               response_headers: response.headers,
               response_body: response.body,
@@ -76,9 +76,9 @@ module SignWell
           end
         end
       rescue Faraday::TimeoutError
-        fail ApiTimeoutError.new('Connection timed out')
+        fail Errors::ApiTimeoutError.new('Connection timed out')
       rescue Faraday::ConnectionFailed
-        fail ApiConnectionError.new('Connection failed')
+        fail Errors::ApiConnectionError.new('Connection failed')
       end
 
       if opts[:return_type] == 'File' || opts[:return_type] == 'Binary'
@@ -325,7 +325,7 @@ module SignWell
         end
       else
         # models (e.g. Pet) or oneOf
-        klass = SignWell.const_get(return_type)
+        klass = SignWell::Models.const_get(return_type)
         klass.respond_to?(:openapi_one_of) ? klass.build(data) : klass.build_from_hash(data)
       end
     end

@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   class ReminderRecipientsInner
     # Recipient's name (required if multiple recipients share the same email).
     attr_accessor :name
@@ -175,7 +176,7 @@ module SignWell
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = SignWell.const_get(type)
+        klass = SignWell::Models.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
@@ -228,4 +229,5 @@ module SignWell
 
   end
 
+end
 end

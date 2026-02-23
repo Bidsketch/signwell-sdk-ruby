@@ -13,6 +13,7 @@ Generator version: 7.12.0
 require 'cgi'
 
 module SignWell
+module Resources
   class WebhooksApi
     attr_accessor :api_client
 
@@ -21,7 +22,7 @@ module SignWell
     end
     # Create Webhook
     # Register a callback URL that we will post document events to.
-    # @param create_webhook_request [CreateWebhookRequest] 
+    # @param create_webhook_request [Models::CreateWebhookRequest] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def create_webhook(create_webhook_request, opts = {})
@@ -31,7 +32,7 @@ module SignWell
 
     # Create Webhook
     # Register a callback URL that we will post document events to.
-    # @param create_webhook_request [CreateWebhookRequest] 
+    # @param create_webhook_request [Models::CreateWebhookRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def create_webhook_with_http_info(create_webhook_request, opts = {})
@@ -207,4 +208,5 @@ module SignWell
       return data, status_code, headers
     end
   end
+end
 end

@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   class FileFormat
     PDF = "pdf".freeze
     ZIP = "zip".freeze
@@ -37,4 +38,5 @@ module SignWell
       raise "Invalid ENUM value #{value} for class #FileFormat"
     end
   end
+end
 end

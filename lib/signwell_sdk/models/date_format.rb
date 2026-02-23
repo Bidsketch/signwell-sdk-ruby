@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   class DateFormat
     MM_DD_YYYY = "MM/DD/YYYY".freeze
     DD_MM_YYYY = "DD/MM/YYYY".freeze
@@ -40,4 +41,5 @@ module SignWell
       raise "Invalid ENUM value #{value} for class #DateFormat"
     end
   end
+end
 end

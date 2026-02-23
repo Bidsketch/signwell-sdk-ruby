@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   # A dropdown option - either a simple string or a detailed object with name and optional api_id
   module DropdownOption
     class << self
@@ -82,7 +83,7 @@ module SignWell
             return data.each_with_object({}) { |(k, v), hsh| hsh[k] = find_and_cast_into_type(sub_type, v) }
           end
         else # model
-          const = SignWell.const_get(klass)
+          const = SignWell::Models.const_get(klass)
           if const
             if const.respond_to?(:openapi_one_of) # nested oneOf model
               model = const.build(data)
@@ -103,4 +104,5 @@ module SignWell
     end
   end
 
+end
 end

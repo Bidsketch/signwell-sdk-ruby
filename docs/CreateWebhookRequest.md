@@ -13,7 +13,7 @@
 require 'signwell_sdk'
 
 instance = SignWell::CreateWebhookRequest.new(
-  callback_url: null,
+  callback_url: https://example.com/webhook,
   api_application_id: null
 )
 ```

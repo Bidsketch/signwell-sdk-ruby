@@ -11,6 +11,7 @@
 | **subject** | **String** | Email subject for the signature request that recipients will see. Defaults to the default system subject or a template subject (if the document is created from a template). | [optional] |
 | **message** | **String** | Email message for the signature request that recipients will see. Defaults to the default system message or a template message (if the document is created from a template). | [optional] |
 | **recipients** | [**Array&lt;TemplateRecipientsInner&gt;**](TemplateRecipientsInner.md) | Document recipients are people that must complete and/or sign a document. Recipients of the document must be assigned to a placeholder of the template. Recipients will inherit all placeholder fields and settings. |  |
+| **exclude_placeholders** | **Array&lt;String&gt;** | Exclude one or more template placeholders when creating a document from a template. Any excluded placeholders (and their associated recipients and fields) will not be included on the created document. Values must match placeholder names on the template. You can&#39;t exclude all placeholders (at least one recipient must remain). | [optional] |
 | **draft** | **Boolean** | Whether the document can still be updated before sending a signature request. If set to &#x60;false&#x60; the document is sent for signing as part of this request. Defaults to &#x60;false&#x60;. | [optional][default to false] |
 | **with_signature_page** | **Boolean** | When set to &#x60;true&#x60; the document will have a signature page added to the end, and all signers will be required to add their signature on that page. | [optional][default to false] |
 | **expires_in** | **Integer** | Number of days before the signature request expires. Defaults to the account expiration setting or template expiration (if the document is created from a template). | [optional] |
@@ -49,6 +50,7 @@ instance = SignWell::DocumentFromTemplateRequest.new(
   subject: null,
   message: null,
   recipients: null,
+  exclude_placeholders: null,
   draft: null,
   with_signature_page: null,
   expires_in: null,
