@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   # Additional files to be appended to the document. Will not replace existing files from the template. Document files can be uploaded by specifying a file URL or base64 string. Either `file_url` or `file_base64` must be present (not both). Valid file types are: .pdf, .docx, .jpg, .png, .ppt, .xls, .pages, and .txt.
   class AdditionalFilesInner
     # Name of the file that will be uploaded.
@@ -203,7 +204,7 @@ module SignWell
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = SignWell.const_get(type)
+        klass = SignWell::Models.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
@@ -256,4 +257,5 @@ module SignWell
 
   end
 
+end
 end

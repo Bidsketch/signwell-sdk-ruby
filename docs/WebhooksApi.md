@@ -31,7 +31,7 @@ SignWell.configure do |config|
 end
 
 api_instance = SignWell::WebhooksApi.new
-create_webhook_request = SignWell::CreateWebhookRequest.new({callback_url: 'callback_url_example'}) # CreateWebhookRequest | 
+create_webhook_request = SignWell::CreateWebhookRequest.new({callback_url: 'https://example.com/webhook'}) # CreateWebhookRequest | 
 
 begin
   # Create Webhook

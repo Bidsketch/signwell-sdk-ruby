@@ -24,10 +24,10 @@ Gem::Specification.new do |s|
   s.homepage    = "https://signwell.com"
   s.summary     = "SignWell API client"
   s.description = "Ruby SDK for the SignWell API - electronic signature platform"
-  s.license     = "MIT"
-  s.required_ruby_version = ">= 3.0.4"
-  s.metadata = {
-    "documentation_uri" => "https://gemdocs.org/gems/signwell_sdk/#{SignWell::VERSION}",
+  s.license     = "APACHE"
+  s.required_ruby_version = ">= 3.0"
+  s.metadata    = {
+    "documentation_uri" => "https://gemdocs.org/gems/signwell_sdk/" + SignWell::VERSION,
     "source_code_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby",
     "homepage_uri" => "https://signwell.com",
     "changelog_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/CHANGELOG.md"

@@ -13,6 +13,7 @@ Generator version: 7.12.0
 require 'cgi'
 
 module SignWell
+module Resources
   class TemplateApi
     attr_accessor :api_client
 
@@ -21,9 +22,9 @@ module SignWell
     end
     # Create Template
     # Creates a new template.
-    # @param document_template_request [DocumentTemplateRequest] 
+    # @param document_template_request [Models::DocumentTemplateRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [DocumentTemplateResponse]
+    # @return [Models::DocumentTemplateResponse]
     def create_template(document_template_request, opts = {})
       data, _status_code, _headers = create_template_with_http_info(document_template_request, opts)
       data
@@ -31,9 +32,9 @@ module SignWell
 
     # Create Template
     # Creates a new template.
-    # @param document_template_request [DocumentTemplateRequest] 
+    # @param document_template_request [Models::DocumentTemplateRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(DocumentTemplateResponse, Integer, Hash)>] DocumentTemplateResponse data, response status code and response headers
+    # @return [Array<(Models::DocumentTemplateResponse, Integer, Hash)>] DocumentTemplateResponse data, response status code and response headers
     def create_template_with_http_info(document_template_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TemplateApi.create_template ...'
@@ -154,7 +155,7 @@ module SignWell
     # Returns a template and all associated template data. Supply the unique template ID from either a Create Template request or template page URL.
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [DocumentTemplateResponse]
+    # @return [Models::DocumentTemplateResponse]
     def get_template(id, opts = {})
       data, _status_code, _headers = get_template_with_http_info(id, opts)
       data
@@ -164,7 +165,7 @@ module SignWell
     # Returns a template and all associated template data. Supply the unique template ID from either a Create Template request or template page URL.
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(DocumentTemplateResponse, Integer, Hash)>] DocumentTemplateResponse data, response status code and response headers
+    # @return [Array<(Models::DocumentTemplateResponse, Integer, Hash)>] DocumentTemplateResponse data, response status code and response headers
     def get_template_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TemplateApi.get_template ...'
@@ -216,9 +217,9 @@ module SignWell
     # Update Template
     # Updates an existing template.
     # @param id [String] 
-    # @param document_template_update_request [DocumentTemplateUpdateRequest] 
+    # @param document_template_update_request [Models::DocumentTemplateUpdateRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [DocumentTemplateResponse]
+    # @return [Models::DocumentTemplateResponse]
     def update_template(id, document_template_update_request, opts = {})
       data, _status_code, _headers = update_template_with_http_info(id, document_template_update_request, opts)
       data
@@ -227,9 +228,9 @@ module SignWell
     # Update Template
     # Updates an existing template.
     # @param id [String] 
-    # @param document_template_update_request [DocumentTemplateUpdateRequest] 
+    # @param document_template_update_request [Models::DocumentTemplateUpdateRequest] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(DocumentTemplateResponse, Integer, Hash)>] DocumentTemplateResponse data, response status code and response headers
+    # @return [Array<(Models::DocumentTemplateResponse, Integer, Hash)>] DocumentTemplateResponse data, response status code and response headers
     def update_template_with_http_info(id, document_template_update_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TemplateApi.update_template ...'
@@ -287,4 +288,5 @@ module SignWell
       return data, status_code, headers
     end
   end
+end
 end

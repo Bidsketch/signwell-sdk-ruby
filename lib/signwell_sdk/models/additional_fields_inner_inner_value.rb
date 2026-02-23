@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   # Varies according to the field type. Text fields accept strings or numbers. Date fields accept Iso8601 date strings. CheckBoxes accept booleans. Signature and Initials fields can't be signed through API requests. Autofill text fields accept strings or numbers.
   module AdditionalFieldsInnerInnerValue
     class << self
@@ -83,7 +84,7 @@ module SignWell
             return data.each_with_object({}) { |(k, v), hsh| hsh[k] = find_and_cast_into_type(sub_type, v) }
           end
         else # model
-          const = SignWell.const_get(klass)
+          const = SignWell::Models.const_get(klass)
           if const
             if const.respond_to?(:openapi_one_of) # nested oneOf model
               model = const.build(data)
@@ -104,4 +105,5 @@ module SignWell
     end
   end
 
+end
 end

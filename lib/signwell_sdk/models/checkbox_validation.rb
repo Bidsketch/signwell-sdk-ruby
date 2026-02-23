@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   class CheckboxValidation
     MINIMUM = "minimum".freeze
     MAXIMUM = "maximum".freeze
@@ -39,4 +40,5 @@ module SignWell
       raise "Invalid ENUM value #{value} for class #CheckboxValidation"
     end
   end
+end
 end
