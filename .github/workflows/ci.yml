@@ -21,6 +21,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Start Prism mock server
+        run: |
+          npx @stoplight/prism-cli mock openapi.yaml -p 4010 &
+          sleep 3
+          curl -sf http://localhost:4010 > /dev/null 2>&1 || echo "::warning::Prism failed to start"
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
@@ -32,3 +42,4 @@ jobs:
         run: bundle exec rake spec
         env:
           BUNDLE_GEMFILE: gemfiles/faraday_${{ matrix.faraday-version }}.gemfile
+          PRISM_URL: http://localhost:4010
