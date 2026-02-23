@@ -11,5 +11,5 @@ Generator version: 7.12.0
 =end
 
 module SignWell
-  VERSION = '0.1.0.pre.alpha.3'
+  VERSION = '0.1.0.pre.alpha.4'
 end
