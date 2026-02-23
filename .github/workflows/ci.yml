@@ -27,7 +27,7 @@ jobs:
 
       - name: Start Prism mock server
         run: |
-          npm install --no-save @stoplight/prism-cli
+          npm ci
           npx @stoplight/prism-cli mock openapi.yaml -p 4010 > /tmp/prism.log 2>&1 &
           tail -f /tmp/prism.log | grep -qm1 "Prism is listening"
 
