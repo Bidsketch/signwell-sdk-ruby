@@ -15,6 +15,8 @@ require 'signwell_sdk/api_client'
 require 'signwell_sdk/api_error'
 require 'signwell_sdk/version'
 require 'signwell_sdk/configuration'
+
+# Extras
 require 'signwell_sdk/webhook'
 
 # Models
@@ -24,9 +26,13 @@ require 'signwell_sdk/models/additional_files_inner'
 require 'signwell_sdk/models/attachment_request_info'
 require 'signwell_sdk/models/attachment_requests_inner'
 require 'signwell_sdk/models/bulk_send_csv_request'
+require 'signwell_sdk/models/bulk_send_csv_template_response'
+require 'signwell_sdk/models/bulk_send_list_item'
+require 'signwell_sdk/models/bulk_send_list_response'
 require 'signwell_sdk/models/checkbox_group_info'
 require 'signwell_sdk/models/checkbox_groups_inner'
 require 'signwell_sdk/models/checkbox_validation'
+require 'signwell_sdk/models/completed_pdf_response'
 require 'signwell_sdk/models/completed_pdf_url_response'
 require 'signwell_sdk/models/copied_contact_info'
 require 'signwell_sdk/models/copied_contacts_inner'
@@ -90,6 +96,7 @@ require 'signwell_sdk/api/api_application_api'
 require 'signwell_sdk/api/bulk_send_api'
 require 'signwell_sdk/api/document_api'
 require 'signwell_sdk/api/me_api'
+require 'signwell_sdk/api/regional_api'
 require 'signwell_sdk/api/template_api'
 require 'signwell_sdk/api/webhooks_api'
 
@@ -107,6 +114,20 @@ module SignWell
       else
         Configuration.default
       end
+    end
+  end
+
+  # Backward-compatible constant resolution.
+  # Allows SignWell::DocumentResponse to resolve to SignWell::Models::DocumentResponse, etc.
+  def self.const_missing(name)
+    if Models.const_defined?(name, false)
+      Models.const_get(name, false)
+    elsif Errors.const_defined?(name, false)
+      Errors.const_get(name, false)
+    elsif Resources.const_defined?(name, false)
+      Resources.const_get(name, false)
+    else
+      super
     end
   end
 end

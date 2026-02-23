@@ -13,6 +13,7 @@ Generator version: 7.12.0
 require 'cgi'
 
 module SignWell
+module Resources
   class BulkSendApi
     attr_accessor :api_client
 
@@ -154,7 +155,7 @@ module SignWell
     # Fetches a CSV template that corresponds to the provided document template IDs. CSV templates are blank CSV files that have columns containing required and optional data that can be sent when creating a bulk send. Fields can be referenced by the field label. Example: [placeholder name]_[field label] could be something like customer_address or signer_company_name (if 'Customer' and 'Signer' were placeholder names for templates set up in SignWell).
     # @param template_ids [Array<String>] 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :base64 
+    # @option opts [Boolean] :base64 
     # @return [File]
     def get_bulk_send_csv_template(template_ids, opts = {})
       data, _status_code, _headers = get_bulk_send_csv_template_with_http_info(template_ids, opts)
@@ -165,7 +166,7 @@ module SignWell
     # Fetches a CSV template that corresponds to the provided document template IDs. CSV templates are blank CSV files that have columns containing required and optional data that can be sent when creating a bulk send. Fields can be referenced by the field label. Example: [placeholder name]_[field label] could be something like customer_address or signer_company_name (if &#39;Customer&#39; and &#39;Signer&#39; were placeholder names for templates set up in SignWell).
     # @param template_ids [Array<String>] 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :base64 
+    # @option opts [Boolean] :base64 
     # @return [Array<(File, Integer, Hash)>] File data, response status code and response headers
     def get_bulk_send_csv_template_with_http_info(template_ids, opts = {})
       if @api_client.config.debugging
@@ -305,10 +306,10 @@ module SignWell
     # @option opts [Integer] :limit  (default to 10)
     # @option opts [Integer] :page  (default to 1)
     # @option opts [String] :api_application_id 
-    # @return [nil]
+    # @return [BulkSendListResponse]
     def list_bulk_sends(opts = {})
-      list_bulk_sends_with_http_info(opts)
-      nil
+      data, _status_code, _headers = list_bulk_sends_with_http_info(opts)
+      data
     end
 
     # List Bulk Sendings
@@ -318,7 +319,7 @@ module SignWell
     # @option opts [Integer] :limit  (default to 10)
     # @option opts [Integer] :page  (default to 1)
     # @option opts [String] :api_application_id 
-    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    # @return [Array<(BulkSendListResponse, Integer, Hash)>] BulkSendListResponse data, response status code and response headers
     def list_bulk_sends_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: BulkSendApi.list_bulk_sends ...'
@@ -357,7 +358,7 @@ module SignWell
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type]
+      return_type = opts[:debug_return_type] || 'BulkSendListResponse'
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['api_key']
@@ -447,4 +448,5 @@ module SignWell
       return data, status_code, headers
     end
   end
+end
 end

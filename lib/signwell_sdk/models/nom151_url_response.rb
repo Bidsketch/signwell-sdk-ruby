@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   # NOM-151 download URL returned when url_only=true
   class Nom151UrlResponse
     # Public URL to download the certificate ZIP file
@@ -183,7 +184,7 @@ module SignWell
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = SignWell.const_get(type)
+        klass = SignWell::Models.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
@@ -236,4 +237,5 @@ module SignWell
 
   end
 
+end
 end

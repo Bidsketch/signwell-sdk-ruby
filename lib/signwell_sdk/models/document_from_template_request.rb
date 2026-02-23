@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   class DocumentFromTemplateRequest
     # Set to `true` to enable Test Mode. Documents created with Test Mode do not count towards API billing and are not legally binding. Defaults to `false`
     attr_accessor :test_mode
@@ -35,6 +36,9 @@ module SignWell
 
     # Document recipients are people that must complete and/or sign a document. Recipients of the document must be assigned to a placeholder of the template. Recipients will inherit all placeholder fields and settings.
     attr_accessor :recipients
+
+    # Exclude one or more template placeholders when creating a document from a template. Any excluded placeholders (and their associated recipients and fields) will not be included on the created document. Values must match placeholder names on the template. You can't exclude all placeholders (at least one recipient must remain).
+    attr_accessor :exclude_placeholders
 
     # Whether the document can still be updated before sending a signature request. If set to `false` the document is sent for signing as part of this request. Defaults to `false`.
     attr_accessor :draft
@@ -117,6 +121,7 @@ module SignWell
         :'subject' => :'subject',
         :'message' => :'message',
         :'recipients' => :'recipients',
+        :'exclude_placeholders' => :'exclude_placeholders',
         :'draft' => :'draft',
         :'with_signature_page' => :'with_signature_page',
         :'expires_in' => :'expires_in',
@@ -164,6 +169,7 @@ module SignWell
         :'subject' => :'String',
         :'message' => :'String',
         :'recipients' => :'Array<TemplateRecipientsInner>',
+        :'exclude_placeholders' => :'Array<String>',
         :'draft' => :'Boolean',
         :'with_signature_page' => :'Boolean',
         :'expires_in' => :'Integer',
@@ -247,6 +253,12 @@ module SignWell
         end
       else
         self.recipients = nil
+      end
+
+      if attributes.key?(:'exclude_placeholders')
+        if (value = attributes[:'exclude_placeholders']).is_a?(Array)
+          self.exclude_placeholders = value
+        end
       end
 
       if attributes.key?(:'draft')
@@ -441,6 +453,7 @@ module SignWell
           subject == o.subject &&
           message == o.message &&
           recipients == o.recipients &&
+          exclude_placeholders == o.exclude_placeholders &&
           draft == o.draft &&
           with_signature_page == o.with_signature_page &&
           expires_in == o.expires_in &&
@@ -476,7 +489,7 @@ module SignWell
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [test_mode, template_id, template_ids, name, subject, message, recipients, draft, with_signature_page, expires_in, reminders, apply_signing_order, api_application_id, embedded_signing, embedded_signing_notifications, text_tags, custom_requester_name, custom_requester_email, redirect_url, allow_decline, allow_reassign, decline_redirect_url, language, metadata, template_fields, files, fields, attachment_requests, copied_contacts, labels, checkbox_groups].hash
+      [test_mode, template_id, template_ids, name, subject, message, recipients, exclude_placeholders, draft, with_signature_page, expires_in, reminders, apply_signing_order, api_application_id, embedded_signing, embedded_signing_notifications, text_tags, custom_requester_name, custom_requester_email, redirect_url, allow_decline, allow_reassign, decline_redirect_url, language, metadata, template_fields, files, fields, attachment_requests, copied_contacts, labels, checkbox_groups].hash
     end
 
     # Builds the object from hash
@@ -540,7 +553,7 @@ module SignWell
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = SignWell.const_get(type)
+        klass = SignWell::Models.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
@@ -593,4 +606,5 @@ module SignWell
 
   end
 
+end
 end

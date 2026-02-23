@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module SignWell
-  # Response containing the URL to the completed PDF file (returned when url_only=true)
+module Models
+  # JSON response containing the URL to the completed PDF file (returned when url_only=true)
   class CompletedPdfUrlResponse
     # URL to download the completed document
     attr_accessor :file_url
@@ -183,7 +184,7 @@ module SignWell
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = SignWell.const_get(type)
+        klass = SignWell::Models.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
@@ -236,4 +237,5 @@ module SignWell
 
   end
 
+end
 end

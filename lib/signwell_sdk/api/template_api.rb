@@ -13,6 +13,7 @@ Generator version: 7.12.0
 require 'cgi'
 
 module SignWell
+module Resources
   class TemplateApi
     attr_accessor :api_client
 
@@ -287,4 +288,5 @@ module SignWell
       return data, status_code, headers
     end
   end
+end
 end

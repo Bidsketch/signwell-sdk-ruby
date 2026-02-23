@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   class TextValidation
     NO_TEXT_VALIDATION = "no_text_validation".freeze
     NUMBERS = "numbers".freeze
@@ -46,4 +47,5 @@ module SignWell
       raise "Invalid ENUM value #{value} for class #TextValidation"
     end
   end
+end
 end

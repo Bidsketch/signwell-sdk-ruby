@@ -14,6 +14,7 @@ require 'date'
 require 'time'
 
 module SignWell
+module Models
   class FieldType
     INITIALS = "initials".freeze
     SIGNATURE = "signature".freeze
@@ -50,4 +51,5 @@ module SignWell
       raise "Invalid ENUM value #{value} for class #FieldType"
     end
   end
+end
 end
