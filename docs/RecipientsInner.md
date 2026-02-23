@@ -21,7 +21,7 @@ require 'signwell_sdk'
 instance = SignWell::RecipientsInner.new(
   id: null,
   name: null,
-  email: null,
+  email: signer@example.com,
   passcode: null,
   subject: null,
   message: null,

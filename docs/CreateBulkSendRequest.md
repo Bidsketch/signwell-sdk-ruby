@@ -22,7 +22,7 @@ require 'signwell_sdk'
 
 instance = SignWell::CreateBulkSendRequest.new(
   template_ids: null,
-  bulk_send_csv: null,
+  bulk_send_csv: bmFtZSxlbWFpbApUZXN0LHRlc3RAZXhhbXBsZS5jb20K,
   skip_row_errors: null,
   api_application_id: null,
   name: null,
