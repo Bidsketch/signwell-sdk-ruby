@@ -30,10 +30,10 @@ jobs:
           npm install --no-save @stoplight/prism-cli
           npx @stoplight/prism-cli mock openapi.yaml -p 4010 &
           for i in $(seq 1 15); do
-            curl -sf http://localhost:4010 > /dev/null 2>&1 && break
+            curl -so /dev/null -w '%{http_code}' http://localhost:4010 2>/dev/null | grep -q '[0-9]' && break
             sleep 1
           done
-          curl -sf http://localhost:4010 > /dev/null 2>&1 || { echo "::error::Prism failed to start"; exit 1; }
+          curl -so /dev/null http://localhost:4010 2>/dev/null || { echo "::error::Prism failed to start"; exit 1; }
 
       - uses: ruby/setup-ruby@v1
         with:
