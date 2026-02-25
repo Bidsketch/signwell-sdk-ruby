@@ -154,7 +154,7 @@ module SignWell
 
     def initialize
       @scheme = 'https'
-      @host = 'www.signwell.com'
+      @host = 'staging.signwell.com'
       @base_path = ''
       @server_index = nil
       @server_operation_index = {}
@@ -270,7 +270,7 @@ module SignWell
     def server_settings
       [
         {
-          url: 'https://www.signwell.com',
+          url: 'https://staging.signwell.com',
           description: 'No description provided'
         }
       ]

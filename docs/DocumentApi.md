@@ -1,6 +1,6 @@
 # SignWell::DocumentApi
 
-All URIs are relative to *https://www.signwell.com*
+All URIs are relative to *https://staging.signwell.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
@@ -9,6 +9,7 @@ All URIs are relative to *https://www.signwell.com*
 | [**delete_document**](DocumentApi.md#delete_document) | **DELETE** /api/v1/documents/{id} | Delete Document |
 | [**get_completed_pdf**](DocumentApi.md#get_completed_pdf) | **GET** /api/v1/documents/{id}/completed_pdf | Completed PDF |
 | [**get_document**](DocumentApi.md#get_document) | **GET** /api/v1/documents/{id} | Get Document |
+| [**list_documents**](DocumentApi.md#list_documents) | **GET** /api/v1/documents | List Documents |
 | [**send_document**](DocumentApi.md#send_document) | **POST** /api/v1/documents/{id}/send | Update and Send Document |
 | [**send_reminder**](DocumentApi.md#send_reminder) | **POST** /api/v1/documents/{id}/remind | Send Reminder |
 
@@ -364,6 +365,81 @@ end
 ### Return type
 
 [**DocumentResponse**](DocumentResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## list_documents
+
+> <DocumentListResponse> list_documents(opts)
+
+List Documents
+
+Returns a paginated list of documents for the authenticated account.
+
+### Examples
+
+```ruby
+require 'time'
+require 'signwell_sdk'
+# setup authorization
+SignWell.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['X-Api-Key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-Api-Key'] = 'Bearer'
+end
+
+api_instance = SignWell::DocumentApi.new
+opts = {
+  page: 56, # Integer | 
+  limit: 56 # Integer | 
+}
+
+begin
+  # List Documents
+  result = api_instance.list_documents(opts)
+  p result
+rescue SignWell::ApiError => e
+  puts "Error when calling DocumentApi->list_documents: #{e}"
+end
+```
+
+#### Using the list_documents_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<DocumentListResponse>, Integer, Hash)> list_documents_with_http_info(opts)
+
+```ruby
+begin
+  # List Documents
+  data, status_code, headers = api_instance.list_documents_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <DocumentListResponse>
+rescue SignWell::ApiError => e
+  puts "Error when calling DocumentApi->list_documents_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **page** | **Integer** |  | [optional][default to 1] |
+| **limit** | **Integer** |  | [optional][default to 10] |
+
+### Return type
+
+[**DocumentListResponse**](DocumentListResponse.md)
 
 ### Authorization
 

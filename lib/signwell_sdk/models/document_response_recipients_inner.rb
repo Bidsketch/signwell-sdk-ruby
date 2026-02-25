@@ -16,8 +16,50 @@ require 'time'
 module SignWell
   module Models
     class DocumentResponseRecipientsInner
-      attr_accessor :id, :name, :email, :body, :message, :subject, :send_email, :send_email_delay, :signing_order,
-                    :signing_url, :bounced, :bounced_details, :attachment_requests, :passcode, :status
+      # @return [String]
+      attr_accessor :id
+
+      # @return [String]
+      attr_accessor :name
+
+      # @return [String]
+      attr_accessor :email
+
+      # @return [String]
+      attr_accessor :body
+
+      # @return [String]
+      attr_accessor :message
+
+      # @return [String]
+      attr_accessor :subject
+
+      # @return [Boolean]
+      attr_accessor :send_email
+
+      # @return [Integer]
+      attr_accessor :send_email_delay
+
+      # @return [Integer]
+      attr_accessor :signing_order
+
+      # @return [String]
+      attr_accessor :signing_url
+
+      # @return [Boolean]
+      attr_accessor :bounced
+
+      # @return [String]
+      attr_accessor :bounced_details
+
+      # @return [Array<AttachmentRequestInfo>]
+      attr_accessor :attachment_requests
+
+      # @return [String]
+      attr_accessor :passcode
+
+      # @return [String]
+      attr_accessor :status
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
@@ -177,7 +219,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -200,7 +242,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -239,8 +281,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

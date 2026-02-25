@@ -50,6 +50,13 @@ RSpec.describe SignWell::Resources::TemplateApi, :prism do
     end
   end
 
+  describe '#list_templates' do
+    it 'returns DocumentTemplateListResponse' do
+      result = @api.list_templates
+      expect(result).not_to be_nil
+    end
+  end
+
   describe '#update_template' do
     it 'returns DocumentTemplateResponse' do
       body = SignWell::DocumentTemplateUpdateRequest.new

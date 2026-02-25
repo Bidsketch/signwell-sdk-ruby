@@ -90,17 +90,17 @@ module SignWell
       # Gets the details of a specific API Application within an account. Supply the unique Application ID from either the Create API Application response or the API Application edit page.
       # @param id [String]
       # @param [Hash] opts the optional parameters
-      # @return [nil]
+      # @return [Models::ApiApplicationResponse]
       def get_api_application(id, opts = {})
-        get_api_application_with_http_info(id, opts)
-        nil
+        data, _status_code, _headers = get_api_application_with_http_info(id, opts)
+        data
       end
 
       # Get API Application
       # Gets the details of a specific API Application within an account. Supply the unique Application ID from either the Create API Application response or the API Application edit page.
       # @param id [String]
       # @param [Hash] opts the optional parameters
-      # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+      # @return [Array<(Models::ApiApplicationResponse, Integer, Hash)>] ApiApplicationResponse data, response status code and response headers
       def get_api_application_with_http_info(id, opts = {})
         if @api_client.config.debugging
           @api_client.config.logger.debug 'Calling API: APIApplicationApi.get_api_application ...'
@@ -128,7 +128,7 @@ module SignWell
         post_body = opts[:debug_body]
 
         # return_type
-        return_type = opts[:debug_return_type]
+        return_type = opts[:debug_return_type] || 'ApiApplicationResponse'
 
         # auth_names
         auth_names = opts[:debug_auth_names] || ['api_key']

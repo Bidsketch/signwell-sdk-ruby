@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.license     = "APACHE"
   s.required_ruby_version = ">= 3.0"
   s.metadata    = {
-    "documentation_uri" => "https://gemdocs.org/gems/signwell_sdk/" + SignWell::VERSION,
+    "documentation_uri" => "https://gemdocs.org/gems/signwell_sdk/" + SignWell::VERSION + "/",
     "source_code_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby",
     "homepage_uri" => "https://signwell.com",
     "changelog_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/CHANGELOG.md"

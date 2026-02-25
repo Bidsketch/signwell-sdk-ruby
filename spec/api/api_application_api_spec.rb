@@ -34,8 +34,9 @@ RSpec.describe SignWell::Resources::APIApplicationApi, :prism do
   end
 
   describe '#get_api_application' do
-    it 'succeeds' do
-      expect { @api.get_api_application(@test_id) }.not_to raise_error
+    it 'returns ApiApplicationResponse' do
+      result = @api.get_api_application(@test_id)
+      expect(result).not_to be_nil
     end
   end
 end

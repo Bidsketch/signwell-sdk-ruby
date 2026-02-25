@@ -51,19 +51,19 @@ paths:
             application/json:
               example:
                 documents:
-                - id: 8f3a7f55-55be-40c9-8448-33baa00cac11
+                - id: e7debbb2-baa5-41bb-a81a-c83505ef4726
                   archived: false
-                  created_at: '2026-02-23T17:49:34Z'
+                  created_at: '2026-02-25T21:12:25Z'
                   decline_message:
-                  embedded_edit_url: https://www.signwell.com/edit/document/41c3850f-7e44-46b6-8a39-b47956cd1c5e/
+                  embedded_edit_url: https://www.signwell.com/edit/document/08e6ef4c-dd75-43fc-935c-735ae703912c/
                   error_message:
                   embedded_preview_url:
                   language: en
-                  name: galaxy_agree/ea.bmp
-                  requester_email_address: glop_dr_1_glip@rosenbaum.example
+                  name: cruelty_midnight/beatae.ppt
+                  requester_email_address: arthricia.1@hyatt-luettgen.example
                   status: Created
                   test_mode: false
-                  updated_at: '2026-02-23T17:49:34Z'
+                  updated_at: '2026-02-25T21:12:25Z'
                   allow_decline: true
                   allow_reassign: true
                   api_application_id:
@@ -78,26 +78,26 @@ paths:
                   apply_signing_order: false
                   message: "<p>Hey there,</p><p>&nbsp;</p><p>Please review and complete
                     this document. You can click on the document below to get started.</p>"
-                  subject: Please complete galaxy_agree/ea.bmp
+                  subject: Please complete cruelty_midnight/beatae.ppt
                   labels: []
                   fields: []
                   files: []
                   copied_contacts: []
                   recipients: []
                   checkbox_groups: []
-                - id: 51c1fb48-7df6-4207-be9a-1c66d5a77a08
+                - id: 4cabd7ea-9ca4-4470-ad40-daf805eb5952
                   archived: false
-                  created_at: '2026-02-23T17:49:34Z'
+                  created_at: '2026-02-25T21:12:25Z'
                   decline_message:
-                  embedded_edit_url: https://www.signwell.com/edit/document/14122b4f-02bb-4305-a62c-fb7ea56e0db3/
+                  embedded_edit_url: https://www.signwell.com/edit/document/be40e95f-5c8b-4548-8104-f1098dbbb449/
                   error_message:
                   embedded_preview_url:
                   language: en
-                  name: academy-scale/dolore.tiff
-                  requester_email_address: glop_dr_1_glip@rosenbaum.example
+                  name: miscarriage-twilight/enim.avi
+                  requester_email_address: arthricia.1@hyatt-luettgen.example
                   status: Created
                   test_mode: false
-                  updated_at: '2026-02-23T17:49:34Z'
+                  updated_at: '2026-02-25T21:12:25Z'
                   allow_decline: true
                   allow_reassign: true
                   api_application_id:
@@ -112,26 +112,26 @@ paths:
                   apply_signing_order: false
                   message: "<p>Hey there,</p><p>&nbsp;</p><p>Please review and complete
                     this document. You can click on the document below to get started.</p>"
-                  subject: Please complete academy-scale/dolore.tiff
+                  subject: Please complete miscarriage-twilight/enim.avi
                   labels: []
                   fields: []
                   files: []
                   copied_contacts: []
                   recipients: []
                   checkbox_groups: []
-                - id: 45e7f10a-39b9-4bca-8a43-ef2a468a97c9
+                - id: 84dba02d-0002-4833-b6a4-a04e3bbe9f27
                   archived: false
-                  created_at: '2026-02-23T17:49:34Z'
+                  created_at: '2026-02-25T21:12:25Z'
                   decline_message:
-                  embedded_edit_url: https://www.signwell.com/edit/document/9f63b3d8-25c4-4b45-9a57-32db0078f86c/
+                  embedded_edit_url: https://www.signwell.com/edit/document/f6a5305e-232c-4194-9523-27d860efc8bb/
                   error_message:
                   embedded_preview_url:
                   language: en
-                  name: academy-theorist/dolor.doc
-                  requester_email_address: glop_dr_1_glip@rosenbaum.example
+                  name: bless_trivial/laudantium.tiff
+                  requester_email_address: arthricia.1@hyatt-luettgen.example
                   status: Created
                   test_mode: false
-                  updated_at: '2026-02-23T17:49:34Z'
+                  updated_at: '2026-02-25T21:12:25Z'
                   allow_decline: true
                   allow_reassign: true
                   api_application_id:
@@ -146,7 +146,7 @@ paths:
                   apply_signing_order: false
                   message: "<p>Hey there,</p><p>&nbsp;</p><p>Please review and complete
                     this document. You can click on the document below to get started.</p>"
-                  subject: Please complete academy-theorist/dolor.doc
+                  subject: Please complete bless_trivial/laudantium.tiff
                   labels: []
                   fields: []
                   files: []
@@ -195,11 +195,11 @@ paths:
           content:
             application/json:
               example:
-                id: 3b6df242-c355-45ef-b2cd-ac89e41efda9
+                id: 2d8c4b01-07fb-449a-be96-b55c7d6b4a0a
                 archived: false
-                created_at: '2026-02-23T17:49:36Z'
+                created_at: '2026-02-25T21:12:28Z'
                 decline_message:
-                embedded_edit_url: https://www.signwell.com/edit/document/0bbe8cf9-aa6f-4731-8147-20b88b9dd492/
+                embedded_edit_url: https://www.signwell.com/edit/document/6bb919c7-06d9-4e29-9074-4d7a71214700/
                 error_message:
                 embedded_preview_url:
                 language: en
@@ -207,7 +207,7 @@ paths:
                 requester_email_address: requester@domain.com
                 status: Created
                 test_mode: false
-                updated_at: '2026-02-23T17:49:36Z'
+                updated_at: '2026-02-25T21:12:28Z'
                 allow_decline: true
                 allow_reassign: true
                 api_application_id:
@@ -225,11 +225,11 @@ paths:
                 message: Normal Body
                 subject: Normal subject
                 labels:
-                - id: 211bead7-00a3-428d-b669-b83dd5aa5dd4
+                - id: 9627cd4d-f8cc-4ff1-8c66-2f3f27a96850
                   name: My First Label
-                - id: 94f79e4d-39a8-48fc-bd86-beb0d847b1e9
+                - id: 627a8f82-73dc-4cc3-bbe5-cd39cb66384e
                   name: My Second Label
-                - id: 7c6debd2-c10b-4685-a1ac-d567461f85af
+                - id: 8979df9a-522f-4962-bc5d-7623cfd0058e
                   name: My Third Label
                 fields:
                 - - api_id: DateField_1
@@ -541,13 +541,13 @@ paths:
                   status: created
                   subject: Hi, please sign this contract
                   signing_order: 1
-                  signing_url: https://www.signwell.com/docs/8478423c61/
+                  signing_url: https://www.signwell.com/docs/4c2710d92e/
                   bounced:
                   bounced_details:
                   attachment_requests:
                   - name: normal name
                     required: true
-                    url: https://www.signwell.com/document_attachments/3XoZgQgqLBfL5KR7P68PtRpOZaG/?access=f6f5734a-5190-4dd2-9061-70d3685ac7e5
+                    url: https://www.signwell.com/document_attachments/kKL30Zq5AJhe4EXoq8rQi7ZOzeg/?access=23f690e1-8bd9-4966-9eb6-eb254c01c83a
                 - email: recipient2@domain.com
                   id: recipient_id_2
                   message:
@@ -558,15 +558,15 @@ paths:
                   status: created
                   subject:
                   signing_order: 2
-                  signing_url: https://www.signwell.com/docs/6e61e87429/
+                  signing_url: https://www.signwell.com/docs/5749f9e969/
                   bounced:
                   bounced_details:
                   attachment_requests:
                   - name: Driver License
                     required: false
-                    url: https://www.signwell.com/document_attachments/07dzZ54y65cnrj3yzJXBIyDL7KD5/?access=f6f5734a-5190-4dd2-9061-70d3685ac7e5
+                    url: https://www.signwell.com/document_attachments/XL50JEXZXycP11yYNZ3OCMN9Agro/?access=23f690e1-8bd9-4966-9eb6-eb254c01c83a
                 checkbox_groups:
-                - id: 0ee1a578-4de0-4e29-a307-931d093f0ef5
+                - id: 793283d7-b0de-4680-9a1b-dd257d289bd2
                   group_name: Group 1
                   recipient_id:
                   checkbox_ids:
@@ -762,41 +762,41 @@ paths:
           content:
             application/json:
               example:
-                id: ef1b753f-4d85-4a13-9705-981cab306fe8
+                id: 25f08b0b-b797-4095-9f6c-c8b803e2c109
                 archived: false
-                created_at: '2026-02-23T17:49:34Z'
+                created_at: '2026-02-25T21:12:26Z'
                 decline_message:
-                embedded_edit_url: https://www.signwell.com/edit/document/bd7c0118-c976-4558-9374-55df8ad9d01a/
+                embedded_edit_url: https://www.signwell.com/edit/document/b940bda8-2617-461f-9227-58cee311df69/
                 error_message:
                 embedded_preview_url:
                 language: en
-                name: freckle_capital/ullam.mp4
-                requester_email_address: smith_morty_2@kuphal-stark.test
+                name: thirsty-transfer/necessitatibus.gif
+                requester_email_address: goldenfold_2_mr@mccullough.example
                 status: Created
                 test_mode: false
-                updated_at: '2026-02-23T17:49:34Z'
-                allow_decline: true
+                updated_at: '2026-02-25T21:12:26Z'
+                allow_decline: false
                 allow_reassign: true
                 api_application_id:
-                custom_requester_email: norberto.casper@heaney.test
-                custom_requester_name: Han Solo
-                decline_redirect_url: http://barrows.test/isis.prohaska
+                custom_requester_email: lucas@wisoky-hilll.test
+                custom_requester_name: Borvo the Hutt
+                decline_redirect_url: http://gislason-barrows.test/lupe
                 embedded_signing: false
                 expires_in: 10
                 metadata:
-                  eius: nemo
-                  laudantium: assumenda
-                redirect_url: http://greenfelder.test/cayla.marquardt
+                  aut: adipisci
+                  accusantium: sunt
+                redirect_url: http://auer.example/debora.barton
                 reminders: true
                 apply_signing_order: false
                 message: "<p>Hey there,</p><p>&nbsp;</p><p>Please review and complete
                   this document. You can click on the document below to get started.</p>"
-                subject: Please complete freckle_capital/ullam.mp4
+                subject: Please complete thirsty-transfer/necessitatibus.gif
                 labels:
-                - id: 3a5c4ce3-9d34-45a2-b4a6-ffaa57dc969f
-                  name: Myra Orn
-                - id: 7cd06ae1-2ff9-4163-9e9c-f254e6618844
-                  name: Jay Funk Dvm
+                - id: bb8ad681-e88b-493e-86bc-c859c683b0e3
+                  name: Amal Rodriguez
+                - id: 10ffdb4e-8461-473a-9cfe-2797a4725249
+                  name: Dane Gibson
                 fields:
                 - - api_id: CheckBox_2
                     height: '13.0'
@@ -809,7 +809,7 @@ paths:
                     "y": 1.1
                     name:
                     recipient_id:
-                    signing_elements_group_id: bf68affe-edc5-4e22-a603-2d2a475585f9
+                    signing_elements_group_id: 786a9951-56fe-4544-9a32-86255c0559ca
                   - api_id: CheckBox_3
                     height: '13.0'
                     page: 1
@@ -830,47 +830,47 @@ paths:
                     width: '112.0'
                     x: 1.1
                     "y": 1.1
-                    recipient_id: 12633e8b-6360-49d4-bb5e-523940c2fb38
+                    recipient_id: 7f538768-ac06-4721-8631-0c08025c5fa4
                 files:
-                - name: et.pages
+                - name: illo.doc
                   pages_number: 1
                 copied_contacts:
-                - name: Sheldon Hammes Sr.
-                  email: cindie@rice.example
+                - name: Demetrius Heidenreich VM
+                  email: chester.hoeger@kuhn.test
                 recipients:
-                - email: kirby.haag@effertz.example
-                  id: 12633e8b-6360-49d4-bb5e-523940c2fb38
+                - email: berry@purdy-batz.example
+                  id: 7f538768-ac06-4721-8631-0c08025c5fa4
                   message:
-                  name: Zoraida Oberbrunner
+                  name: Claud Schuppe
                   passcode:
                   send_email:
                   send_email_delay:
                   status: created
                   subject:
                   signing_order: 1
-                  signing_url: https://www.signwell.com/docs/17eced579f/
+                  signing_url: https://www.signwell.com/docs/e4bada35c3/
                   bounced:
                   bounced_details:
                   attachment_requests:
-                  - name: inspiration-arena/nemo.numbers
+                  - name: introduction_award/eum.pdf
                     required: true
-                    url: https://www.signwell.com/document_attachments/bDnqLXEAz6hAM4wXbqA4S22Br8K4/?access=00bc4e29-8ac6-4656-9e6b-1c9f9336a649
-                - email: arnoldo@kuhic.example
-                  id: ac8eb5fb-cf1e-43b8-9188-18c95f5ecd60
+                    url: https://www.signwell.com/document_attachments/k0A6DXAJzeIyDrGl1Y21f091Ryb/?access=f498219d-7cbc-4cbc-9122-e68fa9ae25c4
+                - email: jaqueline@jaskolski.test
+                  id: 0a56bbcb-6c54-4793-8ff3-a4d9a20e528d
                   message:
-                  name: Cornelius Renner II
+                  name: Frederica Kuphal
                   passcode:
                   send_email:
                   send_email_delay:
                   status: created
                   subject:
                   signing_order: 2
-                  signing_url: https://www.signwell.com/docs/4fb5bc9e4b/
+                  signing_url: https://www.signwell.com/docs/2b72afcb43/
                   bounced:
                   bounced_details:
                   attachment_requests: []
                 checkbox_groups:
-                - id: bf68affe-edc5-4e22-a603-2d2a475585f9
+                - id: 786a9951-56fe-4544-9a32-86255c0559ca
                   group_name:
                   recipient_id:
                   checkbox_ids:
@@ -953,11 +953,11 @@ paths:
           content:
             application/json:
               example:
-                id: 35571bde-8e50-4160-84f0-12587d2b1523
+                id: c1a8c33f-f98e-4f27-80d5-cea80adee303
                 archived: false
-                created_at: '2026-02-23T17:49:38Z'
+                created_at: '2026-02-25T21:12:30Z'
                 decline_message:
-                embedded_edit_url: https://www.signwell.com/edit/document/a97df7da-e8c4-49ab-8974-3ed48031f8a4/
+                embedded_edit_url: https://www.signwell.com/edit/document/5b3900ad-6922-4759-93b8-df4ddd0c6a70/
                 error_message:
                 embedded_preview_url:
                 language: en
@@ -965,10 +965,10 @@ paths:
                 requester_email_address: requester@domain.com
                 status: Created
                 test_mode: false
-                updated_at: '2026-02-23T17:49:38Z'
+                updated_at: '2026-02-25T21:12:30Z'
                 template_ids:
-                - 7229032e-a792-420e-ab7f-b34a038d6bf6
-                - 85bc5da8-6146-4811-ab6d-8f3a3c2236ed
+                - 60be20a7-eabe-48fc-bd7b-7100c1b3af8b
+                - b8de3ea1-708c-4ab0-afc1-8e8e0d239832
                 allow_decline: true
                 allow_reassign: true
                 api_application_id:
@@ -1128,9 +1128,9 @@ paths:
                     validation: numbers
                     recipient_id: recipient_2
                 files:
-                - name: velit.wav
+                - name: sed.flac
                   pages_number: 2
-                - name: commodi.jpg
+                - name: iste.png
                   pages_number: 2
                 - name: filename1.pdf
                   pages_number: 0
@@ -1152,7 +1152,7 @@ paths:
                   status: created
                   subject:
                   signing_order: 1
-                  signing_url: https://www.signwell.com/docs/8ed1119460/
+                  signing_url: https://www.signwell.com/docs/ba86491a57/
                   bounced:
                   bounced_details:
                   placeholder_name: Document Sender
@@ -1167,14 +1167,14 @@ paths:
                   status: created
                   subject:
                   signing_order: 2
-                  signing_url: https://www.signwell.com/docs/b741ff9b4c/
+                  signing_url: https://www.signwell.com/docs/cd7ff79996/
                   bounced:
                   bounced_details:
                   placeholder_name: Placeholder 1
                   attachment_requests:
                   - name: normal name
                     required: true
-                    url: https://www.signwell.com/document_attachments/97pjZdOrN5TpdwpXLDK7Sonabg6/?access=9a69a376-9bd7-4a12-b5b2-a4320eca1341
+                    url: https://www.signwell.com/document_attachments/98ga3Kqg8GSNMnnqQbBpIn3qoyK/?access=be800ed5-fd2f-42db-a17c-6d5a3a2bd18f
                 - email: recipient_2@domain.com
                   id: recipient_2
                   message:
@@ -1185,14 +1185,14 @@ paths:
                   status: created
                   subject:
                   signing_order: 3
-                  signing_url: https://www.signwell.com/docs/cee0d4ed88/
+                  signing_url: https://www.signwell.com/docs/c31e7c99d9/
                   bounced:
                   bounced_details:
                   placeholder_name: Placeholder 2
                   attachment_requests:
                   - name: Driver License
                     required: false
-                    url: https://www.signwell.com/document_attachments/r6BrB5B6DeHb6bqLd329hJN8Dnp/?access=9a69a376-9bd7-4a12-b5b2-a4320eca1341
+                    url: https://www.signwell.com/document_attachments/yEDYMyyqz3i0RWn1ZMJ2T2ALP0J/?access=be800ed5-fd2f-42db-a17c-6d5a3a2bd18f
                 checkbox_groups: []
               schema:
                 "$ref": "#/components/schemas/DocumentFromTemplateResponse"
@@ -1381,16 +1381,16 @@ paths:
           content:
             application/json:
               example:
-                id: 33ea2222-11a5-4f46-ba0d-bb1e7a1bdc84
+                id: ced03364-28a9-4740-a2a8-a612fd2bf435
                 archived: false
                 copied_contacts:
-                - email: shantae@nolan.example
-                  name: Cheryll Nikolaus
-                created_at: '2026-02-23T17:49:40Z'
-                custom_requester_email: adeline@hickle.test
-                custom_requester_name: Luke Skywalker
+                - email: stacie@klein.test
+                  name: Melvina Brakus
+                created_at: '2026-02-25T21:12:31Z'
+                custom_requester_email: josiah.mraz@upton.test
+                custom_requester_name: Yoda
                 decline_redirect_url: https://www.domain.com/decline_path/
-                embedded_edit_url: https://www.signwell.com/edit/document/29132b3a-763e-4031-bb57-88aaf6a618f2/
+                embedded_edit_url: https://www.signwell.com/edit/document/b3f2f604-4952-4503-8152-222d19c620bd/
                 embedded_preview_url:
                 error_message:
                 fields:
@@ -1425,13 +1425,13 @@ paths:
                     x: 1.1
                     "y": 1.1
                     page: 1
-                    recipient_id: 9c7235a3-d903-4427-899c-879718feb385
+                    recipient_id: 4b1e66bf-d4a7-4d18-80ef-655b1fa08b32
                 labels:
-                - id: b6c8986c-998d-474c-accc-9d7da690a0d6
+                - id: 02a37519-bf21-4ad1-8c5e-744abf92e68a
                   name: My First Label
-                - id: 1423f835-d2c5-490e-b017-b352d2642e5c
+                - id: ad374378-4673-42ca-b344-0d16d2b1be95
                   name: My Second Label
-                - id: cdcd5663-1820-4036-9edc-34fd6e44db26
+                - id: c5a79189-e1f9-438e-9ec6-4a4535950ed1
                   name: My Third Label
                 language: en
                 metadata:
@@ -1439,11 +1439,11 @@ paths:
                   key2: value2
                 name: Agreement
                 recipients:
-                - id: 9c7235a3-d903-4427-899c-879718feb385
+                - id: 4b1e66bf-d4a7-4d18-80ef-655b1fa08b32
                   attachment_requests: []
-                  email: angla.streich@hyatt-hayes.test
+                  email: gisele_bailey@renner-marks.test
                   message:
-                  name: Caryl Bergnaum
+                  name: The Hon. Yuko Smith
                   passcode:
                   send_email_delay:
                   signing_order: 7
@@ -1452,12 +1452,12 @@ paths:
                   bounced:
                   bounced_details:
                   send_email:
-                  signing_url: https://www.signwell.com/docs/59f7f47a66/
-                - id: e094a5df-3705-4156-862d-8f524009f778
+                  signing_url: https://www.signwell.com/docs/405cd2cb8c/
+                - id: 1b60eedb-e9ab-4e42-9ff3-799e74f41be7
                   attachment_requests: []
-                  email: newton_cummerata@gerlach.test
+                  email: isis.grady@murazik-altenwerth.test
                   message:
-                  name: Andrew Skiles
+                  name: Amb. Marisha Brekke
                   passcode:
                   send_email_delay:
                   signing_order: 8
@@ -1466,10 +1466,10 @@ paths:
                   bounced:
                   bounced_details:
                   send_email:
-                  signing_url: https://www.signwell.com/docs/8f0ce17e25/
+                  signing_url: https://www.signwell.com/docs/09919d1e2e/
                 subject: Normal subject
                 test_mode: false
-                updated_at: '2026-02-23T17:49:40Z'
+                updated_at: '2026-02-25T21:12:32Z'
                 decline_message:
                 api_application_id:
                 allow_decline: true
@@ -1479,11 +1479,11 @@ paths:
                 expires_in: 365
                 message: Normal Body
                 reminders: true
-                requester_email_address: gazorpazorpfield_15@pouros.example
+                requester_email_address: stealy_15@skiles.example
                 redirect_url: https://www.domain.com/redirect_path/
                 status: Draft
                 files:
-                - name: consequatur.ods
+                - name: cupiditate.csv
                   pages_number: 1
               schema:
                 "$ref": "#/components/schemas/DocumentResponse"
@@ -1544,41 +1544,41 @@ paths:
           content:
             application/json:
               example:
-                id: 43b1e4c8-fbed-4911-a4e0-6f3c5cd19060
+                id: 3ea68987-baf0-4738-804b-e9f73523d87d
                 archived: false
-                created_at: '2026-02-23T17:49:42Z'
+                created_at: '2026-02-25T21:12:33Z'
                 decline_message:
                 embedded_edit_url:
                 error_message:
-                embedded_preview_url: https://www.signwell.com/preview/document/43b1e4c8-fbed-4911-a4e0-6f3c5cd19060/
+                embedded_preview_url: https://www.signwell.com/preview/document/3ea68987-baf0-4738-804b-e9f73523d87d/
                 language: en
-                name: midnight-report/dolorem.ods
-                requester_email_address: krombopulos.michael.21@davis.test
+                name: rung-distant/aperiam.bmp
+                requester_email_address: michael.21.krombopulos@miller.example
                 status: Sent
                 test_mode: false
-                updated_at: '2026-02-23T17:49:42Z'
+                updated_at: '2026-02-25T21:12:33Z'
                 allow_decline: false
                 allow_reassign: true
                 api_application_id:
-                custom_requester_email: edmund.waelchi@blick.test
-                custom_requester_name: Yoda
-                decline_redirect_url: http://bayer.example/martin
+                custom_requester_email: fe@kling.example
+                custom_requester_name: Chewbacca
+                decline_redirect_url: http://daniel.test/erik_becker
                 embedded_signing: false
                 expires_in: 10
                 metadata:
-                  alias: omnis
-                  aliquam: expedita
-                redirect_url: http://lang.example/johnie_mayer
-                reminders: true
+                  dolores: ratione
+                  recusandae: ut
+                redirect_url: http://becker-paucek.test/jonas
+                reminders: false
                 apply_signing_order: false
                 message: "<p>Hey there,</p><p>&nbsp;</p><p>Please review and complete
                   this document. You can click on the document below to get started.</p>"
-                subject: Please complete midnight-report/dolorem.ods
+                subject: Please complete rung-distant/aperiam.bmp
                 labels:
-                - id: dcf3c856-9681-41b4-999a-a1d85ce69124
-                  name: Yong Veum
-                - id: 18695f58-67c5-479f-acdc-b622c404a14f
-                  name: Miss Tori Donnelly
+                - id: 8b8befb2-af60-4e87-a718-1d4c66a05e33
+                  name: Roosevelt Shields Jr.
+                - id: a606c594-4120-4f2c-bacf-c15ce6beeeee
+                  name: Deandre Kozey
                 fields:
                 - - api_id: CheckBox_14
                     height: '13.0'
@@ -1591,7 +1591,7 @@ paths:
                     "y": 1.1
                     name:
                     recipient_id:
-                    signing_elements_group_id: ebceb4e3-caf2-4180-8825-e36ade6a8809
+                    signing_elements_group_id: 9ecdf3ec-4c9e-431e-93bf-36871379d85b
                   - api_id: CheckBox_15
                     height: '13.0'
                     page: 1
@@ -1612,47 +1612,47 @@ paths:
                     width: '112.0'
                     x: 1.1
                     "y": 1.1
-                    recipient_id: f3d1e3ed-d139-4c46-bd82-c17f7f5e329a
+                    recipient_id: 8089dab6-e33c-434b-b601-021cafe18b40
                 files:
-                - name: assumenda.tiff
+                - name: facilis.json
                   pages_number: 1
                 copied_contacts:
-                - name: Lanny Jones
-                  email: chanelle_block@schulist.test
+                - name: Brett Gerhold
+                  email: dario@wilderman.test
                 recipients:
-                - email: ludivina.langosh@adams-boyle.example
-                  id: f3d1e3ed-d139-4c46-bd82-c17f7f5e329a
+                - email: erick@rempel.example
+                  id: 8089dab6-e33c-434b-b601-021cafe18b40
                   message:
-                  name: Tonia Maggio
+                  name: Pres. Melaine Lynch
                   passcode:
                   send_email:
                   send_email_delay:
                   status:
                   subject:
                   signing_order: 13
-                  signing_url: https://www.signwell.com/docs/3efd5bca98/
+                  signing_url: https://www.signwell.com/docs/4e02689303/
                   bounced:
                   bounced_details:
                   attachment_requests:
-                  - name: compete_defend/suscipit.jpeg
+                  - name: stuff_horizon/voluptatem.jpg
                     required: true
-                    url: https://www.signwell.com/document_attachments/Md18JX0Y3otEkWXPnnPYfb4LozP/?access=0b1ec48f-b44d-4065-a46e-418c8bad9e36
-                - email: teodora.russel@lubowitz-nienow.test
-                  id: a6e4c303-4283-4779-9bc6-12357b4657a5
+                    url: https://www.signwell.com/document_attachments/9GYORnZXRzHkXoaRg4gqUdOz9MyA/?access=c5834858-38eb-4120-8aa9-0b56b80c6687
+                - email: quinn@romaguera.example
+                  id: 9d3d5cbe-4f08-47c3-846c-7327f74530be
                   message:
-                  name: Brenda Gulgowski PhD
+                  name: Broderick Dicki LLD
                   passcode:
                   send_email:
                   send_email_delay:
                   status:
                   subject:
                   signing_order: 14
-                  signing_url: https://www.signwell.com/docs/c6474c7d78/
+                  signing_url: https://www.signwell.com/docs/9294e8750e/
                   bounced:
                   bounced_details:
                   attachment_requests: []
                 checkbox_groups:
-                - id: ebceb4e3-caf2-4180-8825-e36ade6a8809
+                - id: 9ecdf3ec-4c9e-431e-93bf-36871379d85b
                   group_name:
                   recipient_id:
                   checkbox_ids:
@@ -1729,7 +1729,7 @@ paths:
           content:
             application/json:
               example:
-                file_url: https://www.signwell.com/signed/aA5awyrY1AI4Z2JwpJRBIXYOLp1.pdf?audit_page=true
+                file_url: https://www.signwell.com/signed/k13Anrj7wli4LBKZbD86TG8zEGy.pdf?audit_page=true
               schema:
                 "$ref": "#/components/schemas/CompletedPdfResponse"
         '404':
@@ -1779,16 +1779,16 @@ paths:
             application/json:
               example:
                 templates:
-                - id: 91752912-b8a9-4850-83b4-9df7c30f65a3
+                - id: 2deb5c74-62d3-4147-8dc6-a3eaa85dcf2b
                   archived: false
-                  created_at: '2026-02-23T17:49:46Z'
-                  embedded_edit_url: https://www.signwell.com/edit/template/1172e12d-ccab-43b9-895a-d1fb3a0bc0f8/
+                  created_at: '2026-02-25T21:12:37Z'
+                  embedded_edit_url: https://www.signwell.com/edit/template/d4967374-f11a-46ea-a2dc-b368a45d6cbd/
                   language: en
-                  name: academy_design/fugit.wav
-                  requester_email_address: glop.38.dr.glip@boyer.test
+                  name: agree-arena/hic.mp3
+                  requester_email_address: 38.jr.morty@pagac.test
                   status: Created
-                  template_link: https://www.signwell.com/new_doc/Z92ctmrtY02AKuuH/
-                  updated_at: '2026-02-23T17:49:46Z'
+                  template_link: https://www.signwell.com/new_doc/3icJ75y7a0fSSVd4/
+                  updated_at: '2026-02-25T21:12:37Z'
                   allow_decline:
                   allow_reassign:
                   api_application_id:
@@ -1802,16 +1802,16 @@ paths:
                   copied_placeholders: []
                   placeholders: []
                   checkbox_groups: []
-                - id: 1bcde792-c03c-49ea-aa5e-391603b480a3
+                - id: 0c72f38e-099d-47eb-ba7f-0033bd2e6afb
                   archived: false
-                  created_at: '2026-02-23T17:49:46Z'
-                  embedded_edit_url: https://www.signwell.com/edit/template/7ebe169c-7831-44c7-966b-b46f892d0099/
+                  created_at: '2026-02-25T21:12:37Z'
+                  embedded_edit_url: https://www.signwell.com/edit/template/dcb92988-b928-45e4-8510-91cd6398e458/
                   language: en
-                  name: corn_marine/et.csv
-                  requester_email_address: glop.38.dr.glip@boyer.test
+                  name: capital-strict/repudiandae.numbers
+                  requester_email_address: 38.jr.morty@pagac.test
                   status: Created
-                  template_link: https://www.signwell.com/new_doc/X3sQWr48FNpyKT9i/
-                  updated_at: '2026-02-23T17:49:46Z'
+                  template_link: https://www.signwell.com/new_doc/OsJZjPu221DI9PGS/
+                  updated_at: '2026-02-25T21:12:37Z'
                   allow_decline:
                   allow_reassign:
                   api_application_id:
@@ -1825,16 +1825,16 @@ paths:
                   copied_placeholders: []
                   placeholders: []
                   checkbox_groups: []
-                - id: 36ef7c91-39e4-4971-9cad-c039c92b3303
+                - id: da2c181b-0dce-4f42-b5d9-c61645577de4
                   archived: false
-                  created_at: '2026-02-23T17:49:46Z'
-                  embedded_edit_url: https://www.signwell.com/edit/template/fd1c05cf-019e-49e2-b88a-86a5911df905/
+                  created_at: '2026-02-25T21:12:37Z'
+                  embedded_edit_url: https://www.signwell.com/edit/template/dc93c41b-18ea-40fc-ae27-55e1429ee2ee/
                   language: en
-                  name: fruit_horizon/rerum.doc
-                  requester_email_address: glop.38.dr.glip@boyer.test
+                  name: book-arena/alias.jpg
+                  requester_email_address: 38.jr.morty@pagac.test
                   status: Created
-                  template_link: https://www.signwell.com/new_doc/IFGr4T7UMkMaGGYv/
-                  updated_at: '2026-02-23T17:49:46Z'
+                  template_link: https://www.signwell.com/new_doc/N2jHPCJdxMX5fRCF/
+                  updated_at: '2026-02-25T21:12:37Z'
                   allow_decline:
                   allow_reassign:
                   api_application_id:
@@ -1889,16 +1889,16 @@ paths:
           content:
             application/json:
               example:
-                id: 33568b6a-b417-48c2-bd14-5d5531ab5444
+                id: 270b6620-52ff-4a40-99ce-31cc74fee2d2
                 archived: false
-                created_at: '2026-02-23T17:49:47Z'
-                embedded_edit_url: https://www.signwell.com/edit/template/c1e33ec9-5d86-472c-82f7-6cd8015a4dc2/
+                created_at: '2026-02-25T21:12:38Z'
+                embedded_edit_url: https://www.signwell.com/edit/template/da80eb19-0bc4-42ff-8508-20c1b63a5a36/
                 language: en
                 name: Agreement
-                requester_email_address: meeseeks_54_mr@friesen.example
+                requester_email_address: smith.54.jerry@schmidt-kulas.example
                 status: Created
-                template_link: https://www.signwell.com/new_doc/0xTnpKCKw2MfMZqe/
-                updated_at: '2026-02-23T17:49:47Z'
+                template_link: https://www.signwell.com/new_doc/M3tEUbPoUOBY2ivf/
+                updated_at: '2026-02-25T21:12:38Z'
                 allow_decline: true
                 allow_reassign:
                 api_application_id:
@@ -1913,11 +1913,11 @@ paths:
                 message: Normal Body
                 subject: Normal subject
                 labels:
-                - id: f0f463e8-0ae9-44e3-83c3-1c7156c90035
+                - id: 29de8cb8-7872-4c74-89e4-f2b7f998dab2
                   name: My First Label
-                - id: 6e9caea1-5530-4d81-8f29-135854a7362d
+                - id: 581caeba-364a-4d1f-80d0-a2489f35c7af
                   name: My Second Label
-                - id: 6aa5801d-cd1c-4445-a1e9-2ccb0ed03251
+                - id: f693714b-58dd-4d21-a5b4-2fb7831a1c54
                   name: My Third Label
                 fields:
                 - - api_id: DateField_1
@@ -2015,7 +2015,7 @@ paths:
                   attachment_requests:
                   - name: normal name
                     required: true
-                    url: https://www.signwell.com/document_attachments/LnloaOj0jofgeOGaAYgWhREwyaB2/?access=c6f7bea9-68b2-4adf-9936-7fdd4150eafc
+                    url: https://www.signwell.com/document_attachments/50wn0Wk4OkFnB4beO1NYhkob5pX/?access=9acf6a14-330f-4e55-a0c8-a7fd01e1c317
                 - id: placeholder_id_2
                   name: Placeholder 2
                   subject:
@@ -2024,9 +2024,9 @@ paths:
                   attachment_requests:
                   - name: Driver License
                     required: false
-                    url: https://www.signwell.com/document_attachments/4nPMzdPR9NFKpnNW8kPnUXb04lP/?access=c6f7bea9-68b2-4adf-9936-7fdd4150eafc
+                    url: https://www.signwell.com/document_attachments/wKZ48j8EDQhnk9G8krLWIMon9pX/?access=9acf6a14-330f-4e55-a0c8-a7fd01e1c317
                 checkbox_groups:
-                - id: 3e34ec98-23c2-438b-9e9f-5d0faedba204
+                - id: 814c5d5b-d7b2-4b4a-9e8c-6ed449fc9ea2
                   group_name: Group 1
                   recipient_id:
                   checkbox_ids:
@@ -2163,16 +2163,16 @@ paths:
           content:
             application/json:
               example:
-                id: 78c2792b-47af-44c6-9294-bd7b6283f539
+                id: 2abc46ca-9ded-431b-b1e8-6fa5845914cb
                 archived: false
-                created_at: '2026-02-23T17:49:46Z'
-                embedded_edit_url: https://www.signwell.com/edit/template/7a67510b-0fd4-47e8-83a3-556228a0c443/
+                created_at: '2026-02-25T21:12:37Z'
+                embedded_edit_url: https://www.signwell.com/edit/template/877cb422-1ded-4e45-b137-23f4de3d4c05/
                 language: en
-                name: judge_dynamic/repellat.ods
-                requester_email_address: 39_mr_meeseeks@hilll.example
+                name: guess_confuse/beatae.txt
+                requester_email_address: arthricia_39@keebler-weber.test
                 status: Available
-                template_link: https://www.signwell.com/new_doc/7XSC2KjVbJ1QJqmi/
-                updated_at: '2026-02-23T17:49:46Z'
+                template_link: https://www.signwell.com/new_doc/fvGNNceB67jUgspd/
+                updated_at: '2026-02-25T21:12:37Z'
                 allow_decline:
                 allow_reassign:
                 api_application_id:
@@ -2182,8 +2182,8 @@ paths:
                 reminders:
                 metadata:
                 apply_signing_order: true
-                message: Molestias harum dolores et.
-                subject: perferendis
+                message: Aut quia aliquam iusto.
+                subject: numquam
                 fields:
                 - - api_id: Signature_28
                     height: '32.0'
@@ -2194,7 +2194,7 @@ paths:
                     width: '112.0'
                     x: 1.1
                     "y": 1.1
-                    placeholder_name: Brainiac 1
+                    placeholder_name: Evilhawk 1
                   - api_id: Signature_29
                     height: '32.0'
                     page: 2
@@ -2204,41 +2204,41 @@ paths:
                     width: '112.0'
                     x: 1.1
                     "y": 1.1
-                    placeholder_name: Two-Face Knight 2
+                    placeholder_name: Agent Naruto Uzumaki 2
                 files:
-                - name: soluta.ppt
+                - name: ea.xls
                   pages_number: 2
                 copied_placeholders:
                 - id: '3'
-                  name: Agent Hancock Claw 3
+                  name: Ink Iii 3
                   subject:
                   message:
                 - id: '4'
-                  name: The Trickster Woman 4
+                  name: Agent T Of Hearts 4
                   subject:
                   message:
-                  preassigned_recipient_name: Chandra Beier VM
-                  preassigned_recipient_email: clarissa@nolan-crist.test
+                  preassigned_recipient_name: Louie O'Hara
+                  preassigned_recipient_email: kirby_labadie@doyle.test
                 placeholders:
                 - id: '1'
-                  name: Brainiac 1
+                  name: Evilhawk 1
                   subject:
                   message:
-                  preassigned_recipient_name: Araceli Brakus VM
-                  preassigned_recipient_email: stevie_nitzsche@heller-runolfsson.example
+                  preassigned_recipient_name: Delila Goodwin
+                  preassigned_recipient_email: elyse@welch-schaefer.test
                   signing_order: 1
                   attachment_requests:
-                  - name: premium_whole/quae.pptx
+                  - name: general-minister/possimus.avi
                     required: true
-                    url: https://www.signwell.com/document_attachments/Wy2J9PwZkztdBRkKQa1kI77A2DPo/?access=2368431f-ac54-4b3b-be30-58d9b313f650
+                    url: https://www.signwell.com/document_attachments/L9p2eLgpr9fjKRPgAnbKid3BwYa/?access=b46cacf6-40c7-4ea0-b040-3fa6e4443ba1
                 - id: '2'
-                  name: Two-Face Knight 2
+                  name: Agent Naruto Uzumaki 2
                   subject:
                   message:
                   signing_order: 2
                   attachment_requests: []
                 checkbox_groups:
-                - id: df7a019c-0f45-456a-8c1f-b169d6a4783b
+                - id: abeae804-4b1d-41bc-acf2-1122f5f2c09f
                   group_name:
                   recipient_id:
                   checkbox_ids:
@@ -2286,28 +2286,28 @@ paths:
           content:
             application/json:
               example:
-                id: 16717c15-b680-4fad-82f0-4a8046118bef
+                id: 2f37ff41-735d-4f05-b222-4eb0ace3c47e
                 archived: false
-                created_at: '2026-02-23T17:49:48Z'
-                embedded_edit_url: https://www.signwell.com/edit/template/c45bed72-87da-456c-9c43-46f0c2c21c40/
+                created_at: '2026-02-25T21:12:39Z'
+                embedded_edit_url: https://www.signwell.com/edit/template/f80d2e30-0389-4bfd-bae1-95c56c43d58a/
                 language: en
-                name: Nappa
-                requester_email_address: mytholog.57.jerrys@rice-yundt.test
+                name: Mr. Popo
+                requester_email_address: 57.jessica@bosco-carter.test
                 status: Available
-                template_link: https://www.signwell.com/new_doc/zpNRcbTHZWJQl9um/
-                updated_at: '2026-02-23T17:49:49Z'
+                template_link: https://www.signwell.com/new_doc/tJgWocFRcH5s35hR/
+                updated_at: '2026-02-25T21:12:40Z'
                 allow_decline: true
                 allow_reassign: true
-                api_application_id: 977f9214-2b3a-4d91-89cc-358dd84e65d2
-                decline_redirect_url: http://lueilwitz-nikolaus.example/stacy_miller
+                api_application_id: 2fe214bc-33cd-4535-94a1-5d68519a6336
+                decline_redirect_url: http://dach-hilll.test/shaquita_cruickshank
                 expires_in: 1
-                redirect_url: http://gibson.test/rhett
+                redirect_url: http://kuhn.test/mitchel_roob
                 reminders: true
                 metadata:
                   some: metadata
                 apply_signing_order: true
-                message: Voluptas aliquam rerum eos.
-                subject: Rerum consequatur quo inventore.
+                message: Non id mollitia nobis.
+                subject: Qui numquam nesciunt sint.
                 fields:
                 - - api_id: Signature_36
                     height: '32.0'
@@ -2318,7 +2318,7 @@ paths:
                     width: '112.0'
                     x: 1.1
                     "y": 1.1
-                    placeholder_name: Ultra Abomination 9
+                    placeholder_name: Doctor Cyclops X 9
                   - api_id: Signature_37
                     height: '32.0'
                     page: 2
@@ -2328,41 +2328,41 @@ paths:
                     width: '112.0'
                     x: 1.1
                     "y": 1.1
-                    placeholder_name: Frenzy 10
+                    placeholder_name: Destroyer Strike 10
                 files:
-                - name: qui.json
+                - name: ipsa.gif
                   pages_number: 2
                 copied_placeholders:
                 - id: '3'
-                  name: Red Box 11
+                  name: Thing 11
                   subject:
                   message:
                 - id: '4'
-                  name: Osiris Ix 12
+                  name: Magnificent Groot Man 12
                   subject:
                   message:
-                  preassigned_recipient_name: Stuart Nitzsche
-                  preassigned_recipient_email: shelba@cruickshank.example
+                  preassigned_recipient_name: Jin Goyette
+                  preassigned_recipient_email: ed@ledner-robel.test
                 placeholders:
                 - id: '1'
-                  name: Ultra Abomination 9
+                  name: Doctor Cyclops X 9
                   subject:
                   message:
-                  preassigned_recipient_name: Dalila Crist
-                  preassigned_recipient_email: aurelia@bergnaum.example
+                  preassigned_recipient_name: Amb. Cassy O'Reilly
+                  preassigned_recipient_email: johnny_yost@stoltenberg.test
                   signing_order: 1
                   attachment_requests:
-                  - name: vegetarian_compete/expedita.odt
+                  - name: premium_publish/expedita.mp3
                     required: true
-                    url: https://www.signwell.com/document_attachments/LXy8N1WlqpUlL3A3AoWGIDk3aJk/?access=0f3492e2-b2ae-431b-be5a-421a0a301047
+                    url: https://www.signwell.com/document_attachments/NnPEgMwnYoHrOzE6nneRUDA8jDK/?access=6115f43c-a46a-4f9e-9993-46796fd2efd0
                 - id: '2'
-                  name: Frenzy 10
+                  name: Destroyer Strike 10
                   subject:
                   message:
                   signing_order: 2
                   attachment_requests: []
                 checkbox_groups:
-                - id: 938f1502-43f7-4c4e-a763-789968ee97ba
+                - id: 1962539f-3a6e-4393-b56d-9fd97cf8e6f3
                   group_name:
                   recipient_id:
                   checkbox_ids:
@@ -2480,22 +2480,24 @@ paths:
           content:
             application/json:
               example:
-                id: a92a0f3b-1317-406d-ba30-f8e1b5cf2914
+                id: c2e0afab-71f5-4e12-b754-a28d67fb18f4
                 callback_urls: []
-                created_at: '2026-02-23T17:49:51Z'
-                name: Y-Solowarm
-                updated_at: '2026-02-23T17:49:51Z'
+                created_at: '2026-02-25T21:12:41Z'
+                name: Bitchip
+                updated_at: '2026-02-25T21:12:41Z'
                 owner:
-                  id: e1ee1de0-eb42-4daa-aec0-6f2cd1f01358
-                  account_id: c64b034b-be1f-406d-8ad4-e9883ca04d90
-                  name: Jerry Smith
-                  email: smith_83_jerry@dach.example
+                  id: a3adec82-efcf-49cf-b4ea-6b38b97b7c9a
+                  account_id: bc2f5ec0-7c22-40d4-85c8-bc0246aeb441
+                  name: Fart
+                  email: fart_83@gibson.example
                 preferences:
-                  button_text_color: D9EDD9
-                  buttons_border_radius: 13
+                  button_text_color: 93A9A9
+                  buttons_border_radius: 6
                   custom_logo_file: "/Users/signwell/Code/docsketch/tmp/test_files/files_number/api_application_preferences/000/000/003/original.png"
-                  link_text_color: 4EFD4E
-                  primary_color: C3C309
+                  link_text_color: EAB3EA
+                  primary_color: 7F1F1F
+              schema:
+                "$ref": "#/components/schemas/ApiApplicationResponse"
         '404':
           description: not_found
           content:
@@ -2570,27 +2572,29 @@ paths:
           content:
             application/json:
               example:
-              - id: 123260e1-64b6-4350-934f-ab6b8d7afd03
-                callback_url: http://quitzon.test/emerald
-              - id: 6150c58a-4844-4a83-a059-6d8504ffafd6
-                callback_url: http://beahan.example/marcella.stiedemann
-              - id: dabc03bd-19df-469d-a94c-aa6b9c32a571
-                callback_url: http://donnelly.test/bambi
-              - id: 2b4b397a-d5a5-448e-88ba-181ed41ee021
-                callback_url: http://schoen.example/rosario_strosin
-                api_application_id: 655f24c3-f609-464d-b7a7-84267fa0587d
-              - id: 84d081f2-1985-40ce-8f5c-6bdf7a8bced5
-                callback_url: http://tromp.test/dana_wisoky
-                api_application_id: 655f24c3-f609-464d-b7a7-84267fa0587d
-              - id: 4831abd1-ef55-402e-bf49-c1208bd0924b
-                callback_url: http://morar.test/salley_huel
-                api_application_id: 655f24c3-f609-464d-b7a7-84267fa0587d
-              - id: 2141a7d6-fa36-4461-939a-cc91f906488b
-                callback_url: http://raynor.test/cora
-                api_application_id: 655f24c3-f609-464d-b7a7-84267fa0587d
-              - id: d58df578-d6a4-41b5-92a1-5ec08dd4f733
-                callback_url: http://dickens.test/soila.hessel
-                api_application_id: 655f24c3-f609-464d-b7a7-84267fa0587d
+              - id: 6339a6fd-e6d4-4fb2-8159-8cc568eec65f
+                callback_url: http://denesik.example/lanelle.greenholt
+              - id: f6360bf4-821e-47d3-b62f-844ee7eab858
+                callback_url: http://runolfsdottir-keebler.test/shelba
+              - id: 37eb5193-0d8c-43b6-b4d3-254e157859ca
+                callback_url: http://heller.test/donald
+              - id: e8142417-fdff-4f42-bd79-027f4205e3a0
+                callback_url: http://kuphal.test/logan
+                api_application_id: 5af5bbb0-20ed-4ca8-b36b-9d16a872d5f7
+              - id: 68a2ad4d-9998-448c-9202-59aea120287a
+                callback_url: http://zboncak.test/jung.maggio
+                api_application_id: 5af5bbb0-20ed-4ca8-b36b-9d16a872d5f7
+              - id: 70b9cc3c-47b3-4806-a3c7-f57471f742f9
+                callback_url: http://donnelly.example/shanta_russel
+                api_application_id: 5af5bbb0-20ed-4ca8-b36b-9d16a872d5f7
+              - id: 5454f545-66b7-4df6-a55e-2a21d4caa055
+                callback_url: http://reilly-beier.test/ned
+                api_application_id: 5af5bbb0-20ed-4ca8-b36b-9d16a872d5f7
+              - id: 2ef189b8-2b12-4762-a0a7-2c28618304d6
+                callback_url: http://dietrich-krajcik.example/mason
+                api_application_id: 5af5bbb0-20ed-4ca8-b36b-9d16a872d5f7
+              schema:
+                "$ref": "#/components/schemas/WebhookListResponse"
         '429':
           description: rate limit exceeded
           content:
@@ -2612,8 +2616,10 @@ paths:
           content:
             application/json:
               example:
-                id: 014e605b-9a44-4510-bf56-778ec758020c
-                callback_url: http://berge-christiansen.test/ahmad_smith
+                id: 3693dc41-76ee-494f-93fc-a2f9ea7bd6b8
+                callback_url: http://braun-dibbert.test/ghislaine_block
+              schema:
+                "$ref": "#/components/schemas/WebhookResponse"
         '400':
           description: bad request
           content:
@@ -2707,51 +2713,53 @@ paths:
           content:
             application/json:
               example:
-                id: 5354c123-8d09-4e21-ad1a-a0d817c444e5
+                id: 2e94b550-01c4-4755-807e-bb5f0cb4d258
                 role: owner
                 archived: false
                 user:
-                  id: 570e29b5-0e4d-4c22-a0ff-0f0fcc57f520
-                  name: Beth's Mytholog
-                  email: 93.mytholog.beths@fritsch-wiza.test
+                  id: d677c623-7d23-48b6-b8c5-b896aebe406d
+                  name: Loggins
+                  email: 93_loggins@swaniawski.test
                   has_google_registration: false
-                  first_name: Beth's
+                  first_name: Loggins
                 account:
-                  id: e973f703-6da2-4f6c-8ec1-bd8dfee4dbe2
-                  name: Wehner-Becker
+                  id: cfa2b477-4cf4-493f-95a1-84a0928c048d
+                  name: Fahey and Sons
                   plan_tier: free
                   active_templates: 0
                   can_create_template: true
                   can_create_tracking_document: true
                   can_create_completion_document: true
                   active_users:
-                  - id: 570e29b5-0e4d-4c22-a0ff-0f0fcc57f520
-                    name: Beth's Mytholog
-                    email: 93.mytholog.beths@fritsch-wiza.test
+                  - id: d677c623-7d23-48b6-b8c5-b896aebe406d
+                    name: Loggins
+                    email: 93_loggins@swaniawski.test
                     has_google_registration: false
                 workspace:
-                  id: e973f703-6da2-4f6c-8ec1-bd8dfee4dbe2
-                  name: Wehner-Becker
+                  id: cfa2b477-4cf4-493f-95a1-84a0928c048d
+                  name: Fahey and Sons
                   plan_tier: free
                   active_templates: 0
                   can_create_template: true
                   can_create_tracking_document: true
                   can_create_completion_document: true
                   active_users:
-                  - id: 570e29b5-0e4d-4c22-a0ff-0f0fcc57f520
-                    name: Beth's Mytholog
-                    email: 93.mytholog.beths@fritsch-wiza.test
+                  - id: d677c623-7d23-48b6-b8c5-b896aebe406d
+                    name: Loggins
+                    email: 93_loggins@swaniawski.test
                     has_google_registration: false
                 contact:
-                  id: 1d99ab8a-bd7b-4f84-8027-d9e104b49745
-                  email: 93.mytholog.beths@fritsch-wiza.test
-                  name: Beth's Mytholog
-                  company_name: Feil-O'Keefe
-                  phone_number: 835 244 9563
-                  alt_phone_number: 296 604 0752
-                  website: http://johnson.test/drew_hilpert
-                  initials: B'
+                  id: 1b746ebc-21ba-4425-896b-bccc2e57d841
+                  email: 93_loggins@swaniawski.test
+                  name: Loggins
+                  company_name: Bosco and Sons
+                  phone_number: 301.671.1815
+                  alt_phone_number: 160.933.7358
+                  website: http://langworth-rowe.test/aretha
+                  initials: LO
                   archived: false
+              schema:
+                "$ref": "#/components/schemas/MeResponse"
         '401':
           description: unauthorized
           content:
@@ -2792,18 +2800,20 @@ paths:
           content:
             application/json:
               example:
-                id: fb8a282b-199e-4530-b6a4-e93c8970e1f3
-                name: Aldburg
+                id: 72151b9c-23bc-4e76-95ca-03ed15414eb1
+                name: Regions of the Shire
                 api_application_id:
                 documents_count: 0
                 documents_completed: 0
                 documents_not_completed: 0
-                created_at: '2026-02-23T17:49:53Z'
+                created_at: '2026-02-25T21:12:44Z'
                 user_id:
                 status: Created
                 templates:
-                - id: b39037e1-7b98-45de-88f8-93a1d93cfe6d
-                  name: relationship_publish/quia.numbers
+                - id: 7b25ec62-d2e5-4ea5-8351-0c65606f4785
+                  name: design_freckle/beatae.json
+              schema:
+                "$ref": "#/components/schemas/BulkSendResponse"
         '401':
           description: unauthorized
           content:
@@ -2873,61 +2883,61 @@ paths:
             application/json:
               example:
                 bulk_sends:
-                - id: 9d900819-f38f-4885-8dfa-ee086f5db409
-                  name: Hobbit-hole
+                - id: e6ebfc36-8c34-49c0-b113-c27907723994
+                  name: Andustar
                   api_application_id:
                   documents_count: 0
                   documents_completed: 0
                   documents_not_completed: 0
-                  created_at: '2026-02-23T17:49:54Z'
+                  created_at: '2026-02-25T21:12:45Z'
                   user_id:
                   status: Created
                   template_ids:
-                  - '089b920d-d50c-4ad7-81c2-977ead53b722'
-                - id: fd319243-7ad1-43e9-b07e-b364cd99af7e
-                  name: Argonath
+                  - ac01fe98-c70a-465c-82ba-bc6abce9ce60
+                - id: 5d7a0dfc-9ec7-46df-a75f-caf7ef66733a
+                  name: Minhiriath
                   api_application_id:
                   documents_count: 0
                   documents_completed: 0
                   documents_not_completed: 0
-                  created_at: '2026-02-23T17:49:54Z'
+                  created_at: '2026-02-25T21:12:45Z'
                   user_id:
                   status: Created
                   template_ids:
-                  - '089b920d-d50c-4ad7-81c2-977ead53b722'
-                - id: de2bdb35-f06f-4fb1-b72c-a0e2f44ec01a
-                  name: Coldfells
+                  - ac01fe98-c70a-465c-82ba-bc6abce9ce60
+                - id: 5d1a5aae-acea-4d8f-8d6f-64aa4a678626
+                  name: Pelennor Fields
                   api_application_id:
                   documents_count: 0
                   documents_completed: 0
                   documents_not_completed: 0
-                  created_at: '2026-02-23T17:49:54Z'
+                  created_at: '2026-02-25T21:12:45Z'
                   user_id:
                   status: Created
                   template_ids:
-                  - '089b920d-d50c-4ad7-81c2-977ead53b722'
-                - id: 2dec625c-423e-40a4-84d9-0fae9de3c93f
-                  name: Fens of Serech
+                  - ac01fe98-c70a-465c-82ba-bc6abce9ce60
+                - id: c5521d30-ff17-4d9d-8495-eec3016b96c9
+                  name: Parth Galen
                   api_application_id:
                   documents_count: 0
                   documents_completed: 0
                   documents_not_completed: 0
-                  created_at: '2026-02-23T17:49:54Z'
+                  created_at: '2026-02-25T21:12:45Z'
                   user_id:
                   status: Created
                   template_ids:
-                  - '089b920d-d50c-4ad7-81c2-977ead53b722'
-                - id: 494ce173-a625-4801-915d-13802c83bc95
-                  name: The Rivers and Beacon-Hills of Gondor
+                  - ac01fe98-c70a-465c-82ba-bc6abce9ce60
+                - id: 0df68551-bdfd-42ad-902c-910fe2f4edb9
+                  name: Haven of the Eldar
                   api_application_id:
                   documents_count: 0
                   documents_completed: 0
                   documents_not_completed: 0
-                  created_at: '2026-02-23T17:49:54Z'
+                  created_at: '2026-02-25T21:12:45Z'
                   user_id:
                   status: Created
                   template_ids:
-                  - '089b920d-d50c-4ad7-81c2-977ead53b722'
+                  - ac01fe98-c70a-465c-82ba-bc6abce9ce60
                 current_page: 1
                 next_page:
                 previous_page:
@@ -2970,14 +2980,16 @@ paths:
           content:
             application/json:
               example:
-                id: 9b7dcb37-c678-4f46-9bf7-1834a23ad5fa
+                id: 28b2638c-f86d-462a-9f09-fd89466012da
                 template_ids:
-                - bd0bf337-2b74-47e5-8d04-c35aa3801cae
-                api_application_id: 8ddafd79-9e19-4b45-b1a2-43de3f0f2910
+                - f1c02f0f-992c-4112-ae6d-75dff4ddf6b2
+                api_application_id: 4121a091-8549-4058-af38-94c5abdc0ac3
                 documents_count: 0
-                created_at: '2026-02-23T17:49:55Z'
-                user_id: 6dabeaf6-a8fd-4e04-b92d-329ba756ab1c
+                created_at: '2026-02-25T21:12:45Z'
+                user_id: 5547b3b2-d45c-4be0-b05c-c0b7697423be
                 status: Enqueuing
+              schema:
+                "$ref": "#/components/schemas/BulkSendCreateResponse"
         '422':
           description: unprocessable entity
           content:
@@ -3056,10 +3068,10 @@ paths:
                 format: binary
               example: |
                 document_sender_email,document_sender_name
-                mytholog.116.beths@boehm.example,Beth's Mytholog
+                gazorpazorpfield.116@cormier-jacobs.test,Gazorpazorpfield
             application/json:
               example:
-                data: ZG9jdW1lbnRfc2VuZGVyX2VtYWlsLGRvY3VtZW50X3NlbmRlcl9uYW1lCmtyb21ib3B1bG9zX21pY2hhZWxfMTIwQGRhdmlzLnRlc3QsS3JvbWJvcHVsb3MgTWljaGFlbAo=
+                data: ZG9jdW1lbnRfc2VuZGVyX2VtYWlsLGRvY3VtZW50X3NlbmRlcl9uYW1lCm1yLjEyMC5nb2xkZW5mb2xkQGhpbGxzLmV4YW1wbGUsTXIuIEdvbGRlbmZvbGQK
               schema:
                 "$ref": "#/components/schemas/BulkSendCsvTemplateResponse"
         '401':
@@ -3114,14 +3126,16 @@ paths:
               example:
                 bulk_send_csv: IkRvY3VtZW50IFNlbmRlciBFbWFpbCIsJ0RvY3VtZW50IFNlbmRlciBOYW1lJywvXERvY3VtZW50LSBTZW5kZXIgPUxhYmVsLEBSZWNpcGllbnRfIEVtYWlsLFJlY2lwaWVudCAqTmFtZSxgUmVjaXBpZW50fiFAIyQlXiYqKCl7fVtdPD4uPyBMYWJlbGAKc2VuZGVyQHNpZ253ZWxsLmNvbSxTZW5kZXIsU2VuZGVyLHJlY2lwaWVudEBzaWdud2VsbC5jb20sUmVjaXBpZW50LFJlY2lwaWVudAplbWFpbEBzb21lLmNvbSwsLGVtYWlsMkBzb21lLmNvbQo=
                 template_ids:
-                - e296fda3-0cfc-47f2-a7aa-b7a50ae75755
+                - 36d82960-94d4-4a3a-9ca4-888f772dc62d
                 skip_row_errors: false
                 api_application_id:
-                name: offensive_strap/non.pptx
-                subject: Please complete offensive_strap/non.pptx
+                name: deport_polish/mollitia.ppt
+                subject: Please complete deport_polish/mollitia.ppt
                 message: "<p>Hey there,</p><p>&nbsp;</p><p>Please review and complete
                   this document. You can click on the document below to get started.</p>"
                 apply_signing_order: false
+              schema:
+                "$ref": "#/components/schemas/BulkSendValidateCsvResponse"
         '422':
           description: unprocessable entity
           content:
@@ -3197,48 +3211,48 @@ paths:
           content:
             application/json:
               example:
-                id: 9a25ddc9-01bd-4fc6-8677-3e1d81756adf
-                name: Isengard
+                id: 8b179f6a-bd35-45e5-8260-9a3a3e06bfae
+                name: Eithel Sirion
                 api_application_id:
-                created_at: '2026-02-23T17:50:00Z'
+                created_at: '2026-02-25T21:12:49Z'
                 user_id:
                 status: Created
                 documents:
-                - id: cbab0863-7ec7-4369-b4bd-63b1999a24dd
+                - id: fabbcafe-484f-4121-a86e-6baef08c90af
                   archived: false
-                  created_at: '2026-02-23T17:49:59Z'
+                  created_at: '2026-02-25T21:12:49Z'
                   decline_message:
-                  embedded_edit_url: https://www.signwell.com/edit/document/d1607bec-64ff-44e4-902c-c10d74f1bb8f/
+                  embedded_edit_url: https://www.signwell.com/edit/document/81c63385-3f42-46ab-9126-7afcb1f1b6ee/
                   error_message:
                   embedded_preview_url:
                   language: en
-                  name: widen_judge/exercitationem.pages
-                  requester_email_address: rick_136_sanchez@pollich.test
+                  name: linger-minister/repellat.numbers
+                  requester_email_address: 136_abradolf_lincler@rosenbaum.test
                   status: Created
                   test_mode: false
-                  updated_at: '2026-02-23T17:49:59Z'
+                  updated_at: '2026-02-25T21:12:49Z'
                   allow_decline: true
                   allow_reassign: true
                   api_application_id:
-                  custom_requester_email: janice@glover.test
-                  custom_requester_name: Finn
-                  decline_redirect_url: http://lowe.test/ardella
+                  custom_requester_email: guy@pagac.test
+                  custom_requester_name: Lando Calrissian
+                  decline_redirect_url: http://gutmann.example/mitchell
                   embedded_signing: false
                   expires_in: 10
                   metadata:
-                    eos: ipsum
-                    optio: odit
-                  redirect_url: http://grant.example/mariam
+                    quis: rem
+                    animi: amet
+                  redirect_url: http://daugherty-lowe.example/deon_robel
                   reminders: true
                   apply_signing_order: false
                   message: "<p>Hey there,</p><p>&nbsp;</p><p>Please review and complete
                     this document. You can click on the document below to get started.</p>"
-                  subject: Please complete widen_judge/exercitationem.pages
+                  subject: Please complete linger-minister/repellat.numbers
                   labels:
-                  - id: d97ec049-f11f-45b5-adb6-252bd5991c4b
-                    name: Hai Farrell
-                  - id: 6512761f-55f9-4053-bc22-9b022343c42f
-                    name: Tamela Hills Esq.
+                  - id: bc832b06-4362-4644-8c11-2049827a20f9
+                    name: Tynisha Mohr
+                  - id: cdaf8dfc-6c8e-4871-a031-2bf10b06dc9e
+                    name: Jeffrey Veum
                   fields:
                   - - api_id: CheckBox_52
                       height: '13.0'
@@ -3251,7 +3265,7 @@ paths:
                       "y": 1.1
                       name:
                       recipient_id:
-                      signing_elements_group_id: be4caa8e-0081-4cfa-aad2-80001af0bebf
+                      signing_elements_group_id: c729064e-07e6-4ecd-8180-53639f6c0324
                     - api_id: CheckBox_53
                       height: '13.0'
                       page: 1
@@ -3272,47 +3286,47 @@ paths:
                       width: '112.0'
                       x: 1.1
                       "y": 1.1
-                      recipient_id: 6524c0af-1cf9-4379-b579-6463218499ab
+                      recipient_id: bf0cb122-7bf2-4e9d-8f36-636867e170ab
                   files:
-                  - name: quia.html
+                  - name: ex.odp
                     pages_number: 1
                   copied_contacts:
-                  - name: Tawny Aufderhar
-                    email: pedro@toy-schinner.example
+                  - name: Rubin Kohler
+                    email: britta_robel@douglas.test
                   recipients:
-                  - email: terrie_rath@king-goyette.test
-                    id: 6524c0af-1cf9-4379-b579-6463218499ab
+                  - email: jeffry_weissnat@kertzmann.example
+                    id: bf0cb122-7bf2-4e9d-8f36-636867e170ab
                     message:
-                    name: The Hon. Maribel Yost
+                    name: Mr. Nancy Gottlieb
                     passcode:
                     send_email:
                     send_email_delay:
                     status: created
                     subject:
                     signing_order: 31
-                    signing_url: https://www.signwell.com/docs/254bf603d8/
+                    signing_url: https://www.signwell.com/docs/4f1f6e8e7e/
                     bounced:
                     bounced_details:
                     attachment_requests:
-                    - name: provision-strap/assumenda.jpg
+                    - name: midnight-branch/officiis.bmp
                       required: true
-                      url: https://www.signwell.com/document_attachments/e3jE2JeJBeFnMrEDn1Oqs3Y0779/?access=b2e92bf7-4ee1-47db-b411-ec6a31fba842
-                  - email: danny@barrows-kihn.example
-                    id: 80d0f189-a5aa-446c-bbd6-e3d9bb632e85
+                      url: https://www.signwell.com/document_attachments/Dg4jgAa66ouo21NzlaP9FXl4M1g/?access=c557a092-4ceb-40f3-ad4e-82597934fc86
+                  - email: joellen@wehner.test
+                    id: f8a690c3-298d-4a59-9f86-3be02c348cb1
                     message:
-                    name: Roxane Gulgowski
+                    name: Temple McClure
                     passcode:
                     send_email:
                     send_email_delay:
                     status: created
                     subject:
                     signing_order: 32
-                    signing_url: https://www.signwell.com/docs/07957e84ca/
+                    signing_url: https://www.signwell.com/docs/d2433e366f/
                     bounced:
                     bounced_details:
                     attachment_requests: []
                   checkbox_groups:
-                  - id: be4caa8e-0081-4cfa-aad2-80001af0bebf
+                  - id: c729064e-07e6-4ecd-8180-53639f6c0324
                     group_name:
                     recipient_id:
                     checkbox_ids:
@@ -3324,6 +3338,8 @@ paths:
                 previous_page:
                 total_count: 1
                 total_pages: 1
+              schema:
+                "$ref": "#/components/schemas/BulkSendDocumentsResponse"
         '401':
           description: unauthorized
           content:
@@ -3388,7 +3404,7 @@ paths:
           content:
             application/json:
               example:
-                file_url: https://www.signwell.com/completed_docs/Edadg02kl3Te2Z2rwq6wtBZz8Lb/nom151_certificate/
+                file_url: https://www.signwell.com/completed_docs/BANAPW4DJPc4BDRbAOQYF5wZPRnb/nom151_certificate/
               schema:
                 "$ref": "#/components/schemas/Nom151UrlResponse"
         '404':
@@ -6056,6 +6072,396 @@ components:
       - current_page
       - total_count
       - total_pages
+    MeResponse:
+      type: object
+      description: Account information associated with the API key
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Membership ID
+        role:
+          type: string
+          description: Role within the account (e.g. owner, admin, member)
+        archived:
+          type: boolean
+        user:
+          type: object
+          description: The authenticated user
+          properties:
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            email:
+              type: string
+              format: email
+            has_google_registration:
+              type: boolean
+            first_name:
+              type: string
+          required:
+          - id
+          - name
+          - email
+        account:
+          type: object
+          description: The account the user belongs to
+          properties:
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            plan_tier:
+              type: string
+            active_templates:
+              type: integer
+            can_create_template:
+              type: boolean
+            can_create_tracking_document:
+              type: boolean
+            can_create_completion_document:
+              type: boolean
+            active_users:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  email:
+                    type: string
+                    format: email
+                  has_google_registration:
+                    type: boolean
+                required:
+                - id
+                - name
+                - email
+          required:
+          - id
+          - name
+          - plan_tier
+        workspace:
+          type: object
+          description: The workspace (alias for account)
+          properties:
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            plan_tier:
+              type: string
+            active_templates:
+              type: integer
+            can_create_template:
+              type: boolean
+            can_create_tracking_document:
+              type: boolean
+            can_create_completion_document:
+              type: boolean
+            active_users:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  email:
+                    type: string
+                    format: email
+                  has_google_registration:
+                    type: boolean
+                required:
+                - id
+                - name
+                - email
+          required:
+          - id
+          - name
+          - plan_tier
+        contact:
+          type: object
+          description: The contact record for the authenticated user
+          properties:
+            id:
+              type: string
+              format: uuid
+            email:
+              type: string
+              format: email
+            name:
+              type: string
+            company_name:
+              type: string
+              nullable: true
+            phone_number:
+              type: string
+              nullable: true
+            alt_phone_number:
+              type: string
+              nullable: true
+            website:
+              type: string
+              nullable: true
+            initials:
+              type: string
+            archived:
+              type: boolean
+          required:
+          - id
+          - email
+          - name
+      required:
+      - id
+      - role
+      - user
+      - account
+      - contact
+    ApiApplicationResponse:
+      type: object
+      description: API application details
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        callback_urls:
+          type: array
+          items:
+            type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            account_id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            email:
+              type: string
+              format: email
+          required:
+          - id
+          - name
+          - email
+        preferences:
+          type: object
+          properties:
+            button_text_color:
+              type: string
+              nullable: true
+            buttons_border_radius:
+              type: integer
+            custom_logo_file:
+              type: string
+              nullable: true
+            link_text_color:
+              type: string
+              nullable: true
+            primary_color:
+              type: string
+              nullable: true
+      required:
+      - id
+      - name
+    BulkSendResponse:
+      type: object
+      description: Bulk send details
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        api_application_id:
+          type: string
+          format: uuid
+          nullable: true
+        documents_count:
+          type: integer
+        documents_completed:
+          type: integer
+        documents_not_completed:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+        templates:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+            required:
+            - id
+            - name
+      required:
+      - id
+      - documents_count
+      - created_at
+      - status
+    BulkSendCreateResponse:
+      type: object
+      description: Bulk send creation response
+      properties:
+        id:
+          type: string
+          format: uuid
+        template_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        api_application_id:
+          type: string
+          format: uuid
+          nullable: true
+        documents_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+      required:
+      - id
+      - template_ids
+      - documents_count
+      - created_at
+      - status
+    BulkSendDocumentsResponse:
+      type: object
+      description: Paginated list of documents in a bulk send
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        api_application_id:
+          type: string
+          format: uuid
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+          format: uuid
+          nullable: true
+        status:
+          type: string
+        documents:
+          type: array
+          items:
+            "$ref": "#/components/schemas/DocumentResponse"
+        current_page:
+          type: integer
+        next_page:
+          type: integer
+          nullable: true
+        previous_page:
+          type: integer
+          nullable: true
+        total_count:
+          type: integer
+        total_pages:
+          type: integer
+      required:
+      - id
+      - documents
+      - current_page
+      - total_count
+      - total_pages
+    BulkSendValidateCsvResponse:
+      type: object
+      description: Validated bulk send CSV response with defaults applied
+      properties:
+        bulk_send_csv:
+          type: string
+          description: Base64-encoded CSV content
+        template_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        skip_row_errors:
+          type: boolean
+        api_application_id:
+          type: string
+          format: uuid
+          nullable: true
+        name:
+          type: string
+        subject:
+          type: string
+        message:
+          type: string
+        apply_signing_order:
+          type: boolean
+      required:
+      - bulk_send_csv
+      - template_ids
+    WebhookResponse:
+      type: object
+      description: Webhook subscription
+      properties:
+        id:
+          type: string
+          format: uuid
+        callback_url:
+          type: string
+          format: url
+        event:
+          type: string
+          nullable: true
+        api_application_id:
+          type: string
+          format: uuid
+          nullable: true
+      required:
+      - id
+      - callback_url
+    WebhookListResponse:
+      type: array
+      description: List of webhook subscriptions
+      items:
+        "$ref": "#/components/schemas/WebhookResponse"
     ErrorResponse:
       type: object
       description: Standard error response
@@ -6103,4 +6509,4 @@ components:
       required:
       - error
 servers:
-- url: https://www.signwell.com
+- url: https://staging.signwell.com

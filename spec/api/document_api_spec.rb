@@ -67,6 +67,13 @@ RSpec.describe SignWell::Resources::DocumentApi, :prism do
     end
   end
 
+  describe '#list_documents' do
+    it 'returns DocumentListResponse' do
+      result = @api.list_documents
+      expect(result).not_to be_nil
+    end
+  end
+
   describe '#send_document' do
     it 'returns DocumentResponse' do
       body = SignWell::UpdateDocumentAndSendRequest.new

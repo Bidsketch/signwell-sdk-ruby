@@ -1,6 +1,6 @@
 # SignWell::APIApplicationApi
 
-All URIs are relative to *https://www.signwell.com*
+All URIs are relative to *https://staging.signwell.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
@@ -80,7 +80,7 @@ nil (empty response body)
 
 ## get_api_application
 
-> get_api_application(id)
+> <ApiApplicationResponse> get_api_application(id)
 
 Get API Application
 
@@ -104,7 +104,8 @@ id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String |
 
 begin
   # Get API Application
-  api_instance.get_api_application(id)
+  result = api_instance.get_api_application(id)
+  p result
 rescue SignWell::ApiError => e
   puts "Error when calling APIApplicationApi->get_api_application: #{e}"
 end
@@ -112,9 +113,9 @@ end
 
 #### Using the get_api_application_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> get_api_application_with_http_info(id)
+> <Array(<ApiApplicationResponse>, Integer, Hash)> get_api_application_with_http_info(id)
 
 ```ruby
 begin
@@ -122,7 +123,7 @@ begin
   data, status_code, headers = api_instance.get_api_application_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <ApiApplicationResponse>
 rescue SignWell::ApiError => e
   puts "Error when calling APIApplicationApi->get_api_application_with_http_info: #{e}"
 end
@@ -136,7 +137,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**ApiApplicationResponse**](ApiApplicationResponse.md)
 
 ### Authorization
 

@@ -1,6 +1,6 @@
 # SignWell::WebhooksApi
 
-All URIs are relative to *https://www.signwell.com*
+All URIs are relative to *https://staging.signwell.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
@@ -11,7 +11,7 @@ All URIs are relative to *https://www.signwell.com*
 
 ## create_webhook
 
-> create_webhook(create_webhook_request)
+> <WebhookResponse> create_webhook(create_webhook_request)
 
 Create Webhook
 
@@ -35,7 +35,8 @@ create_webhook_request = SignWell::CreateWebhookRequest.new({callback_url: 'http
 
 begin
   # Create Webhook
-  api_instance.create_webhook(create_webhook_request)
+  result = api_instance.create_webhook(create_webhook_request)
+  p result
 rescue SignWell::ApiError => e
   puts "Error when calling WebhooksApi->create_webhook: #{e}"
 end
@@ -43,9 +44,9 @@ end
 
 #### Using the create_webhook_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> create_webhook_with_http_info(create_webhook_request)
+> <Array(<WebhookResponse>, Integer, Hash)> create_webhook_with_http_info(create_webhook_request)
 
 ```ruby
 begin
@@ -53,7 +54,7 @@ begin
   data, status_code, headers = api_instance.create_webhook_with_http_info(create_webhook_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <WebhookResponse>
 rescue SignWell::ApiError => e
   puts "Error when calling WebhooksApi->create_webhook_with_http_info: #{e}"
 end
@@ -67,7 +68,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**WebhookResponse**](WebhookResponse.md)
 
 ### Authorization
 
@@ -151,7 +152,7 @@ nil (empty response body)
 
 ## list_webhooks
 
-> list_webhooks
+> <Array<WebhookResponse>> list_webhooks
 
 List Webhooks
 
@@ -174,7 +175,8 @@ api_instance = SignWell::WebhooksApi.new
 
 begin
   # List Webhooks
-  api_instance.list_webhooks
+  result = api_instance.list_webhooks
+  p result
 rescue SignWell::ApiError => e
   puts "Error when calling WebhooksApi->list_webhooks: #{e}"
 end
@@ -182,9 +184,9 @@ end
 
 #### Using the list_webhooks_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> list_webhooks_with_http_info
+> <Array(<Array<WebhookResponse>>, Integer, Hash)> list_webhooks_with_http_info
 
 ```ruby
 begin
@@ -192,7 +194,7 @@ begin
   data, status_code, headers = api_instance.list_webhooks_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
+  p data # => <Array<WebhookResponse>>
 rescue SignWell::ApiError => e
   puts "Error when calling WebhooksApi->list_webhooks_with_http_info: #{e}"
 end
@@ -204,7 +206,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-nil (empty response body)
+[**Array&lt;WebhookResponse&gt;**](WebhookResponse.md)
 
 ### Authorization
 

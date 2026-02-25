@@ -1,6 +1,6 @@
 # SignWell::RegionalApi
 
-All URIs are relative to *https://www.signwell.com*
+All URIs are relative to *https://staging.signwell.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |

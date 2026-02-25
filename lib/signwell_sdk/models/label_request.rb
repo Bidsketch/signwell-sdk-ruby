@@ -17,6 +17,7 @@ module SignWell
   module Models
     # Labels can be used to organize documents and templates in a way that can make it easy to find using the document search/template search in SignWell. Labels can be used to organize documents in a way that can make it easy to find using the document search in SignWell.
     class LabelRequest
+      # @return [String]
       attr_accessor :name
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -98,7 +99,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -107,7 +108,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -145,8 +146,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

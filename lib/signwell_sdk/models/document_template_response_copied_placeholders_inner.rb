@@ -16,8 +16,26 @@ require 'time'
 module SignWell
   module Models
     class DocumentTemplateResponseCopiedPlaceholdersInner
-      attr_accessor :id, :placeholder_id, :name, :subject, :message, :preassigned_recipient_name,
-                    :preassigned_recipient_email
+      # @return [String]
+      attr_accessor :id
+
+      # @return [String]
+      attr_accessor :placeholder_id
+
+      # @return [String]
+      attr_accessor :name
+
+      # @return [String]
+      attr_accessor :subject
+
+      # @return [String]
+      attr_accessor :message
+
+      # @return [String]
+      attr_accessor :preassigned_recipient_name
+
+      # @return [String]
+      attr_accessor :preassigned_recipient_email
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
@@ -129,7 +147,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -144,7 +162,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -182,8 +200,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym
