@@ -17,27 +17,35 @@ module SignWell
   module Models
     class RecipientsInner
       # A unique identifier that you will give to each recipient. We recommend numbering sequentially from 1 to X. IDs are required for associating recipients to fields and more.
+      # @return [String]
       attr_accessor :id
 
       # Name of the recipient.
+      # @return [String]
       attr_accessor :name
 
       # Email address for the recipient.
+      # @return [String]
       attr_accessor :email
 
       # If set, signers assigned with a passcode will be required to enter the passcode before they’re able to view and complete the document.
+      # @return [String]
       attr_accessor :passcode
 
       # Email subject for the signature request that the recipient will see. Overrides the general subject for the document.
+      # @return [String]
       attr_accessor :subject
 
       # Email message for the signature request that the recipient will see. Overrides the general message for the document.
+      # @return [String]
       attr_accessor :message
 
       # Applies on when `embedded_signing` is `true`. By default, recipients are not notified through email to sign when doing embedded signing. Setting this to `true`  will send a notification email to the recipient. Default is `false`.
+      # @return [Boolean]
       attr_accessor :send_email
 
       # If `send_email` is `true` recipients will receive a new document notification immediately. In the case of embedded signing, you can delay this notification to only send if the document is not completed within a few minutes. The email notification will not go out if the document is completed before the delay time is over. Valid values are in minutes ranging from `0` to `60`. Defaults to `0`.
+      # @return [Integer]
       attr_accessor :send_email_delay
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -166,7 +174,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -182,7 +190,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -220,8 +228,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

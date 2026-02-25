@@ -27,14 +27,14 @@ module SignWell
       end
 
       # Builds the enum from string
-      # @param [String] The enum value in the form of the string
+      # @param [String] value The enum value in the form of the string
       # @return [String] The enum value
       def self.build_from_hash(value)
         new.build_from_hash(value)
       end
 
       # Builds the enum from string
-      # @param [String] The enum value in the form of the string
+      # @param [String] value The enum value in the form of the string
       # @return [String] The enum value
       def build_from_hash(value)
         return value if DateFormat.all_vars.include?(value)

@@ -17,15 +17,19 @@ module SignWell
   module Models
     class PlaceholdersInner
       # A unique identifier that you will give to each placeholder. We recommend numbering sequentially from 1 to X. IDs are required for associating recipients to fields and more.
+      # @return [String]
       attr_accessor :id
 
       # Name of the placeholder.
+      # @return [String]
       attr_accessor :name
 
       # In some cases, it may be necessary to pre-fill the name and email for a placeholder because it will always be the same person for all documents created from this template. This sets the name.
+      # @return [String]
       attr_accessor :preassigned_recipient_name
 
       # In some cases, it may be necessary to pre-fill the name and email for a placeholder because it will always be the same person for all documents created from this template. This sets the email.
+      # @return [String]
       attr_accessor :preassigned_recipient_email
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -134,7 +138,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -146,7 +150,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -184,8 +188,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

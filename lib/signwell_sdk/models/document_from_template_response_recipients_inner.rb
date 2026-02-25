@@ -16,7 +16,23 @@ require 'time'
 module SignWell
   module Models
     class DocumentFromTemplateResponseRecipientsInner
-      attr_accessor :name, :email, :role, :attachment_requests, :passcode, :status
+      # @return [String]
+      attr_accessor :name
+
+      # @return [String]
+      attr_accessor :email
+
+      # @return [String]
+      attr_accessor :role
+
+      # @return [Array<AttachmentRequestInfo>]
+      attr_accessor :attachment_requests
+
+      # @return [String]
+      attr_accessor :passcode
+
+      # @return [String]
+      attr_accessor :status
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
@@ -123,7 +139,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -137,7 +153,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -175,8 +191,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

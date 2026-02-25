@@ -17,33 +17,43 @@ module SignWell
   module Models
     class CreateBulkSendRequest
       # Unique identifiers for a list of templates.
+      # @return [Array<String>]
       attr_accessor :template_ids
 
       # A RFC 4648 base64 string of the template CSV file to be validated.
+      # @return [String]
       attr_accessor :bulk_send_csv
 
       # Whether to skip errors in the rows. Defaults to `false`.
+      # @return [Boolean]
       attr_accessor :skip_row_errors
 
       # Unique identifier for API Application settings to use. API Applications are optional and mainly used when isolating OAuth apps or for more control over embedded API settings
+      # @return [String]
       attr_accessor :api_application_id
 
       # The name of the Bulk Send. Will be used as the document name for each of the documents.
+      # @return [String]
       attr_accessor :name
 
       # Email subject for the signature request that recipients will see. Defaults to the default system subject or a template subject.
+      # @return [String]
       attr_accessor :subject
 
       # Email message for the signature request that recipients will see. Defaults to the default system message or a template message.
+      # @return [String]
       attr_accessor :message
 
       # When set to `true` recipients will sign one at a time in the order of the `recipients` collection of this request.
+      # @return [Boolean]
       attr_accessor :apply_signing_order
 
       # Sets the custom requester name for the document. When set, this is the name used for all email communications, signing notifications, and in the audit file.
+      # @return [String]
       attr_accessor :custom_requester_name
 
       # Sets the custom requester email for the document. When set, this is the email used for all email communications, signing notifications, and in the audit file.
+      # @return [String]
       attr_accessor :custom_requester_email
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -190,7 +200,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -208,7 +218,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -247,8 +257,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

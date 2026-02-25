@@ -17,8 +17,35 @@ module SignWell
   module Models
     # Bulk send summary in list responses
     class BulkSendListItem
-      attr_accessor :id, :name, :api_application_id, :documents_count, :documents_completed, :documents_not_completed,
-                    :created_at, :user_id, :status, :template_ids
+      # @return [String]
+      attr_accessor :id
+
+      # @return [String]
+      attr_accessor :name
+
+      # @return [String]
+      attr_accessor :api_application_id
+
+      # @return [Integer]
+      attr_accessor :documents_count
+
+      # @return [Integer]
+      attr_accessor :documents_completed
+
+      # @return [Integer]
+      attr_accessor :documents_not_completed
+
+      # @return [Time]
+      attr_accessor :created_at
+
+      # @return [String]
+      attr_accessor :user_id
+
+      # @return [String]
+      attr_accessor :status
+
+      # @return [Array<String>]
+      attr_accessor :template_ids
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
@@ -229,7 +256,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -247,7 +274,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -286,8 +313,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

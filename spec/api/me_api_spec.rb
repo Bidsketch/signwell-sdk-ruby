@@ -28,8 +28,9 @@ RSpec.describe SignWell::Resources::MeApi, :prism do
   end
 
   describe '#get_me' do
-    it 'succeeds' do
-      expect { @api.get_me }.not_to raise_error
+    it 'returns MeResponse' do
+      result = @api.get_me
+      expect(result).not_to be_nil
     end
   end
 end

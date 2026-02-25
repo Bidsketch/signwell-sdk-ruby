@@ -24,16 +24,16 @@ module SignWell
       # Get credentials
       # Retrieves the account information associated with the API key being used.
       # @param [Hash] opts the optional parameters
-      # @return [nil]
+      # @return [Models::MeResponse]
       def get_me(opts = {})
-        get_me_with_http_info(opts)
-        nil
+        data, _status_code, _headers = get_me_with_http_info(opts)
+        data
       end
 
       # Get credentials
       # Retrieves the account information associated with the API key being used.
       # @param [Hash] opts the optional parameters
-      # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+      # @return [Array<(Models::MeResponse, Integer, Hash)>] MeResponse data, response status code and response headers
       def get_me_with_http_info(opts = {})
         @api_client.config.logger.debug 'Calling API: MeApi.get_me ...' if @api_client.config.debugging
         # resource path
@@ -54,7 +54,7 @@ module SignWell
         post_body = opts[:debug_body]
 
         # return_type
-        return_type = opts[:debug_return_type]
+        return_type = opts[:debug_return_type] || 'MeResponse'
 
         # auth_names
         auth_names = opts[:debug_auth_names] || ['api_key']

@@ -17,12 +17,15 @@ module SignWell
   module Models
     class AttachmentRequestsInner
       # Name of the requested attachment.
+      # @return [String]
       attr_accessor :name
 
       # Unique identifier of the recipient that will view the attachment request.
+      # @return [String]
       attr_accessor :recipient_id
 
       # Whether the recipient will need to upload the attachment to successfully complete/sign the document. Defaults to `true`.
+      # @return [Boolean]
       attr_accessor :required
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -127,7 +130,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -138,7 +141,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -176,8 +179,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

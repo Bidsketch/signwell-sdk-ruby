@@ -7,6 +7,7 @@ All URIs are relative to *https://www.signwell.com*
 | [**create_template**](TemplateApi.md#create_template) | **POST** /api/v1/document_templates | Create Template |
 | [**delete_template**](TemplateApi.md#delete_template) | **DELETE** /api/v1/document_templates/{id} | Delete Template |
 | [**get_template**](TemplateApi.md#get_template) | **GET** /api/v1/document_templates/{id} | Get Template |
+| [**list_templates**](TemplateApi.md#list_templates) | **GET** /api/v1/document_templates | List Templates |
 | [**update_template**](TemplateApi.md#update_template) | **PUT** /api/v1/document_templates/{id} | Update Template |
 
 
@@ -211,6 +212,81 @@ end
 ### Return type
 
 [**DocumentTemplateResponse**](DocumentTemplateResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## list_templates
+
+> <DocumentTemplateListResponse> list_templates(opts)
+
+List Templates
+
+Returns a paginated list of templates for the authenticated account.
+
+### Examples
+
+```ruby
+require 'time'
+require 'signwell_sdk'
+# setup authorization
+SignWell.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['X-Api-Key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-Api-Key'] = 'Bearer'
+end
+
+api_instance = SignWell::TemplateApi.new
+opts = {
+  page: 56, # Integer | 
+  limit: 56 # Integer | 
+}
+
+begin
+  # List Templates
+  result = api_instance.list_templates(opts)
+  p result
+rescue SignWell::ApiError => e
+  puts "Error when calling TemplateApi->list_templates: #{e}"
+end
+```
+
+#### Using the list_templates_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<DocumentTemplateListResponse>, Integer, Hash)> list_templates_with_http_info(opts)
+
+```ruby
+begin
+  # List Templates
+  data, status_code, headers = api_instance.list_templates_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <DocumentTemplateListResponse>
+rescue SignWell::ApiError => e
+  puts "Error when calling TemplateApi->list_templates_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **page** | **Integer** |  | [optional][default to 1] |
+| **limit** | **Integer** |  | [optional][default to 10] |
+
+### Return type
+
+[**DocumentTemplateListResponse**](DocumentTemplateListResponse.md)
 
 ### Authorization
 

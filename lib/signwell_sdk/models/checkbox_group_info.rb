@@ -18,23 +18,30 @@ module SignWell
     # Checkbox group configuration
     class CheckboxGroupInfo
       # Checkbox group ID
+      # @return [String]
       attr_accessor :id
 
       # Name of the checkbox group
+      # @return [String]
       attr_accessor :group_name
 
       # Recipient ID associated with the group
+      # @return [String]
       attr_accessor :recipient_id
 
       # IDs of checkboxes in this group
+      # @return [Array<String>]
       attr_accessor :checkbox_ids
 
+      # @return [CheckboxValidation]
       attr_accessor :validation
 
       # Whether at least one checkbox must be checked
+      # @return [Boolean]
       attr_accessor :required
 
       # Minimum number of checkboxes to check
+      # @return [Integer]
       attr_accessor :min_value
 
       class EnumAttributeValidator
@@ -194,7 +201,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -209,7 +216,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -247,8 +254,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym
