@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+
+gem 'signwell_sdk', path: '../signwell-sdk-generator/output'
+gem 'dotenv'
+gem 'faraday-retry'
