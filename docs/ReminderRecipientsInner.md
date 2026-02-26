@@ -1,4 +1,4 @@
-# SignWell::ReminderRecipientsInner
+# SignWell::Models::ReminderRecipientsInner
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::ReminderRecipientsInner.new(
+instance = SignWell::Models::ReminderRecipientsInner.new(
   name: null,
   email: null
 )

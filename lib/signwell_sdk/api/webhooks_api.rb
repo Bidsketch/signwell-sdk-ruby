@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -25,17 +25,17 @@ module SignWell
       # Register a callback URL that we will post document events to.
       # @param create_webhook_request [Models::CreateWebhookRequest]
       # @param [Hash] opts the optional parameters
-      # @return [nil]
+      # @return [Models::WebhookResponse]
       def create_webhook(create_webhook_request, opts = {})
-        create_webhook_with_http_info(create_webhook_request, opts)
-        nil
+        data, _status_code, _headers = create_webhook_with_http_info(create_webhook_request, opts)
+        data
       end
 
       # Create Webhook
       # Register a callback URL that we will post document events to.
       # @param create_webhook_request [Models::CreateWebhookRequest]
       # @param [Hash] opts the optional parameters
-      # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+      # @return [Array<(Models::WebhookResponse, Integer, Hash)>] WebhookResponse data, response status code and response headers
       def create_webhook_with_http_info(create_webhook_request, opts = {})
         @api_client.config.logger.debug 'Calling API: WebhooksApi.create_webhook ...' if @api_client.config.debugging
         # verify the required parameter 'create_webhook_request' is set
@@ -65,7 +65,7 @@ module SignWell
         post_body = opts[:debug_body] || @api_client.object_to_http_body(create_webhook_request)
 
         # return_type
-        return_type = opts[:debug_return_type]
+        return_type = opts[:debug_return_type] || 'WebhookResponse'
 
         # auth_names
         auth_names = opts[:debug_auth_names] || ['api_key']
@@ -152,16 +152,16 @@ module SignWell
       # List Webhooks
       # List all the webhooks in the account.
       # @param [Hash] opts the optional parameters
-      # @return [nil]
+      # @return [Models::Array<WebhookResponse>]
       def list_webhooks(opts = {})
-        list_webhooks_with_http_info(opts)
-        nil
+        data, _status_code, _headers = list_webhooks_with_http_info(opts)
+        data
       end
 
       # List Webhooks
       # List all the webhooks in the account.
       # @param [Hash] opts the optional parameters
-      # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+      # @return [Array<(Models::Array<WebhookResponse>, Integer, Hash)>] Array<WebhookResponse> data, response status code and response headers
       def list_webhooks_with_http_info(opts = {})
         @api_client.config.logger.debug 'Calling API: WebhooksApi.list_webhooks ...' if @api_client.config.debugging
         # resource path
@@ -182,7 +182,7 @@ module SignWell
         post_body = opts[:debug_body]
 
         # return_type
-        return_type = opts[:debug_return_type]
+        return_type = opts[:debug_return_type] || 'Array<WebhookResponse>'
 
         # auth_names
         auth_names = opts[:debug_auth_names] || ['api_key']

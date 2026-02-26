@@ -1,4 +1,4 @@
-# SignWell::PlaceholdersInner
+# SignWell::Models::PlaceholdersInner
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::PlaceholdersInner.new(
+instance = SignWell::Models::PlaceholdersInner.new(
   id: null,
   name: null,
   preassigned_recipient_name: null,

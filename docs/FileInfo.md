@@ -1,4 +1,4 @@
-# SignWell::FileInfo
+# SignWell::Models::FileInfo
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::FileInfo.new(
+instance = SignWell::Models::FileInfo.new(
   name: null,
   pages_number: null
 )

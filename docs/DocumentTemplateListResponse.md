@@ -1,4 +1,4 @@
-# SignWell::DocumentTemplateListResponse
+# SignWell::Models::DocumentTemplateListResponse
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DocumentTemplateListResponse.new(
+instance = SignWell::Models::DocumentTemplateListResponse.new(
   templates: null,
   current_page: null,
   next_page: null,

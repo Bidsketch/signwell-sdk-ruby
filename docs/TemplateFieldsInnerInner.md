@@ -1,4 +1,4 @@
-# SignWell::TemplateFieldsInnerInner
+# SignWell::Models::TemplateFieldsInnerInner
 
 ## Properties
 
@@ -29,7 +29,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::TemplateFieldsInnerInner.new(
+instance = SignWell::Models::TemplateFieldsInnerInner.new(
   x: null,
   y: null,
   page: null,

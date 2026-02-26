@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -28,9 +28,10 @@ RSpec.describe SignWell::Resources::WebhooksApi, :prism do
   end
 
   describe '#create_webhook' do
-    it 'succeeds' do
+    it 'returns WebhookResponse' do
       body = SignWell::CreateWebhookRequest.new({ callback_url: 'https://example.com/webhook' })
-      expect { @api.create_webhook(body) }.not_to raise_error
+      result = @api.create_webhook(body)
+      expect(result).not_to be_nil
     end
   end
 
@@ -41,8 +42,9 @@ RSpec.describe SignWell::Resources::WebhooksApi, :prism do
   end
 
   describe '#list_webhooks' do
-    it 'succeeds' do
-      expect { @api.list_webhooks }.not_to raise_error
+    it 'returns Array<WebhookResponse>' do
+      result = @api.list_webhooks
+      expect(result).not_to be_nil
     end
   end
 end

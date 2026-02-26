@@ -1,4 +1,4 @@
-# SignWell::ValidationErrorResponse
+# SignWell::Models::ValidationErrorResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::ValidationErrorResponse.new(
+instance = SignWell::Models::ValidationErrorResponse.new(
   errors: null
 )
 ```

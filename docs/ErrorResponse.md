@@ -1,4 +1,4 @@
-# SignWell::ErrorResponse
+# SignWell::Models::ErrorResponse
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::ErrorResponse.new(
+instance = SignWell::Models::ErrorResponse.new(
   message: null,
   meta: null
 )

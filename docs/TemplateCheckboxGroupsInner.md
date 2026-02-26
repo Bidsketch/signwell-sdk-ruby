@@ -1,4 +1,4 @@
-# SignWell::TemplateCheckboxGroupsInner
+# SignWell::Models::TemplateCheckboxGroupsInner
 
 ## Properties
 
@@ -18,7 +18,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::TemplateCheckboxGroupsInner.new(
+instance = SignWell::Models::TemplateCheckboxGroupsInner.new(
   group_name: null,
   placeholder_id: null,
   checkbox_ids: null,

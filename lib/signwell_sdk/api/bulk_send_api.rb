@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -25,17 +25,17 @@ module SignWell
       # Creates a bulk send, and it validates the CSV file before creating the bulk send.
       # @param create_bulk_send_request [Models::CreateBulkSendRequest]
       # @param [Hash] opts the optional parameters
-      # @return [nil]
+      # @return [Models::BulkSendCreateResponse]
       def create_bulk_send(create_bulk_send_request, opts = {})
-        create_bulk_send_with_http_info(create_bulk_send_request, opts)
-        nil
+        data, _status_code, _headers = create_bulk_send_with_http_info(create_bulk_send_request, opts)
+        data
       end
 
       # Create Bulk Send
       # Creates a bulk send, and it validates the CSV file before creating the bulk send.
       # @param create_bulk_send_request [Models::CreateBulkSendRequest]
       # @param [Hash] opts the optional parameters
-      # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+      # @return [Array<(Models::BulkSendCreateResponse, Integer, Hash)>] BulkSendCreateResponse data, response status code and response headers
       def create_bulk_send_with_http_info(create_bulk_send_request, opts = {})
         @api_client.config.logger.debug 'Calling API: BulkSendApi.create_bulk_send ...' if @api_client.config.debugging
         # verify the required parameter 'create_bulk_send_request' is set
@@ -65,7 +65,7 @@ module SignWell
         post_body = opts[:debug_body] || @api_client.object_to_http_body(create_bulk_send_request)
 
         # return_type
-        return_type = opts[:debug_return_type]
+        return_type = opts[:debug_return_type] || 'BulkSendCreateResponse'
 
         # auth_names
         auth_names = opts[:debug_auth_names] || ['api_key']
@@ -91,17 +91,17 @@ module SignWell
       # Returns information about the Bulk Send.
       # @param id [String]
       # @param [Hash] opts the optional parameters
-      # @return [nil]
+      # @return [Models::BulkSendResponse]
       def get_bulk_send(id, opts = {})
-        get_bulk_send_with_http_info(id, opts)
-        nil
+        data, _status_code, _headers = get_bulk_send_with_http_info(id, opts)
+        data
       end
 
       # Get Bulk Send
       # Returns information about the Bulk Send.
       # @param id [String]
       # @param [Hash] opts the optional parameters
-      # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+      # @return [Array<(Models::BulkSendResponse, Integer, Hash)>] BulkSendResponse data, response status code and response headers
       def get_bulk_send_with_http_info(id, opts = {})
         @api_client.config.logger.debug 'Calling API: BulkSendApi.get_bulk_send ...' if @api_client.config.debugging
         # verify the required parameter 'id' is set
@@ -127,7 +127,7 @@ module SignWell
         post_body = opts[:debug_body]
 
         # return_type
-        return_type = opts[:debug_return_type]
+        return_type = opts[:debug_return_type] || 'BulkSendResponse'
 
         # auth_names
         auth_names = opts[:debug_auth_names] || ['api_key']
@@ -228,10 +228,10 @@ module SignWell
       # @param [Hash] opts the optional parameters
       # @option opts [Integer] :limit  (default to 10)
       # @option opts [Integer] :page  (default to 1)
-      # @return [nil]
+      # @return [Models::BulkSendDocumentsResponse]
       def get_bulk_send_documents(id, opts = {})
-        get_bulk_send_documents_with_http_info(id, opts)
-        nil
+        data, _status_code, _headers = get_bulk_send_documents_with_http_info(id, opts)
+        data
       end
 
       # Get Bulk Send Documents
@@ -240,7 +240,7 @@ module SignWell
       # @param [Hash] opts the optional parameters
       # @option opts [Integer] :limit  (default to 10)
       # @option opts [Integer] :page  (default to 1)
-      # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+      # @return [Array<(Models::BulkSendDocumentsResponse, Integer, Hash)>] BulkSendDocumentsResponse data, response status code and response headers
       def get_bulk_send_documents_with_http_info(id, opts = {})
         if @api_client.config.debugging
           @api_client.config.logger.debug 'Calling API: BulkSendApi.get_bulk_send_documents ...'
@@ -285,7 +285,7 @@ module SignWell
         post_body = opts[:debug_body]
 
         # return_type
-        return_type = opts[:debug_return_type]
+        return_type = opts[:debug_return_type] || 'BulkSendDocumentsResponse'
 
         # auth_names
         auth_names = opts[:debug_auth_names] || ['api_key']
@@ -393,17 +393,17 @@ module SignWell
       # Validates a Bulk Send CSV file before creating the Bulk Send. It will check the structure of the CSV and the data it contains, and return any errors found.
       # @param bulk_send_csv_request [Models::BulkSendCsvRequest]
       # @param [Hash] opts the optional parameters
-      # @return [nil]
+      # @return [Models::BulkSendValidateCsvResponse]
       def validate_bulk_send_csv(bulk_send_csv_request, opts = {})
-        validate_bulk_send_csv_with_http_info(bulk_send_csv_request, opts)
-        nil
+        data, _status_code, _headers = validate_bulk_send_csv_with_http_info(bulk_send_csv_request, opts)
+        data
       end
 
       # Validate Bulk Send CSV
       # Validates a Bulk Send CSV file before creating the Bulk Send. It will check the structure of the CSV and the data it contains, and return any errors found.
       # @param bulk_send_csv_request [Models::BulkSendCsvRequest]
       # @param [Hash] opts the optional parameters
-      # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+      # @return [Array<(Models::BulkSendValidateCsvResponse, Integer, Hash)>] BulkSendValidateCsvResponse data, response status code and response headers
       def validate_bulk_send_csv_with_http_info(bulk_send_csv_request, opts = {})
         if @api_client.config.debugging
           @api_client.config.logger.debug 'Calling API: BulkSendApi.validate_bulk_send_csv ...'
@@ -435,7 +435,7 @@ module SignWell
         post_body = opts[:debug_body] || @api_client.object_to_http_body(bulk_send_csv_request)
 
         # return_type
-        return_type = opts[:debug_return_type]
+        return_type = opts[:debug_return_type] || 'BulkSendValidateCsvResponse'
 
         # auth_names
         auth_names = opts[:debug_auth_names] || ['api_key']

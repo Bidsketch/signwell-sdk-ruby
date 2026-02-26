@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -16,8 +16,101 @@ require 'time'
 module SignWell
   module Models
     class DocumentResponse
-      attr_accessor :test_mode, :id, :api_application_id, :requester_email_address, :custom_requester_name,
-                    :custom_requester_email, :name, :subject, :message, :metadata, :created_at, :updated_at, :recipients, :status, :reminders, :archived, :embedded, :embedded_edit_url, :embedded_preview_url, :apply_signing_order, :redirect_url, :decline_redirect_url, :language, :expires_in, :attachment_requests, :files, :copied_contacts, :fields, :allow_decline, :allow_reassign, :labels, :checkbox_groups
+      # @return [Boolean]
+      attr_accessor :test_mode
+
+      # @return [String]
+      attr_accessor :id
+
+      # @return [String]
+      attr_accessor :api_application_id
+
+      # @return [String]
+      attr_accessor :requester_email_address
+
+      # @return [String]
+      attr_accessor :custom_requester_name
+
+      # @return [String]
+      attr_accessor :custom_requester_email
+
+      # @return [String]
+      attr_accessor :name
+
+      # @return [String]
+      attr_accessor :subject
+
+      # @return [String]
+      attr_accessor :message
+
+      # @return [Hash<String, String>]
+      attr_accessor :metadata
+
+      # @return [Time]
+      attr_accessor :created_at
+
+      # @return [Time]
+      attr_accessor :updated_at
+
+      # @return [Array<DocumentResponseRecipientsInner>]
+      attr_accessor :recipients
+
+      # @return [String]
+      attr_accessor :status
+
+      # @return [Boolean]
+      attr_accessor :reminders
+
+      # @return [Boolean]
+      attr_accessor :archived
+
+      # @return [Boolean]
+      attr_accessor :embedded
+
+      # @return [String]
+      attr_accessor :embedded_edit_url
+
+      # @return [String]
+      attr_accessor :embedded_preview_url
+
+      # @return [Boolean]
+      attr_accessor :apply_signing_order
+
+      # @return [String]
+      attr_accessor :redirect_url
+
+      # @return [String]
+      attr_accessor :decline_redirect_url
+
+      # @return [String]
+      attr_accessor :language
+
+      # @return [Integer]
+      attr_accessor :expires_in
+
+      # @return [Array<DocumentResponseAttachmentRequestsInner>]
+      attr_accessor :attachment_requests
+
+      # @return [Array<FileInfo>]
+      attr_accessor :files
+
+      # @return [Array<CopiedContactInfo>]
+      attr_accessor :copied_contacts
+
+      # @return [Array<Array<DocumentResponseFieldsInnerInner>>]
+      attr_accessor :fields
+
+      # @return [Boolean]
+      attr_accessor :allow_decline
+
+      # @return [Boolean]
+      attr_accessor :allow_reassign
+
+      # @return [Array<LabelInfo>]
+      attr_accessor :labels
+
+      # @return [Array<CheckboxGroupInfo>]
+      attr_accessor :checkbox_groups
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
@@ -261,7 +354,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -301,7 +394,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -340,8 +433,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

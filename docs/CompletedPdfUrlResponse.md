@@ -1,4 +1,4 @@
-# SignWell::CompletedPdfUrlResponse
+# SignWell::Models::CompletedPdfUrlResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::CompletedPdfUrlResponse.new(
+instance = SignWell::Models::CompletedPdfUrlResponse.new(
   file_url: null
 )
 ```

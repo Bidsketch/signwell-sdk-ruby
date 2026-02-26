@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -16,16 +16,73 @@ require 'time'
 module SignWell
   module Models
     class DocumentFromTemplateResponseFieldsInnerInner
-      attr_accessor :x, :y, :page, :recipient, :api_id, :name, :date_format, :fixed_width, :label, :lock_sign_date,
-                    :required, :type, :validation, :value, :height, :width, :recipient_id, :signing_elements_group_id, :placeholder_name
+      # @return [Float]
+      attr_accessor :x
+
+      # @return [Float]
+      attr_accessor :y
+
+      # @return [Integer]
+      attr_accessor :page
+
+      # @return [DocumentFromTemplateResponseFieldsInnerInnerRecipient]
+      attr_accessor :recipient
+
+      # @return [String]
+      attr_accessor :api_id
+
+      # @return [String]
+      attr_accessor :name
+
+      # @return [DateFormat]
+      attr_accessor :date_format
+
+      # @return [Boolean]
+      attr_accessor :fixed_width
+
+      # @return [String]
+      attr_accessor :label
+
+      # @return [Boolean]
+      attr_accessor :lock_sign_date
+
+      # @return [Boolean]
+      attr_accessor :required
+
+      # @return [FieldType]
+      attr_accessor :type
+
+      # @return [TextValidation]
+      attr_accessor :validation
+
+      # @return [DocumentResponseFieldsInnerInnerValue]
+      attr_accessor :value
+
+      # @return [String]
+      attr_accessor :height
+
+      # @return [String]
+      attr_accessor :width
+
+      # @return [String]
+      attr_accessor :recipient_id
+
+      # @return [String]
+      attr_accessor :signing_elements_group_id
+
+      # @return [String]
+      attr_accessor :placeholder_name
 
       # Dropdown options (for dropdown/select fields)
+      # @return [Array<DocumentResponseFieldsInnerInnerOptionsInner>]
       attr_accessor :options
 
       # Default selected option
+      # @return [String]
       attr_accessor :default_option
 
       # Whether \"Other\" option is allowed
+      # @return [Boolean]
       attr_accessor :allow_other
 
       class EnumAttributeValidator
@@ -244,7 +301,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -274,7 +331,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -313,8 +370,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

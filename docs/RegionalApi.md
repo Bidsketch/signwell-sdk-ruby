@@ -1,4 +1,4 @@
-# SignWell::RegionalApi
+# SignWell::Resources::RegionalApi
 
 All URIs are relative to *https://www.signwell.com*
 
@@ -28,7 +28,7 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::RegionalApi.new
+api_instance = SignWell::Resources::RegionalApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 opts = {
   url_only: true, # Boolean | If true, returns JSON with download URL instead of downloading the file
@@ -39,7 +39,7 @@ begin
   # MX – NOM-151 Certificate
   result = api_instance.get_nom151_certificate(id, opts)
   p result
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling RegionalApi->get_nom151_certificate: #{e}"
 end
 ```
@@ -57,7 +57,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Nom151UrlResponse>
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling RegionalApi->get_nom151_certificate_with_http_info: #{e}"
 end
 ```

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -46,6 +46,13 @@ RSpec.describe SignWell::Resources::TemplateApi, :prism do
   describe '#get_template' do
     it 'returns DocumentTemplateResponse' do
       result = @api.get_template(@test_id)
+      expect(result).not_to be_nil
+    end
+  end
+
+  describe '#list_templates' do
+    it 'returns DocumentTemplateListResponse' do
+      result = @api.list_templates
       expect(result).not_to be_nil
     end
   end

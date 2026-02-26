@@ -1,4 +1,4 @@
-# SignWell::DocumentApi
+# SignWell::Resources::DocumentApi
 
 All URIs are relative to *https://www.signwell.com*
 
@@ -9,6 +9,7 @@ All URIs are relative to *https://www.signwell.com*
 | [**delete_document**](DocumentApi.md#delete_document) | **DELETE** /api/v1/documents/{id} | Delete Document |
 | [**get_completed_pdf**](DocumentApi.md#get_completed_pdf) | **GET** /api/v1/documents/{id}/completed_pdf | Completed PDF |
 | [**get_document**](DocumentApi.md#get_document) | **GET** /api/v1/documents/{id} | Get Document |
+| [**list_documents**](DocumentApi.md#list_documents) | **GET** /api/v1/documents | List Documents |
 | [**send_document**](DocumentApi.md#send_document) | **POST** /api/v1/documents/{id}/send | Update and Send Document |
 | [**send_reminder**](DocumentApi.md#send_reminder) | **POST** /api/v1/documents/{id}/remind | Send Reminder |
 
@@ -34,14 +35,14 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::DocumentApi.new
+api_instance = SignWell::Resources::DocumentApi.new
 document_request = SignWell::DocumentRequest.new({files: [SignWell::FilesInner.new({name: 'name_example'})], recipients: [SignWell::RecipientsInner.new({id: 'id_example', email: 'signer@example.com'})]}) # DocumentRequest | 
 
 begin
   # Create Document
   result = api_instance.create_document(document_request)
   p result
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->create_document: #{e}"
 end
 ```
@@ -59,7 +60,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <DocumentResponse>
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->create_document_with_http_info: #{e}"
 end
 ```
@@ -105,14 +106,14 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::DocumentApi.new
+api_instance = SignWell::Resources::DocumentApi.new
 document_from_template_request = SignWell::DocumentFromTemplateRequest.new({recipients: [SignWell::TemplateRecipientsInner.new({id: 'id_example', email: 'signer@example.com'})]}) # DocumentFromTemplateRequest | 
 
 begin
   # Create Document from Template
   result = api_instance.create_document_from_template(document_from_template_request)
   p result
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->create_document_from_template: #{e}"
 end
 ```
@@ -130,7 +131,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <DocumentFromTemplateResponse>
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->create_document_from_template_with_http_info: #{e}"
 end
 ```
@@ -176,13 +177,13 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::DocumentApi.new
+api_instance = SignWell::Resources::DocumentApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 
 begin
   # Delete Document
   api_instance.delete_document(id)
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->delete_document: #{e}"
 end
 ```
@@ -200,7 +201,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->delete_document_with_http_info: #{e}"
 end
 ```
@@ -246,7 +247,7 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::DocumentApi.new
+api_instance = SignWell::Resources::DocumentApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 opts = {
   url_only: true, # Boolean | 
@@ -258,7 +259,7 @@ begin
   # Completed PDF
   result = api_instance.get_completed_pdf(id, opts)
   p result
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->get_completed_pdf: #{e}"
 end
 ```
@@ -276,7 +277,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <CompletedPdfResponse>
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->get_completed_pdf_with_http_info: #{e}"
 end
 ```
@@ -325,14 +326,14 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::DocumentApi.new
+api_instance = SignWell::Resources::DocumentApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 
 begin
   # Get Document
   result = api_instance.get_document(id)
   p result
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->get_document: #{e}"
 end
 ```
@@ -350,7 +351,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <DocumentResponse>
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->get_document_with_http_info: #{e}"
 end
 ```
@@ -364,6 +365,81 @@ end
 ### Return type
 
 [**DocumentResponse**](DocumentResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## list_documents
+
+> <DocumentListResponse> list_documents(opts)
+
+List Documents
+
+Returns a paginated list of documents for the authenticated account.
+
+### Examples
+
+```ruby
+require 'time'
+require 'signwell_sdk'
+# setup authorization
+SignWell.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['X-Api-Key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-Api-Key'] = 'Bearer'
+end
+
+api_instance = SignWell::Resources::DocumentApi.new
+opts = {
+  page: 56, # Integer | 
+  limit: 56 # Integer | 
+}
+
+begin
+  # List Documents
+  result = api_instance.list_documents(opts)
+  p result
+rescue SignWell::Errors::ApiError => e
+  puts "Error when calling DocumentApi->list_documents: #{e}"
+end
+```
+
+#### Using the list_documents_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<DocumentListResponse>, Integer, Hash)> list_documents_with_http_info(opts)
+
+```ruby
+begin
+  # List Documents
+  data, status_code, headers = api_instance.list_documents_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <DocumentListResponse>
+rescue SignWell::Errors::ApiError => e
+  puts "Error when calling DocumentApi->list_documents_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **page** | **Integer** |  | [optional][default to 1] |
+| **limit** | **Integer** |  | [optional][default to 10] |
+
+### Return type
+
+[**DocumentListResponse**](DocumentListResponse.md)
 
 ### Authorization
 
@@ -396,7 +472,7 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::DocumentApi.new
+api_instance = SignWell::Resources::DocumentApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 update_document_and_send_request = SignWell::UpdateDocumentAndSendRequest.new # UpdateDocumentAndSendRequest | 
 
@@ -404,7 +480,7 @@ begin
   # Update and Send Document
   result = api_instance.send_document(id, update_document_and_send_request)
   p result
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->send_document: #{e}"
 end
 ```
@@ -422,7 +498,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <DocumentResponse>
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->send_document_with_http_info: #{e}"
 end
 ```
@@ -469,14 +545,14 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::DocumentApi.new
+api_instance = SignWell::Resources::DocumentApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 send_reminder_request = SignWell::SendReminderRequest.new # SendReminderRequest | 
 
 begin
   # Send Reminder
   api_instance.send_reminder(id, send_reminder_request)
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->send_reminder: #{e}"
 end
 ```
@@ -494,7 +570,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->send_reminder_with_http_info: #{e}"
 end
 ```

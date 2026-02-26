@@ -1,4 +1,4 @@
-# SignWell::DocumentTemplateUpdateRequest
+# SignWell::Models::DocumentTemplateUpdateRequest
 
 ## Properties
 
@@ -25,7 +25,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DocumentTemplateUpdateRequest.new(
+instance = SignWell::Models::DocumentTemplateUpdateRequest.new(
   name: null,
   subject: null,
   message: null,

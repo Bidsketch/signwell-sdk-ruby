@@ -1,4 +1,4 @@
-# SignWell::DocumentResponseFieldsInnerInnerOptionsInner
+# SignWell::Models::DocumentResponseFieldsInnerInnerOptionsInner
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DocumentResponseFieldsInnerInnerOptionsInner.new(
+instance = SignWell::Models::DocumentResponseFieldsInnerInnerOptionsInner.new(
   name: null,
   api_id: null,
   is_other: null

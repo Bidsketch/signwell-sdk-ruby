@@ -1,4 +1,4 @@
-# SignWell::CopiedContactsInner
+# SignWell::Models::CopiedContactsInner
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::CopiedContactsInner.new(
+instance = SignWell::Models::CopiedContactsInner.new(
   name: null,
   email: null
 )

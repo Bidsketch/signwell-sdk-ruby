@@ -1,4 +1,4 @@
-# SignWell::UpdateDocumentAndSendRequest
+# SignWell::Models::UpdateDocumentAndSendRequest
 
 ## Properties
 
@@ -29,7 +29,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::UpdateDocumentAndSendRequest.new(
+instance = SignWell::Models::UpdateDocumentAndSendRequest.new(
   test_mode: null,
   name: null,
   subject: null,

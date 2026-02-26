@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -17,23 +17,33 @@ module SignWell
   module Models
     class CheckboxGroupsInner
       # A unique identifier for the checkbox group.
+      # @return [String]
       attr_accessor :group_name
 
       # The recipient ID associated with the checkbox group.
+      # @return [String]
       attr_accessor :recipient_id
 
-      attr_accessor :checkbox_ids, :validation
+      # @return [Array<String>]
+      attr_accessor :checkbox_ids
+
+      # @return [CheckboxValidation]
+      attr_accessor :validation
 
       # Whether the group must be completed by the recipient. Defaults to false.
+      # @return [Boolean]
       attr_accessor :required
 
       # The minimum number of checkboxes that must be checked in the group. (Only for validation: minimum and range)
+      # @return [Integer]
       attr_accessor :min_value
 
       # The maximum number of checkboxes that can be checked in the group. (Only for validation: maximum and range)
+      # @return [Integer]
       attr_accessor :max_value
 
       # The exact number of checkboxes that must be checked in the group. (Only for validation: exact)
+      # @return [Integer]
       attr_accessor :exact_value
 
       class EnumAttributeValidator
@@ -198,7 +208,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -214,7 +224,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -252,8 +262,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

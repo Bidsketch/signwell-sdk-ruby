@@ -1,4 +1,4 @@
-# SignWell::CopiedPlaceholdersInner
+# SignWell::Models::CopiedPlaceholdersInner
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::CopiedPlaceholdersInner.new(
+instance = SignWell::Models::CopiedPlaceholdersInner.new(
   name: null,
   preassigned_recipient_name: null,
   preassigned_recipient_email: null

@@ -1,4 +1,4 @@
-# SignWell::WebhooksApi
+# SignWell::Resources::WebhooksApi
 
 All URIs are relative to *https://www.signwell.com*
 
@@ -11,7 +11,7 @@ All URIs are relative to *https://www.signwell.com*
 
 ## create_webhook
 
-> create_webhook(create_webhook_request)
+> <WebhookResponse> create_webhook(create_webhook_request)
 
 Create Webhook
 
@@ -30,22 +30,23 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::WebhooksApi.new
+api_instance = SignWell::Resources::WebhooksApi.new
 create_webhook_request = SignWell::CreateWebhookRequest.new({callback_url: 'https://example.com/webhook'}) # CreateWebhookRequest | 
 
 begin
   # Create Webhook
-  api_instance.create_webhook(create_webhook_request)
-rescue SignWell::ApiError => e
+  result = api_instance.create_webhook(create_webhook_request)
+  p result
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling WebhooksApi->create_webhook: #{e}"
 end
 ```
 
 #### Using the create_webhook_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> create_webhook_with_http_info(create_webhook_request)
+> <Array(<WebhookResponse>, Integer, Hash)> create_webhook_with_http_info(create_webhook_request)
 
 ```ruby
 begin
@@ -53,8 +54,8 @@ begin
   data, status_code, headers = api_instance.create_webhook_with_http_info(create_webhook_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
-rescue SignWell::ApiError => e
+  p data # => <WebhookResponse>
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling WebhooksApi->create_webhook_with_http_info: #{e}"
 end
 ```
@@ -67,7 +68,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**WebhookResponse**](WebhookResponse.md)
 
 ### Authorization
 
@@ -100,13 +101,13 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::WebhooksApi.new
+api_instance = SignWell::Resources::WebhooksApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 
 begin
   # Delete Webhook
   api_instance.delete_webhook(id)
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling WebhooksApi->delete_webhook: #{e}"
 end
 ```
@@ -124,7 +125,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => nil
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling WebhooksApi->delete_webhook_with_http_info: #{e}"
 end
 ```
@@ -151,7 +152,7 @@ nil (empty response body)
 
 ## list_webhooks
 
-> list_webhooks
+> <Array<WebhookResponse>> list_webhooks
 
 List Webhooks
 
@@ -170,21 +171,22 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::WebhooksApi.new
+api_instance = SignWell::Resources::WebhooksApi.new
 
 begin
   # List Webhooks
-  api_instance.list_webhooks
-rescue SignWell::ApiError => e
+  result = api_instance.list_webhooks
+  p result
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling WebhooksApi->list_webhooks: #{e}"
 end
 ```
 
 #### Using the list_webhooks_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> list_webhooks_with_http_info
+> <Array(<Array<WebhookResponse>>, Integer, Hash)> list_webhooks_with_http_info
 
 ```ruby
 begin
@@ -192,8 +194,8 @@ begin
   data, status_code, headers = api_instance.list_webhooks_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
-rescue SignWell::ApiError => e
+  p data # => <Array<WebhookResponse>>
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling WebhooksApi->list_webhooks_with_http_info: #{e}"
 end
 ```
@@ -204,7 +206,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-nil (empty response body)
+[**Array&lt;WebhookResponse&gt;**](WebhookResponse.md)
 
 ### Authorization
 

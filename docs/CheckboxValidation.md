@@ -1,4 +1,4 @@
-# SignWell::CheckboxValidation
+# SignWell::Models::CheckboxValidation
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::CheckboxValidation.new()
+instance = SignWell::Models::CheckboxValidation.new()
 ```
 

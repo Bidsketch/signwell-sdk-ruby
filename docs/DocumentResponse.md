@@ -1,4 +1,4 @@
-# SignWell::DocumentResponse
+# SignWell::Models::DocumentResponse
 
 ## Properties
 
@@ -42,7 +42,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DocumentResponse.new(
+instance = SignWell::Models::DocumentResponse.new(
   test_mode: null,
   id: null,
   api_application_id: null,

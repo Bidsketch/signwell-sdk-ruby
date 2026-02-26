@@ -1,4 +1,4 @@
-# SignWell::Nom151CertificateResponseNom151
+# SignWell::Models::Nom151CertificateResponseNom151
 
 ## Properties
 
@@ -18,7 +18,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::Nom151CertificateResponseNom151.new(
+instance = SignWell::Models::Nom151CertificateResponseNom151.new(
   status: null,
   transaction_id: null,
   hash: null,

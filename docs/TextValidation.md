@@ -1,4 +1,4 @@
-# SignWell::TextValidation
+# SignWell::Models::TextValidation
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::TextValidation.new()
+instance = SignWell::Models::TextValidation.new()
 ```
 

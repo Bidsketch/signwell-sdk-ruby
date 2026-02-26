@@ -1,4 +1,4 @@
-# SignWell::SendReminderRequest
+# SignWell::Models::SendReminderRequest
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::SendReminderRequest.new(
+instance = SignWell::Models::SendReminderRequest.new(
   recipients: null
 )
 ```

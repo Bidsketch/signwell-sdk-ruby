@@ -1,4 +1,4 @@
-# SignWell::DocumentListResponse
+# SignWell::Models::DocumentListResponse
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DocumentListResponse.new(
+instance = SignWell::Models::DocumentListResponse.new(
   documents: null,
   current_page: null,
   next_page: null,
