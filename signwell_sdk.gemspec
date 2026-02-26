@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/Bidsketch/signwell-sdk-ruby"
   s.summary     = "SignWell API client"
   s.description = "Ruby SDK for the SignWell API - electronic signature platform"
-  s.license     = "APACHE"
+  s.license     = "MIT"
   s.required_ruby_version = ">= 3.0"
   s.metadata    = {
     "documentation_uri" => "https://gemdocs.org/gems/signwell_sdk/" + SignWell::VERSION + "/",
