@@ -1,4 +1,4 @@
-# SignWell::AttachmentRequestsInner
+# SignWell::Models::AttachmentRequestsInner
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::AttachmentRequestsInner.new(
+instance = SignWell::Models::AttachmentRequestsInner.new(
   name: null,
   recipient_id: null,
   required: null

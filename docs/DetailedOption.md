@@ -1,4 +1,4 @@
-# SignWell::DetailedOption
+# SignWell::Models::DetailedOption
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DetailedOption.new(
+instance = SignWell::Models::DetailedOption.new(
   name: null,
   api_id: null,
   is_other: null

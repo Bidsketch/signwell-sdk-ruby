@@ -1,4 +1,4 @@
-# SignWell::DocumentTemplateResponseCopiedPlaceholdersInner
+# SignWell::Models::DocumentTemplateResponseCopiedPlaceholdersInner
 
 ## Properties
 
@@ -17,7 +17,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DocumentTemplateResponseCopiedPlaceholdersInner.new(
+instance = SignWell::Models::DocumentTemplateResponseCopiedPlaceholdersInner.new(
   id: null,
   placeholder_id: null,
   name: null,

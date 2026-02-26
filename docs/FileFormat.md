@@ -1,4 +1,4 @@
-# SignWell::FileFormat
+# SignWell::Models::FileFormat
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::FileFormat.new()
+instance = SignWell::Models::FileFormat.new()
 ```
 

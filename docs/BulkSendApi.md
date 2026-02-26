@@ -1,4 +1,4 @@
-# SignWell::BulkSendApi
+# SignWell::Resources::BulkSendApi
 
 All URIs are relative to *https://www.signwell.com*
 
@@ -14,7 +14,7 @@ All URIs are relative to *https://www.signwell.com*
 
 ## create_bulk_send
 
-> create_bulk_send(create_bulk_send_request)
+> <BulkSendCreateResponse> create_bulk_send(create_bulk_send_request)
 
 Create Bulk Send
 
@@ -33,22 +33,23 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::BulkSendApi.new
+api_instance = SignWell::Resources::BulkSendApi.new
 create_bulk_send_request = SignWell::CreateBulkSendRequest.new({template_ids: ['00000000-0000-0000-0000-000000000000'], bulk_send_csv: 'bmFtZSxlbWFpbApUZXN0LHRlc3RAZXhhbXBsZS5jb20K'}) # CreateBulkSendRequest | 
 
 begin
   # Create Bulk Send
-  api_instance.create_bulk_send(create_bulk_send_request)
-rescue SignWell::ApiError => e
+  result = api_instance.create_bulk_send(create_bulk_send_request)
+  p result
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->create_bulk_send: #{e}"
 end
 ```
 
 #### Using the create_bulk_send_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> create_bulk_send_with_http_info(create_bulk_send_request)
+> <Array(<BulkSendCreateResponse>, Integer, Hash)> create_bulk_send_with_http_info(create_bulk_send_request)
 
 ```ruby
 begin
@@ -56,8 +57,8 @@ begin
   data, status_code, headers = api_instance.create_bulk_send_with_http_info(create_bulk_send_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
-rescue SignWell::ApiError => e
+  p data # => <BulkSendCreateResponse>
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->create_bulk_send_with_http_info: #{e}"
 end
 ```
@@ -70,7 +71,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**BulkSendCreateResponse**](BulkSendCreateResponse.md)
 
 ### Authorization
 
@@ -84,7 +85,7 @@ nil (empty response body)
 
 ## get_bulk_send
 
-> get_bulk_send(id)
+> <BulkSendResponse> get_bulk_send(id)
 
 Get Bulk Send
 
@@ -103,22 +104,23 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::BulkSendApi.new
+api_instance = SignWell::Resources::BulkSendApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 
 begin
   # Get Bulk Send
-  api_instance.get_bulk_send(id)
-rescue SignWell::ApiError => e
+  result = api_instance.get_bulk_send(id)
+  p result
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->get_bulk_send: #{e}"
 end
 ```
 
 #### Using the get_bulk_send_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> get_bulk_send_with_http_info(id)
+> <Array(<BulkSendResponse>, Integer, Hash)> get_bulk_send_with_http_info(id)
 
 ```ruby
 begin
@@ -126,8 +128,8 @@ begin
   data, status_code, headers = api_instance.get_bulk_send_with_http_info(id)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
-rescue SignWell::ApiError => e
+  p data # => <BulkSendResponse>
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->get_bulk_send_with_http_info: #{e}"
 end
 ```
@@ -140,7 +142,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**BulkSendResponse**](BulkSendResponse.md)
 
 ### Authorization
 
@@ -173,7 +175,7 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::BulkSendApi.new
+api_instance = SignWell::Resources::BulkSendApi.new
 template_ids = ['inner_example'] # Array<String> | 
 opts = {
   base64: true # Boolean | 
@@ -183,7 +185,7 @@ begin
   # Get Bulk Send CSV Template
   result = api_instance.get_bulk_send_csv_template(template_ids, opts)
   p result
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->get_bulk_send_csv_template: #{e}"
 end
 ```
@@ -201,7 +203,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => File
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->get_bulk_send_csv_template_with_http_info: #{e}"
 end
 ```
@@ -229,7 +231,7 @@ end
 
 ## get_bulk_send_documents
 
-> get_bulk_send_documents(id, opts)
+> <BulkSendDocumentsResponse> get_bulk_send_documents(id, opts)
 
 Get Bulk Send Documents
 
@@ -248,7 +250,7 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::BulkSendApi.new
+api_instance = SignWell::Resources::BulkSendApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 opts = {
   limit: 56, # Integer | 
@@ -257,17 +259,18 @@ opts = {
 
 begin
   # Get Bulk Send Documents
-  api_instance.get_bulk_send_documents(id, opts)
-rescue SignWell::ApiError => e
+  result = api_instance.get_bulk_send_documents(id, opts)
+  p result
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->get_bulk_send_documents: #{e}"
 end
 ```
 
 #### Using the get_bulk_send_documents_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> get_bulk_send_documents_with_http_info(id, opts)
+> <Array(<BulkSendDocumentsResponse>, Integer, Hash)> get_bulk_send_documents_with_http_info(id, opts)
 
 ```ruby
 begin
@@ -275,8 +278,8 @@ begin
   data, status_code, headers = api_instance.get_bulk_send_documents_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
-rescue SignWell::ApiError => e
+  p data # => <BulkSendDocumentsResponse>
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->get_bulk_send_documents_with_http_info: #{e}"
 end
 ```
@@ -291,7 +294,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**BulkSendDocumentsResponse**](BulkSendDocumentsResponse.md)
 
 ### Authorization
 
@@ -324,7 +327,7 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::BulkSendApi.new
+api_instance = SignWell::Resources::BulkSendApi.new
 opts = {
   user_email: 'user_email_example', # String | 
   limit: 56, # Integer | 
@@ -336,7 +339,7 @@ begin
   # List Bulk Sendings
   result = api_instance.list_bulk_sends(opts)
   p result
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->list_bulk_sends: #{e}"
 end
 ```
@@ -354,7 +357,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <BulkSendListResponse>
-rescue SignWell::ApiError => e
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->list_bulk_sends_with_http_info: #{e}"
 end
 ```
@@ -384,7 +387,7 @@ end
 
 ## validate_bulk_send_csv
 
-> validate_bulk_send_csv(bulk_send_csv_request)
+> <BulkSendValidateCsvResponse> validate_bulk_send_csv(bulk_send_csv_request)
 
 Validate Bulk Send CSV
 
@@ -403,22 +406,23 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::BulkSendApi.new
+api_instance = SignWell::Resources::BulkSendApi.new
 bulk_send_csv_request = SignWell::BulkSendCsvRequest.new({template_ids: ['00000000-0000-0000-0000-000000000000'], bulk_send_csv: 'bmFtZSxlbWFpbApUZXN0LHRlc3RAZXhhbXBsZS5jb20K'}) # BulkSendCsvRequest | 
 
 begin
   # Validate Bulk Send CSV
-  api_instance.validate_bulk_send_csv(bulk_send_csv_request)
-rescue SignWell::ApiError => e
+  result = api_instance.validate_bulk_send_csv(bulk_send_csv_request)
+  p result
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->validate_bulk_send_csv: #{e}"
 end
 ```
 
 #### Using the validate_bulk_send_csv_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> validate_bulk_send_csv_with_http_info(bulk_send_csv_request)
+> <Array(<BulkSendValidateCsvResponse>, Integer, Hash)> validate_bulk_send_csv_with_http_info(bulk_send_csv_request)
 
 ```ruby
 begin
@@ -426,8 +430,8 @@ begin
   data, status_code, headers = api_instance.validate_bulk_send_csv_with_http_info(bulk_send_csv_request)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
-rescue SignWell::ApiError => e
+  p data # => <BulkSendValidateCsvResponse>
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->validate_bulk_send_csv_with_http_info: #{e}"
 end
 ```
@@ -440,7 +444,7 @@ end
 
 ### Return type
 
-nil (empty response body)
+[**BulkSendValidateCsvResponse**](BulkSendValidateCsvResponse.md)
 
 ### Authorization
 

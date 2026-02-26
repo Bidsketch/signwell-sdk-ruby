@@ -1,4 +1,4 @@
-# SignWell::FieldType
+# SignWell::Models::FieldType
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::FieldType.new()
+instance = SignWell::Models::FieldType.new()
 ```
 

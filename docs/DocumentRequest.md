@@ -1,4 +1,4 @@
-# SignWell::DocumentRequest
+# SignWell::Models::DocumentRequest
 
 ## Properties
 
@@ -39,7 +39,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DocumentRequest.new(
+instance = SignWell::Models::DocumentRequest.new(
   test_mode: null,
   files: null,
   name: null,

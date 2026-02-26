@@ -1,4 +1,4 @@
-# SignWell::CopiedContactInfo
+# SignWell::Models::CopiedContactInfo
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::CopiedContactInfo.new(
+instance = SignWell::Models::CopiedContactInfo.new(
   id: null,
   name: null,
   email: null

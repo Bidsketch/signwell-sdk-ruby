@@ -1,4 +1,4 @@
-# SignWell::BulkSendListItem
+# SignWell::Models::BulkSendListItem
 
 ## Properties
 
@@ -20,7 +20,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::BulkSendListItem.new(
+instance = SignWell::Models::BulkSendListItem.new(
   id: null,
   name: null,
   api_application_id: null,

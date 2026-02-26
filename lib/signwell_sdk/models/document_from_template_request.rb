@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -17,98 +17,130 @@ module SignWell
   module Models
     class DocumentFromTemplateRequest
       # Set to `true` to enable Test Mode. Documents created with Test Mode do not count towards API billing and are not legally binding. Defaults to `false`
+      # @return [Boolean]
       attr_accessor :test_mode
 
       # Use when you have to create a document from a single template. Either :template_id or :template_ids must be present in the request, not both.
+      # @return [String]
       attr_accessor :template_id
 
       # Use when you have to create a document from multiple templates. Either :template_id or :template_ids must be present in the request, not both.
+      # @return [Array<String>]
       attr_accessor :template_ids
 
       # The name of the document.
+      # @return [String]
       attr_accessor :name
 
       # Email subject for the signature request that recipients will see. Defaults to the default system subject or a template subject (if the document is created from a template).
+      # @return [String]
       attr_accessor :subject
 
       # Email message for the signature request that recipients will see. Defaults to the default system message or a template message (if the document is created from a template).
+      # @return [String]
       attr_accessor :message
 
       # Document recipients are people that must complete and/or sign a document. Recipients of the document must be assigned to a placeholder of the template. Recipients will inherit all placeholder fields and settings.
+      # @return [Array<TemplateRecipientsInner>]
       attr_accessor :recipients
 
       # Exclude one or more template placeholders when creating a document from a template. Any excluded placeholders (and their associated recipients and fields) will not be included on the created document. Values must match placeholder names on the template. You can't exclude all placeholders (at least one recipient must remain).
+      # @return [Array<String>]
       attr_accessor :exclude_placeholders
 
       # Whether the document can still be updated before sending a signature request. If set to `false` the document is sent for signing as part of this request. Defaults to `false`.
+      # @return [Boolean]
       attr_accessor :draft
 
       # When set to `true` the document will have a signature page added to the end, and all signers will be required to add their signature on that page.
+      # @return [Boolean]
       attr_accessor :with_signature_page
 
       # Number of days before the signature request expires. Defaults to the account expiration setting or template expiration (if the document is created from a template).
+      # @return [Integer]
       attr_accessor :expires_in
 
       # Whether to send signing reminders to recipients. Reminders are sent on day 3, day 6, and day 10 if set to `true`. Defaults to `true`.
+      # @return [Boolean]
       attr_accessor :reminders
 
       # When set to `true` recipients will sign one at a time in the order of the `recipients` collection of this request.
+      # @return [Boolean]
       attr_accessor :apply_signing_order
 
       # Unique identifier for API Application settings to use. API Applications are optional and mainly used when isolating OAuth apps or for more control over embedded API settings
+      # @return [String]
       attr_accessor :api_application_id
 
       # When set to `true` it enables embedded signing in your website/web application. Embedded functionality works with an iFrame and email authentication is disabled. :embedded_signinig defaults to `false`.
+      # @return [Boolean]
       attr_accessor :embedded_signing
 
       # On embedding signing, document owners (and CC'd contacts) do not get a notification email when documents have been completed. Setting this param to `true` will send out those final completed notifications. Default is `false`
+      # @return [Boolean]
       attr_accessor :embedded_signing_notifications
 
       # An alternative way (if you can’t use the recommended way) of placing fields in specific locations of your document by using special text tags. Useful when changing the content of your files changes the location of fields. See API documentation for “Text Tags” for details. Defaults to false.
+      # @return [Boolean]
       attr_accessor :text_tags
 
       # Sets the custom requester name for the document. When set, this is the name used for all email communications, signing notifications, and in the audit file.
+      # @return [String]
       attr_accessor :custom_requester_name
 
       # Sets the custom requester email for the document. When set, this is the email used for all email communications, signing notifications, and in the audit file.
+      # @return [String]
       attr_accessor :custom_requester_email
 
       # A URL that recipients are redirected to after successfully signing a document.
+      # @return [String]
       attr_accessor :redirect_url
 
       # Whether to allow recipients the option to decline signing a document. If multiple signers are involved in a document, any single recipient can cancel the entire document signing process by declining to sign.
+      # @return [Boolean]
       attr_accessor :allow_decline
 
       # In some cases a signer is not the right person to sign and may need to reassign their signing responsibilities to another person. This feature allows them to reassign the document to someone else.
+      # @return [Boolean]
       attr_accessor :allow_reassign
 
       # A URL that recipients are redirected to if the document is declined.
+      # @return [String]
       attr_accessor :decline_redirect_url
 
       # Sets the language for all recipients on the document and updates all recipient side interactions including the document email and the document itself. Accepted languages: English, Français, Español, Deutsch, Polski, Português, Dansk, Nederlands, Italiano, Русский, Svenska, العربية, Ελληνικά, Türkçe, Slovenčina. Defaults to English. Language should be sent in ISO 639-1 format: en, fr, es, de, pl, pt, da, nl, it, ru, sv, ar, el, tr, sk.
+      # @return [String]
       attr_accessor :language
 
       # Optional key-value data that can be associated with the document. If set, will be available every time the document data is returned.
+      # @return [Hash<String, String>]
       attr_accessor :metadata
 
       # Fields of your template(s) that you can prepopulate with values. Signature and Initials fields cannot be signed through the API.
+      # @return [Array<TemplateFieldValuesInner>]
       attr_accessor :template_fields
 
+      # @return [Array<AdditionalFilesInner>]
       attr_accessor :files
 
       # Fields to be added to any appended files (not existing files). Document fields placed on a document for collecting data or signatures from recipients. Field data should be sent as a 2-dimensional JSON array. One array of fields is needed for each file in the files array. An array of fields can be empty if you have a file that does not contain any fields.
+      # @return [Array<Array<AdditionalFieldsInnerInner>>]
       attr_accessor :fields
 
       # Attachments that a recipient must upload to complete the signing process. Attachment requests are shown after all document fields have been completed.
+      # @return [Array<AttachmentRequestsInner>]
       attr_accessor :attachment_requests
 
       # Copied contacts are emailed the final document once it has been completed by all recipients.
+      # @return [Array<CopiedContactsInner>]
       attr_accessor :copied_contacts
 
       # Labels can be used to organize documents in a way that can make it easy to find using the document search in SignWell. A document can have multiple labels. Updating labels on a document will replace any existing labels for that document.
+      # @return [Array<LabelRequest>]
       attr_accessor :labels
 
       # Checkbox fields that are placed on a document can be grouped with selection requirements. At least 2 checkbox fields in an array of fields must be assigned to the same recipient.
+      # @return [Array<CheckboxGroupsInner>]
       attr_accessor :checkbox_groups
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -397,7 +429,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -437,7 +469,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -476,8 +508,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

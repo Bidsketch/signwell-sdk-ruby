@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -63,6 +63,13 @@ RSpec.describe SignWell::Resources::DocumentApi, :prism do
   describe '#get_document' do
     it 'returns DocumentResponse' do
       result = @api.get_document(@test_id)
+      expect(result).not_to be_nil
+    end
+  end
+
+  describe '#list_documents' do
+    it 'returns DocumentListResponse' do
+      result = @api.list_documents
       expect(result).not_to be_nil
     end
   end

@@ -1,4 +1,4 @@
-# SignWell::LabelRequest
+# SignWell::Models::LabelRequest
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::LabelRequest.new(
+instance = SignWell::Models::LabelRequest.new(
   name: null
 )
 ```

@@ -1,4 +1,4 @@
-# SignWell::RateLimitErrorResponse
+# SignWell::Models::RateLimitErrorResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::RateLimitErrorResponse.new(
+instance = SignWell::Models::RateLimitErrorResponse.new(
   error: null
 )
 ```

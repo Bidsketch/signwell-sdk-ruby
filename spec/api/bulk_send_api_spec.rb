@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -28,16 +28,18 @@ RSpec.describe SignWell::Resources::BulkSendApi, :prism do
   end
 
   describe '#create_bulk_send' do
-    it 'succeeds' do
+    it 'returns BulkSendCreateResponse' do
       body = SignWell::CreateBulkSendRequest.new({ template_ids: ['00000000-0000-0000-0000-000000000000'],
                                                    bulk_send_csv: 'bmFtZSxlbWFpbApUZXN0LHRlc3RAZXhhbXBsZS5jb20K' })
-      expect { @api.create_bulk_send(body) }.not_to raise_error
+      result = @api.create_bulk_send(body)
+      expect(result).not_to be_nil
     end
   end
 
   describe '#get_bulk_send' do
-    it 'succeeds' do
-      expect { @api.get_bulk_send(@test_id) }.not_to raise_error
+    it 'returns BulkSendResponse' do
+      result = @api.get_bulk_send(@test_id)
+      expect(result).not_to be_nil
     end
   end
 
@@ -48,8 +50,9 @@ RSpec.describe SignWell::Resources::BulkSendApi, :prism do
   end
 
   describe '#get_bulk_send_documents' do
-    it 'succeeds' do
-      expect { @api.get_bulk_send_documents(@test_id) }.not_to raise_error
+    it 'returns BulkSendDocumentsResponse' do
+      result = @api.get_bulk_send_documents(@test_id)
+      expect(result).not_to be_nil
     end
   end
 
@@ -61,10 +64,11 @@ RSpec.describe SignWell::Resources::BulkSendApi, :prism do
   end
 
   describe '#validate_bulk_send_csv' do
-    it 'succeeds' do
+    it 'returns BulkSendValidateCsvResponse' do
       body = SignWell::BulkSendCsvRequest.new({ template_ids: ['00000000-0000-0000-0000-000000000000'],
                                                 bulk_send_csv: 'bmFtZSxlbWFpbApUZXN0LHRlc3RAZXhhbXBsZS5jb20K' })
-      expect { @api.validate_bulk_send_csv(body) }.not_to raise_error
+      result = @api.validate_bulk_send_csv(body)
+      expect(result).not_to be_nil
     end
   end
 end

@@ -1,4 +1,4 @@
-# SignWell::PaginationMeta
+# SignWell::Models::PaginationMeta
 
 ## Properties
 
@@ -15,7 +15,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::PaginationMeta.new(
+instance = SignWell::Models::PaginationMeta.new(
   current_page: null,
   next_page: null,
   previous_page: null,

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -27,7 +27,7 @@ module SignWell
         end
 
         # Builds the object
-        # @param [Mixed] Data to be matched against the list of oneOf items
+        # @param [Mixed] data Data to be matched against the list of oneOf items
         # @return [Object] Returns the model or the data itself
         def build(data)
           # Go through the list of oneOf items and attempt to identify the appropriate one.
@@ -79,7 +79,7 @@ module SignWell
           when /\AHash<String, (?<sub_type>.+)>\z/ # "type: object" with "additionalProperties: { ... }"
             if data.instance_of?(Hash) && data.keys.all? { |k| k.instance_of?(Symbol) || k.instance_of?(String) }
               sub_type = Regexp.last_match[:sub_type]
-              return data.transform_values { |v| find_and_cast_into_type(sub_type, v) }
+              return data.each_with_object({}) { |(k, v), hsh| hsh[k] = find_and_cast_into_type(sub_type, v) }
             end
           else # model
             const = SignWell::Models.const_get(klass)

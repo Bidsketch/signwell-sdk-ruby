@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -16,7 +16,11 @@ require 'time'
 module SignWell
   module Models
     class DocumentResponseFieldsInnerInnerRecipient
-      attr_accessor :email, :name
+      # @return [String]
+      attr_accessor :email
+
+      # @return [String]
+      attr_accessor :name
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
@@ -112,7 +116,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -122,7 +126,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -160,8 +164,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

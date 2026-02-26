@@ -1,4 +1,4 @@
-# SignWell::MeApi
+# SignWell::Resources::MeApi
 
 All URIs are relative to *https://www.signwell.com*
 
@@ -9,7 +9,7 @@ All URIs are relative to *https://www.signwell.com*
 
 ## get_me
 
-> get_me
+> <MeResponse> get_me
 
 Get credentials
 
@@ -28,21 +28,22 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::MeApi.new
+api_instance = SignWell::Resources::MeApi.new
 
 begin
   # Get credentials
-  api_instance.get_me
-rescue SignWell::ApiError => e
+  result = api_instance.get_me
+  p result
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling MeApi->get_me: #{e}"
 end
 ```
 
 #### Using the get_me_with_http_info variant
 
-This returns an Array which contains the response data (`nil` in this case), status code and headers.
+This returns an Array which contains the response data, status code and headers.
 
-> <Array(nil, Integer, Hash)> get_me_with_http_info
+> <Array(<MeResponse>, Integer, Hash)> get_me_with_http_info
 
 ```ruby
 begin
@@ -50,8 +51,8 @@ begin
   data, status_code, headers = api_instance.get_me_with_http_info
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => nil
-rescue SignWell::ApiError => e
+  p data # => <MeResponse>
+rescue SignWell::Errors::ApiError => e
   puts "Error when calling MeApi->get_me_with_http_info: #{e}"
 end
 ```
@@ -62,7 +63,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-nil (empty response body)
+[**MeResponse**](MeResponse.md)
 
 ### Authorization
 

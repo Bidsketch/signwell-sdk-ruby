@@ -1,4 +1,4 @@
-# SignWell::LabelInfo
+# SignWell::Models::LabelInfo
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::LabelInfo.new(
+instance = SignWell::Models::LabelInfo.new(
   id: null,
   name: null
 )

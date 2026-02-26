@@ -1,4 +1,4 @@
-# SignWell::FilesInner
+# SignWell::Models::FilesInner
 
 ## Properties
 
@@ -13,7 +13,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::FilesInner.new(
+instance = SignWell::Models::FilesInner.new(
   name: null,
   file_url: null,
   file_base64: null

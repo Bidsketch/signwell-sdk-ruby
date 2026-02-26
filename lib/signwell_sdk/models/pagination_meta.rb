@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -18,18 +18,23 @@ module SignWell
     # Pagination metadata for list responses
     class PaginationMeta
       # Current page number
+      # @return [Integer]
       attr_accessor :current_page
 
       # Next page number, null if on last page
+      # @return [Integer]
       attr_accessor :next_page
 
       # Previous page number, null if on first page
+      # @return [Integer]
       attr_accessor :previous_page
 
       # Total number of records
+      # @return [Integer]
       attr_accessor :total_count
 
       # Total number of pages
+      # @return [Integer]
       attr_accessor :total_pages
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -152,7 +157,7 @@ module SignWell
       end
 
       # Checks equality by comparing each attribute.
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def ==(other)
         return true if equal?(other)
 
@@ -165,7 +170,7 @@ module SignWell
       end
 
       # @see the `==` method
-      # @param [Object] Object to be compared
+      # @param [Object] other Object to be compared
       def eql?(other)
         self == other
       end
@@ -203,8 +208,8 @@ module SignWell
       end
 
       # Deserializes the data based on type
-      # @param string type Data type
-      # @param string value Value to be deserialized
+      # @param [String] type Data type
+      # @param [String] value Value to be deserialized
       # @return [Object] Deserialized data
       def self._deserialize(type, value)
         case type.to_sym

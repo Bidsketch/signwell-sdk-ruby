@@ -1,4 +1,4 @@
-# SignWell::DateFormat
+# SignWell::Models::DateFormat
 
 ## Properties
 
@@ -10,6 +10,6 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DateFormat.new()
+instance = SignWell::Models::DateFormat.new()
 ```
 

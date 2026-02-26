@@ -1,4 +1,4 @@
-# SignWell::Nom151UrlResponse
+# SignWell::Models::Nom151UrlResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::Nom151UrlResponse.new(
+instance = SignWell::Models::Nom151UrlResponse.new(
   file_url: null
 )
 ```

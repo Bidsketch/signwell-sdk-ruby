@@ -1,4 +1,4 @@
-# SignWell::BulkSendListResponse
+# SignWell::Models::BulkSendListResponse
 
 ## Properties
 
@@ -16,7 +16,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::BulkSendListResponse.new(
+instance = SignWell::Models::BulkSendListResponse.new(
   bulk_sends: null,
   current_page: null,
   next_page: null,

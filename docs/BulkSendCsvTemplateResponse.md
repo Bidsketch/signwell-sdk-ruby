@@ -1,4 +1,4 @@
-# SignWell::BulkSendCsvTemplateResponse
+# SignWell::Models::BulkSendCsvTemplateResponse
 
 ## Properties
 
@@ -11,7 +11,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::BulkSendCsvTemplateResponse.new(
+instance = SignWell::Models::BulkSendCsvTemplateResponse.new(
   data: null
 )
 ```

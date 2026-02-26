@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -207,6 +207,82 @@ module SignWell
         data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
         if @api_client.config.debugging
           @api_client.config.logger.debug "API called: TemplateApi#get_template\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        end
+        [data, status_code, headers]
+      end
+
+      # List Templates
+      # Returns a paginated list of templates for the authenticated account.
+      # @param [Hash] opts the optional parameters
+      # @option opts [Integer] :page  (default to 1)
+      # @option opts [Integer] :limit  (default to 10)
+      # @return [Models::DocumentTemplateListResponse]
+      def list_templates(opts = {})
+        data, _status_code, _headers = list_templates_with_http_info(opts)
+        data
+      end
+
+      # List Templates
+      # Returns a paginated list of templates for the authenticated account.
+      # @param [Hash] opts the optional parameters
+      # @option opts [Integer] :page  (default to 1)
+      # @option opts [Integer] :limit  (default to 10)
+      # @return [Array<(Models::DocumentTemplateListResponse, Integer, Hash)>] DocumentTemplateListResponse data, response status code and response headers
+      def list_templates_with_http_info(opts = {})
+        @api_client.config.logger.debug 'Calling API: TemplateApi.list_templates ...' if @api_client.config.debugging
+        if @api_client.config.client_side_validation && !opts[:page].nil? && opts[:page] < 1
+          raise ArgumentError,
+                'invalid value for "opts[:"page"]" when calling TemplateApi.list_templates, must be greater than or equal to 1.'
+        end
+
+        if @api_client.config.client_side_validation && !opts[:limit].nil? && opts[:limit] > 50
+          raise ArgumentError,
+                'invalid value for "opts[:"limit"]" when calling TemplateApi.list_templates, must be smaller than or equal to 50.'
+        end
+
+        if @api_client.config.client_side_validation && !opts[:limit].nil? && opts[:limit] < 1
+          raise ArgumentError,
+                'invalid value for "opts[:"limit"]" when calling TemplateApi.list_templates, must be greater than or equal to 1.'
+        end
+
+        # resource path
+        local_var_path = '/api/v1/document_templates'
+
+        # query parameters
+        query_params = opts[:query_params] || {}
+        query_params[:page] = opts[:page] unless opts[:page].nil?
+        query_params[:limit] = opts[:limit] unless opts[:limit].nil?
+
+        # header parameters
+        header_params = opts[:header_params] || {}
+        # HTTP header 'Accept' (if needed)
+        header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+
+        # form parameters
+        form_params = opts[:form_params] || {}
+
+        # http body (model)
+        post_body = opts[:debug_body]
+
+        # return_type
+        return_type = opts[:debug_return_type] || 'DocumentTemplateListResponse'
+
+        # auth_names
+        auth_names = opts[:debug_auth_names] || ['api_key']
+
+        new_options = opts.merge(
+          operation: :"TemplateApi.list_templates",
+          header_params: header_params,
+          query_params: query_params,
+          form_params: form_params,
+          body: post_body,
+          auth_names: auth_names,
+          return_type: return_type
+        )
+
+        data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+        if @api_client.config.debugging
+          @api_client.config.logger.debug "API called: TemplateApi#list_templates\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
         end
         [data, status_code, headers]
       end

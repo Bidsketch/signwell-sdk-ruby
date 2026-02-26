@@ -1,4 +1,4 @@
-# SignWell::BulkSendCsvRequest
+# SignWell::Models::BulkSendCsvRequest
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::BulkSendCsvRequest.new(
+instance = SignWell::Models::BulkSendCsvRequest.new(
   template_ids: null,
   bulk_send_csv: bmFtZSxlbWFpbApUZXN0LHRlc3RAZXhhbXBsZS5jb20K
 )

@@ -1,4 +1,4 @@
-# SignWell::DocumentResponseFieldsInnerInnerRecipient
+# SignWell::Models::DocumentResponseFieldsInnerInnerRecipient
 
 ## Properties
 
@@ -12,7 +12,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::DocumentResponseFieldsInnerInnerRecipient.new(
+instance = SignWell::Models::DocumentResponseFieldsInnerInnerRecipient.new(
   email: null,
   name: null
 )

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# #SignWell Developer API
+# SignWell Developer API
 #
 # API for creating, managing, and tracking electronic signature workflows.
 #
@@ -392,6 +392,7 @@ module SignWell
     def object_to_http_body(model)
       return model if model.nil? || model.is_a?(String)
 
+      nil
       local_body = if model.is_a?(Array)
                      model.map { |m| object_to_hash(m) }
                    else

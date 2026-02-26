@@ -1,4 +1,4 @@
-# SignWell::TemplateRecipientsInner
+# SignWell::Models::TemplateRecipientsInner
 
 ## Properties
 
@@ -19,7 +19,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::TemplateRecipientsInner.new(
+instance = SignWell::Models::TemplateRecipientsInner.new(
   id: null,
   name: null,
   email: signer@example.com,
