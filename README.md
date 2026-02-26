@@ -66,18 +66,18 @@ For the full API reference (all resources, models, and methods), see the documen
 
 ## Examples
 
-The [`examples/`](examples/) directory contains runnable scripts covering common use cases:
+The [`examples/`](https://github.com/Bidsketch/signwell-sdk-ruby/tree/main/examples) directory contains runnable scripts covering common use cases:
 
 | Example | Description |
 |---------|-------------|
-| [01_me.rb](examples/01_me.rb) | Get account info |
-| [02_documents.rb](examples/02_documents.rb) | Create, retrieve, remind, and delete a document |
-| [03_templates.rb](examples/03_templates.rb) | Create, update, and delete templates |
-| [04_document_from_template.rb](examples/04_document_from_template.rb) | Create a document from a template |
-| [05_bulk_send.rb](examples/05_bulk_send.rb) | Bulk send with CSV validation |
-| [06_webhooks.rb](examples/06_webhooks.rb) | Manage webhooks |
-| [07_error_handling.rb](examples/07_error_handling.rb) | Error hierarchy and handling patterns |
-| [08_retries.rb](examples/08_retries.rb) | Retry configuration with Faraday middleware |
+| [01_me.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/01_me.rb) | Get account info |
+| [02_documents.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/02_documents.rb) | Create, retrieve, remind, and delete a document |
+| [03_templates.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/03_templates.rb) | Create, update, and delete templates |
+| [04_document_from_template.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/04_document_from_template.rb) | Create a document from a template |
+| [05_bulk_send.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/05_bulk_send.rb) | Bulk send with CSV validation |
+| [06_webhooks.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/06_webhooks.rb) | Manage webhooks |
+| [07_error_handling.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/07_error_handling.rb) | Error hierarchy and handling patterns |
+| [08_retries.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/08_retries.rb) | Retry configuration with Faraday middleware |
 
 To run the examples, set your API key and run any script:
 
