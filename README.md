@@ -78,6 +78,7 @@ The [`examples/`](https://github.com/Bidsketch/signwell-sdk-ruby/tree/main/examp
 | [06_webhooks.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/06_webhooks.rb) | Manage webhooks |
 | [07_error_handling.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/07_error_handling.rb) | Error hierarchy and handling patterns |
 | [08_retries.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/08_retries.rb) | Retry configuration with Faraday middleware |
+| [09_webhook_validation.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/09_webhook_validation.rb) | Webhook signature verification |
 
 To run the examples, set your API key and run any script:
 
