@@ -1,4 +1,4 @@
-# SignWell::Models::MeResponseAccount
+# SignWell::Models::AccountInfoResponse
 
 ## Properties
 
@@ -11,14 +11,14 @@
 | **can_create_template** | **Boolean** |  | [optional] |
 | **can_create_tracking_document** | **Boolean** |  | [optional] |
 | **can_create_completion_document** | **Boolean** |  | [optional] |
-| **active_users** | [**Array&lt;MeResponseAccountActiveUsersInner&gt;**](MeResponseAccountActiveUsersInner.md) |  | [optional] |
+| **active_users** | [**Array&lt;AccountInfoResponseActiveUsersInner&gt;**](AccountInfoResponseActiveUsersInner.md) |  | [optional] |
 
 ## Example
 
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::Models::MeResponseAccount.new(
+instance = SignWell::Models::AccountInfoResponse.new(
   id: null,
   name: null,
   plan_tier: null,

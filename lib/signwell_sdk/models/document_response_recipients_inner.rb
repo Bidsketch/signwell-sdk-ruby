@@ -123,6 +123,7 @@ module SignWell
                   bounced
                   bounced_details
                   passcode
+                  status
                 ])
       end
 

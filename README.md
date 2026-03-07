@@ -58,6 +58,76 @@ document = api.create_document(request)
 puts document.id
 ```
 
+## Embedded Signing
+
+The embedded API lets you integrate document signing directly into your app via an iframe, instead of redirecting users to SignWell. The `SignWell::Embedded` helper simplifies both the backend (creating documents, extracting URLs) and the frontend (rendering the iframe).
+
+### Backend: Create a document for embedded signing
+
+```ruby
+doc = SignWell::Embedded.create_signing_document(
+  name: 'NDA',
+  file_url: 'https://example.com/nda.pdf',
+  recipients: [{ name: 'Jane Doe', email: 'jane@example.com' }],
+  fields: [{ x: 20, y: 60, page: 1, type: 'signature' }]
+)
+
+# Get the signing URL for the first recipient
+signing_url = SignWell::Embedded.signing_url(doc)
+
+# Or get all signing URLs as { email => url }
+urls = SignWell::Embedded.signing_urls(doc)
+```
+
+### Backend: Create a draft for embedded requesting (field placement)
+
+```ruby
+doc = SignWell::Embedded.create_requesting_document(
+  name: 'Contract',
+  file_url: 'https://example.com/contract.pdf',
+  recipients: [{ name: 'Jane Doe', email: 'jane@example.com' }]
+)
+
+edit_url = doc.embedded_edit_url
+```
+
+### Backend: Create from a template
+
+```ruby
+doc = SignWell::Embedded.create_signing_document_from_template(
+  template_id: 'your-template-uuid',
+  recipients: [{ placeholder_name: 'Signer 1', name: 'Jane Doe', email: 'jane@example.com' }]
+)
+
+signing_url = SignWell::Embedded.signing_url(doc)
+```
+
+### Frontend: JavaScript
+
+```html
+<script src="https://static.signwell.com/assets/embedded.js"></script>
+<script>
+  var embed = new SignWellEmbed({
+    url: signingUrl,
+    events: {
+      completed: function(e) { console.log('Signed!', e); },
+      closed: function(e) { console.log('Closed'); }
+    }
+  });
+  embed.open();
+</script>
+```
+
+### Frontend: Rails view helpers
+
+If you use Rails, view helpers are available automatically:
+
+```erb
+<%= signwell_embed_script_tag %>
+<%= signwell_signing_iframe(url: @signing_url, events: { completed: 'onComplete' }) %>
+<%= signwell_requesting_iframe(url: @edit_url) %>
+```
+
 ## Documentation
 
 For the full API reference (all resources, models, and methods), see the documentation on gemdocs:
@@ -79,6 +149,8 @@ The [`examples/`](https://github.com/Bidsketch/signwell-sdk-ruby/tree/main/examp
 | [07_error_handling.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/07_error_handling.rb) | Error hierarchy and handling patterns |
 | [08_retries.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/08_retries.rb) | Retry configuration with Faraday middleware |
 | [09_webhook_validation.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/09_webhook_validation.rb) | Webhook signature verification |
+| [10_embedded_signing.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/10_embedded_signing.rb) | Embedded signing workflow |
+| [11_embedded_requesting.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/11_embedded_requesting.rb) | Embedded requesting workflow |
 
 To run the examples, set your API key and run any script:
 

@@ -18,8 +18,12 @@ require 'signwell_sdk/configuration'
 
 # Extras
 require 'signwell_sdk/webhook'
+require 'signwell_sdk/embedded'
+require 'signwell_sdk/embedded/railtie' if defined?(Rails::Railtie)
 
 # Models
+require 'signwell_sdk/models/account_info_response'
+require 'signwell_sdk/models/account_info_response_active_users_inner'
 require 'signwell_sdk/models/additional_fields_inner_inner'
 require 'signwell_sdk/models/additional_fields_inner_inner_value'
 require 'signwell_sdk/models/additional_files_inner'
@@ -81,11 +85,8 @@ require 'signwell_sdk/models/label_info'
 require 'signwell_sdk/models/label_request'
 require 'signwell_sdk/models/label_response'
 require 'signwell_sdk/models/me_response'
-require 'signwell_sdk/models/me_response_account'
-require 'signwell_sdk/models/me_response_account_active_users_inner'
 require 'signwell_sdk/models/me_response_contact'
 require 'signwell_sdk/models/me_response_user'
-require 'signwell_sdk/models/me_response_workspace'
 require 'signwell_sdk/models/nom151_certificate_response'
 require 'signwell_sdk/models/nom151_certificate_response_nom151'
 require 'signwell_sdk/models/nom151_url_response'
@@ -103,6 +104,8 @@ require 'signwell_sdk/models/template_fields_inner_inner'
 require 'signwell_sdk/models/template_recipients_inner'
 require 'signwell_sdk/models/text_validation'
 require 'signwell_sdk/models/update_document_and_send_request'
+require 'signwell_sdk/models/update_recipients_map_inner'
+require 'signwell_sdk/models/update_recipients_request'
 require 'signwell_sdk/models/validation_error_response'
 require 'signwell_sdk/models/webhook_response'
 

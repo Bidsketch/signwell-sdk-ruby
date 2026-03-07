@@ -12,6 +12,7 @@ All URIs are relative to *https://www.signwell.com*
 | [**list_documents**](DocumentApi.md#list_documents) | **GET** /api/v1/documents | List Documents |
 | [**send_document**](DocumentApi.md#send_document) | **POST** /api/v1/documents/{id}/send | Update and Send Document |
 | [**send_reminder**](DocumentApi.md#send_reminder) | **POST** /api/v1/documents/{id}/remind | Send Reminder |
+| [**update_recipients**](DocumentApi.md#update_recipients) | **PATCH** /api/v1/documents/{id}/recipients | Update Recipients |
 
 
 ## create_document
@@ -585,6 +586,79 @@ end
 ### Return type
 
 nil (empty response body)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## update_recipients
+
+> <DocumentResponse> update_recipients(id, update_recipients_request)
+
+Update Recipients
+
+Updates one or more recipients on a document that has already been sent. Only recipients who have not started signing may be updated. Recipient IDs must be retrieved from the Get Document response. Allowed document statuses: sent, viewed, pending, bounced. For non-embedded documents, updated recipients will receive a new notification email. For embedded signing documents, email behavior follows each recipient's send_email setting.
+
+### Examples
+
+```ruby
+require 'time'
+require 'signwell_sdk'
+# setup authorization
+SignWell.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['X-Api-Key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-Api-Key'] = 'Bearer'
+end
+
+api_instance = SignWell::Resources::DocumentApi.new
+id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
+update_recipients_request = SignWell::UpdateRecipientsRequest.new({recipients: [SignWell::UpdateRecipientsMapInner.new({id: 'id_example', name: 'name_example', email: 'jane@example.com'})]}) # UpdateRecipientsRequest | 
+
+begin
+  # Update Recipients
+  result = api_instance.update_recipients(id, update_recipients_request)
+  p result
+rescue SignWell::Errors::ApiError => e
+  puts "Error when calling DocumentApi->update_recipients: #{e}"
+end
+```
+
+#### Using the update_recipients_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<DocumentResponse>, Integer, Hash)> update_recipients_with_http_info(id, update_recipients_request)
+
+```ruby
+begin
+  # Update Recipients
+  data, status_code, headers = api_instance.update_recipients_with_http_info(id, update_recipients_request)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <DocumentResponse>
+rescue SignWell::Errors::ApiError => e
+  puts "Error when calling DocumentApi->update_recipients_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** |  |  |
+| **update_recipients_request** | [**UpdateRecipientsRequest**](UpdateRecipientsRequest.md) |  |  |
+
+### Return type
+
+[**DocumentResponse**](DocumentResponse.md)
 
 ### Authorization
 

@@ -1,4 +1,4 @@
-# SignWell::Models::MeResponseAccountActiveUsersInner
+# SignWell::Models::AccountInfoResponseActiveUsersInner
 
 ## Properties
 
@@ -14,7 +14,7 @@
 ```ruby
 require 'signwell_sdk'
 
-instance = SignWell::Models::MeResponseAccountActiveUsersInner.new(
+instance = SignWell::Models::AccountInfoResponseActiveUsersInner.new(
   id: null,
   name: null,
   email: null,

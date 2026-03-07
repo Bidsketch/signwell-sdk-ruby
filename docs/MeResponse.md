@@ -8,8 +8,8 @@
 | **role** | **String** | Role within the account (e.g. owner, admin, member) |  |
 | **archived** | **Boolean** |  | [optional] |
 | **user** | [**MeResponseUser**](MeResponseUser.md) |  |  |
-| **account** | [**MeResponseAccount**](MeResponseAccount.md) |  |  |
-| **workspace** | [**MeResponseWorkspace**](MeResponseWorkspace.md) |  | [optional] |
+| **account** | [**AccountInfoResponse**](AccountInfoResponse.md) |  |  |
+| **workspace** | [**AccountInfoResponse**](AccountInfoResponse.md) |  |  |
 | **contact** | [**MeResponseContact**](MeResponseContact.md) |  |  |
 
 ## Example

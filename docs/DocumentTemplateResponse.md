@@ -20,6 +20,7 @@
 | **status** | **String** |  | [optional] |
 | **reminders** | **Boolean** |  | [optional] |
 | **archived** | **Boolean** |  | [optional] |
+| **embedded_edit_url** | **String** |  | [optional] |
 | **template_link** | **String** |  | [optional] |
 | **apply_signing_order** | **Boolean** |  | [optional] |
 | **redirect_url** | **String** |  | [optional] |
@@ -55,6 +56,7 @@ instance = SignWell::Models::DocumentTemplateResponse.new(
   status: null,
   reminders: null,
   archived: null,
+  embedded_edit_url: null,
   template_link: null,
   apply_signing_order: null,
   redirect_url: null,

@@ -15,26 +15,15 @@ require 'time'
 
 module SignWell
   module Models
-    class MeResponseAccountActiveUsersInner
-      # @return [String]
-      attr_accessor :id
-
-      # @return [String]
-      attr_accessor :name
-
-      # @return [String]
-      attr_accessor :email
-
-      # @return [Boolean]
-      attr_accessor :has_google_registration
+    class UpdateRecipientsRequest
+      # List of recipients to update on the document.
+      # @return [Array<UpdateRecipientsMapInner>]
+      attr_accessor :recipients
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
         {
-          'id': :id,
-          'name': :name,
-          'email': :email,
-          'has_google_registration': :has_google_registration
+          'recipients': :recipients
         }
       end
 
@@ -51,10 +40,7 @@ module SignWell
       # Attribute type mapping.
       def self.openapi_types
         {
-          'id': :String,
-          'name': :String,
-          'email': :String,
-          'has_google_registration': :Boolean
+          'recipients': :'Array<UpdateRecipientsMapInner>'
         }
       end
 
@@ -68,7 +54,7 @@ module SignWell
       def initialize(attributes = {})
         unless attributes.is_a?(Hash)
           raise ArgumentError,
-                'The input argument (attributes) must be a hash in `SignWell::MeResponseAccountActiveUsersInner` initialize method'
+                'The input argument (attributes) must be a hash in `SignWell::UpdateRecipientsRequest` initialize method'
         end
 
         # check to see if the attribute exists and convert string to symbol for hash key
@@ -76,21 +62,19 @@ module SignWell
         attributes = attributes.each_with_object({}) do |(k, v), h|
           unless acceptable_attribute_map.key?(k.to_sym)
             raise ArgumentError,
-                  "`#{k}` is not a valid attribute in `SignWell::MeResponseAccountActiveUsersInner`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+                  "`#{k}` is not a valid attribute in `SignWell::UpdateRecipientsRequest`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
           end
 
           h[k.to_sym] = v
         end
 
-        self.id = (attributes[:id] if attributes.key?(:id))
-
-        self.name = (attributes[:name] if attributes.key?(:name))
-
-        self.email = (attributes[:email] if attributes.key?(:email))
-
-        return unless attributes.key?(:has_google_registration)
-
-        self.has_google_registration = attributes[:has_google_registration]
+        if attributes.key?(:recipients)
+          if (value = attributes[:recipients]).is_a?(Array)
+            self.recipients = value
+          end
+        else
+          self.recipients = nil
+        end
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -98,11 +82,7 @@ module SignWell
       def list_invalid_properties
         warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
         invalid_properties = []
-        invalid_properties.push('invalid value for "id", id cannot be nil.') if @id.nil?
-
-        invalid_properties.push('invalid value for "name", name cannot be nil.') if @name.nil?
-
-        invalid_properties.push('invalid value for "email", email cannot be nil.') if @email.nil?
+        invalid_properties.push('invalid value for "recipients", recipients cannot be nil.') if @recipients.nil?
 
         invalid_properties
       end
@@ -111,35 +91,17 @@ module SignWell
       # @return true if the model is valid
       def valid?
         warn '[DEPRECATED] the `valid?` method is obsolete'
-        return false if @id.nil?
-        return false if @name.nil?
-        return false if @email.nil?
+        return false if @recipients.nil?
 
         true
       end
 
       # Custom attribute writer method with validation
-      # @param [Object] id Value to be assigned
-      def id=(id)
-        raise ArgumentError, 'id cannot be nil' if id.nil?
+      # @param [Object] recipients Value to be assigned
+      def recipients=(recipients)
+        raise ArgumentError, 'recipients cannot be nil' if recipients.nil?
 
-        @id = id
-      end
-
-      # Custom attribute writer method with validation
-      # @param [Object] name Value to be assigned
-      def name=(name)
-        raise ArgumentError, 'name cannot be nil' if name.nil?
-
-        @name = name
-      end
-
-      # Custom attribute writer method with validation
-      # @param [Object] email Value to be assigned
-      def email=(email)
-        raise ArgumentError, 'email cannot be nil' if email.nil?
-
-        @email = email
+        @recipients = recipients
       end
 
       # Checks equality by comparing each attribute.
@@ -148,10 +110,7 @@ module SignWell
         return true if equal?(other)
 
         self.class == other.class &&
-          id == other.id &&
-          name == other.name &&
-          email == other.email &&
-          has_google_registration == other.has_google_registration
+          recipients == other.recipients
       end
 
       # @see the `==` method
@@ -163,7 +122,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [id, name, email, has_google_registration].hash
+        [recipients].hash
       end
 
       # Builds the object from hash
