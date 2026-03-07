@@ -88,4 +88,14 @@ RSpec.describe SignWell::Resources::DocumentApi, :prism do
       expect { @api.send_reminder(@test_id, body) }.not_to raise_error
     end
   end
+
+  describe '#update_recipients' do
+    it 'returns DocumentResponse' do
+      body = SignWell::UpdateRecipientsRequest.new({ recipients: [SignWell::UpdateRecipientsMapInner.new({
+                                                                                                           id: 'id_example', name: 'name_example', email: 'jane@example.com'
+                                                                                                         })] })
+      result = @api.update_recipients(@test_id, body)
+      expect(result).not_to be_nil
+    end
+  end
 end

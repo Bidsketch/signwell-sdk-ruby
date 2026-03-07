@@ -15,8 +15,8 @@ require 'time'
 
 module SignWell
   module Models
-    # The account the user belongs to
-    class MeResponseAccount
+    # Account or workspace information
+    class AccountInfoResponse
       # @return [String]
       attr_accessor :id
 
@@ -38,7 +38,7 @@ module SignWell
       # @return [Boolean]
       attr_accessor :can_create_completion_document
 
-      # @return [Array<MeResponseAccountActiveUsersInner>]
+      # @return [Array<AccountInfoResponseActiveUsersInner>]
       attr_accessor :active_users
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -75,7 +75,7 @@ module SignWell
           'can_create_template': :Boolean,
           'can_create_tracking_document': :Boolean,
           'can_create_completion_document': :Boolean,
-          'active_users': :'Array<MeResponseAccountActiveUsersInner>'
+          'active_users': :'Array<AccountInfoResponseActiveUsersInner>'
         }
       end
 
@@ -89,7 +89,7 @@ module SignWell
       def initialize(attributes = {})
         unless attributes.is_a?(Hash)
           raise ArgumentError,
-                'The input argument (attributes) must be a hash in `SignWell::MeResponseAccount` initialize method'
+                'The input argument (attributes) must be a hash in `SignWell::AccountInfoResponse` initialize method'
         end
 
         # check to see if the attribute exists and convert string to symbol for hash key
@@ -97,7 +97,7 @@ module SignWell
         attributes = attributes.each_with_object({}) do |(k, v), h|
           unless acceptable_attribute_map.key?(k.to_sym)
             raise ArgumentError,
-                  "`#{k}` is not a valid attribute in `SignWell::MeResponseAccount`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+                  "`#{k}` is not a valid attribute in `SignWell::AccountInfoResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
           end
 
           h[k.to_sym] = v

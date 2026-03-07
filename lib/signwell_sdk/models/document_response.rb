@@ -205,6 +205,7 @@ module SignWell
                   custom_requester_name
                   custom_requester_email
                   metadata
+                  embedded_edit_url
                   embedded_preview_url
                   redirect_url
                   decline_redirect_url

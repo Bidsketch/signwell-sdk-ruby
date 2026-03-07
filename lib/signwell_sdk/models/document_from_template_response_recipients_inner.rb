@@ -25,6 +25,9 @@ module SignWell
       # @return [String]
       attr_accessor :role
 
+      # @return [String]
+      attr_accessor :signing_url
+
       # @return [Array<AttachmentRequestInfo>]
       attr_accessor :attachment_requests
 
@@ -40,6 +43,7 @@ module SignWell
           'name': :name,
           'email': :email,
           'role': :role,
+          'signing_url': :signing_url,
           'attachment_requests': :attachment_requests,
           'passcode': :passcode,
           'status': :status
@@ -62,6 +66,7 @@ module SignWell
           'name': :String,
           'email': :String,
           'role': :String,
+          'signing_url': :String,
           'attachment_requests': :'Array<AttachmentRequestInfo>',
           'passcode': :String,
           'status': :String
@@ -99,6 +104,8 @@ module SignWell
         self.email = (attributes[:email] if attributes.key?(:email))
 
         self.role = attributes[:role] if attributes.key?(:role)
+
+        self.signing_url = attributes[:signing_url] if attributes.key?(:signing_url)
 
         if attributes.key?(:attachment_requests) && (value = attributes[:attachment_requests]).is_a?(Array)
           self.attachment_requests = value
@@ -147,6 +154,7 @@ module SignWell
           name == other.name &&
           email == other.email &&
           role == other.role &&
+          signing_url == other.signing_url &&
           attachment_requests == other.attachment_requests &&
           passcode == other.passcode &&
           status == other.status
@@ -161,7 +169,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [name, email, role, attachment_requests, passcode, status].hash
+        [name, email, role, signing_url, attachment_requests, passcode, status].hash
       end
 
       # Builds the object from hash

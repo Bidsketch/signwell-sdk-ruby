@@ -15,41 +15,26 @@ require 'time'
 
 module SignWell
   module Models
-    # Account information associated with the API key
-    class MeResponse
-      # Membership ID
+    class AccountInfoResponseActiveUsersInner
       # @return [String]
       attr_accessor :id
 
-      # Role within the account (e.g. owner, admin, member)
       # @return [String]
-      attr_accessor :role
+      attr_accessor :name
+
+      # @return [String]
+      attr_accessor :email
 
       # @return [Boolean]
-      attr_accessor :archived
-
-      # @return [MeResponseUser]
-      attr_accessor :user
-
-      # @return [AccountInfoResponse]
-      attr_accessor :account
-
-      # @return [AccountInfoResponse]
-      attr_accessor :workspace
-
-      # @return [MeResponseContact]
-      attr_accessor :contact
+      attr_accessor :has_google_registration
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
         {
           'id': :id,
-          'role': :role,
-          'archived': :archived,
-          'user': :user,
-          'account': :account,
-          'workspace': :workspace,
-          'contact': :contact
+          'name': :name,
+          'email': :email,
+          'has_google_registration': :has_google_registration
         }
       end
 
@@ -67,12 +52,9 @@ module SignWell
       def self.openapi_types
         {
           'id': :String,
-          'role': :String,
-          'archived': :Boolean,
-          'user': :MeResponseUser,
-          'account': :AccountInfoResponse,
-          'workspace': :AccountInfoResponse,
-          'contact': :MeResponseContact
+          'name': :String,
+          'email': :String,
+          'has_google_registration': :Boolean
         }
       end
 
@@ -86,7 +68,7 @@ module SignWell
       def initialize(attributes = {})
         unless attributes.is_a?(Hash)
           raise ArgumentError,
-                'The input argument (attributes) must be a hash in `SignWell::MeResponse` initialize method'
+                'The input argument (attributes) must be a hash in `SignWell::AccountInfoResponseActiveUsersInner` initialize method'
         end
 
         # check to see if the attribute exists and convert string to symbol for hash key
@@ -94,7 +76,7 @@ module SignWell
         attributes = attributes.each_with_object({}) do |(k, v), h|
           unless acceptable_attribute_map.key?(k.to_sym)
             raise ArgumentError,
-                  "`#{k}` is not a valid attribute in `SignWell::MeResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+                  "`#{k}` is not a valid attribute in `SignWell::AccountInfoResponseActiveUsersInner`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
           end
 
           h[k.to_sym] = v
@@ -102,17 +84,13 @@ module SignWell
 
         self.id = (attributes[:id] if attributes.key?(:id))
 
-        self.role = (attributes[:role] if attributes.key?(:role))
+        self.name = (attributes[:name] if attributes.key?(:name))
 
-        self.archived = attributes[:archived] if attributes.key?(:archived)
+        self.email = (attributes[:email] if attributes.key?(:email))
 
-        self.user = (attributes[:user] if attributes.key?(:user))
+        return unless attributes.key?(:has_google_registration)
 
-        self.account = (attributes[:account] if attributes.key?(:account))
-
-        self.workspace = (attributes[:workspace] if attributes.key?(:workspace))
-
-        self.contact = (attributes[:contact] if attributes.key?(:contact))
+        self.has_google_registration = attributes[:has_google_registration]
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -122,15 +100,9 @@ module SignWell
         invalid_properties = []
         invalid_properties.push('invalid value for "id", id cannot be nil.') if @id.nil?
 
-        invalid_properties.push('invalid value for "role", role cannot be nil.') if @role.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.') if @name.nil?
 
-        invalid_properties.push('invalid value for "user", user cannot be nil.') if @user.nil?
-
-        invalid_properties.push('invalid value for "account", account cannot be nil.') if @account.nil?
-
-        invalid_properties.push('invalid value for "workspace", workspace cannot be nil.') if @workspace.nil?
-
-        invalid_properties.push('invalid value for "contact", contact cannot be nil.') if @contact.nil?
+        invalid_properties.push('invalid value for "email", email cannot be nil.') if @email.nil?
 
         invalid_properties
       end
@@ -140,11 +112,8 @@ module SignWell
       def valid?
         warn '[DEPRECATED] the `valid?` method is obsolete'
         return false if @id.nil?
-        return false if @role.nil?
-        return false if @user.nil?
-        return false if @account.nil?
-        return false if @workspace.nil?
-        return false if @contact.nil?
+        return false if @name.nil?
+        return false if @email.nil?
 
         true
       end
@@ -158,43 +127,19 @@ module SignWell
       end
 
       # Custom attribute writer method with validation
-      # @param [Object] role Value to be assigned
-      def role=(role)
-        raise ArgumentError, 'role cannot be nil' if role.nil?
+      # @param [Object] name Value to be assigned
+      def name=(name)
+        raise ArgumentError, 'name cannot be nil' if name.nil?
 
-        @role = role
+        @name = name
       end
 
       # Custom attribute writer method with validation
-      # @param [Object] user Value to be assigned
-      def user=(user)
-        raise ArgumentError, 'user cannot be nil' if user.nil?
+      # @param [Object] email Value to be assigned
+      def email=(email)
+        raise ArgumentError, 'email cannot be nil' if email.nil?
 
-        @user = user
-      end
-
-      # Custom attribute writer method with validation
-      # @param [Object] account Value to be assigned
-      def account=(account)
-        raise ArgumentError, 'account cannot be nil' if account.nil?
-
-        @account = account
-      end
-
-      # Custom attribute writer method with validation
-      # @param [Object] workspace Value to be assigned
-      def workspace=(workspace)
-        raise ArgumentError, 'workspace cannot be nil' if workspace.nil?
-
-        @workspace = workspace
-      end
-
-      # Custom attribute writer method with validation
-      # @param [Object] contact Value to be assigned
-      def contact=(contact)
-        raise ArgumentError, 'contact cannot be nil' if contact.nil?
-
-        @contact = contact
+        @email = email
       end
 
       # Checks equality by comparing each attribute.
@@ -204,12 +149,9 @@ module SignWell
 
         self.class == other.class &&
           id == other.id &&
-          role == other.role &&
-          archived == other.archived &&
-          user == other.user &&
-          account == other.account &&
-          workspace == other.workspace &&
-          contact == other.contact
+          name == other.name &&
+          email == other.email &&
+          has_google_registration == other.has_google_registration
       end
 
       # @see the `==` method
@@ -221,7 +163,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [id, role, archived, user, account, workspace, contact].hash
+        [id, name, email, has_google_registration].hash
       end
 
       # Builds the object from hash

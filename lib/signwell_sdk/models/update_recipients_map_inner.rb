@@ -15,43 +15,40 @@ require 'time'
 
 module SignWell
   module Models
-    # The workspace (alias for account)
-    class MeResponseWorkspace
+    class UpdateRecipientsMapInner
+      # The recipient's unique identifier from the Get Document response.
       # @return [String]
       attr_accessor :id
 
+      # Updated name for the recipient.
       # @return [String]
       attr_accessor :name
 
+      # Updated email address for the recipient.
       # @return [String]
-      attr_accessor :plan_tier
+      attr_accessor :email
 
-      # @return [Integer]
-      attr_accessor :active_templates
+      # Updated email subject for the signature request that this recipient will see.
+      # @return [String]
+      attr_accessor :subject
 
-      # @return [Boolean]
-      attr_accessor :can_create_template
+      # Updated email message for the signature request that this recipient will see.
+      # @return [String]
+      attr_accessor :message
 
-      # @return [Boolean]
-      attr_accessor :can_create_tracking_document
-
-      # @return [Boolean]
-      attr_accessor :can_create_completion_document
-
-      # @return [Array<MeResponseAccountActiveUsersInner>]
-      attr_accessor :active_users
+      # Updated passcode for the recipient. If set, the signer will be required to enter the passcode before viewing and completing the document.
+      # @return [String]
+      attr_accessor :passcode
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
         {
           'id': :id,
           'name': :name,
-          'plan_tier': :plan_tier,
-          'active_templates': :active_templates,
-          'can_create_template': :can_create_template,
-          'can_create_tracking_document': :can_create_tracking_document,
-          'can_create_completion_document': :can_create_completion_document,
-          'active_users': :active_users
+          'email': :email,
+          'subject': :subject,
+          'message': :message,
+          'passcode': :passcode
         }
       end
 
@@ -70,12 +67,10 @@ module SignWell
         {
           'id': :String,
           'name': :String,
-          'plan_tier': :String,
-          'active_templates': :Integer,
-          'can_create_template': :Boolean,
-          'can_create_tracking_document': :Boolean,
-          'can_create_completion_document': :Boolean,
-          'active_users': :'Array<MeResponseAccountActiveUsersInner>'
+          'email': :String,
+          'subject': :String,
+          'message': :String,
+          'passcode': :String
         }
       end
 
@@ -89,7 +84,7 @@ module SignWell
       def initialize(attributes = {})
         unless attributes.is_a?(Hash)
           raise ArgumentError,
-                'The input argument (attributes) must be a hash in `SignWell::MeResponseWorkspace` initialize method'
+                'The input argument (attributes) must be a hash in `SignWell::UpdateRecipientsMapInner` initialize method'
         end
 
         # check to see if the attribute exists and convert string to symbol for hash key
@@ -97,7 +92,7 @@ module SignWell
         attributes = attributes.each_with_object({}) do |(k, v), h|
           unless acceptable_attribute_map.key?(k.to_sym)
             raise ArgumentError,
-                  "`#{k}` is not a valid attribute in `SignWell::MeResponseWorkspace`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+                  "`#{k}` is not a valid attribute in `SignWell::UpdateRecipientsMapInner`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
           end
 
           h[k.to_sym] = v
@@ -107,25 +102,15 @@ module SignWell
 
         self.name = (attributes[:name] if attributes.key?(:name))
 
-        self.plan_tier = (attributes[:plan_tier] if attributes.key?(:plan_tier))
+        self.email = (attributes[:email] if attributes.key?(:email))
 
-        self.active_templates = attributes[:active_templates] if attributes.key?(:active_templates)
+        self.subject = attributes[:subject] if attributes.key?(:subject)
 
-        self.can_create_template = attributes[:can_create_template] if attributes.key?(:can_create_template)
+        self.message = attributes[:message] if attributes.key?(:message)
 
-        if attributes.key?(:can_create_tracking_document)
-          self.can_create_tracking_document = attributes[:can_create_tracking_document]
-        end
+        return unless attributes.key?(:passcode)
 
-        if attributes.key?(:can_create_completion_document)
-          self.can_create_completion_document = attributes[:can_create_completion_document]
-        end
-
-        return unless attributes.key?(:active_users)
-
-        if (value = attributes[:active_users]).is_a?(Array)
-          self.active_users = value
-        end
+        self.passcode = attributes[:passcode]
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -137,7 +122,7 @@ module SignWell
 
         invalid_properties.push('invalid value for "name", name cannot be nil.') if @name.nil?
 
-        invalid_properties.push('invalid value for "plan_tier", plan_tier cannot be nil.') if @plan_tier.nil?
+        invalid_properties.push('invalid value for "email", email cannot be nil.') if @email.nil?
 
         invalid_properties
       end
@@ -148,7 +133,7 @@ module SignWell
         warn '[DEPRECATED] the `valid?` method is obsolete'
         return false if @id.nil?
         return false if @name.nil?
-        return false if @plan_tier.nil?
+        return false if @email.nil?
 
         true
       end
@@ -170,11 +155,11 @@ module SignWell
       end
 
       # Custom attribute writer method with validation
-      # @param [Object] plan_tier Value to be assigned
-      def plan_tier=(plan_tier)
-        raise ArgumentError, 'plan_tier cannot be nil' if plan_tier.nil?
+      # @param [Object] email Value to be assigned
+      def email=(email)
+        raise ArgumentError, 'email cannot be nil' if email.nil?
 
-        @plan_tier = plan_tier
+        @email = email
       end
 
       # Checks equality by comparing each attribute.
@@ -185,12 +170,10 @@ module SignWell
         self.class == other.class &&
           id == other.id &&
           name == other.name &&
-          plan_tier == other.plan_tier &&
-          active_templates == other.active_templates &&
-          can_create_template == other.can_create_template &&
-          can_create_tracking_document == other.can_create_tracking_document &&
-          can_create_completion_document == other.can_create_completion_document &&
-          active_users == other.active_users
+          email == other.email &&
+          subject == other.subject &&
+          message == other.message &&
+          passcode == other.passcode
       end
 
       # @see the `==` method
@@ -202,8 +185,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [id, name, plan_tier, active_templates, can_create_template, can_create_tracking_document,
-         can_create_completion_document, active_users].hash
+        [id, name, email, subject, message, passcode].hash
       end
 
       # Builds the object from hash

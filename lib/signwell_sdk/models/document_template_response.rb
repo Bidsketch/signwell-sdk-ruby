@@ -65,6 +65,9 @@ module SignWell
       attr_accessor :archived
 
       # @return [String]
+      attr_accessor :embedded_edit_url
+
+      # @return [String]
       attr_accessor :template_link
 
       # @return [Boolean]
@@ -119,6 +122,7 @@ module SignWell
           'status': :status,
           'reminders': :reminders,
           'archived': :archived,
+          'embedded_edit_url': :embedded_edit_url,
           'template_link': :template_link,
           'apply_signing_order': :apply_signing_order,
           'redirect_url': :redirect_url,
@@ -163,6 +167,7 @@ module SignWell
           'status': :String,
           'reminders': :Boolean,
           'archived': :Boolean,
+          'embedded_edit_url': :String,
           'template_link': :String,
           'apply_signing_order': :Boolean,
           'redirect_url': :String,
@@ -251,6 +256,8 @@ module SignWell
 
         self.archived = attributes[:archived] if attributes.key?(:archived)
 
+        self.embedded_edit_url = attributes[:embedded_edit_url] if attributes.key?(:embedded_edit_url)
+
         self.template_link = attributes[:template_link] if attributes.key?(:template_link)
 
         self.apply_signing_order = attributes[:apply_signing_order] if attributes.key?(:apply_signing_order)
@@ -335,6 +342,7 @@ module SignWell
           status == other.status &&
           reminders == other.reminders &&
           archived == other.archived &&
+          embedded_edit_url == other.embedded_edit_url &&
           template_link == other.template_link &&
           apply_signing_order == other.apply_signing_order &&
           redirect_url == other.redirect_url &&
@@ -359,7 +367,7 @@ module SignWell
       # @return [Integer] Hash code
       def hash
         [id, api_application_id, requester_email_address, custom_requester_name, custom_requester_email, name, subject,
-         message, metadata, created_at, updated_at, placeholders, copied_placeholders, status, reminders, archived, template_link, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, files, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
+         message, metadata, created_at, updated_at, placeholders, copied_placeholders, status, reminders, archived, embedded_edit_url, template_link, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, files, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
       end
 
       # Builds the object from hash

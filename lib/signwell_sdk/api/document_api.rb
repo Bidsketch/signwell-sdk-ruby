@@ -572,6 +572,79 @@ module SignWell
         end
         [data, status_code, headers]
       end
+
+      # Update Recipients
+      # Updates one or more recipients on a document that has already been sent. Only recipients who have not started signing may be updated. Recipient IDs must be retrieved from the Get Document response. Allowed document statuses: sent, viewed, pending, bounced. For non-embedded documents, updated recipients will receive a new notification email. For embedded signing documents, email behavior follows each recipient's send_email setting.
+      # @param id [String]
+      # @param update_recipients_request [Models::UpdateRecipientsRequest]
+      # @param [Hash] opts the optional parameters
+      # @return [Models::DocumentResponse]
+      def update_recipients(id, update_recipients_request, opts = {})
+        data, _status_code, _headers = update_recipients_with_http_info(id, update_recipients_request, opts)
+        data
+      end
+
+      # Update Recipients
+      # Updates one or more recipients on a document that has already been sent. Only recipients who have not started signing may be updated. Recipient IDs must be retrieved from the Get Document response. Allowed document statuses: sent, viewed, pending, bounced. For non-embedded documents, updated recipients will receive a new notification email. For embedded signing documents, email behavior follows each recipient&#39;s send_email setting.
+      # @param id [String]
+      # @param update_recipients_request [Models::UpdateRecipientsRequest]
+      # @param [Hash] opts the optional parameters
+      # @return [Array<(Models::DocumentResponse, Integer, Hash)>] DocumentResponse data, response status code and response headers
+      def update_recipients_with_http_info(id, update_recipients_request, opts = {})
+        @api_client.config.logger.debug 'Calling API: DocumentApi.update_recipients ...' if @api_client.config.debugging
+        # verify the required parameter 'id' is set
+        if @api_client.config.client_side_validation && id.nil?
+          raise ArgumentError, "Missing the required parameter 'id' when calling DocumentApi.update_recipients"
+        end
+
+        # verify the required parameter 'update_recipients_request' is set
+        if @api_client.config.client_side_validation && update_recipients_request.nil?
+          raise ArgumentError,
+                "Missing the required parameter 'update_recipients_request' when calling DocumentApi.update_recipients"
+        end
+
+        # resource path
+        local_var_path = '/api/v1/documents/{id}/recipients'.sub('{id}', CGI.escape(id.to_s))
+
+        # query parameters
+        query_params = opts[:query_params] || {}
+
+        # header parameters
+        header_params = opts[:header_params] || {}
+        # HTTP header 'Accept' (if needed)
+        header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+        # HTTP header 'Content-Type'
+        content_type = @api_client.select_header_content_type(['application/json'])
+        header_params['Content-Type'] = content_type unless content_type.nil?
+
+        # form parameters
+        form_params = opts[:form_params] || {}
+
+        # http body (model)
+        post_body = opts[:debug_body] || @api_client.object_to_http_body(update_recipients_request)
+
+        # return_type
+        return_type = opts[:debug_return_type] || 'DocumentResponse'
+
+        # auth_names
+        auth_names = opts[:debug_auth_names] || ['api_key']
+
+        new_options = opts.merge(
+          operation: :"DocumentApi.update_recipients",
+          header_params: header_params,
+          query_params: query_params,
+          form_params: form_params,
+          body: post_body,
+          auth_names: auth_names,
+          return_type: return_type
+        )
+
+        data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+        if @api_client.config.debugging
+          @api_client.config.logger.debug "API called: DocumentApi#update_recipients\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        end
+        [data, status_code, headers]
+      end
     end
   end
 end

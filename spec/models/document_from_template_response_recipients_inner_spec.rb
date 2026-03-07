@@ -44,6 +44,12 @@ describe SignWell::Models::DocumentFromTemplateResponseRecipientsInner do
     end
   end
 
+  describe 'test attribute "signing_url"' do
+    it 'should work' do
+      expect(instance).to respond_to(:signing_url)
+    end
+  end
+
   describe 'test attribute "attachment_requests"' do
     it 'should work' do
       expect(instance).to respond_to(:attachment_requests)

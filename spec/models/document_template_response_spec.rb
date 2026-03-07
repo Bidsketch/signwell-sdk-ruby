@@ -122,6 +122,12 @@ describe SignWell::Models::DocumentTemplateResponse do
     end
   end
 
+  describe 'test attribute "embedded_edit_url"' do
+    it 'should work' do
+      expect(instance).to respond_to(:embedded_edit_url)
+    end
+  end
+
   describe 'test attribute "template_link"' do
     it 'should work' do
       expect(instance).to respond_to(:template_link)
