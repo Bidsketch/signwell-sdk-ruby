@@ -25,7 +25,7 @@ begin
     name: 'SDK Example - Embedded NDA',
     file_url: SAMPLE_PDF_URL,
     recipients: [{ name: 'Jane Doe', email: 'jane@example.com' }],
-    fields: [{ x: 20, y: 60, page: 1, type: 'signature' }],
+    fields: [[{ x: 20, y: 60, page: 1, type: 'signature' }]],
     test_mode: true
   )
 
