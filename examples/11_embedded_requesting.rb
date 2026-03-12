@@ -23,7 +23,7 @@ begin
   puts '-> Creating draft document for embedded requesting (helper)...'
   doc = SignWell::Embedded.create_requesting_document(
     name: 'SDK Example - Embedded Contract',
-    file_url: SAMPLE_PDF_URL,
+    files: [{ name: 'contract.pdf', file_url: SAMPLE_PDF_URL }],
     recipients: [{ name: 'Jane Doe', email: 'jane@example.com' }],
     test_mode: true
   )
