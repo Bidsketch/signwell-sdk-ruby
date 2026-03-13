@@ -69,7 +69,7 @@ doc = SignWell::Embedded.create_signing_document(
   name: 'NDA',
   file_url: 'https://example.com/nda.pdf',
   recipients: [{ name: 'Jane Doe', email: 'jane@example.com' }],
-  fields: [{ x: 20, y: 60, page: 1, type: 'signature' }]
+  fields: [[{ x: 20, y: 60, page: 1, type: 'signature' }]]
 )
 
 # Get the signing URL for the first recipient
@@ -94,8 +94,15 @@ edit_url = doc.embedded_edit_url
 ### Backend: Create from a template
 
 ```ruby
+# Single template
 doc = SignWell::Embedded.create_signing_document_from_template(
   template_id: 'your-template-uuid',
+  recipients: [{ placeholder_name: 'Signer 1', name: 'Jane Doe', email: 'jane@example.com' }]
+)
+
+# Multiple templates
+doc = SignWell::Embedded.create_signing_document_from_template(
+  template_ids: ['template-uuid-1', 'template-uuid-2'],
   recipients: [{ placeholder_name: 'Signer 1', name: 'Jane Doe', email: 'jane@example.com' }]
 )
 
@@ -151,6 +158,7 @@ The [`examples/`](https://github.com/Bidsketch/signwell-sdk-ruby/tree/main/examp
 | [09_webhook_validation.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/09_webhook_validation.rb) | Webhook signature verification |
 | [10_embedded_signing.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/10_embedded_signing.rb) | Embedded signing workflow |
 | [11_embedded_requesting.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/11_embedded_requesting.rb) | Embedded requesting workflow |
+| [12_text_tags.rb](https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/examples/12_text_tags.rb) | Text tags with multi-signer support |
 
 To run the examples, set your API key and run any script:
 

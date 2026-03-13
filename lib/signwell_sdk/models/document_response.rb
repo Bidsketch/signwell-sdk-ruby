@@ -65,7 +65,7 @@ module SignWell
       attr_accessor :archived
 
       # @return [Boolean]
-      attr_accessor :embedded
+      attr_accessor :embedded_signing
 
       # @return [String]
       attr_accessor :embedded_edit_url
@@ -131,7 +131,7 @@ module SignWell
           'status': :status,
           'reminders': :reminders,
           'archived': :archived,
-          'embedded': :embedded,
+          'embedded_signing': :embedded_signing,
           'embedded_edit_url': :embedded_edit_url,
           'embedded_preview_url': :embedded_preview_url,
           'apply_signing_order': :apply_signing_order,
@@ -179,7 +179,7 @@ module SignWell
           'status': :String,
           'reminders': :Boolean,
           'archived': :Boolean,
-          'embedded': :Boolean,
+          'embedded_signing': :Boolean,
           'embedded_edit_url': :String,
           'embedded_preview_url': :String,
           'apply_signing_order': :Boolean,
@@ -269,7 +269,7 @@ module SignWell
 
         self.archived = attributes[:archived] if attributes.key?(:archived)
 
-        self.embedded = attributes[:embedded] if attributes.key?(:embedded)
+        self.embedded_signing = attributes[:embedded_signing] if attributes.key?(:embedded_signing)
 
         self.embedded_edit_url = attributes[:embedded_edit_url] if attributes.key?(:embedded_edit_url)
 
@@ -376,7 +376,7 @@ module SignWell
           status == other.status &&
           reminders == other.reminders &&
           archived == other.archived &&
-          embedded == other.embedded &&
+          embedded_signing == other.embedded_signing &&
           embedded_edit_url == other.embedded_edit_url &&
           embedded_preview_url == other.embedded_preview_url &&
           apply_signing_order == other.apply_signing_order &&
@@ -404,7 +404,7 @@ module SignWell
       # @return [Integer] Hash code
       def hash
         [test_mode, id, api_application_id, requester_email_address, custom_requester_name, custom_requester_email, name,
-         subject, message, metadata, created_at, updated_at, recipients, status, reminders, archived, embedded, embedded_edit_url, embedded_preview_url, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, attachment_requests, files, copied_contacts, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
+         subject, message, metadata, created_at, updated_at, recipients, status, reminders, archived, embedded_signing, embedded_edit_url, embedded_preview_url, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, attachment_requests, files, copied_contacts, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
       end
 
       # Builds the object from hash

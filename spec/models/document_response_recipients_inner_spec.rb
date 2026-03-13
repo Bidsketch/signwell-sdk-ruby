@@ -86,6 +86,12 @@ describe SignWell::Models::DocumentResponseRecipientsInner do
     end
   end
 
+  describe 'test attribute "embedded_signing_url"' do
+    it 'should work' do
+      expect(instance).to respond_to(:embedded_signing_url)
+    end
+  end
+
   describe 'test attribute "bounced"' do
     it 'should work' do
       expect(instance).to respond_to(:bounced)

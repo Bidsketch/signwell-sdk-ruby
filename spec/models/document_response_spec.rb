@@ -122,9 +122,9 @@ describe SignWell::Models::DocumentResponse do
     end
   end
 
-  describe 'test attribute "embedded"' do
+  describe 'test attribute "embedded_signing"' do
     it 'should work' do
-      expect(instance).to respond_to(:embedded)
+      expect(instance).to respond_to(:embedded_signing)
     end
   end
 

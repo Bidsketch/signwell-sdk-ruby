@@ -46,6 +46,9 @@ module SignWell
       # @return [String]
       attr_accessor :signing_url
 
+      # @return [String]
+      attr_accessor :embedded_signing_url
+
       # @return [Boolean]
       attr_accessor :bounced
 
@@ -74,6 +77,7 @@ module SignWell
           'send_email_delay': :send_email_delay,
           'signing_order': :signing_order,
           'signing_url': :signing_url,
+          'embedded_signing_url': :embedded_signing_url,
           'bounced': :bounced,
           'bounced_details': :bounced_details,
           'attachment_requests': :attachment_requests,
@@ -105,6 +109,7 @@ module SignWell
           'send_email_delay': :Integer,
           'signing_order': :Integer,
           'signing_url': :String,
+          'embedded_signing_url': :String,
           'bounced': :Boolean,
           'bounced_details': :String,
           'attachment_requests': :'Array<AttachmentRequestInfo>',
@@ -120,6 +125,8 @@ module SignWell
                   subject
                   send_email
                   send_email_delay
+                  signing_url
+                  embedded_signing_url
                   bounced
                   bounced_details
                   passcode
@@ -165,6 +172,8 @@ module SignWell
         self.signing_order = attributes[:signing_order] if attributes.key?(:signing_order)
 
         self.signing_url = attributes[:signing_url] if attributes.key?(:signing_url)
+
+        self.embedded_signing_url = attributes[:embedded_signing_url] if attributes.key?(:embedded_signing_url)
 
         self.bounced = attributes[:bounced] if attributes.key?(:bounced)
 
@@ -235,6 +244,7 @@ module SignWell
           send_email_delay == other.send_email_delay &&
           signing_order == other.signing_order &&
           signing_url == other.signing_url &&
+          embedded_signing_url == other.embedded_signing_url &&
           bounced == other.bounced &&
           bounced_details == other.bounced_details &&
           attachment_requests == other.attachment_requests &&
@@ -251,8 +261,8 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [id, name, email, body, message, subject, send_email, send_email_delay, signing_order, signing_url, bounced,
-         bounced_details, attachment_requests, passcode, status].hash
+        [id, name, email, body, message, subject, send_email, send_email_delay, signing_order, signing_url,
+         embedded_signing_url, bounced, bounced_details, attachment_requests, passcode, status].hash
       end
 
       # Builds the object from hash

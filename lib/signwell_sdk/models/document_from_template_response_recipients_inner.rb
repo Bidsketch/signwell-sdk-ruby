@@ -28,6 +28,9 @@ module SignWell
       # @return [String]
       attr_accessor :signing_url
 
+      # @return [String]
+      attr_accessor :embedded_signing_url
+
       # @return [Array<AttachmentRequestInfo>]
       attr_accessor :attachment_requests
 
@@ -44,6 +47,7 @@ module SignWell
           'email': :email,
           'role': :role,
           'signing_url': :signing_url,
+          'embedded_signing_url': :embedded_signing_url,
           'attachment_requests': :attachment_requests,
           'passcode': :passcode,
           'status': :status
@@ -67,6 +71,7 @@ module SignWell
           'email': :String,
           'role': :String,
           'signing_url': :String,
+          'embedded_signing_url': :String,
           'attachment_requests': :'Array<AttachmentRequestInfo>',
           'passcode': :String,
           'status': :String
@@ -75,8 +80,10 @@ module SignWell
 
       # List of attributes with nullable: true
       def self.openapi_nullable
-        Set.new([
-                  :passcode
+        Set.new(%i[
+                  signing_url
+                  embedded_signing_url
+                  passcode
                 ])
       end
 
@@ -106,6 +113,8 @@ module SignWell
         self.role = attributes[:role] if attributes.key?(:role)
 
         self.signing_url = attributes[:signing_url] if attributes.key?(:signing_url)
+
+        self.embedded_signing_url = attributes[:embedded_signing_url] if attributes.key?(:embedded_signing_url)
 
         if attributes.key?(:attachment_requests) && (value = attributes[:attachment_requests]).is_a?(Array)
           self.attachment_requests = value
@@ -155,6 +164,7 @@ module SignWell
           email == other.email &&
           role == other.role &&
           signing_url == other.signing_url &&
+          embedded_signing_url == other.embedded_signing_url &&
           attachment_requests == other.attachment_requests &&
           passcode == other.passcode &&
           status == other.status
@@ -169,7 +179,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [name, email, role, signing_url, attachment_requests, passcode, status].hash
+        [name, email, role, signing_url, embedded_signing_url, attachment_requests, passcode, status].hash
       end
 
       # Builds the object from hash
