@@ -23,7 +23,7 @@ begin
   puts '-> Creating document for embedded signing (helper)...'
   doc = SignWell::Embedded.create_signing_document(
     name: 'SDK Example - Embedded NDA',
-    file_url: SAMPLE_PDF_URL,
+    files: [{ name: 'nda.pdf', file_url: SAMPLE_PDF_URL }],
     recipients: [{ name: 'Jane Doe', email: 'jane@example.com' }],
     fields: [[{ x: 20, y: 60, page: 1, type: 'signature' }]],
     test_mode: true
@@ -33,14 +33,14 @@ begin
   puts '   [OK] Document created'
   puts "   ID: #{doc.id}"
   puts "   Status: #{doc.status}"
-  puts "   Embedded: #{doc.embedded}"
+  puts "   Embedded Signing: #{doc.embedded_signing}"
 
   # Extract signing URL for the first recipient
-  signing_url = SignWell::Embedded.signing_url(doc)
+  signing_url = SignWell::Embedded.embedded_signing_url(doc)
   puts "   Signing URL: #{signing_url}"
 
   # Extract all signing URLs as { email => url }
-  all_urls = SignWell::Embedded.signing_urls(doc)
+  all_urls = SignWell::Embedded.embedded_signing_urls(doc)
   puts "   All URLs: #{all_urls}"
 
   # The script tag for your frontend
@@ -66,12 +66,13 @@ begin
     embedded_signing: true,
     files: [SignWell::FilesInner.new(file_url: SAMPLE_PDF_URL, name: 'nda.pdf')],
     recipients: [SignWell::RecipientsInner.new(id: '1', name: 'Jane Doe', email: 'jane@example.com')],
-    fields: [[SignWell::FieldsInnerInner.new(x: 20, y: 60, page: 1, recipient_id: '1', type: 'signature', required: true)]]
+    fields: [[SignWell::FieldsInnerInner.new(x: 20, y: 60, page: 1, recipient_id: '1', type: 'signature',
+                                             required: true)]]
   )
   doc2 = api.create_document(request)
   puts '   [OK] Document created'
   puts "   ID: #{doc2.id}"
-  puts "   Signing URL: #{doc2.recipients&.first&.signing_url}"
+  puts "   Signing URL: #{doc2.recipients&.first&.embedded_signing_url}"
 
   sleep(1)
 
