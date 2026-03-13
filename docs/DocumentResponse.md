@@ -20,7 +20,7 @@
 | **status** | **String** |  | [optional] |
 | **reminders** | **Boolean** |  | [optional] |
 | **archived** | **Boolean** |  | [optional] |
-| **embedded** | **Boolean** |  | [optional] |
+| **embedded_signing** | **Boolean** |  | [optional] |
 | **embedded_edit_url** | **String** |  | [optional] |
 | **embedded_preview_url** | **String** |  | [optional] |
 | **apply_signing_order** | **Boolean** |  | [optional] |
@@ -59,7 +59,7 @@ instance = SignWell::Models::DocumentResponse.new(
   status: null,
   reminders: null,
   archived: null,
-  embedded: null,
+  embedded_signing: null,
   embedded_edit_url: null,
   embedded_preview_url: null,
   apply_signing_order: null,

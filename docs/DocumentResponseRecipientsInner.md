@@ -14,6 +14,7 @@
 | **send_email_delay** | **Integer** |  | [optional] |
 | **signing_order** | **Integer** |  | [optional] |
 | **signing_url** | **String** |  | [optional] |
+| **embedded_signing_url** | **String** |  | [optional] |
 | **bounced** | **Boolean** |  | [optional] |
 | **bounced_details** | **String** |  | [optional] |
 | **attachment_requests** | [**Array&lt;AttachmentRequestInfo&gt;**](AttachmentRequestInfo.md) |  | [optional] |
@@ -36,6 +37,7 @@ instance = SignWell::Models::DocumentResponseRecipientsInner.new(
   send_email_delay: null,
   signing_order: null,
   signing_url: null,
+  embedded_signing_url: null,
   bounced: null,
   bounced_details: null,
   attachment_requests: null,
