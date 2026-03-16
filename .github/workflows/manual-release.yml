@@ -3,13 +3,20 @@ name: Manual Release
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Version to release (e.g. 0.1.0.pre.alpha.3, 0.2.0)'
+      bump:
+        description: 'Version bump type'
         required: true
-        type: string
+        type: choice
+        options:
+          - pre
+          - patch
+          - minor
+          - major
+          - preminor
+          - premajor
       prerelease:
-        description: 'Mark as pre-release'
-        required: false
+        description: 'Changelog: stamp as pre-release (true) or consolidate as stable (false)'
+        required: true
         type: boolean
         default: true
 
@@ -24,39 +31,55 @@ jobs:
         with:
           ref: main
 
-      - name: Validate version format
-        run: |
-          if ! echo "${{ inputs.version }}" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+'; then
-            echo "Error: Version must start with X.Y.Z"
-            exit 1
-          fi
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
 
-      - name: Update version.rb
+      - name: Bump version
+        id: bump
         run: |
-          sed -i "s/VERSION = '.*'/VERSION = '${{ inputs.version }}'/" lib/signwell_sdk/version.rb
+          NEW_VERSION=$(scripts/bump-version.sh "${{ inputs.bump }}" \
+            --file lib/signwell_sdk/version.rb \
+            --pattern "VERSION\s*=\s*'([^']+)'" \
+            --replace "s/VERSION = '.*'/VERSION = '%s'/")
+          echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
+          echo "New version: $NEW_VERSION"
+
+      - name: Update changelog
+        run: |
+          if [ "${{ inputs.prerelease }}" = "true" ]; then
+            ruby scripts/update-changelog.rb stamp "${{ steps.bump.outputs.version }}"
+          else
+            ruby scripts/update-changelog.rb consolidate "${{ steps.bump.outputs.version }}"
+          fi
 
       - name: Create PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          BRANCH="release/v${{ inputs.version }}"
+          VERSION="${{ steps.bump.outputs.version }}"
+          BRANCH="release/v$VERSION"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add lib/signwell_sdk/version.rb
-          git commit -m "chore: release ${{ inputs.version }}"
+          git add lib/signwell_sdk/version.rb CHANGELOG.md
+          git commit -m "chore: release $VERSION"
           git push -u origin "$BRANCH"
 
           gh pr create \
             --base main \
             --head "$BRANCH" \
-            --title "chore: release ${{ inputs.version }}" \
+            --title "chore: release $VERSION" \
             --body "$(cat <<EOF
-          ## Release v${{ inputs.version }}
+          ## Release v$VERSION
 
-          - Updates \`lib/signwell_sdk/version.rb\` to \`${{ inputs.version }}\`
+          - Bump type: \`${{ inputs.bump }}\`
           - Pre-release: \`${{ inputs.prerelease }}\`
+          - Updates \`lib/signwell_sdk/version.rb\` to \`$VERSION\`
+          - Updates \`CHANGELOG.md\`
 
-          Merging this PR will automatically create a GitHub Release and publish to RubyGems.
+          **Review the CHANGELOG.md changes before merging.** Edit on this branch if needed.
+
+          Merging this PR will automatically publish to RubyGems and create a GitHub Release.
           EOF
           )"
