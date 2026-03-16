@@ -34,6 +34,14 @@ jobs:
       - name: Configure RubyGems credentials
         uses: rubygems/configure-rubygems-credentials@v1.0.0
 
+      - name: Extract changelog for release
+        id: changelog
+        run: |
+          NOTES=$(ruby scripts/update-changelog.rb extract "${{ steps.version.outputs.version }}")
+          echo "notes<<CHANGELOG_EOF" >> "$GITHUB_OUTPUT"
+          echo "$NOTES" >> "$GITHUB_OUTPUT"
+          echo "CHANGELOG_EOF" >> "$GITHUB_OUTPUT"
+
       - name: Build gem
         run: gem build signwell_sdk.gemspec
 
@@ -43,14 +51,23 @@ jobs:
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHANGELOG_BODY: ${{ steps.changelog.outputs.notes }}
         run: |
           PRERELEASE_FLAG=""
           if [ "${{ steps.version.outputs.prerelease }}" = "true" ]; then
             PRERELEASE_FLAG="--prerelease"
           fi
 
-          gh release create "v${{ steps.version.outputs.version }}" \
-            --target main \
-            --title "v${{ steps.version.outputs.version }}" \
-            --generate-notes \
-            $PRERELEASE_FLAG
+          if [ -z "$CHANGELOG_BODY" ]; then
+            gh release create "v${{ steps.version.outputs.version }}" \
+              --target main \
+              --title "v${{ steps.version.outputs.version }}" \
+              --generate-notes \
+              $PRERELEASE_FLAG
+          else
+            gh release create "v${{ steps.version.outputs.version }}" \
+              --target main \
+              --title "v${{ steps.version.outputs.version }}" \
+              --notes "$CHANGELOG_BODY" \
+              $PRERELEASE_FLAG
+          fi
