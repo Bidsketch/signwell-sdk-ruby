@@ -76,6 +76,9 @@ module SignWell
       # @return [String]
       attr_accessor :embedded_edit_url
 
+      # @return [String]
+      attr_accessor :embedded_preview_url
+
       # @return [Boolean]
       attr_accessor :apply_signing_order
 
@@ -90,6 +93,15 @@ module SignWell
 
       # @return [Integer]
       attr_accessor :expires_in
+
+      # @return [String]
+      attr_accessor :decline_message
+
+      # @return [String]
+      attr_accessor :error_message
+
+      # @return [Boolean]
+      attr_accessor :embedded_signing_notifications
 
       # @return [Array<DocumentResponseAttachmentRequestsInner>]
       attr_accessor :attachment_requests
@@ -111,6 +123,9 @@ module SignWell
 
       # @return [Array<LabelInfo>]
       attr_accessor :labels
+
+      # @return [Array<CheckboxGroupInfo>]
+      attr_accessor :checkbox_groups
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
@@ -135,18 +150,23 @@ module SignWell
           'archived': :archived,
           'embedded_signing': :embedded_signing,
           'embedded_edit_url': :embedded_edit_url,
+          'embedded_preview_url': :embedded_preview_url,
           'apply_signing_order': :apply_signing_order,
           'redirect_url': :redirect_url,
           'decline_redirect_url': :decline_redirect_url,
           'language': :language,
           'expires_in': :expires_in,
+          'decline_message': :decline_message,
+          'error_message': :error_message,
+          'embedded_signing_notifications': :embedded_signing_notifications,
           'attachment_requests': :attachment_requests,
           'files': :files,
           'copied_contacts': :copied_contacts,
           'fields': :fields,
           'allow_decline': :allow_decline,
           'allow_reassign': :allow_reassign,
-          'labels': :labels
+          'labels': :labels,
+          'checkbox_groups': :checkbox_groups
         }
       end
 
@@ -183,18 +203,23 @@ module SignWell
           'archived': :Boolean,
           'embedded_signing': :Boolean,
           'embedded_edit_url': :String,
+          'embedded_preview_url': :String,
           'apply_signing_order': :Boolean,
           'redirect_url': :String,
           'decline_redirect_url': :String,
           'language': :String,
           'expires_in': :Integer,
+          'decline_message': :String,
+          'error_message': :String,
+          'embedded_signing_notifications': :Boolean,
           'attachment_requests': :'Array<DocumentResponseAttachmentRequestsInner>',
           'files': :'Array<FileInfo>',
           'copied_contacts': :'Array<CopiedContactInfo>',
           'fields': :'Array<Array<DocumentFromTemplateResponseFieldsInnerInner>>',
           'allow_decline': :Boolean,
           'allow_reassign': :Boolean,
-          'labels': :'Array<LabelInfo>'
+          'labels': :'Array<LabelInfo>',
+          'checkbox_groups': :'Array<CheckboxGroupInfo>'
         }
       end
 
@@ -205,8 +230,11 @@ module SignWell
                   custom_requester_name
                   custom_requester_email
                   metadata
+                  embedded_preview_url
                   redirect_url
                   decline_redirect_url
+                  decline_message
+                  error_message
                   allow_decline
                   allow_reassign
                 ])
@@ -277,6 +305,8 @@ module SignWell
 
         self.embedded_edit_url = attributes[:embedded_edit_url] if attributes.key?(:embedded_edit_url)
 
+        self.embedded_preview_url = attributes[:embedded_preview_url] if attributes.key?(:embedded_preview_url)
+
         self.apply_signing_order = attributes[:apply_signing_order] if attributes.key?(:apply_signing_order)
 
         self.redirect_url = attributes[:redirect_url] if attributes.key?(:redirect_url)
@@ -286,6 +316,14 @@ module SignWell
         self.language = attributes[:language] if attributes.key?(:language)
 
         self.expires_in = attributes[:expires_in] if attributes.key?(:expires_in)
+
+        self.decline_message = attributes[:decline_message] if attributes.key?(:decline_message)
+
+        self.error_message = attributes[:error_message] if attributes.key?(:error_message)
+
+        if attributes.key?(:embedded_signing_notifications)
+          self.embedded_signing_notifications = attributes[:embedded_signing_notifications]
+        end
 
         if attributes.key?(:attachment_requests) && (value = attributes[:attachment_requests]).is_a?(Array)
           self.attachment_requests = value
@@ -307,10 +345,14 @@ module SignWell
 
         self.allow_reassign = attributes[:allow_reassign] if attributes.key?(:allow_reassign)
 
-        return unless attributes.key?(:labels)
-
-        if (value = attributes[:labels]).is_a?(Array)
+        if attributes.key?(:labels) && (value = attributes[:labels]).is_a?(Array)
           self.labels = value
+        end
+
+        return unless attributes.key?(:checkbox_groups)
+
+        if (value = attributes[:checkbox_groups]).is_a?(Array)
+          self.checkbox_groups = value
         end
       end
 
@@ -378,18 +420,23 @@ module SignWell
           archived == other.archived &&
           embedded_signing == other.embedded_signing &&
           embedded_edit_url == other.embedded_edit_url &&
+          embedded_preview_url == other.embedded_preview_url &&
           apply_signing_order == other.apply_signing_order &&
           redirect_url == other.redirect_url &&
           decline_redirect_url == other.decline_redirect_url &&
           language == other.language &&
           expires_in == other.expires_in &&
+          decline_message == other.decline_message &&
+          error_message == other.error_message &&
+          embedded_signing_notifications == other.embedded_signing_notifications &&
           attachment_requests == other.attachment_requests &&
           files == other.files &&
           copied_contacts == other.copied_contacts &&
           fields == other.fields &&
           allow_decline == other.allow_decline &&
           allow_reassign == other.allow_reassign &&
-          labels == other.labels
+          labels == other.labels &&
+          checkbox_groups == other.checkbox_groups
       end
 
       # @see the `==` method
@@ -402,7 +449,7 @@ module SignWell
       # @return [Integer] Hash code
       def hash
         [test_mode, id, template_id, template_ids, api_application_id, requester_email_address, custom_requester_name,
-         custom_requester_email, name, subject, message, metadata, created_at, updated_at, recipients, status, reminders, archived, embedded_signing, embedded_edit_url, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, attachment_requests, files, copied_contacts, fields, allow_decline, allow_reassign, labels].hash
+         custom_requester_email, name, subject, message, metadata, created_at, updated_at, recipients, status, reminders, archived, embedded_signing, embedded_edit_url, embedded_preview_url, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, decline_message, error_message, embedded_signing_notifications, attachment_requests, files, copied_contacts, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
       end
 
       # Builds the object from hash

@@ -24,11 +24,15 @@
 | **archived** | **Boolean** |  | [optional] |
 | **embedded_signing** | **Boolean** |  | [optional] |
 | **embedded_edit_url** | **String** |  | [optional] |
+| **embedded_preview_url** | **String** |  | [optional] |
 | **apply_signing_order** | **Boolean** |  | [optional] |
 | **redirect_url** | **String** |  | [optional] |
 | **decline_redirect_url** | **String** |  | [optional] |
 | **language** | **String** |  | [optional] |
 | **expires_in** | **Integer** |  | [optional] |
+| **decline_message** | **String** |  | [optional] |
+| **error_message** | **String** |  | [optional] |
+| **embedded_signing_notifications** | **Boolean** |  | [optional] |
 | **attachment_requests** | [**Array&lt;DocumentResponseAttachmentRequestsInner&gt;**](DocumentResponseAttachmentRequestsInner.md) |  | [optional] |
 | **files** | [**Array&lt;FileInfo&gt;**](FileInfo.md) |  | [optional] |
 | **copied_contacts** | [**Array&lt;CopiedContactInfo&gt;**](CopiedContactInfo.md) |  | [optional] |
@@ -36,6 +40,7 @@
 | **allow_decline** | **Boolean** |  | [optional] |
 | **allow_reassign** | **Boolean** |  | [optional] |
 | **labels** | [**Array&lt;LabelInfo&gt;**](LabelInfo.md) |  | [optional] |
+| **checkbox_groups** | [**Array&lt;CheckboxGroupInfo&gt;**](CheckboxGroupInfo.md) |  | [optional] |
 
 ## Example
 
@@ -63,18 +68,23 @@ instance = SignWell::Models::DocumentFromTemplateResponse.new(
   archived: null,
   embedded_signing: null,
   embedded_edit_url: null,
+  embedded_preview_url: null,
   apply_signing_order: null,
   redirect_url: null,
   decline_redirect_url: null,
   language: null,
   expires_in: null,
+  decline_message: null,
+  error_message: null,
+  embedded_signing_notifications: null,
   attachment_requests: null,
   files: null,
   copied_contacts: null,
   fields: null,
   allow_decline: null,
   allow_reassign: null,
-  labels: null
+  labels: null,
+  checkbox_groups: null
 )
 ```
 

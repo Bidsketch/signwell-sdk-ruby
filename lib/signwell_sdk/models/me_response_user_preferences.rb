@@ -15,78 +15,22 @@ require 'time'
 
 module SignWell
   module Models
-    class DocumentFromTemplateResponseRecipientsInner
-      # @return [String]
-      attr_accessor :id
+    class MeResponseUserPreferences
+      # @return [Boolean]
+      attr_accessor :sales_document
 
       # @return [String]
-      attr_accessor :name
-
-      # @return [String]
-      attr_accessor :email
-
-      # @return [String]
-      attr_accessor :role
-
-      # @return [String]
-      attr_accessor :message
-
-      # @return [String]
-      attr_accessor :subject
+      attr_accessor :time_zone
 
       # @return [Boolean]
-      attr_accessor :send_email
-
-      # @return [Integer]
-      attr_accessor :send_email_delay
-
-      # @return [Integer]
-      attr_accessor :signing_order
-
-      # @return [String]
-      attr_accessor :signing_url
-
-      # @return [String]
-      attr_accessor :embedded_signing_url
-
-      # @return [Boolean]
-      attr_accessor :bounced
-
-      # @return [String]
-      attr_accessor :bounced_details
-
-      # @return [Array<AttachmentRequestInfo>]
-      attr_accessor :attachment_requests
-
-      # @return [String]
-      attr_accessor :passcode
-
-      # @return [String]
-      attr_accessor :status
-
-      # @return [String]
-      attr_accessor :placeholder_name
+      attr_accessor :smart_fields
 
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
         {
-          'id': :id,
-          'name': :name,
-          'email': :email,
-          'role': :role,
-          'message': :message,
-          'subject': :subject,
-          'send_email': :send_email,
-          'send_email_delay': :send_email_delay,
-          'signing_order': :signing_order,
-          'signing_url': :signing_url,
-          'embedded_signing_url': :embedded_signing_url,
-          'bounced': :bounced,
-          'bounced_details': :bounced_details,
-          'attachment_requests': :attachment_requests,
-          'passcode': :passcode,
-          'status': :status,
-          'placeholder_name': :placeholder_name
+          'sales_document': :sales_document,
+          'time_zone': :time_zone,
+          'smart_fields': :smart_fields
         }
       end
 
@@ -103,39 +47,15 @@ module SignWell
       # Attribute type mapping.
       def self.openapi_types
         {
-          'id': :String,
-          'name': :String,
-          'email': :String,
-          'role': :String,
-          'message': :String,
-          'subject': :String,
-          'send_email': :Boolean,
-          'send_email_delay': :Integer,
-          'signing_order': :Integer,
-          'signing_url': :String,
-          'embedded_signing_url': :String,
-          'bounced': :Boolean,
-          'bounced_details': :String,
-          'attachment_requests': :'Array<AttachmentRequestInfo>',
-          'passcode': :String,
-          'status': :String,
-          'placeholder_name': :String
+          'sales_document': :Boolean,
+          'time_zone': :String,
+          'smart_fields': :Boolean
         }
       end
 
       # List of attributes with nullable: true
       def self.openapi_nullable
-        Set.new(%i[
-                  message
-                  subject
-                  send_email
-                  send_email_delay
-                  signing_url
-                  embedded_signing_url
-                  bounced
-                  bounced_details
-                  passcode
-                ])
+        Set.new([])
       end
 
       # Initializes the object
@@ -143,7 +63,7 @@ module SignWell
       def initialize(attributes = {})
         unless attributes.is_a?(Hash)
           raise ArgumentError,
-                'The input argument (attributes) must be a hash in `SignWell::DocumentFromTemplateResponseRecipientsInner` initialize method'
+                'The input argument (attributes) must be a hash in `SignWell::MeResponseUserPreferences` initialize method'
         end
 
         # check to see if the attribute exists and convert string to symbol for hash key
@@ -151,76 +71,33 @@ module SignWell
         attributes = attributes.each_with_object({}) do |(k, v), h|
           unless acceptable_attribute_map.key?(k.to_sym)
             raise ArgumentError,
-                  "`#{k}` is not a valid attribute in `SignWell::DocumentFromTemplateResponseRecipientsInner`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+                  "`#{k}` is not a valid attribute in `SignWell::MeResponseUserPreferences`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
           end
 
           h[k.to_sym] = v
         end
 
-        self.id = attributes[:id] if attributes.key?(:id)
+        self.sales_document = attributes[:sales_document] if attributes.key?(:sales_document)
 
-        self.name = attributes[:name] if attributes.key?(:name)
+        self.time_zone = attributes[:time_zone] if attributes.key?(:time_zone)
 
-        self.email = (attributes[:email] if attributes.key?(:email))
+        return unless attributes.key?(:smart_fields)
 
-        self.role = attributes[:role] if attributes.key?(:role)
-
-        self.message = attributes[:message] if attributes.key?(:message)
-
-        self.subject = attributes[:subject] if attributes.key?(:subject)
-
-        self.send_email = attributes[:send_email] if attributes.key?(:send_email)
-
-        self.send_email_delay = attributes[:send_email_delay] if attributes.key?(:send_email_delay)
-
-        self.signing_order = attributes[:signing_order] if attributes.key?(:signing_order)
-
-        self.signing_url = attributes[:signing_url] if attributes.key?(:signing_url)
-
-        self.embedded_signing_url = attributes[:embedded_signing_url] if attributes.key?(:embedded_signing_url)
-
-        self.bounced = attributes[:bounced] if attributes.key?(:bounced)
-
-        self.bounced_details = attributes[:bounced_details] if attributes.key?(:bounced_details)
-
-        if attributes.key?(:attachment_requests) && (value = attributes[:attachment_requests]).is_a?(Array)
-          self.attachment_requests = value
-        end
-
-        self.passcode = attributes[:passcode] if attributes.key?(:passcode)
-
-        self.status = attributes[:status] if attributes.key?(:status)
-
-        return unless attributes.key?(:placeholder_name)
-
-        self.placeholder_name = attributes[:placeholder_name]
+        self.smart_fields = attributes[:smart_fields]
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
       # @return Array for valid properties with the reasons
       def list_invalid_properties
         warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-        invalid_properties = []
-        invalid_properties.push('invalid value for "email", email cannot be nil.') if @email.nil?
-
-        invalid_properties
+        []
       end
 
       # Check to see if the all the properties in the model are valid
       # @return true if the model is valid
       def valid?
         warn '[DEPRECATED] the `valid?` method is obsolete'
-        return false if @email.nil?
-
         true
-      end
-
-      # Custom attribute writer method with validation
-      # @param [Object] email Value to be assigned
-      def email=(email)
-        raise ArgumentError, 'email cannot be nil' if email.nil?
-
-        @email = email
       end
 
       # Checks equality by comparing each attribute.
@@ -229,23 +106,9 @@ module SignWell
         return true if equal?(other)
 
         self.class == other.class &&
-          id == other.id &&
-          name == other.name &&
-          email == other.email &&
-          role == other.role &&
-          message == other.message &&
-          subject == other.subject &&
-          send_email == other.send_email &&
-          send_email_delay == other.send_email_delay &&
-          signing_order == other.signing_order &&
-          signing_url == other.signing_url &&
-          embedded_signing_url == other.embedded_signing_url &&
-          bounced == other.bounced &&
-          bounced_details == other.bounced_details &&
-          attachment_requests == other.attachment_requests &&
-          passcode == other.passcode &&
-          status == other.status &&
-          placeholder_name == other.placeholder_name
+          sales_document == other.sales_document &&
+          time_zone == other.time_zone &&
+          smart_fields == other.smart_fields
       end
 
       # @see the `==` method
@@ -257,8 +120,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [id, name, email, role, message, subject, send_email, send_email_delay, signing_order, signing_url,
-         embedded_signing_url, bounced, bounced_details, attachment_requests, passcode, status, placeholder_name].hash
+        [sales_document, time_zone, smart_fields].hash
       end
 
       # Builds the object from hash

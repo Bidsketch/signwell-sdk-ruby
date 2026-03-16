@@ -12,6 +12,7 @@
 | **can_create_tracking_document** | **Boolean** |  | [optional] |
 | **can_create_completion_document** | **Boolean** |  | [optional] |
 | **active_users** | [**Array&lt;AccountInfoResponseActiveUsersInner&gt;**](AccountInfoResponseActiveUsersInner.md) |  | [optional] |
+| **preferences** | [**AccountInfoResponsePreferences**](AccountInfoResponsePreferences.md) |  | [optional] |
 
 ## Example
 
@@ -26,7 +27,8 @@ instance = SignWell::Models::AccountInfoResponse.new(
   can_create_template: null,
   can_create_tracking_document: null,
   can_create_completion_document: null,
-  active_users: null
+  active_users: null,
+  preferences: null
 )
 ```
 

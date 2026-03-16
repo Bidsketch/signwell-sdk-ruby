@@ -55,4 +55,10 @@ describe SignWell::Models::MeResponseUser do
       expect(instance).to respond_to(:first_name)
     end
   end
+
+  describe 'test attribute "preferences"' do
+    it 'should work' do
+      expect(instance).to respond_to(:preferences)
+    end
+  end
 end

@@ -170,6 +170,36 @@ describe SignWell::Models::DocumentResponse do
     end
   end
 
+  describe 'test attribute "decline_message"' do
+    it 'should work' do
+      expect(instance).to respond_to(:decline_message)
+    end
+  end
+
+  describe 'test attribute "error_message"' do
+    it 'should work' do
+      expect(instance).to respond_to(:error_message)
+    end
+  end
+
+  describe 'test attribute "template_id"' do
+    it 'should work' do
+      expect(instance).to respond_to(:template_id)
+    end
+  end
+
+  describe 'test attribute "template_ids"' do
+    it 'should work' do
+      expect(instance).to respond_to(:template_ids)
+    end
+  end
+
+  describe 'test attribute "embedded_signing_notifications"' do
+    it 'should work' do
+      expect(instance).to respond_to(:embedded_signing_notifications)
+    end
+  end
+
   describe 'test attribute "attachment_requests"' do
     it 'should work' do
       expect(instance).to respond_to(:attachment_requests)

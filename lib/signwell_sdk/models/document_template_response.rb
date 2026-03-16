@@ -70,6 +70,9 @@ module SignWell
       # @return [String]
       attr_accessor :template_link
 
+      # @return [String]
+      attr_accessor :template_id
+
       # @return [Boolean]
       attr_accessor :apply_signing_order
 
@@ -124,6 +127,7 @@ module SignWell
           'archived': :archived,
           'embedded_edit_url': :embedded_edit_url,
           'template_link': :template_link,
+          'template_id': :template_id,
           'apply_signing_order': :apply_signing_order,
           'redirect_url': :redirect_url,
           'decline_redirect_url': :decline_redirect_url,
@@ -169,6 +173,7 @@ module SignWell
           'archived': :Boolean,
           'embedded_edit_url': :String,
           'template_link': :String,
+          'template_id': :String,
           'apply_signing_order': :Boolean,
           'redirect_url': :String,
           'decline_redirect_url': :String,
@@ -191,6 +196,7 @@ module SignWell
                   custom_requester_email
                   metadata
                   reminders
+                  template_id
                   redirect_url
                   decline_redirect_url
                   expires_in
@@ -259,6 +265,8 @@ module SignWell
         self.embedded_edit_url = attributes[:embedded_edit_url] if attributes.key?(:embedded_edit_url)
 
         self.template_link = attributes[:template_link] if attributes.key?(:template_link)
+
+        self.template_id = attributes[:template_id] if attributes.key?(:template_id)
 
         self.apply_signing_order = attributes[:apply_signing_order] if attributes.key?(:apply_signing_order)
 
@@ -344,6 +352,7 @@ module SignWell
           archived == other.archived &&
           embedded_edit_url == other.embedded_edit_url &&
           template_link == other.template_link &&
+          template_id == other.template_id &&
           apply_signing_order == other.apply_signing_order &&
           redirect_url == other.redirect_url &&
           decline_redirect_url == other.decline_redirect_url &&
@@ -367,7 +376,7 @@ module SignWell
       # @return [Integer] Hash code
       def hash
         [id, api_application_id, requester_email_address, custom_requester_name, custom_requester_email, name, subject,
-         message, metadata, created_at, updated_at, placeholders, copied_placeholders, status, reminders, archived, embedded_edit_url, template_link, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, files, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
+         message, metadata, created_at, updated_at, placeholders, copied_placeholders, status, reminders, archived, embedded_edit_url, template_link, template_id, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, files, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
       end
 
       # Builds the object from hash

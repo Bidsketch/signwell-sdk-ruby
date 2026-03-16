@@ -41,6 +41,9 @@ module SignWell
       # @return [Array<AccountInfoResponseActiveUsersInner>]
       attr_accessor :active_users
 
+      # @return [AccountInfoResponsePreferences]
+      attr_accessor :preferences
+
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
         {
@@ -51,7 +54,8 @@ module SignWell
           'can_create_template': :can_create_template,
           'can_create_tracking_document': :can_create_tracking_document,
           'can_create_completion_document': :can_create_completion_document,
-          'active_users': :active_users
+          'active_users': :active_users,
+          'preferences': :preferences
         }
       end
 
@@ -75,7 +79,8 @@ module SignWell
           'can_create_template': :Boolean,
           'can_create_tracking_document': :Boolean,
           'can_create_completion_document': :Boolean,
-          'active_users': :'Array<AccountInfoResponseActiveUsersInner>'
+          'active_users': :'Array<AccountInfoResponseActiveUsersInner>',
+          'preferences': :AccountInfoResponsePreferences
         }
       end
 
@@ -121,11 +126,13 @@ module SignWell
           self.can_create_completion_document = attributes[:can_create_completion_document]
         end
 
-        return unless attributes.key?(:active_users)
-
-        if (value = attributes[:active_users]).is_a?(Array)
+        if attributes.key?(:active_users) && (value = attributes[:active_users]).is_a?(Array)
           self.active_users = value
         end
+
+        return unless attributes.key?(:preferences)
+
+        self.preferences = attributes[:preferences]
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -190,7 +197,8 @@ module SignWell
           can_create_template == other.can_create_template &&
           can_create_tracking_document == other.can_create_tracking_document &&
           can_create_completion_document == other.can_create_completion_document &&
-          active_users == other.active_users
+          active_users == other.active_users &&
+          preferences == other.preferences
       end
 
       # @see the `==` method
@@ -203,7 +211,7 @@ module SignWell
       # @return [Integer] Hash code
       def hash
         [id, name, plan_tier, active_templates, can_create_template, can_create_tracking_document,
-         can_create_completion_document, active_users].hash
+         can_create_completion_document, active_users, preferences].hash
       end
 
       # Builds the object from hash

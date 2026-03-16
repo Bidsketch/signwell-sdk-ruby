@@ -22,6 +22,7 @@
 | **archived** | **Boolean** |  | [optional] |
 | **embedded_edit_url** | **String** |  | [optional] |
 | **template_link** | **String** |  | [optional] |
+| **template_id** | **String** |  | [optional] |
 | **apply_signing_order** | **Boolean** |  | [optional] |
 | **redirect_url** | **String** |  | [optional] |
 | **decline_redirect_url** | **String** |  | [optional] |
@@ -58,6 +59,7 @@ instance = SignWell::Models::DocumentTemplateResponse.new(
   archived: null,
   embedded_edit_url: null,
   template_link: null,
+  template_id: null,
   apply_signing_order: null,
   redirect_url: null,
   decline_redirect_url: null,

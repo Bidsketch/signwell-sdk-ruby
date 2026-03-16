@@ -146,6 +146,12 @@ describe SignWell::Models::DocumentFromTemplateResponse do
     end
   end
 
+  describe 'test attribute "embedded_preview_url"' do
+    it 'should work' do
+      expect(instance).to respond_to(:embedded_preview_url)
+    end
+  end
+
   describe 'test attribute "apply_signing_order"' do
     it 'should work' do
       expect(instance).to respond_to(:apply_signing_order)
@@ -173,6 +179,24 @@ describe SignWell::Models::DocumentFromTemplateResponse do
   describe 'test attribute "expires_in"' do
     it 'should work' do
       expect(instance).to respond_to(:expires_in)
+    end
+  end
+
+  describe 'test attribute "decline_message"' do
+    it 'should work' do
+      expect(instance).to respond_to(:decline_message)
+    end
+  end
+
+  describe 'test attribute "error_message"' do
+    it 'should work' do
+      expect(instance).to respond_to(:error_message)
+    end
+  end
+
+  describe 'test attribute "embedded_signing_notifications"' do
+    it 'should work' do
+      expect(instance).to respond_to(:embedded_signing_notifications)
     end
   end
 
@@ -215,6 +239,12 @@ describe SignWell::Models::DocumentFromTemplateResponse do
   describe 'test attribute "labels"' do
     it 'should work' do
       expect(instance).to respond_to(:labels)
+    end
+  end
+
+  describe 'test attribute "checkbox_groups"' do
+    it 'should work' do
+      expect(instance).to respond_to(:checkbox_groups)
     end
   end
 end
