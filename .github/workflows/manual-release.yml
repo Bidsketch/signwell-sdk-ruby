@@ -15,7 +15,10 @@ on:
           - preminor
           - premajor
       prerelease:
-        description: 'Changelog: stamp as pre-release (true) or consolidate as stable (false)'
+        description: >-
+          Controls how the CHANGELOG is updated (does NOT affect the version number).
+          Checked = stamp: moves Unreleased entries into their own version section. Normal for pre-releases (e.g. bump=pre + checked).
+          Unchecked = consolidate: merges all pre-release entries into one section. Normal for stable releases (e.g. bump=patch + unchecked merges alpha.1-8 into 0.1.0).
         required: true
         type: boolean
         default: true
