@@ -1,7 +1,4 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-
-## [Unreleased]
+For a detailed list of changes in each release, see
+[GitHub Releases](https://github.com/Bidsketch/signwell-sdk-ruby/releases).

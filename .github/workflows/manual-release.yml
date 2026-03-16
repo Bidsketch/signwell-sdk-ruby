@@ -14,14 +14,6 @@ on:
           - major
           - preminor
           - premajor
-      prerelease:
-        description: >-
-          Controls how the CHANGELOG is updated (does NOT affect the version number).
-          Checked = stamp: moves Unreleased entries into their own version section. Normal for pre-releases (e.g. bump=pre + checked).
-          Unchecked = consolidate: merges all pre-release entries into one section. Normal for stable releases (e.g. bump=patch + unchecked merges alpha.1-8 into 0.1.0).
-        required: true
-        type: boolean
-        default: true
 
 jobs:
   create-release-pr:
@@ -34,10 +26,6 @@ jobs:
         with:
           ref: main
 
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-
       - name: Bump version
         id: bump
         run: |
@@ -48,14 +36,6 @@ jobs:
           echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
           echo "New version: $NEW_VERSION"
 
-      - name: Update changelog
-        run: |
-          if [ "${{ inputs.prerelease }}" = "true" ]; then
-            ruby scripts/update-changelog.rb stamp "${{ steps.bump.outputs.version }}"
-          else
-            ruby scripts/update-changelog.rb consolidate "${{ steps.bump.outputs.version }}"
-          fi
-
       - name: Create PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -65,7 +45,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add lib/signwell_sdk/version.rb CHANGELOG.md
+          git add lib/signwell_sdk/version.rb
           git commit -m "chore: release $VERSION"
           git push -u origin "$BRANCH"
 
@@ -77,11 +57,7 @@ jobs:
           ## Release v$VERSION
 
           - Bump type: \`${{ inputs.bump }}\`
-          - Pre-release: \`${{ inputs.prerelease }}\`
           - Updates \`lib/signwell_sdk/version.rb\` to \`$VERSION\`
-          - Updates \`CHANGELOG.md\`
-
-          **Review the CHANGELOG.md changes before merging.** Edit on this branch if needed.
 
           Merging this PR will automatically publish to RubyGems and create a GitHub Release.
           EOF
