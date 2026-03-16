@@ -47,7 +47,7 @@ jobs:
           git checkout -b "$BRANCH"
           git add lib/signwell_sdk/version.rb
           git commit -m "chore: release $VERSION"
-          git push -u origin "$BRANCH"
+          git push -u --force origin "$BRANCH"
 
           gh pr create \
             --base main \
