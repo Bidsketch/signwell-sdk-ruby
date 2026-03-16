@@ -32,6 +32,9 @@ module SignWell
       # @return [String]
       attr_accessor :first_name
 
+      # @return [MeResponseUserPreferences]
+      attr_accessor :preferences
+
       # Attribute mapping from ruby-style variable name to JSON key.
       def self.attribute_map
         {
@@ -39,7 +42,8 @@ module SignWell
           'name': :name,
           'email': :email,
           'has_google_registration': :has_google_registration,
-          'first_name': :first_name
+          'first_name': :first_name,
+          'preferences': :preferences
         }
       end
 
@@ -60,7 +64,8 @@ module SignWell
           'name': :String,
           'email': :String,
           'has_google_registration': :Boolean,
-          'first_name': :String
+          'first_name': :String,
+          'preferences': :MeResponseUserPreferences
         }
       end
 
@@ -96,9 +101,11 @@ module SignWell
 
         self.has_google_registration = attributes[:has_google_registration] if attributes.key?(:has_google_registration)
 
-        return unless attributes.key?(:first_name)
+        self.first_name = attributes[:first_name] if attributes.key?(:first_name)
 
-        self.first_name = attributes[:first_name]
+        return unless attributes.key?(:preferences)
+
+        self.preferences = attributes[:preferences]
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -160,7 +167,8 @@ module SignWell
           name == other.name &&
           email == other.email &&
           has_google_registration == other.has_google_registration &&
-          first_name == other.first_name
+          first_name == other.first_name &&
+          preferences == other.preferences
       end
 
       # @see the `==` method
@@ -172,7 +180,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [id, name, email, has_google_registration, first_name].hash
+        [id, name, email, has_google_registration, first_name, preferences].hash
       end
 
       # Builds the object from hash

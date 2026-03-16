@@ -134,6 +134,12 @@ describe SignWell::Models::DocumentTemplateResponse do
     end
   end
 
+  describe 'test attribute "template_id"' do
+    it 'should work' do
+      expect(instance).to respond_to(:template_id)
+    end
+  end
+
   describe 'test attribute "apply_signing_order"' do
     it 'should work' do
       expect(instance).to respond_to(:apply_signing_order)

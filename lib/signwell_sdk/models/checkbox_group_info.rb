@@ -44,6 +44,14 @@ module SignWell
       # @return [Integer]
       attr_accessor :min_value
 
+      # Maximum number of checkboxes to check
+      # @return [Integer]
+      attr_accessor :max_value
+
+      # Exact number of checkboxes that must be checked
+      # @return [Integer]
+      attr_accessor :exact_value
+
       class EnumAttributeValidator
         attr_reader :datatype, :allowable_values
 
@@ -74,7 +82,9 @@ module SignWell
           'checkbox_ids': :checkbox_ids,
           'validation': :validation,
           'required': :required,
-          'min_value': :min_value
+          'min_value': :min_value,
+          'max_value': :max_value,
+          'exact_value': :exact_value
         }
       end
 
@@ -97,7 +107,9 @@ module SignWell
           'checkbox_ids': :'Array<String>',
           'validation': :CheckboxValidation,
           'required': :Boolean,
-          'min_value': :Integer
+          'min_value': :Integer,
+          'max_value': :Integer,
+          'exact_value': :Integer
         }
       end
 
@@ -146,9 +158,13 @@ module SignWell
 
         self.required = (attributes[:required] if attributes.key?(:required))
 
-        return unless attributes.key?(:min_value)
+        self.min_value = attributes[:min_value] if attributes.key?(:min_value)
 
-        self.min_value = attributes[:min_value]
+        self.max_value = attributes[:max_value] if attributes.key?(:max_value)
+
+        return unless attributes.key?(:exact_value)
+
+        self.exact_value = attributes[:exact_value]
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -212,7 +228,9 @@ module SignWell
           checkbox_ids == other.checkbox_ids &&
           validation == other.validation &&
           required == other.required &&
-          min_value == other.min_value
+          min_value == other.min_value &&
+          max_value == other.max_value &&
+          exact_value == other.exact_value
       end
 
       # @see the `==` method
@@ -224,7 +242,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [id, group_name, recipient_id, checkbox_ids, validation, required, min_value].hash
+        [id, group_name, recipient_id, checkbox_ids, validation, required, min_value, max_value, exact_value].hash
       end
 
       # Builds the object from hash

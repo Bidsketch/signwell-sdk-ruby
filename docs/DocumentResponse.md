@@ -28,6 +28,11 @@
 | **decline_redirect_url** | **String** |  | [optional] |
 | **language** | **String** |  | [optional] |
 | **expires_in** | **Integer** |  | [optional] |
+| **decline_message** | **String** |  | [optional] |
+| **error_message** | **String** |  | [optional] |
+| **template_id** | **String** |  | [optional] |
+| **template_ids** | **Array&lt;String&gt;** |  | [optional] |
+| **embedded_signing_notifications** | **Boolean** |  | [optional] |
 | **attachment_requests** | [**Array&lt;DocumentResponseAttachmentRequestsInner&gt;**](DocumentResponseAttachmentRequestsInner.md) |  | [optional] |
 | **files** | [**Array&lt;FileInfo&gt;**](FileInfo.md) |  | [optional] |
 | **copied_contacts** | [**Array&lt;CopiedContactInfo&gt;**](CopiedContactInfo.md) |  | [optional] |
@@ -67,6 +72,11 @@ instance = SignWell::Models::DocumentResponse.new(
   decline_redirect_url: null,
   language: null,
   expires_in: null,
+  decline_message: null,
+  error_message: null,
+  template_id: null,
+  template_ids: null,
+  embedded_signing_notifications: null,
   attachment_requests: null,
   files: null,
   copied_contacts: null,

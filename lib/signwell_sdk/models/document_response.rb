@@ -88,6 +88,21 @@ module SignWell
       # @return [Integer]
       attr_accessor :expires_in
 
+      # @return [String]
+      attr_accessor :decline_message
+
+      # @return [String]
+      attr_accessor :error_message
+
+      # @return [String]
+      attr_accessor :template_id
+
+      # @return [Array<String>]
+      attr_accessor :template_ids
+
+      # @return [Boolean]
+      attr_accessor :embedded_signing_notifications
+
       # @return [Array<DocumentResponseAttachmentRequestsInner>]
       attr_accessor :attachment_requests
 
@@ -139,6 +154,11 @@ module SignWell
           'decline_redirect_url': :decline_redirect_url,
           'language': :language,
           'expires_in': :expires_in,
+          'decline_message': :decline_message,
+          'error_message': :error_message,
+          'template_id': :template_id,
+          'template_ids': :template_ids,
+          'embedded_signing_notifications': :embedded_signing_notifications,
           'attachment_requests': :attachment_requests,
           'files': :files,
           'copied_contacts': :copied_contacts,
@@ -187,6 +207,11 @@ module SignWell
           'decline_redirect_url': :String,
           'language': :String,
           'expires_in': :Integer,
+          'decline_message': :String,
+          'error_message': :String,
+          'template_id': :String,
+          'template_ids': :'Array<String>',
+          'embedded_signing_notifications': :Boolean,
           'attachment_requests': :'Array<DocumentResponseAttachmentRequestsInner>',
           'files': :'Array<FileInfo>',
           'copied_contacts': :'Array<CopiedContactInfo>',
@@ -209,6 +234,9 @@ module SignWell
                   embedded_preview_url
                   redirect_url
                   decline_redirect_url
+                  decline_message
+                  error_message
+                  template_id
                   allow_decline
                   allow_reassign
                 ])
@@ -284,6 +312,20 @@ module SignWell
         self.language = attributes[:language] if attributes.key?(:language)
 
         self.expires_in = attributes[:expires_in] if attributes.key?(:expires_in)
+
+        self.decline_message = attributes[:decline_message] if attributes.key?(:decline_message)
+
+        self.error_message = attributes[:error_message] if attributes.key?(:error_message)
+
+        self.template_id = attributes[:template_id] if attributes.key?(:template_id)
+
+        if attributes.key?(:template_ids) && (value = attributes[:template_ids]).is_a?(Array)
+          self.template_ids = value
+        end
+
+        if attributes.key?(:embedded_signing_notifications)
+          self.embedded_signing_notifications = attributes[:embedded_signing_notifications]
+        end
 
         if attributes.key?(:attachment_requests) && (value = attributes[:attachment_requests]).is_a?(Array)
           self.attachment_requests = value
@@ -384,6 +426,11 @@ module SignWell
           decline_redirect_url == other.decline_redirect_url &&
           language == other.language &&
           expires_in == other.expires_in &&
+          decline_message == other.decline_message &&
+          error_message == other.error_message &&
+          template_id == other.template_id &&
+          template_ids == other.template_ids &&
+          embedded_signing_notifications == other.embedded_signing_notifications &&
           attachment_requests == other.attachment_requests &&
           files == other.files &&
           copied_contacts == other.copied_contacts &&
@@ -404,7 +451,7 @@ module SignWell
       # @return [Integer] Hash code
       def hash
         [test_mode, id, api_application_id, requester_email_address, custom_requester_name, custom_requester_email, name,
-         subject, message, metadata, created_at, updated_at, recipients, status, reminders, archived, embedded_signing, embedded_edit_url, embedded_preview_url, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, attachment_requests, files, copied_contacts, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
+         subject, message, metadata, created_at, updated_at, recipients, status, reminders, archived, embedded_signing, embedded_edit_url, embedded_preview_url, apply_signing_order, redirect_url, decline_redirect_url, language, expires_in, decline_message, error_message, template_id, template_ids, embedded_signing_notifications, attachment_requests, files, copied_contacts, fields, allow_decline, allow_reassign, labels, checkbox_groups].hash
       end
 
       # Builds the object from hash

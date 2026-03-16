@@ -67,4 +67,16 @@ describe SignWell::Models::CheckboxGroupInfo do
       expect(instance).to respond_to(:min_value)
     end
   end
+
+  describe 'test attribute "max_value"' do
+    it 'should work' do
+      expect(instance).to respond_to(:max_value)
+    end
+  end
+
+  describe 'test attribute "exact_value"' do
+    it 'should work' do
+      expect(instance).to respond_to(:exact_value)
+    end
+  end
 end

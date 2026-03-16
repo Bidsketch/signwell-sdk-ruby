@@ -11,6 +11,8 @@
 | **validation** | [**CheckboxValidation**](CheckboxValidation.md) |  | [optional] |
 | **required** | **Boolean** | Whether at least one checkbox must be checked |  |
 | **min_value** | **Integer** | Minimum number of checkboxes to check | [optional] |
+| **max_value** | **Integer** | Maximum number of checkboxes to check | [optional] |
+| **exact_value** | **Integer** | Exact number of checkboxes that must be checked | [optional] |
 
 ## Example
 
@@ -24,7 +26,9 @@ instance = SignWell::Models::CheckboxGroupInfo.new(
   checkbox_ids: null,
   validation: null,
   required: null,
-  min_value: null
+  min_value: null,
+  max_value: null,
+  exact_value: null
 )
 ```
 

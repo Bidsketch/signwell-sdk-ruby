@@ -26,6 +26,12 @@ describe SignWell::Models::DocumentFromTemplateResponseRecipientsInner do
     end
   end
 
+  describe 'test attribute "id"' do
+    it 'should work' do
+      expect(instance).to respond_to(:id)
+    end
+  end
+
   describe 'test attribute "name"' do
     it 'should work' do
       expect(instance).to respond_to(:name)
@@ -44,6 +50,36 @@ describe SignWell::Models::DocumentFromTemplateResponseRecipientsInner do
     end
   end
 
+  describe 'test attribute "message"' do
+    it 'should work' do
+      expect(instance).to respond_to(:message)
+    end
+  end
+
+  describe 'test attribute "subject"' do
+    it 'should work' do
+      expect(instance).to respond_to(:subject)
+    end
+  end
+
+  describe 'test attribute "send_email"' do
+    it 'should work' do
+      expect(instance).to respond_to(:send_email)
+    end
+  end
+
+  describe 'test attribute "send_email_delay"' do
+    it 'should work' do
+      expect(instance).to respond_to(:send_email_delay)
+    end
+  end
+
+  describe 'test attribute "signing_order"' do
+    it 'should work' do
+      expect(instance).to respond_to(:signing_order)
+    end
+  end
+
   describe 'test attribute "signing_url"' do
     it 'should work' do
       expect(instance).to respond_to(:signing_url)
@@ -53,6 +89,18 @@ describe SignWell::Models::DocumentFromTemplateResponseRecipientsInner do
   describe 'test attribute "embedded_signing_url"' do
     it 'should work' do
       expect(instance).to respond_to(:embedded_signing_url)
+    end
+  end
+
+  describe 'test attribute "bounced"' do
+    it 'should work' do
+      expect(instance).to respond_to(:bounced)
+    end
+  end
+
+  describe 'test attribute "bounced_details"' do
+    it 'should work' do
+      expect(instance).to respond_to(:bounced_details)
     end
   end
 
@@ -71,6 +119,12 @@ describe SignWell::Models::DocumentFromTemplateResponseRecipientsInner do
   describe 'test attribute "status"' do
     it 'should work' do
       expect(instance).to respond_to(:status)
+    end
+  end
+
+  describe 'test attribute "placeholder_name"' do
+    it 'should work' do
+      expect(instance).to respond_to(:placeholder_name)
     end
   end
 end

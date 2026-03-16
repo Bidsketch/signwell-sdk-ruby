@@ -9,6 +9,7 @@
 | **email** | **String** |  |  |
 | **has_google_registration** | **Boolean** |  | [optional] |
 | **first_name** | **String** |  | [optional] |
+| **preferences** | [**MeResponseUserPreferences**](MeResponseUserPreferences.md) |  | [optional] |
 
 ## Example
 
@@ -20,7 +21,8 @@ instance = SignWell::Models::MeResponseUser.new(
   name: null,
   email: null,
   has_google_registration: null,
-  first_name: null
+  first_name: null,
+  preferences: null
 )
 ```
 

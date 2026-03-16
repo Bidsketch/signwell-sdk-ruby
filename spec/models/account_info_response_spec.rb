@@ -73,4 +73,10 @@ describe SignWell::Models::AccountInfoResponse do
       expect(instance).to respond_to(:active_users)
     end
   end
+
+  describe 'test attribute "preferences"' do
+    it 'should work' do
+      expect(instance).to respond_to(:preferences)
+    end
+  end
 end
