@@ -12,6 +12,7 @@
 | **name** | **String** |  | [optional] |
 | **date_format** | [**DateFormat**](DateFormat.md) |  | [optional] |
 | **fixed_width** | **Boolean** |  | [optional] |
+| **formula** | **String** |  | [optional] |
 | **label** | **String** |  | [optional] |
 | **lock_sign_date** | **Boolean** |  | [optional] |
 | **required** | **Boolean** |  | [optional] |
@@ -41,6 +42,7 @@ instance = SignWell::Models::DocumentResponseFieldsInnerInner.new(
   name: null,
   date_format: null,
   fixed_width: null,
+  formula: null,
   label: null,
   lock_sign_date: null,
   required: null,

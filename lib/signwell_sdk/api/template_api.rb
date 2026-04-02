@@ -310,7 +310,6 @@ module SignWell
         if @api_client.config.client_side_validation && id.nil?
           raise ArgumentError, "Missing the required parameter 'id' when calling TemplateApi.update_template"
         end
-
         # verify the required parameter 'document_template_update_request' is set
         if @api_client.config.client_side_validation && document_template_update_request.nil?
           raise ArgumentError,

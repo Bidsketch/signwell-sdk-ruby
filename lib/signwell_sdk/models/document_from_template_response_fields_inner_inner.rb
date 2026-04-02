@@ -41,6 +41,9 @@ module SignWell
       attr_accessor :fixed_width
 
       # @return [String]
+      attr_accessor :formula
+
+      # @return [String]
       attr_accessor :label
 
       # @return [Boolean]
@@ -117,6 +120,7 @@ module SignWell
           'name': :name,
           'date_format': :date_format,
           'fixed_width': :fixed_width,
+          'formula': :formula,
           'label': :label,
           'lock_sign_date': :lock_sign_date,
           'required': :required,
@@ -155,6 +159,7 @@ module SignWell
           'name': :String,
           'date_format': :DateFormat,
           'fixed_width': :Boolean,
+          'formula': :String,
           'label': :String,
           'lock_sign_date': :Boolean,
           'required': :Boolean,
@@ -215,6 +220,8 @@ module SignWell
         self.date_format = attributes[:date_format] if attributes.key?(:date_format)
 
         self.fixed_width = attributes[:fixed_width] if attributes.key?(:fixed_width)
+
+        self.formula = attributes[:formula] if attributes.key?(:formula)
 
         self.label = attributes[:label] if attributes.key?(:label)
 
@@ -314,6 +321,7 @@ module SignWell
           name == other.name &&
           date_format == other.date_format &&
           fixed_width == other.fixed_width &&
+          formula == other.formula &&
           label == other.label &&
           lock_sign_date == other.lock_sign_date &&
           required == other.required &&
@@ -339,7 +347,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [x, y, page, recipient, api_id, name, date_format, fixed_width, label, lock_sign_date, required, type,
+        [x, y, page, recipient, api_id, name, date_format, fixed_width, formula, label, lock_sign_date, required, type,
          validation, value, height, width, recipient_id, signing_elements_group_id, placeholder_name, options, default_option, allow_other].hash
       end
 

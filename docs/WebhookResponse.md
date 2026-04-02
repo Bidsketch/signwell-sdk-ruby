@@ -6,7 +6,6 @@
 | ---- | ---- | ----------- | ----- |
 | **id** | **String** |  |  |
 | **callback_url** | **String** |  |  |
-| **event** | **String** |  | [optional] |
 | **api_application_id** | **String** |  | [optional] |
 
 ## Example
@@ -17,7 +16,6 @@ require 'signwell_sdk'
 instance = SignWell::Models::WebhookResponse.new(
   id: null,
   callback_url: null,
-  event: null,
   api_application_id: null
 )
 ```

@@ -196,6 +196,7 @@ module SignWell
                   custom_requester_email
                   metadata
                   reminders
+                  embedded_edit_url
                   template_id
                   redirect_url
                   decline_redirect_url

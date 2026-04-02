@@ -450,7 +450,6 @@ module SignWell
         if @api_client.config.client_side_validation && id.nil?
           raise ArgumentError, "Missing the required parameter 'id' when calling DocumentApi.send_document"
         end
-
         # verify the required parameter 'update_document_and_send_request' is set
         if @api_client.config.client_side_validation && update_document_and_send_request.nil?
           raise ArgumentError,
@@ -523,7 +522,6 @@ module SignWell
         if @api_client.config.client_side_validation && id.nil?
           raise ArgumentError, "Missing the required parameter 'id' when calling DocumentApi.send_reminder"
         end
-
         # verify the required parameter 'send_reminder_request' is set
         if @api_client.config.client_side_validation && send_reminder_request.nil?
           raise ArgumentError,
@@ -596,7 +594,6 @@ module SignWell
         if @api_client.config.client_side_validation && id.nil?
           raise ArgumentError, "Missing the required parameter 'id' when calling DocumentApi.update_recipients"
         end
-
         # verify the required parameter 'update_recipients_request' is set
         if @api_client.config.client_side_validation && update_recipients_request.nil?
           raise ArgumentError,

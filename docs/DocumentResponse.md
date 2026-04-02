@@ -17,7 +17,7 @@
 | **created_at** | **Time** |  | [optional] |
 | **updated_at** | **Time** |  | [optional] |
 | **recipients** | [**Array&lt;DocumentResponseRecipientsInner&gt;**](DocumentResponseRecipientsInner.md) |  | [optional] |
-| **status** | **String** |  | [optional] |
+| **status** | **String** | Possible values: Draft, Created, Sending, Sent, Pending, Viewed, Completed, Manually completed, Declined, Canceled, Bounced, Blocked, Error, Expired | [optional] |
 | **reminders** | **Boolean** |  | [optional] |
 | **archived** | **Boolean** |  | [optional] |
 | **embedded_signing** | **Boolean** |  | [optional] |

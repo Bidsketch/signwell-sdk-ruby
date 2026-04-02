@@ -38,12 +38,6 @@ describe SignWell::Models::WebhookResponse do
     end
   end
 
-  describe 'test attribute "event"' do
-    it 'should work' do
-      expect(instance).to respond_to(:event)
-    end
-  end
-
   describe 'test attribute "api_application_id"' do
     it 'should work' do
       expect(instance).to respond_to(:api_application_id)

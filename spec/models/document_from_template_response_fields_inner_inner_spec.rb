@@ -74,6 +74,12 @@ describe SignWell::Models::DocumentFromTemplateResponseFieldsInnerInner do
     end
   end
 
+  describe 'test attribute "formula"' do
+    it 'should work' do
+      expect(instance).to respond_to(:formula)
+    end
+  end
+
   describe 'test attribute "label"' do
     it 'should work' do
       expect(instance).to respond_to(:label)
