@@ -61,6 +61,7 @@ module SignWell
       # @return [Array<DocumentFromTemplateResponseRecipientsInner>]
       attr_accessor :recipients
 
+      # Possible values: Draft, Created, Sending, Sent, Pending, Viewed, Completed, Manually completed, Declined, Canceled, Bounced, Blocked, Error, Expired
       # @return [String]
       attr_accessor :status
 

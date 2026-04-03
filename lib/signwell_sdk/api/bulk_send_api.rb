@@ -249,7 +249,6 @@ module SignWell
         if @api_client.config.client_side_validation && id.nil?
           raise ArgumentError, "Missing the required parameter 'id' when calling BulkSendApi.get_bulk_send_documents"
         end
-
         if @api_client.config.client_side_validation && !opts[:limit].nil? && opts[:limit] > 50
           raise ArgumentError,
                 'invalid value for "opts[:"limit"]" when calling BulkSendApi.get_bulk_send_documents, must be smaller than or equal to 50.'

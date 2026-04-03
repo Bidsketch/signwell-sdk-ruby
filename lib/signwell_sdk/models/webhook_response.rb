@@ -24,9 +24,6 @@ module SignWell
       attr_accessor :callback_url
 
       # @return [String]
-      attr_accessor :event
-
-      # @return [String]
       attr_accessor :api_application_id
 
       # Attribute mapping from ruby-style variable name to JSON key.
@@ -34,7 +31,6 @@ module SignWell
         {
           'id': :id,
           'callback_url': :callback_url,
-          'event': :event,
           'api_application_id': :api_application_id
         }
       end
@@ -54,16 +50,14 @@ module SignWell
         {
           'id': :String,
           'callback_url': :String,
-          'event': :String,
           'api_application_id': :String
         }
       end
 
       # List of attributes with nullable: true
       def self.openapi_nullable
-        Set.new(%i[
-                  event
-                  api_application_id
+        Set.new([
+                  :api_application_id
                 ])
       end
 
@@ -89,8 +83,6 @@ module SignWell
         self.id = (attributes[:id] if attributes.key?(:id))
 
         self.callback_url = (attributes[:callback_url] if attributes.key?(:callback_url))
-
-        self.event = attributes[:event] if attributes.key?(:event)
 
         return unless attributes.key?(:api_application_id)
 
@@ -143,7 +135,6 @@ module SignWell
         self.class == other.class &&
           id == other.id &&
           callback_url == other.callback_url &&
-          event == other.event &&
           api_application_id == other.api_application_id
       end
 
@@ -156,7 +147,7 @@ module SignWell
       # Calculates hash code according to all attributes.
       # @return [Integer] Hash code
       def hash
-        [id, callback_url, event, api_application_id].hash
+        [id, callback_url, api_application_id].hash
       end
 
       # Builds the object from hash
