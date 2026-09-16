@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+# Source: signwell-sdk-generator/extras/ruby/overlay/lib/signwell_sdk/extras/embedded.rb
+# Do not edit the generated SDK copy directly.
+
+require 'signwell_sdk/extras/embedded/view_helpers'
 
 module SignWell
   # Convenience helpers for embedded signing and requesting workflows.
@@ -33,7 +37,7 @@ module SignWell
   #   # new SignWellEmbed({ url: edit_url }).open()
   #
   # @see https://developers.signwell.com/reference/embedded-signing SignWell Embedded Docs
-  module Embedded # rubocop:disable Metrics/ModuleLength
+  module Embedded
     # URL for the SignWell embedded JavaScript library.
     SCRIPT_URL = 'https://static.signwell.com/assets/embedded.js'
 
@@ -57,25 +61,24 @@ module SignWell
     # @param opts [Hash] Additional attributes passed to {SignWell::Models::DocumentRequest}.
     # @return [SignWell::Models::DocumentResponse] The created document.
     # @raise [SignWell::Errors::ApiError] If the API request fails.
-    def self.create_signing_document(name:, files:, recipients:, # rubocop:disable Metrics/MethodLength,Metrics/ParameterLists
+    def self.create_signing_document(name:, files:, recipients:,
                                      fields: nil, test_mode: false,
                                      send_notifications: false, **opts)
       recipient_models = build_recipients(recipients)
-      file_models = build_files(files)
-      field_models = build_fields(fields, recipient_models) if fields
 
       attrs = {
         name: name,
         test_mode: test_mode,
-        files: file_models,
+        files: build_files(files),
         recipients: recipient_models,
         embedded_signing: true,
         embedded_signing_notifications: send_notifications
       }
-      attrs[:fields] = field_models if field_models
       attrs.merge!(opts)
+      attrs[:fields] = build_fields(fields, recipient_models) if fields
 
       request = Models::DocumentRequest.new(attrs)
+      validate_signing_placement(request, recipient_models)
       Resources::DocumentApi.new.create_document(request)
     end
 
@@ -92,16 +95,13 @@ module SignWell
     # @param opts [Hash] Additional attributes passed to {SignWell::Models::DocumentRequest}.
     # @return [SignWell::Models::DocumentResponse] The created draft document.
     # @raise [SignWell::Errors::ApiError] If the API request fails.
-    def self.create_requesting_document(name:, files:, recipients:, # rubocop:disable Metrics/MethodLength
+    def self.create_requesting_document(name:, files:, recipients:,
                                         test_mode: false, **opts)
-      recipient_models = build_recipients(recipients)
-      file_models = build_files(files)
-
       attrs = {
         name: name,
         test_mode: test_mode,
-        files: file_models,
-        recipients: recipient_models,
+        files: build_files(files),
+        recipients: build_recipients(recipients),
         draft: true
       }
       attrs.merge!(opts)
@@ -126,25 +126,15 @@ module SignWell
     # @return [SignWell::Models::DocumentFromTemplateResponse] The created document.
     # @raise [ArgumentError] If both or neither template_id/template_ids are provided.
     # @raise [SignWell::Errors::ApiError] If the API request fails.
-    def self.create_signing_document_from_template(recipients:, template_id: nil, # rubocop:disable Metrics/MethodLength
+    def self.create_signing_document_from_template(recipients:, template_id: nil,
                                                    template_ids: nil, test_mode: false,
                                                    send_notifications: false, **opts)
       raise ArgumentError, 'Provide either :template_id or :template_ids, not both' if template_id && template_ids
       raise ArgumentError, 'Provide :template_id or :template_ids' unless template_id || template_ids
 
-      recipient_models = recipients.map do |r|
-        passcode = r[:passcode] || r['passcode']
-        Models::TemplateRecipientsInner.new(
-          placeholder_name: r[:placeholder_name] || r['placeholder_name'],
-          name: r[:name] || r['name'],
-          email: r[:email] || r['email'],
-          passcode: passcode.presence
-        )
-      end
-
       attrs = {
         test_mode: test_mode,
-        recipients: recipient_models,
+        recipients: build_template_recipients(recipients),
         embedded_signing: true,
         embedded_signing_notifications: send_notifications
       }
@@ -204,52 +194,104 @@ module SignWell
     # @api private
     def self.build_recipients(recipients)
       recipients.each_with_index.map do |r, i|
-        passcode = r[:passcode] || r['passcode']
-        Models::RecipientsInner.new(
-          id: r[:id] || r['id'] || (i + 1).to_s,
-          name: r[:name] || r['name'],
-          email: r[:email] || r['email'],
-          passcode: passcode.presence
-        )
+        Models::RecipientsInner.new(recipient_attrs(r, i))
       end
+    end
+
+    # @api private
+    def self.build_template_recipients(recipients)
+      recipients.each_with_index.map do |r, i|
+        attrs = recipient_attrs(r, i)
+        placeholder_name = hash_value(r, :placeholder_name)
+        attrs[:placeholder_name] = placeholder_name if placeholder_name
+        Models::TemplateRecipientsInner.new(attrs)
+      end
+    end
+
+    # @api private
+    def self.optional_string_or_nil(value)
+      return nil if value.nil?
+
+      normalized = value.to_s.strip
+      normalized.empty? ? nil : normalized
     end
 
     # @api private
     def self.build_files(files)
       files.map do |f|
-        url = f[:file_url] || f['file_url']
-        b64 = f[:file_base64] || f['file_base64']
-        name = f[:name] || f['name']
+        url = hash_value(f, :file_url)
+        b64 = hash_value(f, :file_base64)
+        name = hash_value(f, :name)
+        has_url = present_value?(url)
+        has_b64 = present_value?(b64)
 
-        raise ArgumentError, 'Each file must include :name' unless name
+        raise ArgumentError, 'Each file must include :name' unless present_value?(name)
+        raise ArgumentError, 'Each file must include exactly one of :file_url or :file_base64' if has_url == has_b64
 
-        if url
-          Models::FilesInner.new(file_url: url, name: name)
-        elsif b64
-          Models::FilesInner.new(file_base64: b64, name: name)
-        else
-          raise ArgumentError, 'Each file must include either :file_url or :file_base64'
-        end
+        attrs = { name: name }
+        attrs[has_url ? :file_url : :file_base64] = has_url ? url : b64
+        Models::FilesInner.new(attrs)
       end
     end
 
     # @api private
-    def self.build_fields(fields, recipient_models) # rubocop:disable Metrics
+    def self.build_fields(fields, recipient_models)
       default_id = recipient_models.first&.id
       fields.map do |file_fields|
         file_fields.map do |f|
-          Models::FieldsInnerInner.new(
-            x: f[:x] || f['x'],
-            y: f[:y] || f['y'],
-            page: f[:page] || f['page'],
-            type: f[:type] || f['type'],
-            recipient_id: f[:recipient_id] || f['recipient_id'] || default_id,
-            required: f.fetch(:required, f.fetch('required', true))
-          )
+          attrs = symbolize_keys(f)
+          attrs[:recipient_id] = default_id unless present_value?(attrs[:recipient_id])
+          raise ArgumentError, 'Each field must include :recipient_id when no default recipient exists' unless attrs[:recipient_id]
+
+          attrs[:required] = true unless attrs.key?(:required)
+          Models::FieldsInnerInner.new(attrs)
         end
       end
     end
 
-    private_class_method :build_recipients, :build_files, :build_fields
+    def self.validate_signing_placement(request, recipient_models)
+      return if request.with_signature_page == true || request.text_tags == true
+
+      fields = Array(request.fields).flatten
+      assigned_recipient_ids = fields.map(&:recipient_id).compact.map(&:to_s).reject(&:empty?)
+      missing_recipients = recipient_models.select do |recipient|
+        recipient.id && !assigned_recipient_ids.include?(recipient.id.to_s)
+      end
+
+      return unless fields.empty? || missing_recipients.any?
+
+      raise ArgumentError,
+            'Embedded signing documents must include fields for every recipient, set with_signature_page: true, or set text_tags: true'
+    end
+
+    def self.recipient_attrs(recipient, index)
+      attrs = {
+        id: (hash_value(recipient, :id) || (index + 1)).to_s,
+        name: hash_value(recipient, :name),
+        email: hash_value(recipient, :email)
+      }
+      passcode = optional_string_or_nil(hash_value(recipient, :passcode))
+      attrs[:passcode] = passcode if passcode
+      attrs
+    end
+
+    def self.hash_value(hash, key)
+      return hash[key] if hash.respond_to?(:key?) && hash.key?(key)
+      return hash[key.to_s] if hash.respond_to?(:key?) && hash.key?(key.to_s)
+
+      nil
+    end
+
+    def self.symbolize_keys(hash)
+      hash.each_with_object({}) { |(key, value), attrs| attrs[key.to_sym] = value }
+    end
+
+    def self.present_value?(value)
+      !value.nil? && !(value.respond_to?(:empty?) && value.empty?)
+    end
+
+    private_class_method :build_recipients, :build_template_recipients, :build_files, :build_fields,
+                         :validate_signing_placement, :recipient_attrs, :hash_value, :symbolize_keys,
+                         :present_value?, :optional_string_or_nil
   end
 end

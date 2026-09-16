@@ -1,0 +1,151 @@
+# frozen_string_literal: true
+
+require 'spec_helper'
+
+RSpec.describe SignWell::Embedded::ViewHelpers do
+  let(:helper) do
+    Class.new do
+      include SignWell::Embedded::ViewHelpers
+    end.new
+  end
+
+  describe '#signwell_signing_iframe' do
+    it 'escapes script-breaking payloads in the generated JavaScript' do
+      html = helper.signwell_signing_iframe(
+        url: 'https://www.signwell.com/sign',
+        container_id: '</script><script>alert(1)</script>'
+      )
+
+      expect(html.scan('<script>').count).to eq(1)
+      expect(html.scan('</script>').count).to eq(1)
+      expect(html).not_to include('</script><script>alert(1)</script>')
+      expect(html).to include('\\u003c/script\\u003e\\u003cscript\\u003ealert(1)\\u003c/script\\u003e')
+    end
+
+    it 'rejects unsafe raw callback code' do
+      expect do
+        helper.signwell_signing_iframe(
+          url: 'https://www.signwell.com/sign',
+          events: { completed: 'alert(1)' }
+        )
+      end.to raise_error(ArgumentError, /Event handler paths/)
+    end
+
+    it 'accepts safe function paths and serializes them as data' do
+      html = helper.signwell_signing_iframe(
+        url: 'https://www.signwell.com/sign',
+        events: { completed: 'SignWellHandlers.onComplete' }
+      )
+
+      expect(html).to include('"completed":"SignWellHandlers.onComplete"')
+      expect(html).to include('resolveSignWellHandler')
+    end
+
+    it 'uses javascript_tag with a nonce when available' do
+      rails_like_helper = Class.new do
+        include SignWell::Embedded::ViewHelpers
+
+        attr_reader :javascript_tag_options
+
+        def javascript_tag(options = {})
+          @javascript_tag_options = options
+          %(<script nonce="test-nonce">#{yield}</script>)
+        end
+
+        def content_security_policy_nonce
+          'test-nonce'
+        end
+      end.new
+
+      html = rails_like_helper.signwell_signing_iframe(url: 'https://www.signwell.com/sign')
+
+      expect(rails_like_helper.javascript_tag_options).to eq(nonce: true)
+      expect(html).to include('nonce="test-nonce"')
+    end
+
+    it 'falls back to javascript_tag without a nonce when nonce support is unavailable' do
+      helper_without_nonce = Class.new do
+        include SignWell::Embedded::ViewHelpers
+
+        attr_reader :javascript_tag_calls
+
+        def javascript_tag(options = {})
+          @javascript_tag_calls ||= []
+          @javascript_tag_calls << options
+          raise NameError.new('missing nonce', :content_security_policy_nonce) if options[:nonce]
+        end
+      end.new
+
+      html = helper_without_nonce.signwell_signing_iframe(url: 'https://www.signwell.com/sign')
+
+      expect(helper_without_nonce.javascript_tag_calls).to eq([{ nonce: true }])
+      expect(html).to include('<script>')
+      expect(html).not_to include('nonce=')
+    end
+
+    it 'rejects unsafe embed URLs by default' do
+      expect do
+        helper.signwell_signing_iframe(url: 'javascript:alert(1)')
+      end.to raise_error(ArgumentError, /Embed URL must use HTTPS/)
+
+      expect do
+        helper.signwell_signing_iframe(url: 'http://www.signwell.com/sign')
+      end.to raise_error(ArgumentError, /Embed URL must use HTTPS/)
+
+      expect do
+        helper.signwell_signing_iframe(url: 'https://user:pass@www.signwell.com/sign')
+      end.to raise_error(ArgumentError, /credentials/)
+
+      expect do
+        helper.signwell_signing_iframe(url: 'https://evil.example/sign')
+      end.to raise_error(ArgumentError, /host is not allowed/)
+    end
+
+    it 'allows exact custom embed hosts for non-production environments' do
+      html = helper.signwell_requesting_iframe(
+        url: 'https://sandbox.signwell.test/edit',
+        allowed_embed_hosts: ['sandbox.signwell.test']
+      )
+
+      expect(html).to include('"url":"https://sandbox.signwell.test/edit"')
+      expect do
+        helper.signwell_requesting_iframe(
+          url: 'https://evil-sandbox.signwell.test/edit',
+          allowed_embed_hosts: ['sandbox.signwell.test']
+        )
+      end.to raise_error(ArgumentError, /host is not allowed/)
+    end
+
+    it 'validates optional redirect URLs' do
+      html = helper.signwell_signing_iframe(
+        url: 'https://www.signwell.com/sign',
+        redirect_url: 'https://app.example.com/done',
+        decline_redirect_url: 'https://app.example.com/declined'
+      )
+
+      expect(html).to include('"redirectUrl":"https://app.example.com/done"')
+      expect do
+        helper.signwell_signing_iframe(
+          url: 'https://www.signwell.com/sign',
+          redirect_url: 'http://app.example.com/done'
+        )
+      end.to raise_error(ArgumentError, /Redirect URL must use HTTPS/)
+      expect do
+        helper.signwell_signing_iframe(
+          url: 'https://www.signwell.com/sign',
+          redirect_url: 'https://evil.example/done',
+          allowed_redirect_hosts: ['app.example.com']
+        )
+      end.to raise_error(ArgumentError, /Redirect URL host is not allowed/)
+    end
+
+    it 'rejects prototype-chain event handler paths' do
+      expect do
+        helper.signwell_signing_iframe(
+          url: 'https://www.signwell.com/sign',
+          events: { completed: 'constructor.constructor' }
+        )
+      end.to raise_error(ArgumentError, /prototype-chain/)
+    end
+  end
+end

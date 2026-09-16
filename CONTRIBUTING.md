@@ -6,6 +6,18 @@ Thank you for your interest in contributing to the SignWell Ruby SDK!
 
 This SDK is auto-generated from our OpenAPI specification using [OpenAPI Generator](https://openapi-generator.tech/). Most of the code in this repository is regenerated periodically, so **direct code changes via pull requests will be overwritten**.
 
+The generator repository is the sole orchestrator for generated SDK code. If you need to change:
+
+- files under `lib/`
+- files under `spec/`
+- files under `docs/`
+- `README.md`
+- `signwell_sdk.gemspec`
+
+then the durable fix belongs in the generator templates, extras, or validation workflow. Temporary emergency patches in this repo should always be mirrored back to the generator before the next regeneration.
+
+Hand-written SDK helpers are generator extras. In generated Ruby output, custom helper implementations live under `lib/signwell_sdk/extras/`; the public entrypoint loads them so constants such as `SignWell::Webhook` and `SignWell::Embedded` remain available without placing custom implementation files beside generated API or model code.
+
 ## How to contribute
 
 ### Report a bug in the SDK
@@ -35,6 +47,7 @@ Examples in the `examples/` directory are hand-written and welcome contributions
 - Changes to files under `lib/` (auto-generated, will be overwritten)
 - Changes to files under `spec/` (auto-generated, will be overwritten)
 - Changes to files under `docs/` (auto-generated, will be overwritten)
+- Direct fixes to generated README or gemspec content without a matching generator change
 
 ## Security
 

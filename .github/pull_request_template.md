@@ -7,6 +7,9 @@
 ### Changes proposed on the PR
 -
 
+### Generator ownership
+- [ ] If this PR changes generated SDK output, the source change also exists in the generator or is linked as an explicit follow-up
+
 ### Areas affected
 <!-- Check all that apply -->
 - [ ] Models (`lib/signwell_sdk/models/`)
@@ -30,6 +33,7 @@
 <!-- Paste output or confirm these passed -->
 - [ ] Tests pass (`bundle exec rspec`)
 - [ ] Linting passes (`bundle exec rubocop`)
+- [ ] Generated-code changes were validated from a regenerated SDK, not only patched in-place
 
 ### Attachments
 <!-- Screenshots, diff snippets, etc. -->

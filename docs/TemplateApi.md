@@ -247,7 +247,8 @@ end
 api_instance = SignWell::Resources::TemplateApi.new
 opts = {
   page: 56, # Integer | 
-  limit: 56 # Integer | 
+  limit: 56, # Integer | 
+  query: 'query_example' # String | Raw API filter query. Use AND between filters, for example: \"name:Classic AND status:Available\".
 }
 
 begin
@@ -283,6 +284,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **page** | **Integer** |  | [optional][default to 1] |
 | **limit** | **Integer** |  | [optional][default to 10] |
+| **query** | **String** | Raw API filter query. Use AND between filters, for example: \&quot;name:Classic AND status:Available\&quot;. | [optional] |
 
 ### Return type
 

@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **name** | **String** | File name |  |
+| **name** | **String** | File name | [optional] |
 | **pages_number** | **Integer** | Number of pages in the file |  |
 
 ## Example

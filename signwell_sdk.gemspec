@@ -26,21 +26,40 @@ Gem::Specification.new do |s|
   s.description = "Ruby SDK for the SignWell API - electronic signature platform"
   s.license     = "MIT"
   s.required_ruby_version = ">= 3.0"
-  s.metadata    = {
+  s.metadata = {
     "documentation_uri" => "https://gemdocs.org/gems/signwell_sdk/" + SignWell::VERSION + "/",
     "source_code_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby",
-    "homepage_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby",
     "changelog_uri" => "https://github.com/Bidsketch/signwell-sdk-ruby/blob/main/CHANGELOG.md"
   }
 
   s.add_runtime_dependency 'faraday', '>= 1.0.1', '< 3.0'
-  s.add_runtime_dependency 'faraday-multipart'
-  s.add_runtime_dependency 'marcel'
+  s.add_runtime_dependency 'faraday-multipart', '~> 1.0', '>= 1.0.0'
+  s.add_runtime_dependency 'marcel', '~> 1.0', '>= 1.0.0'
 
   s.add_development_dependency 'rspec', '~> 3.6', '>= 3.6.0'
 
-  s.files         = `find *`.split("\n").uniq.sort.select { |f| !f.empty? }
-  s.test_files    = `find spec/*`.split("\n")
+  tracked_files = `git ls-files -z 2>/dev/null`.split("\x0").reject(&:empty?)
+  fallback_patterns = %w[
+    LICENSE
+    README.md
+    CHANGELOG.md
+    CONTRIBUTING.md
+    Gemfile
+    Rakefile
+    openapi.yaml
+    signwell_sdk.gemspec
+    .rspec
+    .rubocop.yml
+    lib/**/*
+    spec/**/*
+    docs/**/*
+    examples/**/*
+    gemfiles/**/*
+  ]
+  fallback_files = fallback_patterns.flat_map { |pattern| Dir.glob(pattern, File::FNM_DOTMATCH) }
+
+  s.files         = (tracked_files.empty? ? fallback_files : tracked_files).select { |file| File.file?(file) }.uniq.sort
+  s.test_files    = s.files.grep(%r{\Aspec/.*_spec\.rb\z})
   s.executables   = []
   s.require_paths = ["lib"]
 end

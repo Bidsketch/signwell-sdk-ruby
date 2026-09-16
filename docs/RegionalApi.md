@@ -9,7 +9,7 @@ All URIs are relative to *https://www.signwell.com*
 
 ## get_nom151_certificate
 
-> <Nom151UrlResponse> get_nom151_certificate(id, opts)
+> Models::Nom151UrlResponse, Models::Nom151CertificateResponse, or File get_nom151_certificate(id, opts)
 
 MX – NOM-151 Certificate
 
@@ -48,7 +48,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<Nom151UrlResponse>, Integer, Hash)> get_nom151_certificate_with_http_info(id, opts)
+> <Array(Models::Nom151UrlResponse, Models::Nom151CertificateResponse, or File, Integer, Hash)> get_nom151_certificate_with_http_info(id, opts)
 
 ```ruby
 begin
@@ -56,7 +56,7 @@ begin
   data, status_code, headers = api_instance.get_nom151_certificate_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <Nom151UrlResponse>
+  p data # => Models::Nom151UrlResponse, Models::Nom151CertificateResponse, or File
 rescue SignWell::Errors::ApiError => e
   puts "Error when calling RegionalApi->get_nom151_certificate_with_http_info: #{e}"
 end
@@ -72,7 +72,7 @@ end
 
 ### Return type
 
-[**Nom151UrlResponse**](Nom151UrlResponse.md)
+**Models::Nom151UrlResponse, Models::Nom151CertificateResponse, or File**
 
 ### Authorization
 
