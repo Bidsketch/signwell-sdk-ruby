@@ -1,11 +1,40 @@
 # frozen_string_literal: true
 
+require 'erb'
 require 'spec_helper'
 
 RSpec.describe SignWell::Embedded::ViewHelpers do
   let(:helper) do
     Class.new do
       include SignWell::Embedded::ViewHelpers
+    end.new
+  end
+
+  # Mirrors ActionView's javascript_tag contract: a block result goes through +capture+, which
+  # html_escapes any String that is not html_safe, while a content argument is emitted verbatim.
+  # A fake that simply yields would stay green while real Rails output is broken JavaScript.
+  let(:rails_like_helper) do
+    Class.new do
+      include SignWell::Embedded::ViewHelpers
+
+      attr_reader :javascript_tag_options
+
+      def javascript_tag(content_or_options = nil, html_options = {}, &block)
+        if block
+          html_options = content_or_options if content_or_options.is_a?(Hash)
+          content = block.call
+          content = ERB::Util.html_escape(content) unless content.respond_to?(:html_safe?) && content.html_safe?
+        else
+          content = content_or_options
+        end
+        @javascript_tag_options = html_options
+        nonce = html_options[:nonce] == true ? content_security_policy_nonce : html_options[:nonce]
+        %(<script nonce="#{nonce}">\n//<![CDATA[\n#{content}\n//]]>\n</script>)
+      end
+
+      def content_security_policy_nonce
+        'test-nonce'
+      end
     end.new
   end
 
@@ -41,26 +70,29 @@ RSpec.describe SignWell::Embedded::ViewHelpers do
       expect(html).to include('resolveSignWellHandler')
     end
 
-    it 'uses javascript_tag with a nonce when available' do
-      rails_like_helper = Class.new do
-        include SignWell::Embedded::ViewHelpers
+    it 'warns in the browser console when a handler path does not resolve to a function' do
+      html = helper.signwell_signing_iframe(
+        url: 'https://www.signwell.com/sign',
+        events: { completed: 'onDone' }
+      )
 
-        attr_reader :javascript_tag_options
+      expect(html).to include("if (typeof handler === 'function')")
+      expect(html).to include('console.warn(')
+      expect(html).to include('no function found at')
+    end
 
-        def javascript_tag(options = {})
-          @javascript_tag_options = options
-          %(<script nonce="test-nonce">#{yield}</script>)
-        end
-
-        def content_security_policy_nonce
-          'test-nonce'
-        end
-      end.new
-
-      html = rails_like_helper.signwell_signing_iframe(url: 'https://www.signwell.com/sign')
+    it 'renders through javascript_tag with a nonce and without html-escaping the script' do
+      html = rails_like_helper.signwell_signing_iframe(
+        url: 'https://www.signwell.com/sign',
+        events: { completed: 'SignWellHandlers.onComplete' }
+      )
 
       expect(rails_like_helper.javascript_tag_options).to eq(nonce: true)
       expect(html).to include('nonce="test-nonce"')
+      expect(html).to include('return context && context[key];')
+      expect(html).to include('Object.keys(eventPaths).length > 0')
+      expect(html).not_to include('&amp;')
+      expect(html).not_to include('&gt;')
     end
 
     it 'falls back to javascript_tag without a nonce when nonce support is unavailable' do
@@ -69,7 +101,7 @@ RSpec.describe SignWell::Embedded::ViewHelpers do
 
         attr_reader :javascript_tag_calls
 
-        def javascript_tag(options = {})
+        def javascript_tag(_content = nil, options = {})
           @javascript_tag_calls ||= []
           @javascript_tag_calls << options
           raise NameError.new('missing nonce', :content_security_policy_nonce) if options[:nonce]

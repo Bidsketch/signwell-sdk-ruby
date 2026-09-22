@@ -96,6 +96,15 @@ module SignWell
         data = nil
       end
       return data, response.status, response.headers
+    rescue StandardError
+      # A streamed download opens its tempfile before the status is known. Unlink it when the
+      # request fails or the body cannot be deserialized; otherwise it lingers until GC finalizes it.
+      discard_download_stream(stream)
+      raise
+    end
+
+    def discard_download_stream(stream)
+      stream.close! if stream.is_a?(Tempfile)
     end
 
     # Builds the HTTP request
@@ -189,10 +198,12 @@ module SignWell
 
     def deserialize_file(response, stream)
       if stream.is_a?(Tempfile)
+        # A streamed download is returned in the tempfile it was written to. Renaming it after the
+        # Content-Disposition filename would cost a second full copy on disk for a cosmetic prefix;
+        # the *_with_http_info variants expose that header to callers who need the real name.
         stream.flush
         stream.rewind
         stream = maybe_decode_binary_transfer_to_tempfile(response, stream)
-        stream = finalize_download_tempfile(response, stream)
         stream.close
         log_download_path(stream.path)
         return stream
@@ -225,22 +236,6 @@ module SignWell
       prefix += '-' unless prefix.end_with?('-')
 
       Tempfile.open(prefix, @config.temp_folder_path)
-    end
-
-    def finalize_download_tempfile(response, stream)
-      content_disposition = response.headers['Content-Disposition']
-      return stream unless content_disposition && content_disposition =~ /filename=/i
-
-      filename = content_disposition[/filename=['"]?([^'"\s]+)['"]?/, 1]
-      prefix = sanitize_filename(filename)
-      return stream if prefix.empty?
-
-      final_tempfile = build_download_tempfile(response)
-      final_tempfile.binmode
-      IO.copy_stream(stream, final_tempfile)
-      final_tempfile.close
-      stream.close!
-      final_tempfile
     end
 
     def maybe_decode_binary_transfer_to_tempfile(response, stream)

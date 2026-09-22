@@ -114,6 +114,53 @@ RSpec.describe SignWell::ApiClient do
       expect(status).to eq(200)
       expect(headers).to eq('Content-Type' => 'application/octet-stream')
     end
+
+    it 'discards the streamed tempfile when the request fails' do
+      response = instance_double(
+        Faraday::Response,
+        success?: false,
+        status: 500,
+        reason_phrase: 'Internal Server Error',
+        body: '{"error":"boom"}',
+        headers: { 'Content-Type' => 'application/json' }
+      )
+      connection = double('connection')
+      streamed = nil
+      streamed_path = nil
+
+      allow(client).to receive(:connection).and_return(connection)
+      allow(client).to receive(:build_request) { |_http_method, _path, request, _opts| request }
+      allow(client).to receive(:download_file).and_wrap_original do |original, request|
+        streamed = original.call(request)
+        streamed_path = streamed.path
+        streamed
+      end
+      allow(connection).to receive(:public_send) do |_method, &block|
+        request = Struct.new(:options, :headers, :body).new(
+          Struct.new(:on_data, :params_encoder, :timeout).new,
+          {},
+          nil
+        )
+        block.call(request)
+        response
+      end
+
+      expect do
+        client.call_api(
+          :GET,
+          '/test',
+          header_params: {},
+          query_params: {},
+          auth_names: [],
+          return_type: 'File',
+          operation: 'DocumentApi.get_completed_pdf'
+        )
+      end.to raise_error(SignWell::Errors::InternalServerError)
+
+      expect(streamed).to be_a(Tempfile)
+      expect(streamed.closed?).to be(true)
+      expect(File.exist?(streamed_path)).to be(false)
+    end
   end
 
   describe 'default headers' do
@@ -147,11 +194,50 @@ RSpec.describe SignWell::ApiClient do
       )
 
       expect(error).to be_a(SignWell::Errors::RateLimitError)
-      expect(error.rate_limit.limit).to eq(100.0)
-      expect(error.rate_limit.remaining).to eq(0.0)
-      expect(error.rate_limit.reset).to eq(1_893_456_000.0)
-      expect(error.rate_limit.retry_after).to eq(30.0)
-      expect(error.rate_limit.reset_at).to be_a(Time)
+      # eql, not eq: 100.0 == 100 in Ruby, so eq would not pin the Integer type.
+      expect(error.rate_limit.limit).to eql(100)
+      expect(error.rate_limit.remaining).to eql(0)
+      expect(error.rate_limit.reset).to eql(1_893_456_000)
+      expect(error.rate_limit.retry_after).to eql(30)
+      expect(error.rate_limit.reset_at).to eq(Time.at(1_893_456_000).utc)
+    end
+
+    it 'parses the ISO8601 reset timestamp the SignWell API sends' do
+      error = SignWell::Errors::ApiStatusError.for(
+        code: 429,
+        response_headers: {
+          'X-RateLimit-Limit' => '120',
+          'X-RateLimit-Remaining' => '0',
+          'X-RateLimit-Reset' => '2026-09-20T21:55:00+00:00'
+        },
+        response_body: ''
+      )
+
+      expect(error.rate_limit.limit).to eql(120)
+      expect(error.rate_limit.reset_at).to eq(Time.utc(2026, 9, 20, 21, 55, 0))
+      expect(error.rate_limit.reset).to eql(Time.utc(2026, 9, 20, 21, 55, 0).to_i)
+    end
+
+    it 'prefers the x-ratelimit-* header names whatever order the server emitted them in' do
+      error = SignWell::Errors::ApiStatusError.for(
+        code: 429,
+        response_headers: { 'ratelimit-limit' => '5', 'x-ratelimit-limit' => '100' },
+        response_body: ''
+      )
+
+      expect(error.rate_limit.limit).to eq(100)
+    end
+
+    it 'leaves reset metadata nil when the header is neither a timestamp nor a number' do
+      error = SignWell::Errors::ApiStatusError.for(
+        code: 429,
+        response_headers: { 'x-ratelimit-limit' => '100', 'x-ratelimit-reset' => 'soon' },
+        response_body: ''
+      )
+
+      expect(error.rate_limit.limit).to eq(100)
+      expect(error.rate_limit.reset).to be_nil
+      expect(error.rate_limit.reset_at).to be_nil
     end
   end
 
@@ -240,6 +326,25 @@ RSpec.describe SignWell::ApiClient do
       expect(data).to be_a(String)
       expect(data).to eq(expected)
       expect(data.encoding).to eq(Encoding::BINARY)
+    end
+
+    it 'returns the streamed tempfile itself rather than copying it for a Content-Disposition name' do
+      request_options = Struct.new(:on_data).new
+      request = Struct.new(:options).new(request_options)
+
+      stream = client.download_file(request)
+      request.options.on_data.call('%PDF-1.4 hello'.b, 14)
+
+      response = Struct.new(:body, :headers).new(
+        String.new.b,
+        { 'Content-Disposition' => 'attachment; filename="completed.pdf"' }
+      )
+      tempfile = client.deserialize_file(response, stream)
+
+      expect(tempfile).to equal(stream)
+      expect(File.binread(tempfile.path)).to eq('%PDF-1.4 hello'.b)
+    ensure
+      tempfile&.close!
     end
   end
 end

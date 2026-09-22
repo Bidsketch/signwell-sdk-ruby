@@ -172,6 +172,10 @@ module SignWell
                 var handler = resolveSignWellHandler(eventPaths[name]);
                 if (typeof handler === 'function') {
                   config.events[name] = handler;
+                } else if (typeof console !== 'undefined' && console.warn) {
+                  console.warn('SignWell: no function found at "' + eventPaths[name] + '" for the "' + name +
+                    '" event. Handler paths are resolved from globalThis, so expose the handler as a global ' +
+                    '(for example window.SignWellHandlers = { onComplete: ... }) rather than a module-scoped let/const.');
                 }
               });
             }
@@ -182,7 +186,10 @@ module SignWell
         JAVASCRIPT
         if respond_to?(:javascript_tag)
           begin
-            return javascript_tag(nonce: true) { js }
+            # Pass the script as the content argument, never as a block: Rails runs a block
+            # through +capture+, which html_escapes a plain String and turns `&&` into
+            # `&amp;&amp;` inside the <script>, a SyntaxError in every browser.
+            return javascript_tag(js, nonce: true)
           rescue NameError => e
             raise unless e.name == :content_security_policy_nonce
           end

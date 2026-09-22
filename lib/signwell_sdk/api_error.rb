@@ -20,6 +20,8 @@ module SignWell
     class ApiError < StandardError
       attr_reader :code, :response_headers, :response_body, :body, :rate_limit
 
+      NUMERIC_HEADER_VALUE = /\A-?\d+(?:\.\d+)?\z/
+
       # Usage examples:
       #   ApiError.new
       #   ApiError.new("message")
@@ -56,11 +58,10 @@ module SignWell
       def self.extract_rate_limit_info(headers)
         limit = parse_number(first_header(headers, %w[x-ratelimit-limit ratelimit-limit]))
         remaining = parse_number(first_header(headers, %w[x-ratelimit-remaining ratelimit-remaining]))
-        reset = parse_number(first_header(headers, %w[x-ratelimit-reset ratelimit-reset]))
+        reset, reset_at = parse_reset(first_header(headers, %w[x-ratelimit-reset ratelimit-reset]))
         retry_after_value = first_header(headers, ['retry-after'])
         retry_after = parse_number(retry_after_value)
         retry_after_at = retry_after.nil? ? parse_http_time(retry_after_value) : nil
-        reset_at = !reset.nil? && reset > 1_000_000_000 ? Time.at(reset).utc : nil
 
         return nil if [limit, remaining, reset, retry_after, retry_after_at].all?(&:nil?)
 
@@ -74,22 +75,50 @@ module SignWell
         )
       end
 
+      # SignWell sends X-RateLimit-Reset as an ISO8601 timestamp ("2026-09-20T21:55:00+00:00");
+      # other servers send epoch seconds or a delta in seconds. The timestamp is tried first
+      # because a numeric read of "2026-09-20..." would otherwise stop at 2026.
+      def self.parse_reset(value)
+        reset_time = parse_timestamp(value)
+        return [reset_time.to_i, reset_time.getutc] if reset_time
+
+        reset = parse_number(value)
+        reset_at = !reset.nil? && reset > 1_000_000_000 ? Time.at(reset).utc : nil
+        [reset, reset_at]
+      end
+
+      # +names+ is in preference order: the first name that any header matches wins,
+      # whatever order the server emitted the headers in.
       def self.first_header(headers, names)
         return nil unless headers.respond_to?(:each)
 
-        headers.each do |key, value|
-          next unless names.any? { |name| key.to_s.casecmp?(name) }
+        names.each do |name|
+          headers.each do |key, value|
+            next unless key.to_s.casecmp?(name)
 
-          Array(value).each do |item|
-            return item if item.is_a?(String) && !item.strip.empty?
+            Array(value).each do |item|
+              return item if item.is_a?(String) && !item.strip.empty?
+            end
           end
         end
         nil
       end
 
+      # Whole-string numeric parse: "120" => 120, "1.5" => 1.5, "2026-09-20T..." => nil.
       def self.parse_number(value)
-        match = value.to_s.strip.match(/\A-?\d+(?:\.\d+)?/)
-        match ? match[0].to_f : nil
+        text = value.to_s.strip
+        return nil unless NUMERIC_HEADER_VALUE.match?(text)
+
+        text.include?('.') ? text.to_f : text.to_i
+      end
+
+      def self.parse_timestamp(value)
+        text = value.to_s.strip
+        return nil if text.empty? || NUMERIC_HEADER_VALUE.match?(text)
+
+        Time.iso8601(text)
+      rescue ArgumentError
+        parse_http_time(text)
       end
 
       def self.parse_http_time(value)

@@ -158,5 +158,53 @@ RSpec.describe SignWell::Webhook do
                hash: 'a' * 64
              )).to eq("signwell:document_completed:1710000000:#{'a' * 64}")
     end
+
+    it 'returns false for a nil tolerance while the bang version says why' do
+      event = signed_event(webhook_id: 'whk_123')
+      replay_store = described_class::MemoryReplayStore.new(now: -> { 1_710_000_000 })
+
+      expect(described_class.verify_event_once(
+               event: event,
+               webhook_id: 'whk_123',
+               tolerance_seconds: nil,
+               replay_store: replay_store
+             )).to eq(false)
+      expect do
+        described_class.verify_event_once!(
+          event: event,
+          webhook_id: 'whk_123',
+          tolerance_seconds: nil,
+          replay_store: replay_store
+        )
+      end.to raise_error(ArgumentError, /tolerance_seconds is required/)
+    end
+  end
+
+  describe SignWell::Webhook::MemoryReplayStore do
+    it 'serializes concurrent add calls so only one delivery of an event wins' do
+      gate = Queue.new
+      entered = Queue.new
+      clock = lambda do
+        entered << Thread.current
+        gate.pop
+        1_710_000_000
+      end
+      store = described_class.new(now: clock)
+      key = "signwell:document_completed:1710000000:#{'a' * 64}"
+
+      first = Thread.new { store.add(key, 1_710_000_060) }
+      entered.pop # first is inside add, parked on the clock
+
+      second = Thread.new { store.add(key, 1_710_000_060) }
+      Thread.pass until second.status == 'sleep' || !second.alive?
+
+      # Without the lock, second would already have read the clock (and the not-yet-stored key).
+      expect(entered).to be_empty
+
+      gate << :go
+      expect(first.value).to be(true)
+      gate << :go
+      expect(second.value).to be(false)
+    end
   end
 end

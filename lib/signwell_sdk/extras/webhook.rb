@@ -49,8 +49,10 @@ module SignWell
   module Webhook
     # Small replay store for local development and single-process apps.
     #
-    # Production apps should use a shared atomic store such as Redis or a
-    # database table with a uniqueness constraint.
+    # +add+ is atomic within the process: a mutex serializes the check-and-store so two
+    # threads (Puma workers, Sidekiq jobs) handling the same delivery cannot both win.
+    # It is not shared across processes. Production apps should use a shared atomic
+    # store such as Redis or a database table with a uniqueness constraint.
     class MemoryReplayStore
       def initialize(max_entries: 10_000, now: -> { Time.now.to_i })
         raise ArgumentError, 'max_entries must be a positive integer' unless max_entries.is_a?(Integer) && max_entries.positive?
@@ -58,17 +60,22 @@ module SignWell
         @max_entries = max_entries
         @now = now
         @entries = {}
+        @mutex = Mutex.new
       end
 
       def add(key, expires_at_unix_seconds)
-        current_time = @now.call.to_f
-        @entries.delete_if { |_entry_key, expires_at| expires_at < current_time }
+        @mutex.synchronize do
+          current_time = @now.call.to_f
+          @entries.delete_if { |_entry_key, expires_at| expires_at < current_time }
 
-        return false if @entries.key?(key)
-
-        @entries.shift while @entries.length >= @max_entries
-        @entries[key] = expires_at_unix_seconds.to_f
-        true
+          if @entries.key?(key)
+            false
+          else
+            @entries.shift while @entries.length >= @max_entries
+            @entries[key] = expires_at_unix_seconds.to_f
+            true
+          end
+        end
       end
     end
 
@@ -89,7 +96,9 @@ module SignWell
     end
 
     # Verifies a webhook event once, using an application-provided replay store.
-    # Returns +false+ for invalid signatures, stale timestamps, or duplicates.
+    # Returns +false+ for invalid arguments (such as a nil +tolerance_seconds+),
+    # invalid signatures, stale timestamps, or duplicates, mirroring {.verify_event}.
+    # Use {.verify_event_once!} when the caller needs to tell those apart.
     #
     # @param event [Hash] The +event+ object from the webhook payload.
     # @param webhook_id [String] Your webhook's secret ID.
