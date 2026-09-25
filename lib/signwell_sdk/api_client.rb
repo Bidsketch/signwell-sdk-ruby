@@ -197,17 +197,7 @@ module SignWell
     end
 
     def deserialize_file(response, stream)
-      if stream.is_a?(Tempfile)
-        # A streamed download is returned in the tempfile it was written to. Renaming it after the
-        # Content-Disposition filename would cost a second full copy on disk for a cosmetic prefix;
-        # the *_with_http_info variants expose that header to callers who need the real name.
-        stream.flush
-        stream.rewind
-        stream = maybe_decode_binary_transfer_to_tempfile(response, stream)
-        stream.close
-        log_download_path(stream.path)
-        return stream
-      end
+      return deserialize_streamed_file(response, stream) if stream.is_a?(Tempfile)
 
       content = stream.to_s
       content = decode_binary_transfer(content) if binary_transfer_encoded?(response)
@@ -223,6 +213,27 @@ module SignWell
       tempfile.close
       log_download_path(tempfile.path)
       tempfile
+    end
+
+    # A tempfile opened after the response headers are known carries the Content-Disposition
+    # name; the streamed one is opened before the first byte arrives, so it keeps +download-+.
+    # Do not try to rename it later: File.rename leaves Tempfile#path pointing at nothing and
+    # the renamed file surviving close!. Callers who need the real name should read
+    # Content-Disposition from the *_with_http_info variants.
+    def deserialize_streamed_file(response, stream)
+      stream.flush
+      stream.rewind
+      downloaded = maybe_decode_binary_transfer_to_tempfile(response, stream)
+
+      begin
+        downloaded.close
+        log_download_path(downloaded.path)
+      rescue StandardError
+        discard_download_stream(downloaded)
+        raise
+      end
+
+      downloaded
     end
 
     def build_download_tempfile(response)
@@ -241,11 +252,20 @@ module SignWell
     def maybe_decode_binary_transfer_to_tempfile(response, stream)
       return stream unless binary_transfer_encoded?(response)
 
-      decoded = Tempfile.open('download-', @config.temp_folder_path)
-      decoded.binmode
-      decode_binary_transfer_stream(stream, decoded)
-      decoded.flush
-      decoded.rewind
+      # Opened after the headers are known, so it gets the Content-Disposition name.
+      decoded = build_download_tempfile(response)
+
+      begin
+        decoded.binmode
+        decode_binary_transfer_stream(stream, decoded)
+        decoded.flush
+        decoded.rewind
+      rescue StandardError
+        # call_api unlinks +stream+; nothing else knows this file exists yet.
+        discard_download_stream(decoded)
+        raise
+      end
+
       stream.close!
       decoded
     end

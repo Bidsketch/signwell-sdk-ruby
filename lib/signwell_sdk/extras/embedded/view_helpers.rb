@@ -193,12 +193,11 @@ module SignWell
           rescue NameError => e
             raise unless e.name == :content_security_policy_nonce
           end
-          html = %(<script>#{js}</script>)
-          html.respond_to?(:html_safe) ? html.html_safe : html
-        else
-          html = %(<script>#{js}</script>)
-          html.respond_to?(:html_safe) ? html.html_safe : html
         end
+
+        # No javascript_tag at all, or a view context that has one but no CSP nonce helper.
+        html = %(<script>#{js}</script>)
+        html.respond_to?(:html_safe) ? html.html_safe : html
       end
 
       def normalize_event_paths(events)

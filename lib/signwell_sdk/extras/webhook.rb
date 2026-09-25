@@ -50,9 +50,10 @@ module SignWell
     # Small replay store for local development and single-process apps.
     #
     # +add+ is atomic within the process: a mutex serializes the check-and-store so two
-    # threads (Puma workers, Sidekiq jobs) handling the same delivery cannot both win.
-    # It is not shared across processes. Production apps should use a shared atomic
-    # store such as Redis or a database table with a uniqueness constraint.
+    # threads (Puma threads, Sidekiq workers) handling the same delivery cannot both win.
+    # It is not shared across processes, so Puma in clustered mode does not get this.
+    # Production apps should use a shared atomic store such as Redis or a database
+    # table with a uniqueness constraint.
     class MemoryReplayStore
       def initialize(max_entries: 10_000, now: -> { Time.now.to_i })
         raise ArgumentError, 'max_entries must be a positive integer' unless max_entries.is_a?(Integer) && max_entries.positive?

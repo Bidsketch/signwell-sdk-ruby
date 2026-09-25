@@ -85,6 +85,23 @@ certificate_object = regional.get_nom151_certificate('doc_123', object_only: tru
 
 Downloaded files are returned as `Tempfile` objects by default. Set `config.return_binary_data = true` if you want binary response bodies returned as strings.
 
+## Rate Limits
+
+A 429 raises `SignWell::Errors::RateLimitError`, which carries the throttling headers on `error.rate_limit`:
+
+```ruby
+begin
+  documents.create_document(body)
+rescue SignWell::Errors::RateLimitError => e
+  e.rate_limit.limit        # => 100
+  e.rate_limit.remaining    # => 0
+  e.rate_limit.reset_at     # => 2026-09-20 21:55:00 UTC
+  e.rate_limit.retry_after  # => 30
+end
+```
+
+`reset` is in seconds either way, but it means two different things: an absolute epoch when the server sends a timestamp (what SignWell sends) or a large number, and a delay from now when it sends a small one. **`reset_at` is set only when `reset` is absolute** — so check it rather than guessing, and prefer `retry_after` / `retry_after_at` when you just want a sleep. Any field the response did not carry is `nil`.
+
 ## Embedded Signing
 
 The embedded API lets you integrate document signing directly into your app via an iframe, instead of redirecting users to SignWell. The `SignWell::Embedded` helper simplifies both the backend (creating documents, extracting URLs) and the frontend (rendering the iframe).

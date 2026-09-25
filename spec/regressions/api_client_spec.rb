@@ -14,6 +14,24 @@ RSpec.describe SignWell::ApiClient do
     end
   end
 
+  describe '#resolve_return_type' do
+    it 'falls back to the default entry when the response content type is not in the map' do
+      response = Struct.new(:body, :headers).new('', { 'Content-Type' => 'application/octet-stream' })
+      return_type = { 'application/pdf' => 'File', 'default' => 'DocumentResponse' }
+
+      expect(client.send(:resolve_return_type, response, return_type)).to eq('DocumentResponse')
+    end
+
+    it 'raises when the content type is absent from the map and there is no default' do
+      response = Struct.new(:body, :headers).new('', { 'Content-Type' => 'application/octet-stream' })
+      return_type = { 'application/pdf' => 'File' }
+
+      expect do
+        client.send(:resolve_return_type, response, return_type)
+      end.to raise_error(SignWell::Errors::UnsupportedContentTypeError, /application\/octet-stream/)
+    end
+  end
+
   describe '#normalize_query_params' do
     it 'preserves bracketed multi params without producing double brackets' do
       normalized = client.send(:normalize_query_params, { :'template_ids[]' => ['00000000-0000-0000-0000-000000000000'] })
@@ -228,6 +246,44 @@ RSpec.describe SignWell::ApiClient do
       expect(error.rate_limit.limit).to eq(100)
     end
 
+    it 'treats a small numeric reset as a delay, not an epoch' do
+      error = SignWell::Errors::ApiStatusError.for(
+        code: 429,
+        response_headers: { 'x-ratelimit-reset' => '30' },
+        response_body: ''
+      )
+
+      # Below the epoch threshold, so it is seconds-from-now and there is no absolute time
+      # to report. reset_at staying nil is how a caller knows which unit it got.
+      expect(error.rate_limit.reset).to eql(30)
+      expect(error.rate_limit.reset_at).to be_nil
+    end
+
+    it 'reads the count off IETF draft headers that append a quota policy' do
+      error = SignWell::Errors::ApiStatusError.for(
+        code: 429,
+        response_headers: {
+          'ratelimit-limit' => '100, 100;w=60',
+          'ratelimit-remaining' => '0, 0;w=60'
+        },
+        response_body: ''
+      )
+
+      expect(error.rate_limit.limit).to eql(100)
+      expect(error.rate_limit.remaining).to eql(0)
+    end
+
+    it 'still refuses to read a malformed reset timestamp as its leading year' do
+      error = SignWell::Errors::ApiStatusError.for(
+        code: 429,
+        response_headers: { 'x-ratelimit-limit' => '100', 'x-ratelimit-reset' => '2026-13-45T99:99:99Z' },
+        response_body: ''
+      )
+
+      expect(error.rate_limit.reset).to be_nil
+      expect(error.rate_limit.reset_at).to be_nil
+    end
+
     it 'leaves reset metadata nil when the header is neither a timestamp nor a number' do
       error = SignWell::Errors::ApiStatusError.for(
         code: 429,
@@ -326,6 +382,74 @@ RSpec.describe SignWell::ApiClient do
       expect(data).to be_a(String)
       expect(data).to eq(expected)
       expect(data.encoding).to eq(Encoding::BINARY)
+    end
+
+    it 'names the decoded tempfile from Content-Disposition, since it is opened after the headers' do
+      request_options = Struct.new(:on_data).new
+      request = Struct.new(:options).new(request_options)
+      encoded = ['%PDF-1.4 hello'.b].pack('m')
+
+      stream = client.download_file(request)
+      request.options.on_data.call(encoded, encoded.bytesize)
+
+      response = Struct.new(:body, :headers).new(
+        String.new.b,
+        {
+          'Content-Transfer-Encoding' => 'base64',
+          'Content-Disposition' => 'attachment; filename="completed.pdf"'
+        }
+      )
+      tempfile = client.deserialize_file(response, stream)
+
+      expect(File.basename(tempfile.path)).to start_with('completed.pdf-')
+      expect(File.binread(tempfile.path)).to eq('%PDF-1.4 hello'.b)
+    ensure
+      tempfile&.close!
+    end
+
+    it 'unlinks the decoded tempfile when the decode raises, not just the one call_api holds' do
+      request_options = Struct.new(:on_data).new
+      request = Struct.new(:options).new(request_options)
+
+      stream = client.download_file(request)
+      request.options.on_data.call('whatever'.b, 8)
+
+      decoded = Tempfile.open('download-')
+      decoded_path = decoded.path
+      allow(client).to receive(:build_download_tempfile).and_return(decoded)
+      allow(client).to receive(:decode_binary_transfer_stream).and_raise(IOError, 'boom')
+
+      response = Struct.new(:body, :headers).new(String.new.b, { 'Content-Transfer-Encoding' => 'base64' })
+
+      expect { client.deserialize_file(response, stream) }.to raise_error(IOError, 'boom')
+      expect(File.exist?(decoded_path)).to be(false)
+    ensure
+      stream&.close!
+    end
+
+    it 'unlinks the decoded tempfile when the swap succeeds but finalizing raises' do
+      request_options = Struct.new(:on_data).new
+      request = Struct.new(:options).new(request_options)
+      encoded = ['payload'.b].pack('m')
+
+      stream = client.download_file(request)
+      request.options.on_data.call(encoded, encoded.bytesize)
+
+      # call_api's rescue still points at the pre-decode tempfile, so only the method that
+      # made the swap can unlink this one.
+      allow(client).to receive(:log_download_path).and_raise(IOError, 'logger gone')
+
+      response = Struct.new(:body, :headers).new(String.new.b, { 'Content-Transfer-Encoding' => 'base64' })
+      decoded_path = nil
+      allow(client).to receive(:build_download_tempfile).and_wrap_original do |original, *args|
+        original.call(*args).tap { |file| decoded_path = file.path }
+      end
+
+      expect { client.deserialize_file(response, stream) }.to raise_error(IOError, 'logger gone')
+      expect(decoded_path).not_to be_nil
+      expect(File.exist?(decoded_path)).to be(false)
+    ensure
+      stream&.close!
     end
 
     it 'returns the streamed tempfile itself rather than copying it for a Content-Disposition name' do

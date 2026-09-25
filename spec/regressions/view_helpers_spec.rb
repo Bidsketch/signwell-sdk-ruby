@@ -95,7 +95,7 @@ RSpec.describe SignWell::Embedded::ViewHelpers do
       expect(html).not_to include('&gt;')
     end
 
-    it 'falls back to javascript_tag without a nonce when nonce support is unavailable' do
+    it 'falls back to a plain script tag when the view has no CSP nonce helper' do
       helper_without_nonce = Class.new do
         include SignWell::Embedded::ViewHelpers
 
@@ -113,6 +113,25 @@ RSpec.describe SignWell::Embedded::ViewHelpers do
       expect(helper_without_nonce.javascript_tag_calls).to eq([{ nonce: true }])
       expect(html).to include('<script>')
       expect(html).not_to include('nonce=')
+      # This and the no-javascript_tag case share one fallback, so it carries the same
+      # no-escaping invariant the nonce path above asserts.
+      expect(html).to include('return context && context[key];')
+      expect(html).not_to include('&amp;&amp;')
+    end
+
+    it 'lets an unrelated NameError from the host view propagate instead of swallowing it' do
+      helper_with_bug = Class.new do
+        include SignWell::Embedded::ViewHelpers
+
+        def javascript_tag(_content = nil, _options = {})
+          # A genuine typo in the host application's own helper, not missing CSP support.
+          some_undefined_local_helper
+        end
+      end.new
+
+      expect do
+        helper_with_bug.signwell_signing_iframe(url: 'https://www.signwell.com/sign')
+      end.to raise_error(NameError, /some_undefined_local_helper/)
     end
 
     it 'rejects unsafe embed URLs by default' do

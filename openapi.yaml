@@ -6432,7 +6432,6 @@ components:
             properties:
               id:
                 type: string
-                format: uuid
               name:
                 type: string
               email:
@@ -6499,7 +6498,6 @@ components:
           properties:
             id:
               type: string
-              format: uuid
             name:
               type: string
             email:

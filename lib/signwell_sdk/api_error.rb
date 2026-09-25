@@ -20,7 +20,12 @@ module SignWell
     class ApiError < StandardError
       attr_reader :code, :response_headers, :response_body, :body, :rate_limit
 
+      # The whole value is a bare number: "120", "1.5". This is what tells a numeric header
+      # apart from a timestamp one, where a leading match would read "2026-09-20T..." as 2026.
       NUMERIC_HEADER_VALUE = /\A-?\d+(?:\.\d+)?\z/
+      # A number at the start of the value. The IETF draft form appends the quota policy to
+      # the count -- "RateLimit-Limit: 100, 100;w=60" -- and 100 is the number we want.
+      LEADING_HEADER_NUMBER = /\A-?\d+(?:\.\d+)?/
 
       # Usage examples:
       #   ApiError.new
@@ -56,11 +61,11 @@ module SignWell
       end
 
       def self.extract_rate_limit_info(headers)
-        limit = parse_number(first_header(headers, %w[x-ratelimit-limit ratelimit-limit]))
-        remaining = parse_number(first_header(headers, %w[x-ratelimit-remaining ratelimit-remaining]))
+        limit = parse_leading_number(first_header(headers, %w[x-ratelimit-limit ratelimit-limit]))
+        remaining = parse_leading_number(first_header(headers, %w[x-ratelimit-remaining ratelimit-remaining]))
         reset, reset_at = parse_reset(first_header(headers, %w[x-ratelimit-reset ratelimit-reset]))
         retry_after_value = first_header(headers, ['retry-after'])
-        retry_after = parse_number(retry_after_value)
+        retry_after = parse_leading_number(retry_after_value)
         retry_after_at = retry_after.nil? ? parse_http_time(retry_after_value) : nil
 
         return nil if [limit, remaining, reset, retry_after, retry_after_at].all?(&:nil?)
@@ -76,13 +81,20 @@ module SignWell
       end
 
       # SignWell sends X-RateLimit-Reset as an ISO8601 timestamp ("2026-09-20T21:55:00+00:00");
-      # other servers send epoch seconds or a delta in seconds. The timestamp is tried first
-      # because a numeric read of "2026-09-20..." would otherwise stop at 2026.
+      # other servers send epoch seconds or a delta in seconds. The two shapes are mutually
+      # exclusive -- parse_timestamp declines a bare number, parse_whole_number declines
+      # anything that is not one -- so the order below is readability, not correctness.
+      #
+      # +reset+ is always seconds, but its origin differs: an absolute epoch from a timestamp
+      # header or from a number large enough to be one, and a delta from a small number.
+      # +reset_at+ is set only in the absolute case, so it is how a caller tells them apart.
+      # Reset is read with the whole-string parser on purpose: a malformed timestamp must come
+      # back nil rather than have its leading year read as a count.
       def self.parse_reset(value)
         reset_time = parse_timestamp(value)
         return [reset_time.to_i, reset_time.getutc] if reset_time
 
-        reset = parse_number(value)
+        reset = parse_whole_number(value)
         reset_at = !reset.nil? && reset > 1_000_000_000 ? Time.at(reset).utc : nil
         [reset, reset_at]
       end
@@ -104,16 +116,33 @@ module SignWell
         nil
       end
 
+      # Counts, read off the front of the value so the IETF draft quota policy does not
+      # break them: "100" and "100, 100;w=60" both yield 100. An HTTP-date starts with a
+      # day name, so Retry-After in date form still falls through to parse_http_time.
+      def self.parse_leading_number(value)
+        match = LEADING_HEADER_NUMBER.match(value.to_s.strip)
+        return nil unless match
+
+        numeric_value(match[0])
+      end
+
       # Whole-string numeric parse: "120" => 120, "1.5" => 1.5, "2026-09-20T..." => nil.
-      def self.parse_number(value)
+      def self.parse_whole_number(value)
         text = value.to_s.strip
         return nil unless NUMERIC_HEADER_VALUE.match?(text)
 
+        numeric_value(text)
+      end
+
+      def self.numeric_value(text)
         text.include?('.') ? text.to_f : text.to_i
       end
 
       def self.parse_timestamp(value)
         text = value.to_s.strip
+        # A bare number is a count, never a date. Keep this explicit rather than leaning on
+        # Time.iso8601 to reject it: a looser parser (Date._iso8601 accepts the basic form
+        # "20260920") would read an epoch reset as a date.
         return nil if text.empty? || NUMERIC_HEADER_VALUE.match?(text)
 
         Time.iso8601(text)
