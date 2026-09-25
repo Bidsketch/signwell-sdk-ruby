@@ -215,11 +215,13 @@ module SignWell
       tempfile
     end
 
-    # A tempfile opened after the response headers are known carries the Content-Disposition
-    # name; the streamed one is opened before the first byte arrives, so it keeps +download-+.
-    # Do not try to rename it later: File.rename leaves Tempfile#path pointing at nothing and
-    # the renamed file surviving close!. Callers who need the real name should read
-    # Content-Disposition from the *_with_http_info variants.
+    # Streamed downloads keep the fixed +download-+ prefix, decoded or not. The streamed
+    # tempfile is opened before the first byte arrives, and the decoded one must not take the
+    # Content-Disposition name either: a long filename plus Tempfile's own suffix overflows
+    # NAME_MAX (255 bytes) and Tempfile.open raises Errno::ENAMETOOLONG. Do not try to rename
+    # it later: File.rename leaves Tempfile#path pointing at nothing and the renamed file
+    # surviving close!. Callers who need the real name should read Content-Disposition from
+    # the *_with_http_info variants.
     def deserialize_streamed_file(response, stream)
       stream.flush
       stream.rewind
@@ -252,8 +254,8 @@ module SignWell
     def maybe_decode_binary_transfer_to_tempfile(response, stream)
       return stream unless binary_transfer_encoded?(response)
 
-      # Opened after the headers are known, so it gets the Content-Disposition name.
-      decoded = build_download_tempfile(response)
+      # Fixed prefix on purpose; see deserialize_streamed_file.
+      decoded = Tempfile.open('download-', @config.temp_folder_path)
 
       begin
         decoded.binmode

@@ -384,7 +384,7 @@ RSpec.describe SignWell::ApiClient do
       expect(data.encoding).to eq(Encoding::BINARY)
     end
 
-    it 'names the decoded tempfile from Content-Disposition, since it is opened after the headers' do
+    it 'keeps the fixed download- prefix on decoded tempfiles, so a long filename cannot overflow NAME_MAX' do
       request_options = Struct.new(:on_data).new
       request = Struct.new(:options).new(request_options)
       encoded = ['%PDF-1.4 hello'.b].pack('m')
@@ -392,16 +392,19 @@ RSpec.describe SignWell::ApiClient do
       stream = client.download_file(request)
       request.options.on_data.call(encoded, encoded.bytesize)
 
+      # 250 characters: with Tempfile's own suffix appended this exceeds NAME_MAX (255), and
+      # naming the decoded tempfile after it raised Errno::ENAMETOOLONG.
+      long_name = "#{'a' * 246}.pdf"
       response = Struct.new(:body, :headers).new(
         String.new.b,
         {
           'Content-Transfer-Encoding' => 'base64',
-          'Content-Disposition' => 'attachment; filename="completed.pdf"'
+          'Content-Disposition' => %(attachment; filename="#{long_name}")
         }
       )
       tempfile = client.deserialize_file(response, stream)
 
-      expect(File.basename(tempfile.path)).to start_with('completed.pdf-')
+      expect(File.basename(tempfile.path)).to start_with('download-')
       expect(File.binread(tempfile.path)).to eq('%PDF-1.4 hello'.b)
     ensure
       tempfile&.close!
@@ -414,14 +417,17 @@ RSpec.describe SignWell::ApiClient do
       stream = client.download_file(request)
       request.options.on_data.call('whatever'.b, 8)
 
-      decoded = Tempfile.open('download-')
-      decoded_path = decoded.path
-      allow(client).to receive(:build_download_tempfile).and_return(decoded)
-      allow(client).to receive(:decode_binary_transfer_stream).and_raise(IOError, 'boom')
+      # The decoded tempfile is only ever handed to the decoder, so capture it there.
+      decoded_path = nil
+      allow(client).to receive(:decode_binary_transfer_stream) do |_source, destination|
+        decoded_path = destination.path
+        raise IOError, 'boom'
+      end
 
       response = Struct.new(:body, :headers).new(String.new.b, { 'Content-Transfer-Encoding' => 'base64' })
 
       expect { client.deserialize_file(response, stream) }.to raise_error(IOError, 'boom')
+      expect(decoded_path).not_to be_nil
       expect(File.exist?(decoded_path)).to be(false)
     ensure
       stream&.close!
@@ -441,8 +447,9 @@ RSpec.describe SignWell::ApiClient do
 
       response = Struct.new(:body, :headers).new(String.new.b, { 'Content-Transfer-Encoding' => 'base64' })
       decoded_path = nil
-      allow(client).to receive(:build_download_tempfile).and_wrap_original do |original, *args|
-        original.call(*args).tap { |file| decoded_path = file.path }
+      allow(client).to receive(:decode_binary_transfer_stream).and_wrap_original do |original, source, destination|
+        decoded_path = destination.path
+        original.call(source, destination)
       end
 
       expect { client.deserialize_file(response, stream) }.to raise_error(IOError, 'logger gone')
