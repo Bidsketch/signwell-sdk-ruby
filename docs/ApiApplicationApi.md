@@ -1,11 +1,11 @@
-# SignWell::Resources::APIApplicationApi
+# SignWell::Resources::ApiApplicationApi
 
 All URIs are relative to *https://www.signwell.com*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**delete_api_application**](APIApplicationApi.md#delete_api_application) | **DELETE** /api/v1/api_applications/{id} | Delete API Application |
-| [**get_api_application**](APIApplicationApi.md#get_api_application) | **GET** /api/v1/api_applications/{id} | Get API Application |
+| [**delete_api_application**](ApiApplicationApi.md#delete_api_application) | **DELETE** /api/v1/api_applications/{id} | Delete API Application |
+| [**get_api_application**](ApiApplicationApi.md#get_api_application) | **GET** /api/v1/api_applications/{id} | Get API Application |
 
 
 ## delete_api_application
@@ -29,14 +29,14 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::Resources::APIApplicationApi.new
+api_instance = SignWell::Resources::ApiApplicationApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 
 begin
   # Delete API Application
   api_instance.delete_api_application(id)
 rescue SignWell::Errors::ApiError => e
-  puts "Error when calling APIApplicationApi->delete_api_application: #{e}"
+  puts "Error when calling ApiApplicationApi->delete_api_application: #{e}"
 end
 ```
 
@@ -54,7 +54,7 @@ begin
   p headers # => { ... }
   p data # => nil
 rescue SignWell::Errors::ApiError => e
-  puts "Error when calling APIApplicationApi->delete_api_application_with_http_info: #{e}"
+  puts "Error when calling ApiApplicationApi->delete_api_application_with_http_info: #{e}"
 end
 ```
 
@@ -99,7 +99,7 @@ SignWell.configure do |config|
   # config.api_key_prefix['X-Api-Key'] = 'Bearer'
 end
 
-api_instance = SignWell::Resources::APIApplicationApi.new
+api_instance = SignWell::Resources::ApiApplicationApi.new
 id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
 
 begin
@@ -107,7 +107,7 @@ begin
   result = api_instance.get_api_application(id)
   p result
 rescue SignWell::Errors::ApiError => e
-  puts "Error when calling APIApplicationApi->get_api_application: #{e}"
+  puts "Error when calling ApiApplicationApi->get_api_application: #{e}"
 end
 ```
 
@@ -125,7 +125,7 @@ begin
   p headers # => { ... }
   p data # => <ApiApplicationResponse>
 rescue SignWell::Errors::ApiError => e
-  puts "Error when calling APIApplicationApi->get_api_application_with_http_info: #{e}"
+  puts "Error when calling ApiApplicationApi->get_api_application_with_http_info: #{e}"
 end
 ```
 

@@ -58,6 +58,50 @@ document = api.create_document(request)
 puts document.id
 ```
 
+Status errors are available under `SignWell::Errors`. HTTP 403 responses raise `PermissionDeniedError`, with `ForbiddenError` kept as an additive alias. Transport failures raise `ApiConnectionError`, with `TransportError` kept as an additive alias. Local required-argument validation uses Ruby's native `ArgumentError`.
+
+## Binary Responses
+
+Some endpoints return a downloaded file by default and JSON when a mode flag is enabled.
+
+```ruby
+bulk_send = SignWell::Resources::BulkSendApi.new
+documents = SignWell::Resources::DocumentApi.new
+regional = SignWell::Resources::RegionalApi.new
+
+csv_file = bulk_send.get_bulk_send_csv_template(['00000000-0000-0000-0000-000000000000'])
+csv_json = bulk_send.get_bulk_send_csv_template(
+  ['00000000-0000-0000-0000-000000000000'],
+  base64: true
+)
+
+pdf_file = documents.get_completed_pdf('doc_123')
+pdf_url = documents.get_completed_pdf('doc_123', url_only: true)
+
+certificate_file = regional.get_nom151_certificate('doc_123')
+certificate_url = regional.get_nom151_certificate('doc_123', url_only: true)
+certificate_object = regional.get_nom151_certificate('doc_123', object_only: true)
+```
+
+Downloaded files are returned as `Tempfile` objects by default. Set `config.return_binary_data = true` if you want binary response bodies returned as strings.
+
+## Rate Limits
+
+A 429 raises `SignWell::Errors::RateLimitError`, which carries the throttling headers on `error.rate_limit`:
+
+```ruby
+begin
+  documents.create_document(body)
+rescue SignWell::Errors::RateLimitError => e
+  e.rate_limit.limit        # => 100
+  e.rate_limit.remaining    # => 0
+  e.rate_limit.reset_at     # => 2026-09-20 21:55:00 UTC
+  e.rate_limit.retry_after  # => 30
+end
+```
+
+`reset` is in seconds either way, but it means two different things: an absolute epoch when the server sends a timestamp (what SignWell sends) or a large number, and a delay from now when it sends a small one. **`reset_at` is set only when `reset` is absolute** — so check it rather than guessing, and prefer `retry_after` / `retry_after_at` when you just want a sleep. Any field the response did not carry is `nil`.
+
 ## Embedded Signing
 
 The embedded API lets you integrate document signing directly into your app via an iframe, instead of redirecting users to SignWell. The `SignWell::Embedded` helper simplifies both the backend (creating documents, extracting URLs) and the frontend (rendering the iframe).
@@ -67,24 +111,26 @@ The embedded API lets you integrate document signing directly into your app via 
 ```ruby
 doc = SignWell::Embedded.create_signing_document(
   name: 'NDA',
-  file_url: 'https://example.com/nda.pdf',
+  files: [{ name: 'nda.pdf', file_url: 'https://example.com/nda.pdf' }],
   recipients: [{ name: 'Jane Doe', email: 'jane@example.com' }],
   fields: [[{ x: 20, y: 60, page: 1, type: 'signature' }]]
 )
 
 # Get the signing URL for the first recipient
-signing_url = SignWell::Embedded.signing_url(doc)
+signing_url = SignWell::Embedded.embedded_signing_url(doc)
 
 # Or get all signing URLs as { email => url }
-urls = SignWell::Embedded.signing_urls(doc)
+urls = SignWell::Embedded.embedded_signing_urls(doc)
 ```
+
+Embedded signing documents must provide fields for every recipient, set `with_signature_page: true`, or use `text_tags: true`. The helper validates that shape before making the API request so invalid fieldless signing documents fail locally instead of returning a `422` response.
 
 ### Backend: Create a draft for embedded requesting (field placement)
 
 ```ruby
 doc = SignWell::Embedded.create_requesting_document(
   name: 'Contract',
-  file_url: 'https://example.com/contract.pdf',
+  files: [{ name: 'contract.pdf', file_url: 'https://example.com/contract.pdf' }],
   recipients: [{ name: 'Jane Doe', email: 'jane@example.com' }]
 )
 
@@ -106,7 +152,7 @@ doc = SignWell::Embedded.create_signing_document_from_template(
   recipients: [{ placeholder_name: 'Signer 1', name: 'Jane Doe', email: 'jane@example.com' }]
 )
 
-signing_url = SignWell::Embedded.signing_url(doc)
+signing_url = SignWell::Embedded.embedded_signing_url(doc)
 ```
 
 ### Frontend: JavaScript
@@ -131,9 +177,39 @@ If you use Rails, view helpers are available automatically:
 
 ```erb
 <%= signwell_embed_script_tag %>
-<%= signwell_signing_iframe(url: @signing_url, events: { completed: 'onComplete' }) %>
+<%= signwell_signing_iframe(url: @signing_url, events: { completed: 'SignWellHandlers.onComplete' }) %>
 <%= signwell_requesting_iframe(url: @edit_url) %>
 ```
+
+Embed helpers only accept HTTPS SignWell URLs by default and reject credentialed URLs, `http:`, `javascript:`, and arbitrary hosts before rendering script output. For non-production SignWell environments, pass exact hostnames through `allowed_embed_hosts`. Redirect URLs must be HTTPS and credential-free; pass `allowed_redirect_hosts` to restrict redirects to your app host.
+
+## Webhooks
+
+```ruby
+payload = JSON.parse(request.body.read)
+event = payload['event']
+
+SignWell::Webhook.verify_event!(
+  event: event,
+  webhook_id: ENV.fetch('SIGNWELL_WEBHOOK_ID'),
+  tolerance_seconds: 300
+)
+```
+
+Use replay-aware verification when webhook processing has side effects:
+
+```ruby
+REPLAY_STORE = SignWell::Webhook::MemoryReplayStore.new
+
+SignWell::Webhook.verify_event_once!(
+  event: event,
+  webhook_id: ENV.fetch('SIGNWELL_WEBHOOK_ID'),
+  tolerance_seconds: 300,
+  replay_store: REPLAY_STORE
+)
+```
+
+`verify_event` and `verify_event_once` return `false` instead of raising. The in-memory replay store is intended for local development and single-process examples; production apps should back replay protection with Redis, a database, or another shared atomic insert.
 
 ## Documentation
 

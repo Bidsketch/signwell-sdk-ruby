@@ -156,7 +156,7 @@ end
 
 ## get_bulk_send_csv_template
 
-> File get_bulk_send_csv_template(template_ids, opts)
+> Models::BulkSendCsvTemplateResponse or File get_bulk_send_csv_template(template_ids, opts)
 
 Get Bulk Send CSV Template
 
@@ -194,7 +194,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(File, Integer, Hash)> get_bulk_send_csv_template_with_http_info(template_ids, opts)
+> <Array(Models::BulkSendCsvTemplateResponse or File, Integer, Hash)> get_bulk_send_csv_template_with_http_info(template_ids, opts)
 
 ```ruby
 begin
@@ -202,7 +202,7 @@ begin
   data, status_code, headers = api_instance.get_bulk_send_csv_template_with_http_info(template_ids, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => File
+  p data # => Models::BulkSendCsvTemplateResponse or File
 rescue SignWell::Errors::ApiError => e
   puts "Error when calling BulkSendApi->get_bulk_send_csv_template_with_http_info: #{e}"
 end
@@ -217,7 +217,7 @@ end
 
 ### Return type
 
-**File**
+**Models::BulkSendCsvTemplateResponse or File**
 
 ### Authorization
 

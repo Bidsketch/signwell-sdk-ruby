@@ -229,7 +229,7 @@ nil (empty response body)
 
 ## get_completed_pdf
 
-> <CompletedPdfResponse> get_completed_pdf(id, opts)
+> Models::CompletedPdfUrlResponse or File get_completed_pdf(id, opts)
 
 Completed PDF
 
@@ -269,7 +269,7 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<CompletedPdfResponse>, Integer, Hash)> get_completed_pdf_with_http_info(id, opts)
+> <Array(Models::CompletedPdfUrlResponse or File, Integer, Hash)> get_completed_pdf_with_http_info(id, opts)
 
 ```ruby
 begin
@@ -277,7 +277,7 @@ begin
   data, status_code, headers = api_instance.get_completed_pdf_with_http_info(id, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <CompletedPdfResponse>
+  p data # => Models::CompletedPdfUrlResponse or File
 rescue SignWell::Errors::ApiError => e
   puts "Error when calling DocumentApi->get_completed_pdf_with_http_info: #{e}"
 end
@@ -294,7 +294,7 @@ end
 
 ### Return type
 
-[**CompletedPdfResponse**](CompletedPdfResponse.md)
+**Models::CompletedPdfUrlResponse or File**
 
 ### Authorization
 
@@ -401,7 +401,8 @@ end
 api_instance = SignWell::Resources::DocumentApi.new
 opts = {
   page: 56, # Integer | 
-  limit: 56 # Integer | 
+  limit: 56, # Integer | 
+  query: 'query_example' # String | Raw API filter query. Use AND between filters, for example: \"name:Classic AND status:completed\".
 }
 
 begin
@@ -437,6 +438,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **page** | **Integer** |  | [optional][default to 1] |
 | **limit** | **Integer** |  | [optional][default to 10] |
+| **query** | **String** | Raw API filter query. Use AND between filters, for example: \&quot;name:Classic AND status:completed\&quot;. | [optional] |
 
 ### Return type
 

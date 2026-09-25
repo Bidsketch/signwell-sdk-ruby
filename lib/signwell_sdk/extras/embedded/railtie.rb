@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+# Source: signwell-sdk-generator/extras/ruby/overlay/lib/signwell_sdk/extras/embedded/railtie.rb
+# Do not edit the generated SDK copy directly.
 
 require_relative 'view_helpers'
 
