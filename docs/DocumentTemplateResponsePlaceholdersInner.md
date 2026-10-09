@@ -12,6 +12,7 @@
 | **preassigned_recipient_email** | **String** |  | [optional] |
 | **signing_order** | **Integer** |  | [optional] |
 | **attachment_requests** | [**Array&lt;AttachmentRequestInfo&gt;**](AttachmentRequestInfo.md) |  | [optional] |
+| **passcode_delivery** | [**DocumentResponseRecipientsInnerPasscodeDelivery**](DocumentResponseRecipientsInnerPasscodeDelivery.md) |  | [optional] |
 
 ## Example
 
@@ -26,7 +27,8 @@ instance = SignWell::Models::DocumentTemplateResponsePlaceholdersInner.new(
   preassigned_recipient_name: null,
   preassigned_recipient_email: null,
   signing_order: null,
-  attachment_requests: null
+  attachment_requests: null,
+  passcode_delivery: null
 )
 ```
 

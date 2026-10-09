@@ -4,6 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
+| **cfr_part11** | **Boolean** | Whether 21 CFR Part 11 controls apply to this document. Read-only: the value is taken from the workspace setting when the document is created and never changes afterwards. | [optional] |
+| **cfr_part11_signing_mode** | **String** | The signing mode of a 21 CFR Part 11 document: streamlined (one final authentication) or per_signature (authentication at every signature and initials field). Null when Part 11 does not apply. | [optional] |
 | **test_mode** | **Boolean** |  |  |
 | **id** | **String** |  |  |
 | **api_application_id** | **String** |  | [optional] |
@@ -20,6 +22,7 @@
 | **status** | **String** | Possible values: Draft, Created, Sending, Sent, Pending, Viewed, Completed, Manually completed, Declined, Canceled, Bounced, Blocked, Error, Expired | [optional] |
 | **reminders** | **Boolean** |  | [optional] |
 | **archived** | **Boolean** |  | [optional] |
+| **embedded** | [**EmbeddedBranding**](EmbeddedBranding.md) |  | [optional] |
 | **embedded_signing** | **Boolean** |  | [optional] |
 | **embedded_edit_url** | **String** |  | [optional] |
 | **embedded_preview_url** | **String** |  | [optional] |
@@ -41,6 +44,8 @@
 | **allow_reassign** | **Boolean** |  | [optional] |
 | **labels** | [**Array&lt;LabelInfo&gt;**](LabelInfo.md) |  | [optional] |
 | **checkbox_groups** | [**Array&lt;CheckboxGroupInfo&gt;**](CheckboxGroupInfo.md) |  | [optional] |
+| **conditional_rules** | [**Array&lt;ConditionalRuleInfo&gt;**](ConditionalRuleInfo.md) |  | [optional] |
+| **conditional_logic_decisions** | [**Array&lt;ConditionalLogicDecisionInfo&gt;**](ConditionalLogicDecisionInfo.md) |  | [optional] |
 
 ## Example
 
@@ -48,6 +53,8 @@
 require 'signwell_sdk'
 
 instance = SignWell::Models::DocumentResponse.new(
+  cfr_part11: null,
+  cfr_part11_signing_mode: null,
   test_mode: null,
   id: null,
   api_application_id: null,
@@ -64,6 +71,7 @@ instance = SignWell::Models::DocumentResponse.new(
   status: null,
   reminders: null,
   archived: null,
+  embedded: null,
   embedded_signing: null,
   embedded_edit_url: null,
   embedded_preview_url: null,
@@ -84,7 +92,9 @@ instance = SignWell::Models::DocumentResponse.new(
   allow_decline: null,
   allow_reassign: null,
   labels: null,
-  checkbox_groups: null
+  checkbox_groups: null,
+  conditional_rules: null,
+  conditional_logic_decisions: null
 )
 ```
 
