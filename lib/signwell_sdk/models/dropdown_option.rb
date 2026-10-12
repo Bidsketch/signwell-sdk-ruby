@@ -40,7 +40,7 @@ module SignWell
             begin
               next if klass == :AnyType # "nullable: true"
               typed_data = find_and_cast_into_type(klass, data)
-              return typed_data if typed_data
+              return typed_data unless typed_data.nil?
             rescue SchemaMismatchError
               next
             end
@@ -61,7 +61,7 @@ module SignWell
           when 'Boolean'
             return data if data.instance_of?(TrueClass) || data.instance_of?(FalseClass)
           when 'Float'
-            return data if data.instance_of?(Float)
+            return data if data.instance_of?(Float) || data.instance_of?(Integer)
           when 'Integer'
             return data if data.instance_of?(Integer)
           when 'Time'

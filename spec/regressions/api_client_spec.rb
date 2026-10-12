@@ -43,6 +43,15 @@ RSpec.describe SignWell::ApiClient do
   end
 
   describe '#deserialize' do
+    it 'preserves false, integer numbers, and strings in response field unions' do
+      response = double(
+        body: '{"test_mode":true,"id":"doc_1","fields":[[{"x":1,"y":2,"page":1,"type":"checkbox","value":false},{"x":1,"y":2,"page":1,"type":"text","value":0},{"x":1,"y":2,"page":1,"type":"text","value":"123"}]]}',
+        headers: { 'Content-Type' => 'application/json' }
+      )
+      fields = client.deserialize(response, 'DocumentResponse').fields.first
+      expect(fields.map(&:value)).to eq([false, 0, '123'])
+    end
+
     it 'falls back to json when the response omits content type' do
       response = Struct.new(:body, :headers).new('{"ok":true}', {})
 
