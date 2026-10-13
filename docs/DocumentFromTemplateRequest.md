@@ -5,11 +5,12 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **test_mode** | **Boolean** | Set to &#x60;true&#x60; to enable Test Mode. Documents created with Test Mode do not count towards API billing and are not legally binding. Defaults to &#x60;false&#x60; | [optional][default to false] |
+| **send_sms_test_preview_email** | **Boolean** | Only applies when &#x60;test_mode&#x60; is &#x60;true&#x60;. When &#x60;true&#x60;, and the document has an SMS-only recipient, sends the document owner a test-mode preview email (with a masked phone number) instead of the regular SMS sender-copy email. No SMS is sent and no credits are used, in test mode or otherwise. Defaults to &#x60;false&#x60;. | [optional][default to false] |
 | **template_id** | **String** | Use when you have to create a document from a single template. Either :template_id or :template_ids must be present in the request, not both. | [optional] |
 | **template_ids** | **Array&lt;String&gt;** | Use when you have to create a document from multiple templates. Either :template_id or :template_ids must be present in the request, not both. | [optional] |
 | **name** | **String** | The name of the document. | [optional] |
-| **subject** | **String** | Email subject for the signature request that recipients will see. Defaults to the default system subject or a template subject (if the document is created from a template). | [optional] |
-| **message** | **String** | Email message for the signature request that recipients will see. Defaults to the default system message or a template message (if the document is created from a template). | [optional] |
+| **subject** | **String** | Email subject for the signature request that recipients will see. Defaults to the default system subject or a template subject (if the document is created from a template). Applies to email notifications only; SMS notifications always use fixed system templates. | [optional] |
+| **message** | **String** | Email message for the signature request that recipients will see. Defaults to the default system message or a template message (if the document is created from a template). Applies to email notifications only; SMS notifications always use fixed system templates. | [optional] |
 | **recipients** | [**Array&lt;TemplateRecipientsInner&gt;**](TemplateRecipientsInner.md) | Document recipients are people that must complete and/or sign a document. Recipients of the document must be assigned to a placeholder of the template. Recipients will inherit all placeholder fields and settings. |  |
 | **exclude_placeholders** | **Array&lt;String&gt;** | Exclude one or more template placeholders when creating a document from a template. Any excluded placeholders (and their associated recipients and fields) will not be included on the created document. Values must match placeholder names on the template. You can&#39;t exclude all placeholders (at least one recipient must remain). | [optional] |
 | **draft** | **Boolean** | Whether the document can still be updated before sending a signature request. If set to &#x60;false&#x60; the document is sent for signing as part of this request. Defaults to &#x60;false&#x60;. | [optional][default to false] |
@@ -20,14 +21,17 @@
 | **api_application_id** | **String** | Unique identifier for API Application settings to use. API Applications are optional and mainly used when isolating OAuth apps or for more control over embedded API settings | [optional] |
 | **embedded_signing** | **Boolean** | When set to &#x60;true&#x60; it enables embedded signing in your website/web application. Embedded functionality works with an iFrame and email authentication is disabled. :embedded_signinig defaults to &#x60;false&#x60;. | [optional][default to false] |
 | **embedded_signing_notifications** | **Boolean** | On embedding signing, document owners (and CC&#39;d contacts) do not get a notification email when documents have been completed. Setting this param to &#x60;true&#x60; will send out those final completed notifications. Default is &#x60;false&#x60; | [optional][default to false] |
+| **embedded** | [**EmbeddedRequest**](EmbeddedRequest.md) |  | [optional] |
 | **text_tags** | **Boolean** | An alternative way (if you can’t use the recommended way) of placing fields in specific locations of your document by using special text tags. Useful when changing the content of your files changes the location of fields. See API documentation for “Text Tags” for details. Defaults to false. | [optional][default to false] |
 | **custom_requester_name** | **String** | Sets the custom requester name for the document. When set, this is the name used for all email communications, signing notifications, and in the audit file. | [optional] |
 | **custom_requester_email** | **String** | Sets the custom requester email for the document. When set, this is the email used for all email communications, signing notifications, and in the audit file. | [optional] |
 | **redirect_url** | **String** | A URL that recipients are redirected to after successfully signing a document. | [optional] |
 | **allow_decline** | **Boolean** | Whether to allow recipients the option to decline signing a document. If multiple signers are involved in a document, any single recipient can cancel the entire document signing process by declining to sign. | [optional][default to true] |
-| **allow_reassign** | **Boolean** | In some cases a signer is not the right person to sign and may need to reassign their signing responsibilities to another person. This feature allows them to reassign the document to someone else. | [optional][default to true] |
+| **allow_reassign** | **Boolean** | In some cases a signer is not the right person to sign and may need to reassign their signing responsibilities to another person. This feature allows them to reassign the document to someone else. Unavailable on 21 CFR Part 11 documents: omit it and reassignment stays off, while sending &#x60;true&#x60; returns a 422. | [optional][default to true] |
 | **decline_redirect_url** | **String** | A URL that recipients are redirected to if the document is declined. | [optional] |
 | **language** | **String** | Sets the language for all recipients on the document and updates all recipient side interactions including the document email and the document itself. Accepted languages: English, Français, Español, Deutsch, Polski, Português, Dansk, Nederlands, Italiano, Русский, Svenska, العربية, Ελληνικά, Türkçe, Slovenčina. Defaults to English. Language should be sent in ISO 639-1 format: en, fr, es, de, pl, pt, da, nl, it, ru, sv, ar, el, tr, sk. | [optional] |
+| **conditional_rules** | [**Array&lt;ConditionalRuleRequest&gt;**](ConditionalRuleRequest.md) | Conditional logic rules that show, hide, or require fields based on what a signer does to other fields. Every identifier is a field api_id. At most 10 rules per document or template. | [optional] |
+| **conditional_rules_mode** | **String** | When creating a document from a template, controls how the conditional_rules in the request reconcile with the template&#39;s inherited rules: &#x60;replace&#x60; (drop inherited, use the body&#39;s rules), &#x60;append&#x60; (keep inherited, add the body&#39;s rules), or &#x60;none&#x60; (clear all rules). Required when sending conditional_rules that should not simply inherit. | [optional] |
 | **metadata** | **Hash&lt;String, String&gt;** | Optional key-value data that can be associated with the document. If set, will be available every time the document data is returned. | [optional] |
 | **template_fields** | [**Array&lt;TemplateFieldValuesInner&gt;**](TemplateFieldValuesInner.md) | Fields of your template(s) that you can prepopulate with values. Signature and Initials fields cannot be signed through the API. | [optional] |
 | **files** | [**Array&lt;AdditionalFilesInner&gt;**](AdditionalFilesInner.md) |  | [optional] |
@@ -44,6 +48,7 @@ require 'signwell_sdk'
 
 instance = SignWell::Models::DocumentFromTemplateRequest.new(
   test_mode: null,
+  send_sms_test_preview_email: null,
   template_id: null,
   template_ids: null,
   name: null,
@@ -59,6 +64,7 @@ instance = SignWell::Models::DocumentFromTemplateRequest.new(
   api_application_id: null,
   embedded_signing: null,
   embedded_signing_notifications: null,
+  embedded: null,
   text_tags: null,
   custom_requester_name: null,
   custom_requester_email: null,
@@ -67,6 +73,8 @@ instance = SignWell::Models::DocumentFromTemplateRequest.new(
   allow_reassign: null,
   decline_redirect_url: null,
   language: null,
+  conditional_rules: null,
+  conditional_rules_mode: null,
   metadata: null,
   template_fields: null,
   files: null,

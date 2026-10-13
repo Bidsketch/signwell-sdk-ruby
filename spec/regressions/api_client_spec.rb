@@ -4,7 +4,53 @@ require 'faraday'
 require 'spec_helper'
 
 RSpec.describe SignWell::ApiClient do
-  let(:client) { described_class.new }
+  let(:client) { described_class.new(SignWell::Configuration.new) }
+
+  it 'reads future standalone and inline enum values while rejecting wrong types' do
+    field = client.deserialize(Struct.new(:body, :headers).new('{"x":1,"y":2,"page":1,"date_format":"future_format"}', { 'Content-Type' => 'application/json' }), 'DocumentResponseFieldsInnerInner')
+    expect(field.date_format).to eq('unknown_default_open_api')
+    recipient = SignWell::Models::RecipientsInner.build_from_hash({ 'id' => '1', 'delivery_method' => 'future_method' })
+    expect(recipient.delivery_method).to eq('unknown_default_open_api')
+    expect { SignWell::Models::DateFormat.build_from_hash(17) }.to raise_error(RuntimeError)
+  end
+
+  it 'bounds explicit 429 retries and replays POST bodies without retrying other errors' do
+    allow(client).to receive(:sleep)
+    [[429, '0', 2, 3], [429, '0', 0, 1], [429, '120', 2, 1], [500, '0', 2, 1]].each do |status, header, limit, expected|
+      client.config.max_rate_limit_retries = limit
+      bodies = []
+      stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+        expected.times { stub.post('/api/v1/documents') { |env| bodies << env.body
+                                                                [status, { 'Content-Type' => 'application/json', 'Retry-After' => header }, '{}'] } }
+      end
+      conn = Faraday.new { |builder| builder.adapter :test, stubs }
+      allow(client).to receive(:connection).and_return(conn)
+      expect do
+        client.call_api(:post, '/api/v1/documents', body: { name: 'Retry document' }, header_params: {}, return_type: 'DocumentResponse')
+      end.to raise_error(SignWell::Errors::ApiStatusError) { |error| expect(error.code).to eq(status) }
+      expect(bodies.size).to eq(expected)
+      expect(bodies.uniq.size).to eq(1)
+      stubs.verify_stubbed_calls
+    end
+  end
+
+  it 'backs off and discards rejected download data before returning the PDF' do
+    waits = []
+    allow(client).to receive(:sleep) { |delay| waits << delay }
+    client.config.return_binary_data = true
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      [[429, {}, 'limited'], [429, { 'Retry-After' => 'invalid' }, 'limited'], [200, { 'Content-Type' => 'application/pdf' }, '%PDF']].each do |status, headers, body|
+        stub.get('/download') do |env|
+          env.request.on_data.call(body, body.bytesize)
+          [status, headers, body]
+        end
+      end
+    end
+    allow(client).to receive(:connection).and_return(Faraday.new { |builder| builder.adapter :test, stubs })
+    expect(client.call_api(:get, '/download', header_params: {}, return_type: 'Binary').first).to eq('%PDF')
+    expect(waits).to eq([1, 2])
+    stubs.verify_stubbed_calls
+  end
 
   describe '#normalize_content_type' do
     it 'returns nil for missing or blank content types' do
@@ -43,6 +89,15 @@ RSpec.describe SignWell::ApiClient do
   end
 
   describe '#deserialize' do
+    it 'preserves false, integer numbers, and strings in response field unions' do
+      response = double(
+        body: '{"test_mode":true,"id":"doc_1","fields":[[{"x":1,"y":2,"page":1,"type":"checkbox","value":false},{"x":1,"y":2,"page":1,"type":"text","value":0},{"x":1,"y":2,"page":1,"type":"text","value":"123"}]]}',
+        headers: { 'Content-Type' => 'application/json' }
+      )
+      fields = client.deserialize(response, 'DocumentResponse').fields.first
+      expect(fields.map(&:value)).to eq([false, 0, '123'])
+    end
+
     it 'falls back to json when the response omits content type' do
       response = Struct.new(:body, :headers).new('{"ok":true}', {})
 

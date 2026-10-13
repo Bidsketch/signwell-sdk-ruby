@@ -12,6 +12,7 @@ All URIs are relative to *https://www.signwell.com*
 | [**list_documents**](DocumentApi.md#list_documents) | **GET** /api/v1/documents | List Documents |
 | [**send_document**](DocumentApi.md#send_document) | **POST** /api/v1/documents/{id}/send | Update and Send Document |
 | [**send_reminder**](DocumentApi.md#send_reminder) | **POST** /api/v1/documents/{id}/remind | Send Reminder |
+| [**update_authentication**](DocumentApi.md#update_authentication) | **PATCH** /api/v1/documents/{id}/authentication | Update Authentication |
 | [**update_recipients**](DocumentApi.md#update_recipients) | **PATCH** /api/v1/documents/{id}/recipients | Update Recipients |
 
 
@@ -21,7 +22,7 @@ All URIs are relative to *https://www.signwell.com*
 
 Create Document
 
-Creates and optionally sends a new document for signing. If `draft` is set to true the document will not be sent.
+Creates and optionally sends a new document for signing. If `draft` is set to true the document will not be sent. Recipients are notified by email, SMS, or both based on each recipient's `delivery_method`. SMS delivery is available only to workspaces that are eligible for SMS and have it enabled, and requires a `phone_number` in E.164 format.
 
 ### Examples
 
@@ -37,7 +38,7 @@ SignWell.configure do |config|
 end
 
 api_instance = SignWell::Resources::DocumentApi.new
-document_request = SignWell::DocumentRequest.new({files: [SignWell::FilesInner.new({name: 'name_example'})], recipients: [SignWell::RecipientsInner.new({id: 'id_example', email: 'signer@example.com'})]}) # DocumentRequest | 
+document_request = SignWell::DocumentRequest.new({files: [SignWell::FilesInner.new({name: 'name_example'})], recipients: [SignWell::RecipientsInner.new({id: 'id_example'})]}) # DocumentRequest | 
 
 begin
   # Create Document
@@ -92,7 +93,7 @@ end
 
 Create Document from Template
 
-Creates and optionally sends a new document for signing. If `draft` is set to true the document will not be sent.
+Creates and optionally sends a new document for signing. If `draft` is set to true the document will not be sent. Pre-signed template signatures and initials are copied to the new document as document content — they remain visible on the document but do not generate a signing event, do not emit a `document_signed` webhook, and the recipient's status will not reflect them as a real signing action. If the template was pre-signed for a signer and the request adds new unsigned signature/initials fields for that same signer, the pre-applied ratifications are cleared silently so the signer is asked to sign once. Recipients are notified by email, SMS, or both based on each recipient's `delivery_method`. SMS delivery is available only to workspaces that are eligible for SMS and have it enabled, and requires a `phone_number` in E.164 format.
 
 ### Examples
 
@@ -108,7 +109,7 @@ SignWell.configure do |config|
 end
 
 api_instance = SignWell::Resources::DocumentApi.new
-document_from_template_request = SignWell::DocumentFromTemplateRequest.new({recipients: [SignWell::TemplateRecipientsInner.new({id: 'id_example', email: 'signer@example.com'})]}) # DocumentFromTemplateRequest | 
+document_from_template_request = SignWell::DocumentFromTemplateRequest.new({recipients: [SignWell::TemplateRecipientsInner.new({id: 'id_example'})]}) # DocumentFromTemplateRequest | 
 
 begin
   # Create Document from Template
@@ -312,7 +313,7 @@ end
 
 Get Document
 
-Returns a document and all associated document data. Supply the unique document ID from either a document creation request or Document page URL.
+Returns a document and all associated document data. Supply the unique document ID from either a document creation request or Document page URL. Each recipient includes its `delivery_method`, and recipients whose delivery includes SMS also include an `sms` object with the masked phone number and SMS delivery status.
 
 ### Examples
 
@@ -460,7 +461,7 @@ end
 
 Update and Send Document
 
-Updates a draft document and sends it to be signed by recipients.
+Updates a draft document and sends it to be signed by recipients. `subject` and `message` apply to email notifications only; SMS notifications always use fixed system templates.
 
 ### Examples
 
@@ -533,7 +534,7 @@ end
 
 Send Reminder
 
-Sends a reminder email to recipients that have not signed yet.
+Sends a reminder to recipients who have not signed yet. Each recipient is reminded through their delivery method (email, SMS, or both). SMS reminders are only sent to recipients whose delivery method includes SMS, and only when the workspace is eligible for SMS and has it enabled.
 
 ### Examples
 
@@ -599,13 +600,86 @@ nil (empty response body)
 - **Accept**: application/json
 
 
+## update_authentication
+
+> <DocumentResponse> update_authentication(id, update_authentication_request)
+
+Update Authentication
+
+Update passcode delivery settings for recipients on a sent document. Only recipients who have not started signing can be updated.
+
+### Examples
+
+```ruby
+require 'time'
+require 'signwell_sdk'
+# setup authorization
+SignWell.configure do |config|
+  # Configure API key authorization: api_key
+  config.api_key['X-Api-Key'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['X-Api-Key'] = 'Bearer'
+end
+
+api_instance = SignWell::Resources::DocumentApi.new
+id = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | 
+update_authentication_request = SignWell::UpdateAuthenticationRequest.new({recipients: [SignWell::UpdateAuthenticationRequestRecipientsInner.new({id: 'id_example'})]}) # UpdateAuthenticationRequest | 
+
+begin
+  # Update Authentication
+  result = api_instance.update_authentication(id, update_authentication_request)
+  p result
+rescue SignWell::Errors::ApiError => e
+  puts "Error when calling DocumentApi->update_authentication: #{e}"
+end
+```
+
+#### Using the update_authentication_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<DocumentResponse>, Integer, Hash)> update_authentication_with_http_info(id, update_authentication_request)
+
+```ruby
+begin
+  # Update Authentication
+  data, status_code, headers = api_instance.update_authentication_with_http_info(id, update_authentication_request)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <DocumentResponse>
+rescue SignWell::Errors::ApiError => e
+  puts "Error when calling DocumentApi->update_authentication_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **id** | **String** |  |  |
+| **update_authentication_request** | [**UpdateAuthenticationRequest**](UpdateAuthenticationRequest.md) |  |  |
+
+### Return type
+
+[**DocumentResponse**](DocumentResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## update_recipients
 
 > <DocumentResponse> update_recipients(id, update_recipients_request)
 
 Update Recipients
 
-Updates one or more recipients on a document that has already been sent. Only recipients who have not started signing may be updated. Recipient IDs must be retrieved from the Get Document response. Allowed document statuses: sent, viewed, pending, bounced. For non-embedded documents, updated recipients will receive a new notification email. For embedded signing documents, email behavior follows each recipient's send_email setting.
+Updates one or more recipients on a document that has already been sent. Only recipients who have not started signing may be updated. Recipient IDs must be retrieved from the Get Document response. Allowed document statuses: sent, viewed, pending, bounced. For non-embedded documents, updated recipients will receive a new notification email. For embedded signing documents, email behavior follows each recipient's send_email setting. This endpoint does not support changing a recipient's `delivery_method` or `phone_number`; SMS delivery settings are set when the document is created.
 
 ### Examples
 
