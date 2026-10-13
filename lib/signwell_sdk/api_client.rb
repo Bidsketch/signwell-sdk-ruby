@@ -50,10 +50,23 @@ module SignWell
     #   the data deserialized from response body (could be nil), response status code and response headers.
     def call_api(http_method, path, opts = {})
       stream = nil
+      response = nil
       begin
-        response = connection(opts).public_send(http_method.to_sym.downcase) do |req|
-          request = build_request(http_method, path, req, opts)
-          stream = download_file(request) if streamed_response?(opts[:return_type])
+        attempt = 0
+        loop do
+          response = connection(opts).public_send(http_method.to_sym.downcase) do |req|
+            request = build_request(http_method, path, req, opts)
+            stream = download_file(request) if streamed_response?(opts[:return_type])
+          end
+          break unless response.status == 429 && attempt < config.max_rate_limit_retries
+
+          delay = rate_limit_retry_delay(response.headers, attempt)
+          break if delay > 60
+
+          discard_download_stream(stream)
+          stream = nil
+          sleep(delay)
+          attempt += 1
         end
 
         if config.debugging
@@ -100,6 +113,15 @@ module SignWell
       # request fails or the body cannot be deserialized; otherwise it lingers until GC finalizes it.
       discard_download_stream(stream)
       raise
+    end
+
+    def rate_limit_retry_delay(headers, attempt)
+      value = Errors::ApiError.first_header(headers, ['retry-after']).to_s.strip
+      return value.to_i if /\A\d+\z/.match?(value)
+
+      [Time.httpdate(value) - Time.now, 0].max
+    rescue ArgumentError
+      2**[attempt, 5].min
     end
 
     def discard_download_stream(stream)

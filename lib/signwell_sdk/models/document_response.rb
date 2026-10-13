@@ -525,7 +525,7 @@ module SignWell
       # @return true if the model is valid
       def valid?
         warn '[DEPRECATED] the `valid?` method is obsolete'
-        cfr_part11_signing_mode_validator = EnumAttributeValidator.new('String', %w[streamlined per_signature])
+        cfr_part11_signing_mode_validator = EnumAttributeValidator.new('String', %w[streamlined per_signature unknown_default_open_api])
         return false unless cfr_part11_signing_mode_validator.valid?(@cfr_part11_signing_mode)
         return false if @test_mode.nil?
         return false if @id.nil?
@@ -535,9 +535,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] cfr_part11_signing_mode Object to be assigned
       def cfr_part11_signing_mode=(cfr_part11_signing_mode)
-        validator = EnumAttributeValidator.new('String', %w[streamlined per_signature])
+        validator = EnumAttributeValidator.new('String', %w[streamlined per_signature unknown_default_open_api])
         unless validator.valid?(cfr_part11_signing_mode)
-          fail ArgumentError, "invalid value for \"cfr_part11_signing_mode\", must be one of #{validator.allowable_values}."
+          if cfr_part11_signing_mode.is_a?(String)
+            cfr_part11_signing_mode = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"cfr_part11_signing_mode\", must be one of #{validator.allowable_values}."
+          end
         end
         @cfr_part11_signing_mode = cfr_part11_signing_mode
       end

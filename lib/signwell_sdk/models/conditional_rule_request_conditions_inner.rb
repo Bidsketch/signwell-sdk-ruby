@@ -166,12 +166,12 @@ module SignWell
       def valid?
         warn '[DEPRECATED] the `valid?` method is obsolete'
         return false if @condition_type.nil?
-        condition_type_validator = EnumAttributeValidator.new('String', %w[any_of all_of none_of not_all_of])
+        condition_type_validator = EnumAttributeValidator.new('String', %w[any_of all_of none_of not_all_of unknown_default_open_api])
         return false unless condition_type_validator.valid?(@condition_type)
         return false if @status.nil?
-        status_validator = EnumAttributeValidator.new('String', %w[completed not_completed])
+        status_validator = EnumAttributeValidator.new('String', %w[completed not_completed unknown_default_open_api])
         return false unless status_validator.valid?(@status)
-        join_operator_validator = EnumAttributeValidator.new('String', %w[and_operator or_operator])
+        join_operator_validator = EnumAttributeValidator.new('String', %w[and_operator or_operator unknown_default_open_api])
         return false unless join_operator_validator.valid?(@join_operator)
         return false if @field_api_ids.nil?
         true
@@ -180,9 +180,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] condition_type Object to be assigned
       def condition_type=(condition_type)
-        validator = EnumAttributeValidator.new('String', %w[any_of all_of none_of not_all_of])
+        validator = EnumAttributeValidator.new('String', %w[any_of all_of none_of not_all_of unknown_default_open_api])
         unless validator.valid?(condition_type)
-          fail ArgumentError, "invalid value for \"condition_type\", must be one of #{validator.allowable_values}."
+          if condition_type.is_a?(String)
+            condition_type = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"condition_type\", must be one of #{validator.allowable_values}."
+          end
         end
         @condition_type = condition_type
       end
@@ -190,9 +194,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] status Object to be assigned
       def status=(status)
-        validator = EnumAttributeValidator.new('String', %w[completed not_completed])
+        validator = EnumAttributeValidator.new('String', %w[completed not_completed unknown_default_open_api])
         unless validator.valid?(status)
-          fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
+          if status.is_a?(String)
+            status = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
+          end
         end
         @status = status
       end
@@ -200,9 +208,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] join_operator Object to be assigned
       def join_operator=(join_operator)
-        validator = EnumAttributeValidator.new('String', %w[and_operator or_operator])
+        validator = EnumAttributeValidator.new('String', %w[and_operator or_operator unknown_default_open_api])
         unless validator.valid?(join_operator)
-          fail ArgumentError, "invalid value for \"join_operator\", must be one of #{validator.allowable_values}."
+          if join_operator.is_a?(String)
+            join_operator = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"join_operator\", must be one of #{validator.allowable_values}."
+          end
         end
         @join_operator = join_operator
       end

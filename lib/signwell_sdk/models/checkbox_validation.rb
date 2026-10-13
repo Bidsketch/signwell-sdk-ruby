@@ -19,9 +19,10 @@ module SignWell
       MAXIMUM = "maximum".freeze
       RANGE = "range".freeze
       EXACT = "exact".freeze
+      UNKNOWN_DEFAULT_OPEN_API = "unknown_default_open_api".freeze
 
       def self.all_vars
-        @all_vars ||= [MINIMUM, MAXIMUM, RANGE, EXACT].freeze
+        @all_vars ||= [MINIMUM, MAXIMUM, RANGE, EXACT, UNKNOWN_DEFAULT_OPEN_API].freeze
       end
 
       # Builds the enum from string
@@ -36,6 +37,7 @@ module SignWell
       # @return [String] The enum value
       def build_from_hash(value)
         return value if CheckboxValidation.all_vars.include?(value)
+        return UNKNOWN_DEFAULT_OPEN_API if value.is_a?(String)
         raise "Invalid ENUM value #{value} for class #CheckboxValidation"
       end
     end

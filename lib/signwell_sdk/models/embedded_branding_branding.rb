@@ -146,7 +146,7 @@ module SignWell
       # @return true if the model is valid
       def valid?
         warn '[DEPRECATED] the `valid?` method is obsolete'
-        company_logo_validator = EnumAttributeValidator.new('String', ["provided"])
+        company_logo_validator = EnumAttributeValidator.new('String', %w[provided unknown_default_open_api])
         return false unless company_logo_validator.valid?(@company_logo)
         true
       end
@@ -154,9 +154,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] company_logo Object to be assigned
       def company_logo=(company_logo)
-        validator = EnumAttributeValidator.new('String', ["provided"])
+        validator = EnumAttributeValidator.new('String', %w[provided unknown_default_open_api])
         unless validator.valid?(company_logo)
-          fail ArgumentError, "invalid value for \"company_logo\", must be one of #{validator.allowable_values}."
+          if company_logo.is_a?(String)
+            company_logo = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"company_logo\", must be one of #{validator.allowable_values}."
+          end
         end
         @company_logo = company_logo
       end

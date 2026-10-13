@@ -170,7 +170,7 @@ module SignWell
         return false if @id.nil?
         return false if @target_id.nil?
         return false if @action_type.nil?
-        action_type_validator = EnumAttributeValidator.new('String', %w[show hide require])
+        action_type_validator = EnumAttributeValidator.new('String', %w[show hide require unknown_default_open_api])
         return false unless action_type_validator.valid?(@action_type)
         true
       end
@@ -198,9 +198,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] action_type Object to be assigned
       def action_type=(action_type)
-        validator = EnumAttributeValidator.new('String', %w[show hide require])
+        validator = EnumAttributeValidator.new('String', %w[show hide require unknown_default_open_api])
         unless validator.valid?(action_type)
-          fail ArgumentError, "invalid value for \"action_type\", must be one of #{validator.allowable_values}."
+          if action_type.is_a?(String)
+            action_type = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"action_type\", must be one of #{validator.allowable_values}."
+          end
         end
         @action_type = action_type
       end

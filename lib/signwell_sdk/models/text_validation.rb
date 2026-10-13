@@ -27,9 +27,10 @@ module SignWell
       US_BANK_ROUTING_NUMBER = "us_bank_routing_number".freeze
       US_BANK_ACCOUNT_NUMBER = "us_bank_account_number".freeze
       CUSTOM = "custom".freeze
+      UNKNOWN_DEFAULT_OPEN_API = "unknown_default_open_api".freeze
 
       def self.all_vars
-        @all_vars ||= [NO_TEXT_VALIDATION, NUMBERS, LETTERS, EMAIL_ADDRESS, US_PHONE_NUMBER, US_ZIP_CODE, US_SSN, US_AGE, ALPHANUMERIC, US_BANK_ROUTING_NUMBER, US_BANK_ACCOUNT_NUMBER, CUSTOM].freeze
+        @all_vars ||= [NO_TEXT_VALIDATION, NUMBERS, LETTERS, EMAIL_ADDRESS, US_PHONE_NUMBER, US_ZIP_CODE, US_SSN, US_AGE, ALPHANUMERIC, US_BANK_ROUTING_NUMBER, US_BANK_ACCOUNT_NUMBER, CUSTOM, UNKNOWN_DEFAULT_OPEN_API].freeze
       end
 
       # Builds the enum from string
@@ -44,6 +45,7 @@ module SignWell
       # @return [String] The enum value
       def build_from_hash(value)
         return value if TextValidation.all_vars.include?(value)
+        return UNKNOWN_DEFAULT_OPEN_API if value.is_a?(String)
         raise "Invalid ENUM value #{value} for class #TextValidation"
       end
     end

@@ -173,7 +173,7 @@ module SignWell
         return false if @rule_id.nil?
         return false if @field_api_id.nil?
         return false if @decision_type.nil?
-        decision_type_validator = EnumAttributeValidator.new('String', %w[kept_signature cleared_value])
+        decision_type_validator = EnumAttributeValidator.new('String', %w[kept_signature cleared_value unknown_default_open_api])
         return false unless decision_type_validator.valid?(@decision_type)
         return false if @decided_at.nil?
         true
@@ -202,9 +202,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] decision_type Object to be assigned
       def decision_type=(decision_type)
-        validator = EnumAttributeValidator.new('String', %w[kept_signature cleared_value])
+        validator = EnumAttributeValidator.new('String', %w[kept_signature cleared_value unknown_default_open_api])
         unless validator.valid?(decision_type)
-          fail ArgumentError, "invalid value for \"decision_type\", must be one of #{validator.allowable_values}."
+          if decision_type.is_a?(String)
+            decision_type = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"decision_type\", must be one of #{validator.allowable_values}."
+          end
         end
         @decision_type = decision_type
       end

@@ -16,6 +16,7 @@ require 'signwell_sdk/version'
 require 'signwell_sdk/configuration'
 
 # Extras
+require 'signwell_sdk/extras/rate_limit'
 require 'signwell_sdk/extras/webhook'
 require 'signwell_sdk/extras/embedded'
 require 'signwell_sdk/extras/embedded/railtie' if defined?(Rails::Railtie)

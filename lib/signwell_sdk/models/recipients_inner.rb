@@ -241,7 +241,7 @@ module SignWell
       def valid?
         warn '[DEPRECATED] the `valid?` method is obsolete'
         return false if @id.nil?
-        delivery_method_validator = EnumAttributeValidator.new('String', %w[email sms email_and_sms])
+        delivery_method_validator = EnumAttributeValidator.new('String', %w[email sms email_and_sms unknown_default_open_api])
         return false unless delivery_method_validator.valid?(@delivery_method)
         true
       end
@@ -259,9 +259,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] delivery_method Object to be assigned
       def delivery_method=(delivery_method)
-        validator = EnumAttributeValidator.new('String', %w[email sms email_and_sms])
+        validator = EnumAttributeValidator.new('String', %w[email sms email_and_sms unknown_default_open_api])
         unless validator.valid?(delivery_method)
-          fail ArgumentError, "invalid value for \"delivery_method\", must be one of #{validator.allowable_values}."
+          if delivery_method.is_a?(String)
+            delivery_method = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"delivery_method\", must be one of #{validator.allowable_values}."
+          end
         end
         @delivery_method = delivery_method
       end

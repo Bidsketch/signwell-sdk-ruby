@@ -17,9 +17,10 @@ module SignWell
     class FileFormat
       PDF = "pdf".freeze
       ZIP = "zip".freeze
+      UNKNOWN_DEFAULT_OPEN_API = "unknown_default_open_api".freeze
 
       def self.all_vars
-        @all_vars ||= [PDF, ZIP].freeze
+        @all_vars ||= [PDF, ZIP, UNKNOWN_DEFAULT_OPEN_API].freeze
       end
 
       # Builds the enum from string
@@ -34,6 +35,7 @@ module SignWell
       # @return [String] The enum value
       def build_from_hash(value)
         return value if FileFormat.all_vars.include?(value)
+        return UNKNOWN_DEFAULT_OPEN_API if value.is_a?(String)
         raise "Invalid ENUM value #{value} for class #FileFormat"
       end
     end

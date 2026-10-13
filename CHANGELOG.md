@@ -10,6 +10,9 @@
 
 ### Changed
 
+- Retry explicit HTTP 429 responses up to twice by default, with Retry-After, bounded backoff, and opt-out.
+- Preserve future enum response values and false/integer union values.
+
 - Refresh generated resources, request/response models, and API documentation from the current published SignWell API.
 - Regenerate with OpenAPI Generator 7.26.0 while preserving existing minimum runtimes.
 

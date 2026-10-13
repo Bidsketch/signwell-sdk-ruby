@@ -20,9 +20,10 @@ module SignWell
       YYYY_MM_DD = "YYYY/MM/DD".freeze
       MONTH_DD_YYYY = "Month DD, YYYY".freeze
       MM_DD_YYYY_HH_MM_SS_A = "MM/DD/YYYY hh:mm:ss a".freeze
+      UNKNOWN_DEFAULT_OPEN_API = "unknown_default_open_api".freeze
 
       def self.all_vars
-        @all_vars ||= [MM_DD_YYYY, DD_MM_YYYY, YYYY_MM_DD, MONTH_DD_YYYY, MM_DD_YYYY_HH_MM_SS_A].freeze
+        @all_vars ||= [MM_DD_YYYY, DD_MM_YYYY, YYYY_MM_DD, MONTH_DD_YYYY, MM_DD_YYYY_HH_MM_SS_A, UNKNOWN_DEFAULT_OPEN_API].freeze
       end
 
       # Builds the enum from string
@@ -37,6 +38,7 @@ module SignWell
       # @return [String] The enum value
       def build_from_hash(value)
         return value if DateFormat.all_vars.include?(value)
+        return UNKNOWN_DEFAULT_OPEN_API if value.is_a?(String)
         raise "Invalid ENUM value #{value} for class #DateFormat"
       end
     end

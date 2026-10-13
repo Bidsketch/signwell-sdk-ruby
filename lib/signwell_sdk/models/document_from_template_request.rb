@@ -511,7 +511,7 @@ module SignWell
         warn '[DEPRECATED] the `valid?` method is obsolete'
         return false if @recipients.nil?
         return false if !@expires_in.nil? && @expires_in < 1
-        conditional_rules_mode_validator = EnumAttributeValidator.new('String', %w[replace append none])
+        conditional_rules_mode_validator = EnumAttributeValidator.new('String', %w[replace append none unknown_default_open_api])
         return false unless conditional_rules_mode_validator.valid?(@conditional_rules_mode)
         true
       end
@@ -543,9 +543,13 @@ module SignWell
       # Custom attribute writer method checking allowed values (enum).
       # @param [Object] conditional_rules_mode Object to be assigned
       def conditional_rules_mode=(conditional_rules_mode)
-        validator = EnumAttributeValidator.new('String', %w[replace append none])
+        validator = EnumAttributeValidator.new('String', %w[replace append none unknown_default_open_api])
         unless validator.valid?(conditional_rules_mode)
-          fail ArgumentError, "invalid value for \"conditional_rules_mode\", must be one of #{validator.allowable_values}."
+          if conditional_rules_mode.is_a?(String)
+            conditional_rules_mode = "unknown_default_open_api"
+          else
+            fail ArgumentError, "invalid value for \"conditional_rules_mode\", must be one of #{validator.allowable_values}."
+          end
         end
         @conditional_rules_mode = conditional_rules_mode
       end
