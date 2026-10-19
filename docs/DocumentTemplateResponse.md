@@ -34,6 +34,7 @@
 | **allow_reassign** | **Boolean** |  | [optional] |
 | **labels** | [**Array&lt;LabelInfo&gt;**](LabelInfo.md) |  | [optional] |
 | **checkbox_groups** | [**Array&lt;CheckboxGroupInfo&gt;**](CheckboxGroupInfo.md) |  | [optional] |
+| **conditional_rules** | [**Array&lt;ConditionalRuleInfo&gt;**](ConditionalRuleInfo.md) |  | [optional] |
 
 ## Example
 
@@ -70,7 +71,8 @@ instance = SignWell::Models::DocumentTemplateResponse.new(
   allow_decline: null,
   allow_reassign: null,
   labels: null,
-  checkbox_groups: null
+  checkbox_groups: null,
+  conditional_rules: null
 )
 ```
 
